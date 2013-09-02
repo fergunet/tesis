@@ -1,0 +1,166 @@
+%\input{preamble}           % Eliminarlo al compilar el documento maestro, ponerlo para compilarlo separado
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                             Tesis Doctoral:                               %%
+%%                        Juan Luis Jimenez Laredo                           %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cabecera{cap:conclusiones}{Conclusiones}
+\chapter{\textit{Conclusiones}}
+\label{cap:conclusiones}
+\cabecera{cap:conclusiones}{Conclusiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Esta tesis estudia la viabilidad del paradigma de computo evolutivo P2P en el contexto de los algoritmos evolutivos paralelos de grano fino espacialmente estructurados. Con este objetivo, el modelo de Agente Evolutivo ha sido presentado, y analizado emp\'iricamente en diversos escenarios  usando funciones trampa como problemas de prueba. Dado que las funciones trampa han sido dise\~nadas para ser dif\'iciles para los algoritmos evolutivos, los resultados deber\'ian poder extenderse f\'acilmente a otros problemas de optimizaci\'on combinatoria.
+
+En concreto, esta tesis proporciona las siguientes contribuciones al \'area de la computaci\'on evolutiva distribuida en infraestructuras P2P:
+
+\begin{itemize}
+
+%%%%%%%%%%
+\item[] {\bf La viabilidad del paradigma de computaci\'on evolutiva P2P ha sido analizado alrededor de los temas de descentralizaci\'on, escalabilidad y tolerancia a fallos.} El reto principal al que se enfrenta un algoritmo evolutivo P2P es el de proporcionar una visi\'on coherente al sistema a pesar de su naturaleza descentralizada. Para aprovechar estos sistemas, la motivaci\'on subyacente ser\'a abordar instancias grandes de problemas dif\'iciles dados los altos requisitos computacionales que tales instancias requieren. En este contexto de escalabilidad masiva, los fallos son inherentes al sistema y cualquier enfoque tendr\'a que demostrar ser tolerante a fallos de forma que se puedan sostener los buenos rendimientos.
+
+
+
+%%%%%%%%%%
+\item[] {\bf El modelo de Agente Evolutivo es propuesto como un enfoque simple y descentralizado para la computaci\'on evolutiva P2P.} Dicho modelo consiste en un algoritmo evolutivo de grano fino que define la estructura de la poblaci\'on  por medio del protocolo P2P newscast. Este hecho permite su ejecuci\'on en sistemas P2P en la que cada Agente Evolutivo puede ser potencialmente albergado en un nodo distinto de modo que el sistema evoluciona as\'incronamente de forma desligada y con la selecci\'on de los padres localmente restringida a las respectivas vecindades. 
+
+
+%%%%%%%%%%
+\item[] {\bf Las ganancias lineales son posibles para intancias grandes de problemas computacionalmente pesados.}
+En problemas con funciones de evaluaci\'on muy costosas, el rendimiento paralelo del modelo muestra ser dependiente de la plataforma de c\'omputo subyacente. De esta forma, se ha estimado que el modelo es capaz de sostener ganancias lineales hasta cientos de procesadores en plataformas de alto rendimiento para instancias de problema costosas. 
+
+ 
+%%%%%%%%%%
+\item[] {\bf El an\'alisis experimental esta basado en una dimensionalidad correcta del tama\~no de la poblaci\'on.}
+Determinar un tama\~no adecuado de poblaci\'on es clave para obtener buenos rendimientos en los algoritmos evolutivos, es decir, preservar buenas calidades en las soluciones sin derrochar esfuerzos computacionales. Con el prop\'osito de estimar los tama\~nos de poblaci\'on \'optimos para los distintos problemas y modelos estudiados, se ha usado un m\'etodo emp\'irico basado en bisecci\'on. De esta forma, investigar la escalabilidad de los distintos modelos ha sido posible al observar como los tama\~nos de la poblaci\'on y los esfuerzos computacionales escalan para distintas instancias de problema.
+
+%%%%%%%%%%
+\item[] {\bf El c\'odigo fuente del simulador utilizado para la experimentaci\'on ha sido liberado como software libre.}
+De esta forma, creemos que los profesionales del \'area pueden beneficiarse de \'el, tanto en la reproducci\'on de los experimentos de esta tesis como extendiendo el propio simulador. El c\'odigo se haya disponible en un repositorio subversion en  \url{https://forja.rediris.es/svn/geneura/evogen} publicado con licencia GPL v3.
+ 
+%%%%%%%%%%
+\item[] {\bf Los algoritmos evolutivos P2P escalan bien en problemas dif\'iciles e instancias grandes.}
+El modelo de Agente Evolutivo ha mostrado escalar mejor que enfoques panm\'icticos cl\'asicos al requerir menores tama\~nos de poblaci\'on as\'i como un menor n\'umero de evaluaciones conforme las instancias del problema crecen. La mejora es mucho m\'as perceptible conforme el problema se vuelve m\'as complejo, mostrando por tanto, la aptitud del modelo para abordar instancias grandes de problemas dif\'iciles. Adem\'as, la comparaci\'on con respecto al algoritmo de poblaci\'on estructurada en anillo muestra que dicha estructura conlleva un mayor n\'umero de evaluaciones y que por lo tanto tiene un peor rendimiento algor\'itmico.
+
+
+%%%%%%%%%%
+\item[] {\bf Las poblaciones con estructura de mundo-peque\~no ofrecen una buena soluci\'on de compromiso entre los componente explorativos y explotativos de los algoritmos evolutivos.} Las inhomogeneidades de las poblaciones estructuradas como mundo-peque\~no juegan un importante rol en la preservaci\'on de la diversidad gen\'etica y tienen un efecto positivo en la escalabilidad del algoritmo. Por un lado, la influencia de tal tipo de estructuras en la presi\'on selectiva no es tan alta como en poblaciones panm\'icticas, de foma que los tama\~nos de poblaci\'on y los tiempos de ejecuci\'on pueden ser reducidos. Por otro lado, el progreso de la diversidad gen\'etica apunta que el comportamiento es m\'as explotativo que en el caso de las estructuras de poblaci\'on regulares. Por tanto, el n\'umero de evaluaciones requeridas para encontrar soluciones \'optimas es minimizado.
+
+En este contexto, hemos comparado el rendimiento de dos m\'etodos que generan estructuras de poblaci\'on mundo-peque\~no: el protocolo Newscast y el m\'etodo de Watts y Strogatz. Ambos m\'etodos han mostrado alcanzar resultados similares superando, en cambio, la escalabilidad algor\'itmica del resto de enfoques en esta tesis.
+
+%%%%%%%%%%
+\item[] {\bf Los algoritmos evolutivos P2P sufren una degradaci\'on gr\'acil bajo condiciones de churn.}
+El modelo de Agente Evolutivo ha mostrado ser robusto bajo distinatas tasas de degradaci\'on del sistema modeladas como churn; el fallo de los nodos no infringe penalizaciones a los tiempos de ejecuci\'on del algoritmo mientras que la calidad de las soluciones es mantenida mediante el incremento del tama\~no de poblaci\'on inicial.
+
+\end{itemize}
+
+
+Dichas contribuciones representan un gran avance al entendimiento del paradigma de computo evolutivo sobre sistemas P2P puesto que apuntan los principales problemas de dise\~no y demuestran la viabilidad del enfoque. No obstante, creemos que a\'un se deben de realizar avances importantes en el \'area de cara a una total comprensi\'on de los algoritmos evolutivos P2P, y m\'as en general, de los algoritmos evolutivos paralelos. En este sentido, como trabajo futuro planeamos centrarnos en las siguientes l\'ineas de investigaci\'on que hemos identificado a lo largo del desarrollo de esta tesis:
+
+\begin{itemize}
+%%%%%%%%%%
+\item[] {\bf Validaci\'on del modelo en una infraestructura P2P real.}
+Despu\'es de estudiar la viabilidad el modelo de Agente Evolutivo, la validaci\'on del enfoque es el siguiente paso l\'ogico. Con ese prop\'osito, planeamos implementar el algoritmo en una plataforma P2P real en la que se aborden conjuntos de problemas con alto coste computacional, como ser\'ia el caso de las instancias grandes del problema de encaminamiento de veh\'iculos \cite{vlvrp}. De esta forma, ser\'a posible centrarse en otros problemas que dependen de la infraestructura de c\'omputo como son el impacto de la latencia y el ancho de banda en el rendimiento del algoritmo o la investigaci\'on de m\'etodos de balanceo de carga que solucionen la problem\'atica de la heterogeneidad de los nodos de c\'omputo.
+
+
+%%%%%%%%%%
+\item[] {\bf Investigaci\'on de otros protocolos P2P como estructuras de poblaci\'on.}
+Esta tesis muestra que diferentes m\'etodos que generan estructuras de poblaci\'on mundo peque\~no tienen rendimientos parecidos en los algoritmos evolutivos. Este hecho es importante puesto que muchos de los protocolos P2P existentes, como son Gnutella 0.4 \cite{gnutella04} o cualquier DHT \cite{chord,pastry,tapestry,can}, est\'an dise\~nados para funcionar como mundo-peque\~no. Por lo tanto, pretendemos explorar algunos de ellos como estructuras de poblaci\'on para algoritmos evolutivos de tal forma que el \'ambito de la computaci\'on evolutiva se pueda beneficiar de plataformas P2P existentes.
+
+
+%%%%%%%%%%
+\item[]{\bf Extender el concepto P2P a otras meta-heur\'isticas de optimizaci\'on.}
+Hasta este punto, nos hemos centrado en la optimizaci\'on P2P dentro del campo concreto de la computaci\'on evolutiva, sin embargo, no existen restricciones que limiten la aplicaci\'on del enfoque P2P a otros paradigmas, como podr\'ian ser los algoritmos de estimaci\'on de distribuciones, la optimizaci\'on basada en colonias de hormigas o los enjambres de part\'iculas. De hecho, este \'ultimo ya ha recibido alguna atenci\'on en la literatura, por ejemplo, el algoritmo P2P-MOPSO de Scriben et al. en \cite{scriven:p2ppso} o el debido a B\'anhelyi et al. en \cite{balazs:evo09}.
+
+
+\end{itemize}
+
+Como consideraci\'on final y a pesar de que se han expuesto algunas l\'ineas de investigaci\'on futura, creemos que el campo de optimizaci\'on P2P est\'a a\'un en sus comienzos y esperamos que esta tesis sea una fuente de ideas e inspiraci\'on para los profesionales del \'area y as\'i sigan contribuyendo a su desarrollo y entendimiento.
+
+\clearpage    
+\section{Publicaciones relacionadas con la tesis}    
+    
+Durante el desarrollo de esta tesis, y directamente relacionada con ella, los siguientes art\'iculos fueron publicados en diferentes revistas y conferencias:
+
+\begin{description}
+
+\item[Art\'iculos en revistas]:
+
+\begin{enumerate}
+
+\item Juan Luis Jimenez Laredo, Agoston E. Eiben, Maarten van Steen, and Juan Julian Merelo. Evag: A
+    scalable peer-to-peer evolutionary algorithm. Genetic Programming and
+     Evolvable Machines, 2010. http://dx.doi.org/10.1007/s10710-009-9096-z.
+
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio M. Mora, Juan Julian Merelo, and Carlos Fernandes.
+    Resilience to churn of a peer-to-peer evolutionary algorithm. Int. J. High Performance Systems Architecture, 1(4):260-268, 2009.
+
+
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio Miguel Mora, and
+     Juan Julian Merelo Guervos. Evolvable agents, a fine grained approach for distributed evolutionary computing: walking towards the peer-to-peer computing frontiers. Soft Computing - A Fusion of Foundations,
+     Methodologies and Applications, 12(12):1145-1156, 2008.
+
+\end{enumerate}
+
+\item[Art\'iculos en conferencias y cap\'itulos de libro]:
+
+\begin{enumerate}
+
+\item Juan Luis Jimenez Laredo, Juan Julian Merelo Guervos, and Pedro Angel Castillo Valdivieso. Paral. and Distrib. Comp. Intel., volume 269 of SCI, chapter Evolvable Agents: A Framework for Peer-to-Peer Evolutionary Algorithms, pages 43-62. Springer-Verlag Berlin Heidelberg, 2010.
+
+
+\item Juan Luis Jimenez Laredo, Carlos Fernandes, Juan Julian Merelo, and Christian Gagne. Improving genetic algorithms performance via deterministic population shrinkage. In GECCO' 09: Proceedings of the 11th Annual
+     conference on Genetic and evolutionary computation, pages 819-826, New York, NY, USA, ACM, 2009.
+
+\item Juan Luis Jimenez Laredo, Carlos Fernandes, Antonio Mora, Pedro A. Castillo, Pablo Garcia-Sanchez, and Juan Julian Merelo. Studying the cache size in a gossip-based evolutionary algorithm. In G.A. Papadopoulos
+     and C. Badica, editors, Proceedings of the 3rd International Symposium on Intelligent Distributed Computing, volume 237 of Studies in Computational Intelligence, pages 131-140. Springer-Verlag Berlin Heidelberg,
+     2009.
+
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio M. Mora, Carlos Fernandes, and Juan Julian Merelo. Addressing Churn in a Peer-to-Peer Evolutionary Algorithm. In Juan Lanchares, Francisco Fernandez, and Jose L. Risco-Martin, editors, WPABA'  08 - First International Workshop on Parallel Architectures and Bioinspired Algorithms, Toronto, Canada, pages 5-12. Complutense University Of Madrid, 2008.
+
+
+
+     
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio Miguel Mora,
+     Juan Julian Merelo Guervos, Agostinho Claudio da Rosa, and Carlos
+     Fernandes. Evolvable agents in static and dynamic optimization problems. In Rudolph et al., editors. Parallel Problem Solving from Nature - PPSN X,
+     10th International Conference Dortmund, Germany, Proceedings, volume 5199 of Lecture Notes in Computer Science, pages 488-497. Springer, 2008
+
+\item Juan Luis Jimenez Laredo, Agoston E. Eiben, Maarten van Steen, and
+     Juan Julian Merelo Guervos. On the run-time dynamics of a peer-to-peer
+     evolutionary algorithm. In Rudolph et al., editors. Parallel Problem Solving from Nature - PPSN X,
+     10th International Conference Dortmund, Germany, Proceedings, volume 5199 of Lecture Notes in Computer Science, pages 236-245. Springer, 2008.
+
+
+\item Juan Luis Jimenez Laredo, Agoston E. Eiben, Maarten van Steen, Pedro A.
+     Castillo, Antonio Miguel Mora, and Juan Julian Merelo Guervos. P2P
+     evolutionary algorithms: A suitable approach for tackling large instances
+     in hard optimization problems. In Emilio Luque et al., editors, Euro-Par, volume 5168 of Lecture Notes in
+     Computer Science, pages 622-631. Springer, 2008.
+
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio M. Mora, and Juan Julian Merelo. Exploring  population structures for locally concurrent and massively parallel evolutionary algorithms. In IEEE Congress on Evolutionary Computation (CEC2008), WCCI2008 Proceedings, pages 2610-2617. IEEE Press, Hong Kong, June 2008.
+
+
+\item Agoston E. Eiben, Marc Schoenauer, Juan Luis Jimenez Laredo, Pedro A. Castillo Valdivieso, Antonio Miguel Mora, and Juan Julian Merelo. Exploring selection mechanisms for an agent-based distributed evolutionary algorithm. In Dirk Thierens, editor, GECCO' 07, pages 2801-2808. ACM, 2007.
+
+     
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo Valdivieso, Ben Paechter, Antonio Miguel Mora, Eva Alfaro-Cid, Anna Esparcia-Alcazar, and  Juan Julian Merelo Guervos. Empirical validation of a gossiping communication mechanism for parallel EAs. In Mario Giacobini et al., editors, EvoWorkshops, volume 4448 of Lecture Notes in Computer Science, pages 129-136. Springer, 2007.
+
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio M. Mora, and Juan Julian Merelo. Escalado con un sistema de agentes evolutivos distribuido. In Francisco Almeida-Rodriguez et al., editors, Actas MAEB 2007, pages 111-118, 2007.
+    
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Gustavo Romero, Antonio M. Mora, Juan Julian Merelo, and
+    Maribel G. Arenas. Validacion de un sistema computacional P2P mediante un estudio empirico. In XVII Jornadas de Paralelismo - XVII JP, pages 235-240, September 2006.
+    
+\item Juan Luis Jimenez Laredo, Pedro A. Castillo, Antonio M. Mora, and Juan Julian Merelo. Estudio preliminar sobre autoadaptacion en agentes evolutivos sobre arquitecturas heterogeneas. In XVII Jornadas de Paralelismo - XVII JP, pages 389-394, September 2006.
+
+\end{enumerate}
+\end{description}
+
+%\bibliographystyle{plain}  % Eliminarlo al compilar el documento maestro, ponerlo para compilarlo separado
+%\bibliography{evagperformance}%evagperformance,pea,p2pcomputing,model,methodology} %Eliminarlo al compilar el documento maestro, ponerlo para compilarlo separado
+
+%\end{document}             % Eliminarlo al compilar el documento maestro, ponerlo para compilarlo separado
+

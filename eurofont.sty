@@ -1,0 +1,562 @@
+%%
+%% This is file `eurofont.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% eurofont.dtx  (with options: `package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from eurofont.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file eurofont.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%\iffalse
+%% File eurofont.sty
+%% copyright Rowland McDonnell 1998
+%% email rebecca@astrid.u-net.com
+%%\This file is part of the eurofont distribution.  You can distribute it
+%% freely provided that you include the rest of the eurofont distribution
+%% with this file and make no more than a nominal charge to cover the
+%% costs of distributing it.
+%%
+%% If you would like to change the contents of this file, please make a
+%% copy of it under a different name and change that instead. Keep my
+%% copyright notice attached, but make it clear that the new file is your
+%% responsibility so you get the credit for the improvements and I don't
+%% get blamed for the bugs.
+%% \CheckSum{1267}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+%%    List contents                                Corresponding command
+%%
+%%
+%%    List contents                                Corresponding command
+%%
+%% Put all the standard LaTeX weights (and likely extras)
+%% into one of the following lists:
+\NeedsTeXFormat{LaTeX2e}[1998/06/01]
+\ProvidesPackage{eurofont}[1999/01/30 v1.1.3 A package for using euro
+symbols]
+\def\userlist{}
+\def\texteurolist{}
+\def\chinaelist{}
+\def\cmlist{}
+\def\seriflist{}
+\def\sanslist{}
+\def\monolist{}
+\def\fakemediumlist{}
+\def\fakelightlist{}
+\def\fakeheavylist{}
+\def\faketexteurolist{}
+\def\EFlightserieslist{}
+\def\EFmediumserieslist{}
+\def\EFboldserieslist{}
+\def\EFultraboldserieslist{}
+\newif\ifEF@debugreport
+\EF@debugreportfalse% Debugging reports off by default
+\def\EF@debugrep#1{\ifEF@debugreport\typeout{eurofont: #1}\fi}
+\newif\ifEF@listed
+\def\EF@checkiflisted#1#2{% check if element #1 is in list #2
+\EF@listedfalse%
+\edef\thiselem{#1}% changed to edef from def RJMM 1/9/98
+\let\@@elt\@elt% Save \@elt (in case this command is executed
+\def\@elt##1{\def\testelem{##1}%
+\ifx\thiselem\testelem\EF@listedtrue\fi}%
+#2\let\@elt\@@elt}% execute list and restore \@elt
+\newcommand{\EFaddtolist}[2]{% #1 = list name;
+\EF@addtolist#2,:#1\end}
+\def\EF@addtolist#1,#2:#3\end{% #3 is the list now
+\def\@tempcmda{#2}%
+\ifx\@tempcmda\@empty%
+   \EF@debugrep{Last elem: #1}\relax% if #2 is empty, do this.
+    \EF@addMember{#1}{#3}%            if #2 is empty, do this
+    \else
+     \EF@debugrep{elem: #1}\relax% if #2 is not empty, do this
+      \EF@addMember{#1}{#3}%       if #2 is not empty, do this
+      \EF@addtolist#2:#3\end\fi}%  if #2 is not empty, do this
+\newcommand{\EF@addMember}[2]{%
+    %%% add #1 only if it isn't yet in the list
+    %%% it surely would be more efficient without the check...
+    {\EF@checkiflisted{#1}{#2}\relax% to suppress space
+    \ifEF@listed
+    \EF@debugrep{#1 already in the list}\relax%
+    \else
+    \EF@debugrep{adding #1 to \string #2}\relax%
+    \EF@rightappenditem{#1}{#2}\fi}}
+\newtoks\EF@tokb% token list register for temp use
+\newcommand{\EF@rightappenditem}[2]%
+{\@temptokena={\@elt{#1}}\EF@tokb=\expandafter{#2}%
+\xdef#2{\the\EF@tokb\the\@temptokena}}% change the list globally
+\newif\ifEF@marvosym\EF@marvosymfalse% Adobe Eurofonts by default
+\newif\ifEF@eurosym\EF@eurosymfalse%   Don't use eurosym by default
+\newif\ifEF@textcomp\EF@textcomptrue% Load the textcomp package if
+\newif\ifEF@fixtieaccent\EF@fixtieaccentfalse% Don't re-define tie
+\DeclareOption{marvosym}      {\EF@marvosymtrue}
+\DeclareOption{adobeeurofonts}{\EF@marvosymfalse}
+\DeclareOption{eurosym}  {\EF@eurosymtrue}
+\DeclareOption{noeurosym}{\EF@eurosymfalse}
+\DeclareOption{debugreport}{\EF@debugreporttrue}
+\DeclareOption{nodebugreport}{\EF@debugreportfalse}
+\DeclareOption{notextcomp}{\EF@textcompfalse}
+\DeclareOption{textcomp}{\EF@textcomptrue}
+\DeclareOption{fixtieaccent}{\EF@fixtieaccenttrue}
+\DeclareOption{nofixtieaccent}{\EF@fixtieaccentfalse}
+\newcommand*{\fakelighteuro}[1][0ex]{\def\EF@tmprlift{#1}\@fakelighteuro}
+\newcommand*{\fakemediumeuro}[1][0ex]{\def\EF@tmprlift{#1}\@fakemediumeuro}
+\newcommand*{\fakeheavyeuro}[1][0ex]{\def\EF@tmprlift{#1}\@fakeheavyeuro}
+\DeclareOption{noslantfakeeuro} {%
+    \def\EF@fakeslant{0}% in case anyone's interested
+    \newcommand*{\@fakemediumeuro}[1][100]
+                {\mediumruleeuronoslant{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakelighteuro}[1][100]
+                {\lightruleeuronoslant{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakeheavyeuro}[1][100]
+                {\heavyruleeuronoslant{\EF@tmprlift}{#1}}}
+\DeclareOption{normalslantfakeeuro} {%
+    \def\EF@fakeslant{1}% in case anyone's interested
+    \newcommand*{\@fakemediumeuro}[1][100]
+                {\mediumruleeuronorm{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakelighteuro}[1][100]
+                {\lightruleeuronorm{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakeheavyeuro}[1][100]
+                {\heavyruleeuronorm{\EF@tmprlift}{#1}}}
+\DeclareOption{bigslantfakeeuro} {%
+    \def\EF@fakeslant{2}% in case anyone's interested
+    \newcommand*{\@fakemediumeuro}[1][100]
+                {\mediumruleeurobigslant{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakelighteuro}[1][100]
+                {\lightruleeurobigslant{\EF@tmprlift}{#1}}
+    \newcommand*{\@fakeheavyeuro}[1][100]
+                {\heavyruleeurobigslant{\EF@tmprlift}{#1}}}
+\DeclareOption{left}{\PassOptionsToPackage{left}{eurosym}%
+\DeclareRobustCommand{\euros}[1]{\euro\nobreak\,#1}}
+\DeclareOption{right}{\PassOptionsToPackage{right}{eurosym}%
+\DeclareRobustCommand{\euros}[1]{#1\nobreak\,\euro}}
+\DeclareOption{official}{\PassOptionsToPackage{official}{eurosym}}
+\DeclareOption{gen}{\PassOptionsToPackage{gen}{eurosym}}
+\DeclareOption{gennarrow}{\PassOptionsToPackage{gennarrow}{eurosym}}
+\DeclareOption{genwide}{\PassOptionsToPackage{genwide}{eurosym}}
+\ExecuteOptions{adobeeurofonts}% Use Adobe's Eurofonts by default
+\ExecuteOptions{noeurosym}%      Don't use eurosym by default
+\ExecuteOptions{left}%           Euro symbol on left by default
+\ExecuteOptions{normalslantfakeeuro}% Fake euros with slight slant by default
+\ExecuteOptions{nodebugreport}%  No debugging reports by default
+\ExecuteOptions{textcomp}%  Load the textcomp package by default
+\ExecuteOptions{nofixtieaccent}%  Don't re-define the tie accent by
+\InputIfFileExists{eurofont.cfg}{}%
+{\PackageWarningNoLine{eurofont}%
+{I can't find the eurofont.cfg configuration file.\MessageBreak
+Perhaps something is wrong with this installation?\MessageBreak
+The \protect\euro\space command will work with default settings}%
+\EFaddtolist{\userlist}{}
+\EFaddtolist{\texteurolist}{}
+\EFaddtolist{\chinaelist}{}
+\EFaddtolist{\cmlist}{cmr,cmss,cmtt}
+\EFaddtolist{\seriflist}{pbk,pnc,ppl,ptm,put}
+\EFaddtolist{\sanslist}{pag,phv,psy,pzd}
+\EFaddtolist{\monolist}{pcr}
+\EFaddtolist{\fakemediumlist}{pzc}
+\EFaddtolist{\fakelightlist}{}
+\EFaddtolist{\fakeheavylist}{}
+\EFaddtolist{\faketexteurolist}{}
+\EFaddtolist{\EFlightserieslist}{ul,el,l,ulc,elc,lc,ulx,elx,lx}
+\EFaddtolist{\EFmediumserieslist}{m,mb,db,sb,mc,mbc,dbc,sbc,mx,mbx,dbx,sbx}
+\EFaddtolist{\EFboldserieslist}{b,bx,bc}
+\EFaddtolist{\EFultraboldserieslist}{eb,ub,ebc,ubc,ebx,ubx}%
+\EFaddtolist{\EFultraboldserieslist}{xb,ebd}
+}
+\ProcessOptions
+\ifEF@textcomp\IfFileExists{textcomp.sty}{\RequirePackage{textcomp}}{}\fi
+\ifEF@fixtieaccent \DeclareTextAccentDefault{\t}{OML}\fi
+\ifEF@eurosym%
+\def\euro{\makefakeeuro}
+\IfFileExists{eurosym.sty}{\RequirePackage{eurosym}}{%
+\PackageError{eurofont}{I can't find the eurosym package}%
+{You've used the eurosym option; this requires the eurosym package
+which doesn't appear to be installed}}%
+\let\ESeuro\euro
+\fi
+\newcommand{\showfontfamily}{
+\typeout{**********************************}
+\typeout{* \protect\showfontfamily:
+      \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space*}
+\typeout{*\space\space\space\space\space\space
+          \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space*}
+\typeout{* The current font family is: \f@family\space *}
+\typeout{*\space\space\space\space\space\space
+          \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space\space\space\space
+      \space\space\space*}
+\typeout{***********************************}
+}
+\def\EF@crossstrokes#1#2#3#4#5#6#7#8#9{%
+\@ifundefined{EF@slantcorr}{\def\EF@slantcorr{100}}{}%
+\@tempdima=#8%
+\@tempdima=\fontdimen1\font%
+\@tempdima=0.1\@tempdima%
+\@tempdima=\EF@slantcorr\@tempdima%
+\@tempdima=0.1\@tempdima%
+\edef\@tempcmda{\strip@pt\@tempdima}%
+\@tempdima=#2% Changed from width #1 to height #2
+\@tempdima=\@tempcmda\@tempdima%
+\@tempdima=0.5\@tempdima%
+\edef\EF@slantC{\the\@tempdima}%
+\@tempdimb=#8% centre line spacing of rules
+\@tempdimb=\@tempcmda\@tempdimb%
+\@tempdimb=0.5\@tempdimb%
+\edef\EF@rulehoffset{\the\@tempdimb}%
+\@tempdima=#1%             \
+\@tempdima=0.01\@tempdima%  \
+\@tempdima=#4\@tempdima%     } move back to add cross-strokes
+\kern-\@tempdima%           /
+\kern\EF@slantC%           /  Slant correction forward for italic
+\@tempdima=#2%                      \
+\advance\@tempdima by-#3%            \
+\advance\@tempdima by-#8%             \ calc lift of cross-strokes
+\advance\@tempdima by-#7%             /
+\@tempdima=0.5\@tempdima%            /
+\advance\@tempdima by#9%            /
+\@tempdimc=#8%             \ calc cross-stroke spacing
+\advance\@tempdimc by-#7%  /
+\raisebox{\@tempdima}{%
+\vbox{%                             \
+\@tempdimb=#1%                \      \
+\@tempdimb=0.01\@tempdimb%     } calc width of cross-stroke
+\@tempdimb=#5\@tempdimb%      /        \
+\hbox{\kern\EF@rulehoffset%             \ top rule
+\vbox{\hrule width\@tempdimb height#7}}% \
+\nointerlineskip%                         } draw cross-strokes
+\vskip\@tempdimc%                        / (using \@tempdima/b/c from above)
+\@tempdimb=#1%                \         /
+\@tempdimb=0.01\@tempdimb%     } calc width of cross-stroke
+\@tempdimb=#6\@tempdimb%      /       /
+\hbox{\kern-\EF@rulehoffset%         /
+\vbox{\hrule width\@tempdimb height#7}}}}%  bottom rule
+\@tempcnta=#4%                   \
+\advance\@tempcnta by-#5%  (aha!) \
+\@tempdima=#1%                     \
+\@tempdima=0.01\@tempdima%          \ move forward to end of C
+\@tempdima=\@tempcnta\@tempdima%    /
+\kern\@tempdima%                   /
+\kern-\EF@slantC%                /   slant correction
+}
+\providecommand\EF@fakeeurobase{C}
+\def\EFruleeuro#1#2#3#4#5#6#7{{% Confine defs to \EFruleeuro
+\settowidth{\@tempdima}{\EF@fakeeurobase}%
+\settoheight{\@tempdimb}{\EF@fakeeurobase}%
+\settodepth{\@tempdimc}{\EF@fakeeurobase}%
+\edef\EF@Cwidth{\the\@tempdima}%
+\edef\EF@Cheight{\the\@tempdimb}%
+\edef\EF@Cdepth{\the\@tempdimc}%
+\advance\@tempdimb by\@tempdimc%
+\def\EF@slantcorr{#7}%
+\ifx\EF@slantcorr\@empty\def\EF@slantcorr{100}\fi%
+\def\EF@backshift{#1}% percentage of \EF@Cwidth that back shift is
+\@tempdimb=0.01\@tempdima%          swapped these two lines;
+\@tempdimb=\EF@backshift\@tempdimb% dimen can get too big otherwise
+\ifdim\@tempdimb>\@tempdima\@tempdima=\@tempdimb\fi%
+\makebox[\@tempdima][r]%
+{\EF@fakeeurobase\EF@crossstrokes{\EF@Cwidth}{\EF@Cheight}{\EF@Cdepth}%
+                                 {\EF@backshift}{#2}{#3}{#4}{#5}{#6}}%
+}}
+\def\SelectOnWeight#1#2#3#4{%
+\EF@checkiflisted{\f@series}{\EFlightserieslist}%
+\ifEF@listed\EF@debugrep{SelectOnWeight light}#1%
+\else
+\EF@checkiflisted{\f@series}{\EFmediumserieslist}%
+\ifEF@listed\EF@debugrep{SelectOnWeight medium}#2%
+\else
+\EF@checkiflisted{\f@series}{\EFboldserieslist}%
+\ifEF@listed\EF@debugrep{SelectOnWeight bold}#3%
+\else
+\EF@checkiflisted{\f@series}{\EFultraboldserieslist}%
+\ifEF@listed\EF@debugrep{SelectOnWeight ultrabold}#4%
+\else\EF@debugrep{SelectOnWeight default to medium}%
+#2%
+\fi\fi\fi\fi}
+\providecommand*{\mediumruleeuronorm}[2]{\EF@debugrep{medium rule euro norm}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{72}{0.04ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{72}{0.07ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{72}{0.14ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{72}{0.18ex}{0.27ex}{#1}{#2}}% ultra bold - new numbers
+}
+\providecommand*{\mediumruleeuronoslant}[2]{\EF@debugrep{medium rule euro noslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{80}{0.04ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{80}{0.07ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{80}{0.14ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{80}{0.18ex}{0.27ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\mediumruleeurobigslant}[2]{\EF@debugrep{medium rule euro bigslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{60}{0.04ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{60}{0.07ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{60}{0.14ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{60}{0.18ex}{0.27ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\lightruleeuronorm}[2]{\EF@debugrep{light rule euro norm}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{72}{0.02ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{72}{0.04ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{72}{0.07ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{72}{0.14ex}{0.27ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\lightruleeuronoslant}[2]{\EF@debugrep{light rule euro noslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{80}{0.02ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{80}{0.04ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{80}{0.07ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{80}{0.14ex}{0.27ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\lightruleeurobigslant}[2]{\EF@debugrep{light rule euro bigslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{60}{0.02ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{60}{0.04ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{60}{0.07ex}{0.27ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{60}{0.14ex}{0.27ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\heavyruleeuronorm}[2]{\EF@debugrep{heavy rule euro norm}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{72}{0.14ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{72}{0.18ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{72}{0.22ex}{0.30ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{72}{0.26ex}{0.33ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\heavyruleeuronoslant}[2]{\EF@debugrep{heavy rule euro noslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{80}{0.14ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{80}{0.18ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{80}{0.22ex}{0.30ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{80}{0.26ex}{0.33ex}{#1}{#2}}% ultra bold
+}
+\providecommand*{\heavyruleeurobigslant}[2]{\EF@debugrep{heavy rule euro bigslant}%
+\SelectOnWeight%
+{\EFruleeuro{110}{80}{60}{0.14ex}{0.27ex}{#1}{#2}}% light
+{\EFruleeuro{110}{80}{60}{0.18ex}{0.27ex}{#1}{#2}}% medium
+{\EFruleeuro{110}{80}{60}{0.22ex}{0.30ex}{#1}{#2}}% bold
+{\EFruleeuro{110}{80}{60}{0.26ex}{0.33ex}{#1}{#2}}% ultra bold
+}
+\def\EF@mvs{\fontencoding{U}\fontfamily{zmvs}\fontseries{m}\selectfont}
+\providecommand{\marvosymeuro}[1]{%
+\EF@debugrep{marvosymeuro}%
+\SelectOnWeight%
+{\EF@mvs\char#1}% light
+{\EF@mvs\char#1}% medium
+{\mbox{\EF@pmsb{\EF@mvs\char#1}}}% bold
+{\mbox{\EF@pmsb{\EF@mvs\char#1}}}% ultra bold
+}
+\providecommand
+ {\marvosymserifeuro}{\EF@debugrep{marvosymserifeuro}\marvosymeuro{101}}
+\providecommand
+ {\marvosymsanseuro}{\EF@debugrep{marvosymsanseuro}\marvosymeuro{99}}
+\providecommand
+ {\marvosymmonoeuro}{\EF@debugrep{marvosymmonoeuro}\marvosymeuro{100}}
+\newlength{\EF@pmbshift}
+\newcommand{\EF@pmsb}[1]{%
+\EF@debugrep{EF@pmsb}%
+\EF@pmbshift=0.020em% as was
+\hbox{%
+\rlap{#1}%
+\kern0.5\EF@pmbshift%
+\raisebox{0.50\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\raisebox{-0.50\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\kern1\EF@pmbshift%
+\raisebox{0.50\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\raisebox{-0.50\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\kern0.5\EF@pmbshift%
+#1}}
+\newcommand{\EF@pmb}[1]{%
+\EF@debugrep{EF@pmb}%
+\EF@pmbshift=0.020em% as was
+\hbox{%
+\rlap{#1}%
+\kern0.5\EF@pmbshift%
+\raisebox{0.866\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\raisebox{-0.866\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\kern1\EF@pmbshift%
+\raisebox{0.866\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\raisebox{-0.866\EF@pmbshift}[0pt][0pt]{\rlap{#1}}%
+\kern0.5\EF@pmbshift%
+#1}}
+\def\EFiftexteuroexists#1#2{%
+\EF@checkiflisted{\f@family}{\faketexteurolist}%
+\ifEF@listed#2%
+\else
+\ifx\texteuro\@undefined#2% if \texteuro doesn't exist, #2 and finish
+\else%
+\IfFileExists{ts1\f@family.fd}%
+{#1}% if ts1<fam>.fd exists, #1.  Can't usefully test for glyph existing
+{#2}% if ts1<fam>.fd doesn't exist, #2 and finish
+\fi\fi}
+\providecommand{\zpeutteuro}{\EF@debugrep{zpeutteuro}%
+{\fontencoding{U}\fontfamily{zpeutt}\selectfont e}}
+\providecommand{\zpeureuro}{\EF@debugrep{zpeureuro}%
+{\fontencoding{U}\fontfamily{zpeur}\selectfont e}}
+\providecommand{\zpeusseuro}{\EF@debugrep{zpeusseuro}%
+{\fontencoding{U}\fontfamily{zpeuss}\selectfont e}}
+\ifEF@marvosym
+\providecommand{\monoeuro}{\EF@debugrep{monoeuro}{\marvosymmonoeuro}}
+\providecommand{\serifeuro}{\EF@debugrep{serifeuro}{\marvosymserifeuro}}
+\providecommand{\sanseuro}{\EF@debugrep{sanseuro}{\marvosymsanseuro}}
+\else
+\providecommand{\monoeuro}{\EF@debugrep{monoeuro}\zpeutteuro}
+\providecommand{\serifeuro}{\EF@debugrep{serifeuro}\zpeureuro}
+\providecommand{\sanseuro}{\EF@debugrep{sanseuro}\zpeusseuro}
+\fi
+\providecommand{\makeusereuro}
+               {\EF@debugrep{makeusereuro}\makefakemediumeuro%
+\PackageWarningNoLine{eurofont}{%
+You have tried to use the \protect\makeusereuro\space command
+to\MessageBreak print a euro symbol, but you have not defined
+the\MessageBreak \protect\makeusereuro\space command. This has
+probably happened in\MessageBreak the \protect\euro\space command. I
+shall print a faked euro symbol\MessageBreak for now}}
+\DeclareFontFamily{OT1}{chin}{}
+\DeclareFontShape{OT1}{chin}{m}{n}{<-> china10}{}
+\providecommand{\chinaeeuro}{%
+\IfFileExists{china2e.sty}%
+{\EF@debugrep{chinaeeuro}%
+\SelectOnWeight%
+{{\usefont{OT1}{chin}{m}{n}\char255}}% light
+{{\usefont{OT1}{chin}{m}{n}\char255}}% medium
+{\mbox{\EF@pmb{\usefont{OT1}{chin}{m}{n}\char255}}}% bold
+{\mbox{\EF@pmb{\usefont{OT1}{chin}{m}{n}\char255}}}% ultra bold
+}%
+{\EF@debugrep{chinaeeuro - we have a problem}%
+\PackageWarning{eurofont}{%
+The \protect\euro\space command
+is trying to print a euro symbol\MessageBreak
+from the China2e fount, but I can't find the file\MessageBreak
+china2e.sty.\MessageBreak\MessageBreak
+I'm assuming that you've not got the China2e font\MessageBreak
+installed, so I'm printing a faked euro instead\MessageBreak}%
+\makefakeeuro}}
+\providecommand{\cmrfakeeuro}{%
+\EF@debugrep{\protect\cmrfakeeuro}\fakelighteuro}
+\providecommand{\cmssfakeeuro}{%
+\EF@debugrep{\protect\cmssfakeeuro}\fakemediumeuro}
+\providecommand{\cmttfakeeuro}{%
+\EF@debugrep{\protect\cmttfakeeuro}\fakemediumeuro}
+\providecommand{\makefakemediumeuro}{\EF@debugrep{makefakemediumeuro}%
+\@ifundefined{\f@family fakeeuro}{\fakemediumeuro}%
+{\csname\f@family fakeeuro\endcsname}}
+\providecommand{\makefakelighteuro}{\EF@debugrep{makefakelighteuro}%
+\@ifundefined{\f@family fakeeuro}{\fakelighteuro}%
+{\csname\f@family fakeeuro\endcsname}}
+\providecommand{\makefakeheavyeuro}{\EF@debugrep{makefakeheavyeuro}%
+\@ifundefined{\f@family fakeeuro}{\fakeheavyeuro}%
+{\csname\f@family fakeeuro\endcsname}}
+\providecommand{\makefakeeuro}{\EF@debugrep{makefakeeuro}%
+\@ifundefined{\f@family fakeeuro}{%
+\EF@checkiflisted{\f@family}{\fakelightlist}\relax
+  \ifEF@listed \makefakelighteuro
+    \else
+    \EF@checkiflisted{\f@family}{\fakemediumlist}\relax
+    \ifEF@listed \makefakemediumeuro
+      \else
+      \EF@checkiflisted{\f@family}{\fakeheavylist}\relax
+      \ifEF@listed \makefakeheavyeuro
+        \else%                If <fam>'s not listed,
+        \makefakemediumeuro%  print medium faked euro
+        \fi \fi \fi
+}%
+{\csname\f@family fakeeuro\endcsname}}
+\providecommand{\pzcfakeeuro}{\EF@debugrep{pzcfakeeuro}%
+\fakemediumeuro[-0.1ex]}
+\providecommand{\maketexteuro}{\EF@debugrep{maketexteuro}%
+\EFiftexteuroexists{\texteuro}{\makefakeeuro}}
+\providecommand{\cmeuro}{\EF@debugrep{cmeuro}%
+\EFiftexteuroexists{\texteuro}{\makefakeeuro}}
+\ifEF@eurosym
+\EF@debugrep{Using eurosym's euro command}
+\providecommand{\makecmeuro}     {\EF@debugrep{makecmeuro;      ESeuro}\ESeuro}
+\providecommand{\makedefaulteuro}{\EF@debugrep{makedefaulteuro; ESeuro}\ESeuro}
+\providecommand{\makeserifeuro}  {\EF@debugrep{makeserifeuro;   ESeuro}\ESeuro}
+\providecommand{\makesanseuro}   {\EF@debugrep{makesanseuro;    ESeuro}\ESeuro}
+\providecommand{\makemonoeuro}   {\EF@debugrep{makemonoeuro;    ESeuro}\ESeuro}
+\else
+\EF@debugrep{Not using eurosym's euro command}
+\providecommand{\makecmeuro}     {\EF@debugrep{makecmeuro     }\cmeuro}
+\providecommand{\makedefaulteuro}{\EF@debugrep{makedefaulteuro}\makefakeeuro}
+\providecommand{\makeserifeuro}  {\EF@debugrep{makeserifeuro  }\serifeuro}
+\providecommand{\makesanseuro}   {\EF@debugrep{makesanseuro   }\sanseuro}
+\providecommand{\makemonoeuro}   {\EF@debugrep{makemonoeuro   }\monoeuro}
+\fi
+\providecommand{\makechinaeeuro}
+               {\EF@debugrep{makechinaeeuro}\chinaeeuro}
+\DeclareRobustCommand{\EFeuro}{\EF@debugrep{start EFeuro:
+ \f@encoding/\f@family/\f@series/\f@shape}%
+ \EF@checkiflisted{\f@family}{\userlist}\relax
+ \ifEF@listed\EF@debugrep{EFeuro makeuser euro}\makeusereuro
+  \else
+  \@ifundefined{\f@family euro}{\@tempswatrue}%   test for \<fam>euro
+  {\EF@debugrep{EFeuro \f@family euro}\relax%           do \<fam>euro
+  \@tempswafalse\csname\f@family euro\endcsname}\relax% do \<fam>euro
+  \if@tempswa% if \<fam>euro doesn't exist, do the next test
+    \EF@checkiflisted{\f@family}{\texteurolist}\relax
+    \ifEF@listed \EF@debugrep{EFeuro texteuro}\maketexteuro
+      \else
+      \EF@checkiflisted{\f@family}{\chinaelist}\relax
+      \ifEF@listed \EF@debugrep{EFeuro China2e euro}\makechinaeeuro
+        \else
+        \EF@checkiflisted{\f@family}{\cmlist}\relax
+        \ifEF@listed \EF@debugrep{EFeuro cm euro}\makecmeuro
+          \else
+          \EF@checkiflisted{\f@family}{\seriflist}\relax
+          \ifEF@listed \EF@debugrep{EFeuro serif euro}\makeserifeuro
+            \else
+            \EF@checkiflisted{\f@family}{\sanslist}\relax
+            \ifEF@listed \EF@debugrep{EFeuro sans euro}\makesanseuro
+              \else
+              \EF@checkiflisted{\f@family}{\monolist}\relax
+              \ifEF@listed \EF@debugrep{EFeuro mono euro}\makemonoeuro
+                \else
+                \EF@checkiflisted{\f@family}{\fakelightlist}\relax
+                \ifEF@listed \EF@debugrep{EFeuro fake light euro}\makefakelighteuro
+                  \else
+                  \EF@checkiflisted{\f@family}{\fakemediumlist}\relax
+                  \ifEF@listed \EF@debugrep{EFeuro fake med euro}\makefakemediumeuro
+                    \else
+                    \EF@checkiflisted{\f@family}{\fakeheavylist}\relax
+                    \ifEF@listed \EF@debugrep{EFeuro fake heavy euro}\makefakeheavyeuro
+                      \else \EF@debugrep{EFeuro default euro}\makedefaulteuro
+                      \fi \fi \fi \fi \fi \fi \fi \fi \fi \fi \fi}
+\AtBeginDocument{%
+\let\oldeuro\euro% save the previous \euro command (if one exists)
+\let\euro\EFeuro}% make the \euro command be \EFeuro come what may
+\endinput
+%%
+%% End of file `eurofont.sty'.

@@ -1,0 +1,89 @@
+
+\documentclass[14pt,a4paper,twoside,openright,nocenter,final]{extbook}
+%\documentclass[12pt,b5paper,twoside,openright,final]{book}%a4paper
+
+\includeonly{partes/cabecera,partes/prefacio,partes/preface,partes/agradecimientos,partes/indices,partes/abbrev,partes/introduccion,partes/pea,partes/p2pcomputing,partes/model,partes/evagperformance,partes/conclusions,partes/conclusiones,partes/biblio}
+
+
+
+\input{partes/preambulo}
+
+\pagestyle{headings}
+\setcounter{secnumdepth}{10}
+\setcounter{tocdepth}{10}
+\renewcommand{\baselinestretch}{1.3}
+\setlength{\parskip}{2ex}
+
+
+\begin{document}
+%\maketitle
+
+
+%%% Para que las tablas sean tablas en vez de cuadros
+%\renewcommand\listtablename{ndice de tablas}
+%\renewcommand\tablename{Tabla}
+
+
+\include{partes/cabecera}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                                   Indice                                  %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+\include{partes/agradecimientos}
+\include{partes/prefacio}
+\include{partes/preface}
+
+\include{partes/indices}
+
+\include{partes/abbrev}
+\cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                                 Capitulos                                 %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+  \def\headrulewidth{0.4pt}
+  \def\footrulewidth{0.4pt}
+  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+  \renewcommand{\sectionmark}[1]{\markright{#1}}
+  \addtolength{\headheight}{2.5pt}
+    \lhead[]{}
+    \rhead[]{}
+    \rfoot[]{\thepage}
+    \cfoot[]{}
+    \lfoot[\thepage]{}
+  \setcounter{secnumdepth}{3}
+  \setcounter{tocdepth}{3}
+
+
+\lhead[\it\thechapter]{\sl\rightmark}
+\rhead[\rm\leftmark]{\it\thesection} \rfoot[]{\thepage} \cfoot[]{}
+\lfoot[\thepage]{} \pagenumbering{arabic}
+
+
+\mainmatter
+\include{partes/introduccion}
+\include{partes/pea}
+\include{partes/p2pcomputing}
+\include{partes/model}
+\include{partes/evagperformance}
+\include{partes/conclusions}
+\include{partes/conclusiones}
+%\include{partes/apendix}
+%\include{partes/appendixB}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                               Bibliografa                                %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\include{partes/biblio}
+
+\end{document}

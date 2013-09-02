@@ -1,0 +1,69 @@
+@book{michalewicz:ga,
+ author = {Michalewicz, Zbigniew},
+ title = {Genetic algorithms + data structures = evolution programs (3rd ed.)},
+ year = {1996},
+ isbn = {3-540-60676-9},
+ publisher = {Springer-Verlag},
+ address = {London, UK},
+ }
+
+@inproceedings{banhelyi:p2ppso,
+ author = {B\'{a}nhelyi, Bal\'{a}zs and Biazzini, Marco and Montresor, Alberto and Jelasity, M\'{a}rk},
+ title = {Peer-to-Peer Optimization in Large Unreliable Networks with Branch-and-Bound and Particle Swarms},
+ booktitle = {EvoWorkshops '09: Proceedings of the EvoWorkshops 2009 on Applications of Evolutionary Computing},
+ year = {2009},
+ isbn = {978-3-642-01128-3},
+ pages = {87--92},
+ location = {T\"{u}bingen, Germany},
+ doi = {http://dx.doi.org/10.1007/978-3-642-01129-0_10},
+ publisher = {Springer-Verlag},
+ address = {Berlin, Heidelberg},
+ }
+
+@inproceedings{scriven:p2ppso,
+ author = {Scriven, Ian and Lewis, Andrew and Mostaghim, Sanaz},
+ title = {Dynamic search initialisation strategies for multi-objective optimisation in peer-to-peer networks},
+ booktitle = {CEC'09: Proceedings of the Eleventh conference on Congress on Evolutionary Computation},
+ year = {2009},
+ isbn = {978-1-4244-2958-5},
+ pages = {1515--1522},
+ location = {Trondheim, Norway},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ }
+
+
+@article{vlvrp,
+ author = {Li, Feiyue and Golden, Bruce and Wasil, Edward},
+ title = {Very large-scale vehicle routing: new test problems, algorithms, and results},
+ journal = {Comput. Oper. Res.},
+ volume = {32},
+ number = {5},
+ year = {2005},
+ issn = {0305-0548},
+ pages = {1165--1179},
+ doi = {http://dx.doi.org/10.1016/j.cor.2003.10.002},
+ publisher = {Elsevier Science Ltd.},
+ address = {Oxford, UK, UK},
+ }
+
+@Article{salva09:wilcoxon,
+author = {Salvador Garcia and Daniel Molina and Manuel Lozano and Francisco Herrera},
+title = {A study on the use of non-parametric tests for analyzing the evolutionary algorithms' behaviour: a case study on the {CEC}' 2005 Special Session on Real Parameter Optimization},
+journal = {Journal of Heuristics},
+year = {2009},
+volume = {15},
+number = {6},
+pages = {617--644}
+}
+
+
+@Article{harik:gambler,
+author = {G. Harik and E. Cant\'u-Paz and D.E. Goldberg and B. Miller},
+title = {The Gambler's Ruin Problem, Genetic Algorithms, and the Sizing of Populations},
+journal = {Evolutionary Computation},
+year = {1999},
+volume = {7},
+number = {3},
+pages = {231--253}
+}

@@ -1,0 +1,807 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: 0 0 288 288
+%%HiResBoundingBox: 0 0 288 288
+%%Creator: (Wolfram Mathematica 6.0 for Microsoft Windows (32-bit) (June 19, 2007))
+%%CreationDate: (Monday, September 1, 2008) (21:51:31)
+%%Title: Clipboard
+%%DocumentNeededResources:
+%%DocumentSuppliedResources:
+%%DocumentNeededFonts:
+%%DocumentSuppliedFonts:
+%%DocumentFonts:
+%%EndComments
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/WindowsANSIEncoding [
+	/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+	/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+	/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+	/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+	/space/exclam/quotedbl/numbersign/dollar/percent/ampersand/quotesingle
+	/parenleft/parenright/asterisk/plus/comma/hyphen/period/slash
+	/zero/one/two/three/four/five/six/seven
+	/eight/nine/colon/semicolon/less/equal/greater/question
+	/at/A/B/C/D/E/F/G
+	/H/I/J/K/L/M/N/O
+	/P/Q/R/S/T/U/V/W
+	/X/Y/Z/bracketleft/backslash/bracketright/asciicircum/underscore
+	/grave/a/b/c/d/e/f/g
+	/h/i/j/k/l/m/n/o
+	/p/q/r/s/t/u/v/w
+	/x/y/z/braceleft/bar/braceright/asciitilde/.notdef
+	/.notdef/.notdef/quotesinglbase/florin/quotedblbase/ellipsis/dagger/daggerdbl
+	/circumflex/perthousand/Scaron/guilsinglleft/OE/.notdef/Zcaron/.notdef
+	/.notdef/quoteleft/quoteright/quotedblleft/quotedblright/bullet/endash/emdash
+	/tilde/trademark/scaron/guilsinglright/oe/.notdef/zcaron/Ydieresis
+	/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section
+	/dieresis/copyright/ordfeminine/guillemotleft/logicalnot/hyphen/registered/macron
+	/degree/plusminus/twosuperior/threesuperior/acute/mu/paragraph/dotaccent
+	/ogonek/onesuperior/ring/guillemotright/onequarter/onehalf/threequarters/questiondown
+	/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+	/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis
+	/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply
+	/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls
+	/agrave/aacute/acircumflex/atilde/adieresis/aring/ae/ccedilla
+	/egrave/eacute/ecircumflex/edieresis/igrave/iacute/icircumflex/idieresis
+	/eth/ntilde/ograve/oacute/ocircumflex/otilde/odieresis/divide
+	/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn/ydieresis
+] def
+0.0625 -0.0625 scale 0 -4608 translate
+-499 -51 translate
+[1 0 0 1 0 0]  concat
+16 w
+0 g
+[ ] 0 setdash
+2 setlinecap
+0 setlinejoin
+10 setmiterlimit
+
+%%MathematicaCell
+%Cell[BoxData[
+% GraphicsBox[{{
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 1.}, \
+%{0.9045084999999999, 0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 1.}, {0.9755285, \
+%0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 1.}, {0.7938925, \
+%0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.6545084999999999, \
+%0.9755285}, {0.5, 1.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.6545084999999999, \
+%0.9755285}, {0.3454915, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.9045084999999999}, {0.5, 1.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.9045084999999999}, {0.3454915, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.9045084999999999}, {0.0954915, 0.2061075}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9045084999999999, \
+%0.7938925}, {0.7938925, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9045084999999999, \
+%0.7938925}, {0., 0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.6545084999999999}, {0.5, 1.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.6545084999999999}, {0.9755285, 0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{1., 0.5}, \
+%{0.9045084999999999, 0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{1., 0.5}, {0.7938925, \
+%0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{1., 0.5}, \
+%{0.02447149999999998, 0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{1., 0.5}, {0., \
+%0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.3454915}, {1., 0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.3454915}, {0.2061075, 0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.3454915}, {0.02447149999999998, 0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.3454915}, {0.02447149999999998, 0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9755285, \
+%0.3454915}, {0.0954915, 0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9045084999999999, \
+%0.2061075}, {1., 0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.9045084999999999, \
+%0.2061075}, {0.3454915, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.6545084999999999, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.9045084999999999, 0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.6545084999999999, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.5, 0.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.2061075, 0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.7938925, \
+%0.0954915}, {0.2061075, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.6545084999999999, \
+%0.02447149999999998}, {1., 0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.6545084999999999, \
+%0.02447149999999998}, {0.3454915, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.6545084999999999, \
+%0.02447149999999998}, {0.02447149999999998, 0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 0.}, \
+%{0.6545084999999999, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 0.}, {0.9755285, \
+%0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.5, 0.}, \
+%{0.02447149999999998, 0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.3454915, \
+%0.02447149999999998}, {0.0954915, 0.2061075}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.3454915, \
+%0.02447149999999998}, {0.2061075, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.0954915}, {0.6545084999999999, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.0954915}, {0.7938925, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.0954915}, {0.9045084999999999, 0.2061075}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.2061075}, {0.9755285, 0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.2061075}, {0.02447149999999998, 0.3454915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.2061075}, {0.2061075, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.3454915}, {0.9045084999999999, 0.2061075}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.3454915}, {0.6545084999999999, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.3454915}, {0., 0.5}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0., 0.5}, \
+%{0.9045084999999999, 0.2061075}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0., 0.5}, {0.5, \
+%0.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0., 0.5}, {0.0954915, \
+%0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.6545084999999999}, {0.7938925, 0.9045084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.6545084999999999}, {0.2061075, 0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.02447149999999998, \
+%0.6545084999999999}, {0.0954915, 0.7938925}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.7938925}, {0.9755285, 0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.7938925}, {0.7938925, 0.0954915}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.7938925}, {0.6545084999999999, 0.02447149999999998}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.0954915, \
+%0.7938925}, {0.3454915, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.9045084999999999}, {0.9755285, 0.6545084999999999}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.9045084999999999}, {0.5, 0.}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.2061075, \
+%0.9045084999999999}, {0.3454915, 0.9755285}}], 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], Thickness[0.005], LineBox[{{0.3454915, \
+%0.9755285}, {0.0954915, 0.2061075}}], 
+%     {GrayLevel[0]}}}, {
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.5, 1.}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.6545084999999999, 0.9755285}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.7938925, 0.9045084999999999}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.9045084999999999, 0.7938925}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.9755285, 0.6545084999999999}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{1., 0.5}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.9755285, 0.3454915}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.9045084999999999, 0.2061075}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.7938925, 0.0954915}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.6545084999999999, \
+%0.02447149999999998}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.5, 0.}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.3454915, 0.02447149999999998}]}, \
+%
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.2061075, 0.0954915}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.0954915, 0.2061075}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.02447149999999998, 0.3454915}]}, \
+%
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0., 0.5}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.02447149999999998, \
+%0.6545084999999999}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.0954915, 0.7938925}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.2061075, 0.9045084999999999}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}, 
+%    {GrayLevel[0], 
+%     {PointSize[0.025], PointBox[{0.3454915, 0.9755285}]}, 
+%     {GrayLevel[0]}, 
+%     {GrayLevel[0]}}}},
+%  AlignmentPoint->Center,
+%  AspectRatio->1,
+%  Axes->False,
+%  AxesLabel->None,
+%  AxesOrigin->Automatic,
+%  AxesStyle->{},
+%  Background->None,
+%  BaseStyle->{},
+%  BaselinePosition->Automatic,
+%  ColorOutput->Automatic,
+%  ContentSelectable->Automatic,
+%  DisplayFunction:>$DisplayFunction,
+%  Epilog->{},
+%  FormatType:>TraditionalForm,
+%  Frame->False,
+%  FrameLabel->None,
+%  FrameStyle->{},
+%  FrameTicks->Automatic,
+%  FrameTicksStyle->{},
+%  GridLines->None,
+%  GridLinesStyle->{},
+%  ImageMargins->0.,
+%  ImagePadding->All,
+%  ImageSize->Automatic,
+%  LabelStyle->{},
+%  Method->Automatic,
+%  PlotLabel->None,
+%  PlotRange->{{-0.05, 1.05}, {-0.05, 1.05}},
+%  PlotRangeClipping->False,
+%  PlotRangePadding->Automatic,
+%  PlotRegion->Automatic,
+%  PreserveImageOptions->Automatic,
+%  Prolog->{},
+%  RotateLabel->True,
+%  Ticks->Automatic,
+%  TicksStyle->{}]], "Output",
+% CellChangeTimes->{3.4292803617665997`*^9, 3.4292804059926*^9, \
+%3.4292805936605997`*^9, 3.4292828169854*^9, {3.4292828641598*^9, \
+%3.4292829007262*^9}, 3.4292840759522*^9, 
+%   3.4292841943873997`*^9, 3.4292842414370003`*^9, \
+%3.4292862892958*^9, 3.4292863923494*^9, 3.4292874241022*^9, \
+%3.4292874582194*^9}]
+%%EndMathematicaCell
+p
+newpath 499 51 m
+499 4659 L
+5107 4659 L
+5107 51 L
+closepath
+clip newpath
+3.239 setmiterlimit
+23 w
+[ ] 0 setdash
+2803 260 m
+4498 1124 L
+s
+2803 260 m
+4795 3002 L
+s
+2803 260 m
+4034 4050 L
+s
+3450 363 m
+2803 260 L
+s
+3450 363 m
+2156 4347 L
+s
+4034 660 m
+2803 260 L
+s
+4034 660 m
+2156 4347 L
+s
+4034 660 m
+1108 3586 L
+s
+4498 1124 m
+4034 660 L
+s
+4498 1124 m
+708 2355 L
+s
+4795 1708 m
+2803 260 L
+s
+4795 1708 m
+4795 3002 L
+s
+4898 2355 m
+4498 1124 L
+s
+4898 2355 m
+4034 4050 L
+s
+4898 2355 m
+811 3002 L
+s
+4898 2355 m
+708 2355 L
+s
+4795 3002 m
+4898 2355 L
+s
+4795 3002 m
+1572 4050 L
+s
+4795 3002 m
+811 3002 L
+s
+4795 3002 m
+811 1708 L
+s
+4795 3002 m
+1108 1124 L
+s
+4498 3586 m
+4898 2355 L
+s
+4498 3586 m
+2156 363 L
+s
+4034 4050 m
+3450 363 L
+s
+4034 4050 m
+4498 1124 L
+s
+4034 4050 m
+3450 4347 L
+s
+4034 4050 m
+2803 4450 L
+s
+4034 4050 m
+1572 4050 L
+s
+4034 4050 m
+1572 660 L
+s
+3450 4347 m
+4898 2355 L
+s
+3450 4347 m
+2156 4347 L
+s
+3450 4347 m
+811 1708 L
+s
+2803 4450 m
+3450 363 L
+s
+2803 4450 m
+4795 1708 L
+s
+2803 4450 m
+811 1708 L
+s
+2156 4347 m
+1108 3586 L
+s
+2156 4347 m
+1572 660 L
+s
+1572 4050 m
+3450 363 L
+s
+1572 4050 m
+4034 660 L
+s
+1572 4050 m
+4498 3586 L
+s
+1108 3586 m
+4795 3002 L
+s
+1108 3586 m
+811 3002 L
+s
+1108 3586 m
+1572 660 L
+s
+811 3002 m
+4498 3586 L
+s
+811 3002 m
+3450 4347 L
+s
+811 3002 m
+708 2355 L
+s
+708 2355 m
+4498 3586 L
+s
+708 2355 m
+2803 4450 L
+s
+708 2355 m
+1108 1124 L
+s
+811 1708 m
+4034 660 L
+s
+811 1708 m
+1572 4050 L
+s
+811 1708 m
+1108 1124 L
+s
+1108 1124 m
+4795 1708 L
+s
+1108 1124 m
+4034 4050 L
+s
+1108 1124 m
+3450 4347 L
+s
+1108 1124 m
+2156 363 L
+s
+1572 660 m
+4795 1708 L
+s
+1572 660 m
+2803 4450 L
+s
+1572 660 m
+2156 363 L
+s
+2156 363 m
+1108 3586 L
+s
+6 w
+[ ] 0 setdash
+2860 260 m
+2860 245 2854 230 2843 220 C
+2833 209 2818 203 2803 203 C
+2788 203 2773 209 2763 220 C
+2752 230 2746 245 2746 260 C
+2746 275 2752 290 2763 300 C
+2773 311 2788 317 2803 317 C
+2818 317 2833 311 2843 300 C
+2854 290 2860 275 2860 260 C
+closepath
+F
+3507 363 m
+3507 348 3501 333 3490 323 C
+3480 312 3465 306 3450 306 C
+3435 306 3420 312 3410 323 C
+3399 333 3393 348 3393 363 C
+3393 378 3399 393 3410 403 C
+3420 414 3435 420 3450 420 C
+3465 420 3480 414 3490 403 C
+3501 393 3507 378 3507 363 C
+closepath
+F
+4091 660 m
+4091 645 4085 630 4074 620 C
+4064 609 4049 603 4034 603 C
+4019 603 4004 609 3994 620 C
+3983 630 3977 645 3977 660 C
+3977 675 3983 690 3994 700 C
+4004 711 4019 717 4034 717 C
+4049 717 4064 711 4074 700 C
+4085 690 4091 675 4091 660 C
+closepath
+F
+4555 1124 m
+4555 1109 4549 1094 4538 1084 C
+4528 1073 4513 1067 4498 1067 C
+4483 1067 4468 1073 4458 1084 C
+4447 1094 4441 1109 4441 1124 C
+4441 1139 4447 1154 4458 1164 C
+4468 1175 4483 1181 4498 1181 C
+4513 1181 4528 1175 4538 1164 C
+4549 1154 4555 1139 4555 1124 C
+closepath
+F
+4852 1708 m
+4852 1693 4846 1678 4835 1668 C
+4825 1657 4810 1651 4795 1651 C
+4780 1651 4765 1657 4755 1668 C
+4744 1678 4738 1693 4738 1708 C
+4738 1723 4744 1738 4755 1748 C
+4765 1759 4780 1765 4795 1765 C
+4810 1765 4825 1759 4835 1748 C
+4846 1738 4852 1723 4852 1708 C
+closepath
+F
+4955 2355 m
+4955 2340 4949 2325 4938 2315 C
+4928 2304 4913 2298 4898 2298 C
+4883 2298 4868 2304 4858 2315 C
+4847 2325 4841 2340 4841 2355 C
+4841 2370 4847 2385 4858 2395 C
+4868 2406 4883 2412 4898 2412 C
+4913 2412 4928 2406 4938 2395 C
+4949 2385 4955 2370 4955 2355 C
+closepath
+F
+4852 3002 m
+4852 2987 4846 2972 4835 2962 C
+4825 2951 4810 2945 4795 2945 C
+4780 2945 4765 2951 4755 2962 C
+4744 2972 4738 2987 4738 3002 C
+4738 3017 4744 3032 4755 3042 C
+4765 3053 4780 3059 4795 3059 C
+4810 3059 4825 3053 4835 3042 C
+4846 3032 4852 3017 4852 3002 C
+closepath
+F
+4555 3586 m
+4555 3571 4549 3556 4538 3546 C
+4528 3535 4513 3529 4498 3529 C
+4483 3529 4468 3535 4458 3546 C
+4447 3556 4441 3571 4441 3586 C
+4441 3601 4447 3616 4458 3626 C
+4468 3637 4483 3643 4498 3643 C
+4513 3643 4528 3637 4538 3626 C
+4549 3616 4555 3601 4555 3586 C
+closepath
+F
+4091 4050 m
+4091 4035 4085 4020 4074 4010 C
+4064 3999 4049 3993 4034 3993 C
+4019 3993 4004 3999 3994 4010 C
+3983 4020 3977 4035 3977 4050 C
+3977 4065 3983 4080 3994 4090 C
+4004 4101 4019 4107 4034 4107 C
+4049 4107 4064 4101 4074 4090 C
+4085 4080 4091 4065 4091 4050 C
+closepath
+F
+3507 4347 m
+3507 4332 3501 4317 3490 4307 C
+3480 4296 3465 4290 3450 4290 C
+3435 4290 3420 4296 3410 4307 C
+3399 4317 3393 4332 3393 4347 C
+3393 4362 3399 4377 3410 4387 C
+3420 4398 3435 4404 3450 4404 C
+3465 4404 3480 4398 3490 4387 C
+3501 4377 3507 4362 3507 4347 C
+closepath
+F
+2860 4450 m
+2860 4435 2854 4420 2843 4410 C
+2833 4399 2818 4393 2803 4393 C
+2788 4393 2773 4399 2763 4410 C
+2752 4420 2746 4435 2746 4450 C
+2746 4465 2752 4480 2763 4490 C
+2773 4501 2788 4507 2803 4507 C
+2818 4507 2833 4501 2843 4490 C
+2854 4480 2860 4465 2860 4450 C
+closepath
+F
+2213 4347 m
+2213 4332 2207 4317 2196 4307 C
+2186 4296 2171 4290 2156 4290 C
+2141 4290 2126 4296 2116 4307 C
+2105 4317 2099 4332 2099 4347 C
+2099 4362 2105 4377 2116 4387 C
+2126 4398 2141 4404 2156 4404 C
+2171 4404 2186 4398 2196 4387 C
+2207 4377 2213 4362 2213 4347 C
+closepath
+F
+1629 4050 m
+1629 4035 1623 4020 1612 4010 C
+1602 3999 1587 3993 1572 3993 C
+1557 3993 1542 3999 1532 4010 C
+1521 4020 1515 4035 1515 4050 C
+1515 4065 1521 4080 1532 4090 C
+1542 4101 1557 4107 1572 4107 C
+1587 4107 1602 4101 1612 4090 C
+1623 4080 1629 4065 1629 4050 C
+closepath
+F
+1165 3586 m
+1165 3571 1159 3556 1148 3546 C
+1138 3535 1123 3529 1108 3529 C
+1093 3529 1078 3535 1068 3546 C
+1057 3556 1051 3571 1051 3586 C
+1051 3601 1057 3616 1068 3626 C
+1078 3637 1093 3643 1108 3643 C
+1123 3643 1138 3637 1148 3626 C
+1159 3616 1165 3601 1165 3586 C
+closepath
+F
+868 3002 m
+868 2987 862 2972 851 2962 C
+841 2951 826 2945 811 2945 C
+796 2945 781 2951 771 2962 C
+760 2972 754 2987 754 3002 C
+754 3017 760 3032 771 3042 C
+781 3053 796 3059 811 3059 C
+826 3059 841 3053 851 3042 C
+862 3032 868 3017 868 3002 C
+closepath
+F
+765 2355 m
+765 2340 759 2325 748 2315 C
+738 2304 723 2298 708 2298 C
+693 2298 678 2304 668 2315 C
+657 2325 651 2340 651 2355 C
+651 2370 657 2385 668 2395 C
+678 2406 693 2412 708 2412 C
+723 2412 738 2406 748 2395 C
+759 2385 765 2370 765 2355 C
+closepath
+F
+868 1708 m
+868 1693 862 1678 851 1668 C
+841 1657 826 1651 811 1651 C
+796 1651 781 1657 771 1668 C
+760 1678 754 1693 754 1708 C
+754 1723 760 1738 771 1748 C
+781 1759 796 1765 811 1765 C
+826 1765 841 1759 851 1748 C
+862 1738 868 1723 868 1708 C
+closepath
+F
+1165 1124 m
+1165 1109 1159 1094 1148 1084 C
+1138 1073 1123 1067 1108 1067 C
+1093 1067 1078 1073 1068 1084 C
+1057 1094 1051 1109 1051 1124 C
+1051 1139 1057 1154 1068 1164 C
+1078 1175 1093 1181 1108 1181 C
+1123 1181 1138 1175 1148 1164 C
+1159 1154 1165 1139 1165 1124 C
+closepath
+F
+1629 660 m
+1629 645 1623 630 1612 620 C
+1602 609 1587 603 1572 603 C
+1557 603 1542 609 1532 620 C
+1521 630 1515 645 1515 660 C
+1515 675 1521 690 1532 700 C
+1542 711 1557 717 1572 717 C
+1587 717 1602 711 1612 700 C
+1623 690 1629 675 1629 660 C
+closepath
+F
+2213 363 m
+2213 348 2207 333 2196 323 C
+2186 312 2171 306 2156 306 C
+2141 306 2126 312 2116 323 C
+2105 333 2099 348 2099 363 C
+2099 378 2105 393 2116 403 C
+2126 414 2141 420 2156 420 C
+2171 420 2186 414 2196 403 C
+2207 393 2213 378 2213 363 C
+closepath
+F
+P
+16 w
+0 g
+[ ] 0 setdash
+2 setlinecap
+0 setlinejoin
+10 setmiterlimit
+%Trailer
+%EOF

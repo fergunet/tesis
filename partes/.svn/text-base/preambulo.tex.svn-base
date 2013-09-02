@@ -1,0 +1,166 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%              Preambulo: Definicion del formato del proyecto               %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Paquetes para el castellano.
+%\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+%\usepackage[spanish]{babel}
+
+%%% Para utilizar el entorno de Pseudocódigo
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%% Para incluir graficos
+%\usepackage{graphicx}        % standard LaTeX graphics tool
+\usepackage{subfigure}
+
+\usepackage{rotating}
+\usepackage{appendix}
+
+%% Esta letra se convierte mejor a pdf que la normal
+\usepackage{ae}
+
+%%% Para las fuentes matemticas
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%%% Para hypervnculos. Compila tanto con pdflatex como con latex
+%\newif\ifPDF
+%\ifx\pdfoutput\undefined\PDFfalse
+%\else\ifnum\pdfoutput >0\PDFtrue
+%    \else\PDFfalse
+%    \fi
+%\fi
+ 
+%\ifPDF
+\usepackage{graphicx}
+%\usepackage{pstricks} % para los dibujos del da
+\usepackage{epic}           % graficos
+%\usepackage{curvesls}           % curvas
+% \usepackage[dvips=false,pdftex=false,vtex=false]{geometry}
+
+\usepackage{afterpage,fancyheadings}
+
+%\usepackage[cam,b5,center,dvips]{crop}
+ 
+    \usepackage[pdftex]{color}
+    \usepackage[pdftex]{hyperref}
+%\else
+%    \usepackage[dvips]{graphicx,color}
+%    \usepackage[dvips]{hyperref}
+%\fi
+ \usepackage{ccaption}
+
+  % Change the format of a figure caption
+  % For more options see the package documentation
+  \captionnamefont{\bfseries}
+  \captiontitlefont{\small\sffamily}
+  \captiondelim{ --- }
+  \hangcaption
+  \renewcommand{\figurename}{Fig.}
+
+
+%% Configuracin de hyperref
+\hypersetup{%
+colorlinks=true,
+linkcolor=black,
+citecolor=black,
+urlcolor=blue,
+bookmarks=true,
+bookmarksopen=false,
+hypertexnames=false,
+breaklinks=true,
+pdftitle={Tesis doctoral},
+pdfauthor={Juan Luis Jimenez Laredo},
+%pdfkeywords={pdf, latex, tex, ps2pdf, dvipdfm, pdflatex},
+bookmarksnumbered,
+pdfstartview={FitH}
+}%
+
+
+%% Ruta de las figuras
+\graphicspath{{figuras/}}
+
+%%% Para la apariencia de las pginas
+%\pagestyle{headings}
+%\setcounter{secnumdepth}{10}
+%\setcounter{tocdepth}{10}
+%\renewcommand{\baselinestretch}{1.3}
+%\setlength{\parskip}{2ex}
+
+%%% Modificacion de los estilos de página
+
+%\pagestyle{fancy}
+%  \def\headrulewidth{0.4pt}
+%  \def\footrulewidth{0.4pt}
+%  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%  \renewcommand{\sectionmark}[1]{\markright{#1}}
+%  \addtolength{\headheight}{2.5pt}
+%    \lhead[]{}
+%    \rhead[]{}
+%    \rfoot[]{\thepage}
+%   \cfoot[]{}
+%    \lfoot[\thepage]{}
+%  \setcounter{secnumdepth}{3}
+%  \setcounter{tocdepth}{3}
+
+
+%\lhead[\it\thechapter]{\sl\rightmark}
+%\rhead[\rm\leftmark]{\it\thesection} \rfoot[]{\thepage} \cfoot[]{}
+%\lfoot[\thepage]{} \pagenumbering{arabic}
+
+
+
+%% Para el smbolo del euro
+\usepackage{eurofont}
+
+%%% Configuramos para un tamao de papel A4
+%\setlength{\paperwidth}{21cm}
+%\setlength{\paperheight}{29.7cm}
+
+%\setlength{\textwidth}{14.5cm}
+%\setlength{\textheight}{23.5cm}
+%\setlength{\oddsidemargin}{1.4cm}
+%\setlength{\evensidemargin}{0.2cm}
+%\setlength{\topmargin}{-0.2cm}
+
+%%% Para que los vectores salgan sin flechas
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}}
+{\mbox{\boldmath$\textstyle#1$}}
+{\mbox{\boldmath$\scriptstyle#1$}}
+{\mbox{\boldmath$\scriptscriptstyle#1$}}}
+
+%% Para corregir las cabeceras largas
+\newcommand{\cabecera}[2]{
+\markright{\ref{#1}. \hspace{0.1ex} \MakeUppercase{#2}}}
+
+%% Para cambiar el formato del texto de las urls
+\newcommand{\texturl}[1]{\textsf{#1}}
+
+%% Para crear urls
+\newcommand{\miurl}[1]{\href{#1}{\texturl{#1}}}
+
+%% Para cambiar el formato del texto de las tablas
+\newcommand{\formatotabla}[0]{\sf \footnotesize \renewcommand{\baselinestretch}{1.1}}
+
+\newcommand{\N}{\mathbb{N}}
+%%% Para que las tablas sean tablas en vez de cuadros
+%\renewcommand\listtablename{ndice de tablas}
+%\renewcommand\tablename{Tabla}
+
+\newcommand{\evag}{{\sf EvAg }}
+\newcommand{\evags}{{\sf EvAgs }}
+\newcommand{\evagp}{{\sf EvAg. }}
+\newcommand{\evagsp}{{\sf EvAgs. }}
+\newcommand{\evagc}{{\sf EvAg, }}
+\newcommand{\evagsc}{{\sf EvAgs, }}
+
+
+
+%%% Para que parta ``bien'' algunas palabras
+\hyphenation {hard-ware soft-ware ins-truc-cio-nes de-sa-rro-lla-ron mo-de-lo mi-ni-mi-zar res-tric-cio-nes pa-ra-me-tros pro-ba-bi-li-dad ge-ne-ra-li-zar ge-ne-ra-li-za-cion pre-via-men-te}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

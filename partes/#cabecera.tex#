@@ -1,0 +1,115 @@
+
+\thispagestyle{empty}
+\begin{center}
+\Large{UNIVERSIDAD DE GRANADA} \\
+\bigskip
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth/2]{ugr}
+\end{center}
+\end{figure}
+\bigskip
+\bigskip
+\bigskip
+
+\textbf{\Large{Peer-to-Peer Evolutionary Computation: A Study of Viability}} \\
+\bigskip
+\bigskip
+\bigskip
+\Large{TESIS DOCTORAL} \\
+
+\vspace{\fill}
+
+\textbf{\Large{Juan Lu\'is Jim\'enez Laredo}}\\
+\bigskip
+\Large{Granada, 2009}
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\small{Departamento de Arquitectura y Tecnolog\'{\i}a de Computadores}
+\end{center}
+
+
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+\end{center}
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+
+\Huge{UNIVERSIDAD DE GRANADA} \\
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\textbf{\Large{Peer-to-Peer Evolutionary Computation: A Study of Viability}} \\
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\textbf{\Large{Memoria presentada por}} \\
+\bigskip
+\medskip
+\textbf{\Large{Juan Lu\'is Jim\'enez Laredo}} \\
+\bigskip
+\bigskip
+\bigskip
+
+\textbf{\Large{Para optar al grado de}} \\
+\bigskip
+\medskip
+\Huge{DOCTOR EUROPEO EN INFORM\'ATICA} \\
+
+
+\vspace{\fill}
+\large{Fdo.  Juan Lu\'is Jim\'enez Laredo} \\
+
+\end{center}
+
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+\end{center}
+\clearpage
+
+\thispagestyle{empty}
+\bigskip
+\textbf{D. Juan Juli\'an Merelo Guerv\'os}, Profesor Titular de Universidad y \textbf{D. Pedro A. Castillo Valdivieso}, Profesor Asociado, ambos del Departamento de Arquitectura y Tecnolog\'{\i}a de Computadores de la Universidad de Granada\\
+\\
+\\
+\\
+\\
+\textbf{CERTIFICAN} \\
+\\
+\\
+\\
+\\
+Que la memoria titulada: \emph{``Peer-to-Peer Evolutionary Computation: A Study of Viability''} ha sido realizada por \textbf{Juan Lu\'is Jim\'enez Laredo} bajo nuestra direcci\'on en el Departamento de Arquitectura y Tecnolog\'{\i}a de Computadores de la Universidad de Granada para optar al grado de Doctor en Inform\'atica. \\
+\\
+\\
+\\
+\\
+\medskip
+\hspace{\fill}Granada, a XX de XXXX de 2009 \\
+
+\vspace{\fill}
+
+\begin{center}
+\begin{tabular}{cc}
+Fdo. Pedro A. Castillo Valdivieso   &    Juan Juli\'an Merelo Guerv\'os  \\
+Director de la Tesis  & Director de la Tesis
+\end{tabular}
+\end{center}
+
+
+\pagenumbering{roman}
+\pagenumbering{arabic}
+
+%\end{document}                     % Eliminarlo al compilar el documento maestro, ponerlo para compilarlo separado
