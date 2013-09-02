@@ -9,39 +9,12 @@
 
 \chapter* {Prefacio}
 
-Los algoritmos evolutivos son un conjunto de t\'ecnicas bioinspiradas aplicadas a problemas de optimizaci\'on que est\'an basados en el proceso darwiniano de selecci\'on natural. Al igual que en la evoluci\'on de las especies, aquellos individuos ({\em o soluciones candidatas}) que muestran ser las m\'as aptas, son seleccionadas preferentemente para la reproducci\'on, de este modo, los descendientes heredar\'an sus genes a trav\'es del paso de las generaciones. Iterativamente, la selecci\'on act\'ua como un filtro para los genes y solo aquellos que pertenecen a soluciones \'optimas son capaces de superar la presi\'on selectiva y recombinarse formando soluciones de m\'as alto orden. En analog\'ia con este proceso, la b\'usqueda estoc\'astica de los algoritmos evolutivos tiene \'exito en problemas de optimizaci\'on a partir del refinamiento progresivo de un conjunto de soluciones candidatas.
-
-No obstante, en aplicaciones con un alto coste de c\'alculo e instancias grandes de problemas, los requisitos computacionales pueden llegar a ser tan grandes que retrasen el proceso de b\'usqueda de soluciones \'optimas m\'as all\'a de un tiempo razonable. Afortunadamente, la naturaleza de los algoritmos evolutivos es inherentemente paralela ofreciendo as\'i una forma f\'acil de mejorar las propiedades de escalabilidad. La idea principal consiste en acelerar los tiempos de ejecuci\'on del algoritmo repartiendo la carga computacional de los individuos en diferentes procesadores.
-
-En este contexto, esta tesis propone un nuevo algoritmo evolutivo paralelo (denominado modelo de Agente Evolutivo) que aprovecha las capacidades de c\'omputo de un entorno din\'amico P2P ({\em del ingl\'es Peer-to-Peer; se traduce al castellano como sistema entre pares, aunque se adopta normalmente la voz inglesa}). La motivaci\'on subyacente al algoritmo es abordar instancias grandes de problemas de optimizaci\'on complejos de forma eficiente y precisa, aprovechando, para tal fin, la escalabilidad masiva de las redes de computo P2P. Por lo tanto, un correcto entendimiento de dicha plataforma es clave para el dise\~no eficiente del algoritmo.
-
-Los sistemas P2P ofrecen una infraestructura paralela potente para la computaci\'on evolutiva, capaz de constituir un \'unico computador virtual compuesto de un n\'umero de recursos potencialmente grande. Sin embargo, dicha plataforma  esta desprovista de servidores centrales lo cual supone un reto a la  gesti\'on centralizada del ciclo evolutivo (tanto la selecci\'on de padres como la reproducci\'on o la selecci\'on de los supervivientes se realiza com\'unmente de forma centralizada en los algoritmos evolutivos). Para abordar dicha problem\'atica, el modelo de Agente Evolutivo 
-asigna a cada nodo de c\'omputo un individuo y adopta una estructura de poblaci\'on descentralizada que es definida por el protocolo P2P newscast. De esta forma, cualquier individuo del algoritmo tiene un n\'umero limitado de vecinos y el proceso de selecci\'on se restringe a la vecindad local P2P.
-
-Adem\'as de la problem\'atica de la descentralizaci\'on de recursos, un reto a tener en cuenta para la paralelizaci\'on eficiente en este tipo de redes, es que los nodos son propensos a fallos dado que los recursos computacionales son a\~nadidos y eliminados din\'amicamente, frecuentemente como consecuencia de la decisi\'on de los usuarios que ceden libremente CPUs bajo su control. De esta forma, un algoritmo evolutivo P2P tiene que ser tolerante a fallos con respecto a la din\'amica de los nodos. En este sentido, el modelo de Agente Evolutivo implementa un mecanismo de degradaci\'on gr\'acil, siendo capaz de abordar instancias grandes de problemas de optimizaci\'on a pesar de que los nodos abandonen el sistema sin otro mecanismo que el propio comportamiento emergente del modelo.
-
-
-Resumiendo, un algoritmo evolutivo P2P eficiente ser\'a aquel capaz de abordar instancias grandes de problemas de optimizaci\'on de forma descentralizada a pesar de que los recursos de c\'omputo se degraden. Por lo tanto, esta tesis se centra en el an\'alisis de la descentralizaci\'on, escalabilidad y tolerancia a fallos como problem\'aticas clave para poder establecer la viabilidad de este nuevo paradigma de computo evolutivo.
-
-Con ese prop\'osito, el modelo de Agente Evolutivo ha sido analizado emp\'iricamente en un entorno simulado P2P donde los experimentos han sido llevados a cabo bajo diferentes escenarios usando funciones trampa como problemas de prueba. Estas funciones representan un conjunto de problemas descomponibles en funciones parciales, en los que la bondad de las soluciones es calculada sumando las distintas bondades y donde el nivel de dificultad es ajustable, lo cual posibilita observar el escalado de los tama\~nos de poblaci\'on y esfuerzos computacionales para distintos tipos y tama\~nos de problema. 
-
-
-
-En esta memoria de tesis se exponen de forma detallada cada uno de los aspectos previamente mencionados. A modo de resumen se describen a continuaci\'on los distintos cap\'itulos de los que est\'a compuesta:
+Los algoritmos evolutivos 
 
 
 
 \begin{description}
-\item[Cap\'itulo 1:] Expone una introducci\'on al resto de la memoria describiendo los principales objetivos de esta tesis. Los algoritmos evolutivos P2P son presentados como alternativa para abordar instancias grandes de problemas de optimizaci\'on con requisitos de c\'omputo altos. 
-
-\item[Cap\'itulo 2:] En este cap\'itulo se revisan los modelos de algoritmos evolutivos paralos m\'as extendidos y en particular, aquellos enfoques en la literatura relacionados con el computo evolutivo P2P. Adem\'as, se proporciona una descripci\'on del efecto que las poblaciones estructuradas juegan en la presi\'on selectiva de los algoritmos evolutivos.
- 
-\item[Cap\'itulo 3:] Este cap\'itulo se centra en la descripci\'on detallada del protocolo newscast dentro del contexto de las plataformas P2P actuales. Adem\'as, la din\'amica del protocolo  es analizada en tiempo de ejecuci\'on mostrando su robustez, escalabilidad masiva y capacidad de diseminaci\'on de la informaci\'on de forma eficaz.
- 
-\item[Cap\'itulo 4:] Se presenta el modelo de Agente Evolutivo como el marco de trabajo con el que esta tesis evaluar\'a la viabilidad del enfoque de computaci\'on evolutiva P2P. Tambi\'en se esbozan las primeras claves del rendimiento computacional del modelo preveyendo su capacidad de sostener ganancias lineales en problemas computacionalmente pesados sobre plataformas de alto rendimiento. 
-
-\item[Cap\'itulo 5:] Este cap\'itulo analiza de forma experimental el rendimiento del modelo evolutivo P2P de tal forma que la viabilidad del enfoque pueda ser extraida de los resultados. Los experimentos se centran en tres casos de prueba que respectivamente estudian la escalabilidad del algoritmo, la influencia que la estructura de la poblaci\'on en el rendimiento y la toleracia a fallos del modelo para distintas tasas de degradaci\'on del sistema.
-
+\item[Cap\'itulo 1:] Expone una 
 \item[Cap\'itulo 6:] Finalmente, en este cap\'itulo se exponen las principales contribuciones de esta tesis al area de los algoritmos evolutivos paralelos as\'i como posibles extensiones en trabajos futuros.
 
 \end{description}
