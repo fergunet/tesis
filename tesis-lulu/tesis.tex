@@ -1,0 +1,646 @@
+% **************************************************************************************************************
+% A Classic Thesis Style
+% An Homage to The Elements of Typographic Style
+%
+% Copyright (C) 2007 André Miede http://www.miede.de
+%
+% If you like the style then I would appreciate a postcard. My address
+% can be found in the file ClassicThesis.pdf. A collection of the
+% postcards I received so far is available online at
+% http://postcards.miede.de
+%
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING.  If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+%
+% **************************************************************************************************************
+% Note:
+%    * You must not use "u etc. in strings/commands that will be spaced out (use \"u or real umlauts instead)
+%    * Chapters must be marked with the \myChapter{Foo} command (sorry for the inconvenience at this point)
+%    * New enumeration (small caps): \begin{aenumerate} \end{aenumerate}
+%    * For margin notes: \graffito{}
+%    * Do not use bold fonts in this style, it is designed around them
+%    * Use tables as in the examples
+%    * See classicthesis-ldpkg.sty for useful commands
+% **************************************************************************************************************
+% To Do:
+%    * remove obsolete KOMA options and use \KOMAoptions instead
+%    * support a List of Listings that looks like the other lists
+% **************************************************************************************************************
+%\documentclass[twoside,titlepage,fleqn,BCOR5mm]{scrbook}%,BCOR5mm
+\documentclass[10pt]{scrbook}%
+%\usepackage[paperwidth=18.89cm,paperheight=24.58cm,twoside,bindingoffset=9mm,outer=2.2cm,inner=1cm,top=2.6cm,bottom=4.5cm]{geometry}
+
+\let\upDelta\Delta
+% ********************************************************************
+% KOMA-Script setup (todo)
+% ********************************************************************
+\KOMAoptions{%
+%    DIV=15,%
+    BCOR=12mm,%
+    %paper=b5,%
+    fontsize=10pt,%
+    cleardoublepage=empty,%
+    headsepline=true,
+    footinclude=true,%
+    headinclude=true,%
+    headlines=2.5,%
+    open=right,%
+    numbers=noenddot%
+%    abstract=false%
+}
+
+\setlength{\paperwidth}{16.828cm} % set size for latex
+\setlength{\paperheight}{26cm}
+\special{papersize=16.828cm,26cm} % set size for ghostscript
+\typearea[6mm]{1} % 6mm for spine
+
+% ********************************************************************
+% Development Stuff
+% ********************************************************************
+%\listfiles
+%\usepackage[l2tabu, orthodox, abort]{nag}
+%\usepackage[warning, all]{onlyamsmath}
+% ********************************************************************
+% Re-usable information
+% ********************************************************************
+\newcommand{\myTitle}{Extracción Eficiente de la Estructura de Escenas Naturales\xspace}
+\newcommand{\myDegree}{Doctor en Informática\xspace}
+\newcommand{\myName}{José Manuel Palomares Muñoz\xspace}
+\newcommand{\myDegreeManualName}{Tesis Doctoral\xspace}
+\newcommand{\myProf}{myProf\xspace}
+\newcommand{\myOtherProf}{myOtherProf\xspace}
+\newcommand{\myDirectorOne}{Jesús González Peñalver}
+\newcommand{\myDirectorTwo}{Eduardo Ros Vidal}
+\newcommand{\mySupervisor}{Prof. Dr. D. \myDirectorOne\\Prof. Dr. D. \myDirectorTwo}
+\newcommand{\myFaculty}{Escuela Politécnica Superior de Informática y Telecomunicaciones\xspace}
+\newcommand{\myDepartment}{Arquitectura y Tecnología de Computadores\xspace}%(Circuits and Systems for Information Processing)
+\newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
+\newcommand{\myLocation}{Granada\xspace}
+\newcommand{\myDay}{13}
+\newcommand{\myTime}{enero 2011\xspace}
+%*******************************************************
+% Packages with options that might require adjustments
+%*******************************************************
+\usepackage[latin1]{inputenc}
+\usepackage[spanish,ngerman,american,english,es-nodecimaldot]{babel}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage[spanish]{babelbib}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[mathcal]{euscript}
+\usepackage{latexsym}
+\usepackage{relsize}
+%\usepackage{amsmath} %Incompatible con \usepackage{relsize}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage[sort]{cite}
+\usepackage[right]{eurosym}
+\usepackage[top]{mcaption}
+\usepackage[margincaption]{sidecap}
+
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{rotating}
+
+\usepackage{lettrine}
+\usepackage{textcase}
+
+\usepackage{url}
+\usepackage{caption}
+\usepackage[tight,spanish]{minitoc}
+
+\usepackage{calc}
+\usepackage{fp}
+
+\usepackage{pgfplots}
+\usetikzlibrary{dateplot}
+
+\usepackage{cmap}
+
+\usepackage{ifthen}
+
+%\usepackage[a4,frame,center]{crop} %,cross
+
+
+%*******************************************************
+\usepackage{classicthesis-ldpkg}
+%*******************************************************
+% Options for classicthesis.sty:
+% tocaligned eulerchapternumbers drafting linedheaders listsseparated
+% subfigure nochapters beramono eulermath parts minionpro pdfspacing
+\usepackage[pdfspacing,eulerchapternumbers,crownquartopaper,%drafting,%linedheaders,%tocaligned,%
+            subfigure,beramono,eulermath,parts]{classicthesis2}
+% ********************************************************************
+% Language/strings for backrefs (change here, thanks, Lorenzo)
+%*******************************************************
+\renewcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
+\renewcommand{\backrefcitedsinglestring}[1]{(Citado en la p\'agina~#1.)}
+\renewcommand{\backrefcitedmultistring}[1]{(Citado en las p\'aginas~#1.)}
+\renewcommand{\backreftwosep}{ y~}
+\renewcommand{\backreflastsep}{ y~}
+% ********************************************************************
+% Setup and Finetuning
+%*******************************************************
+\newlength{\abcd} % for ab..z string length calculation
+\newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
+\setlength{\extrarowheight}{3pt} % increase table row height
+% ********************************************************************
+% Captions look and feel
+%*******************************************************
+\DeclareCaptionFont{titlecolor}{\color{titlecolor}\fontfamily{pbk}\selectfont}
+\DeclareCaptionFont{alternateTitlecolor}{\color{alternateTitlecolor}\fontfamily{pbk}\selectfont}
+\captionsetup{justification=RaggedRight,format=plain,labelsep=newline,font=scriptsize,labelfont=titlecolor,textfont=alternateTitlecolor}%
+% ********************************************************************
+% Where to look for graphics
+%*******************************************************
+%\graphicspath{{gfx/}{misc/}} % considered harmful according to l2tabu
+% ********************************************************************
+% Hyperreferences
+%*******************************************************
+\hypersetup{%
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%hyperfootnotes=true,%nesting=true,%frenchlinks,%
+    urlcolor=colorCorporativoOscuro, linkcolor=alternateTitlecolor, citecolor=Maroon, %pagecolor=RoyalBlue,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+%********************************************************************
+% Hyphenation
+%*******************************************************
+\hyphenation{Mul-ti-pli-ca-ti-ve, minus-va-lo-ra-ción, pri-ma-cía}
+
+%********************************************************************
+% Definiciones matemáticas varias
+%*******************************************************
+
+\newcommand{\opLIP}[1]{\textnormal{\hspace{-0.6ex} \Large \raisebox{-0.2ex}[0pt]{$\Delta$} \tiny \hspace{-5.7ex} \raisebox{0.55ex}[0pt]{$#1$} \hspace{-0.6ex} \normalsize \hspace{-0.4ex} }} %-0.7ex
+
+\newcommand{\LIPsum}[2]{\textnormal{\hspace{-0.7ex} \huge \raisebox{-0.5ex}[0pt]{$\Delta$} \tiny \hspace{-7.3ex} \raisebox{-0.5ex}[0pt]{${\scriptstyle\sum}$} \hspace{-1.9ex} \raisebox{5.5ex}[0pt]{\makebox[0ex]{\scriptsize $#2$}} \hspace{-2.2ex} \raisebox{-4.6ex}[0pt]{\makebox[0ex]{\scriptsize $#1$}} \normalsize \hspace{0.8ex}  }}
+
+\newcommand{\LIPplus}[0]{\opLIP{+}}
+\newcommand{\LIPtimes}[0]{\opLIP{\times}}
+\newcommand{\LIPminus}[0]{\opLIP{-}}
+\newcommand{\LIPsumSmall}[0]{\opLIP{\scriptscriptstyle\sum}}
+
+\newcommand{\convtwod}{\mathrm{conv2D}}
+\newcommand{\convoned}{\mathrm{conv1D}}
+
+%\def\LIPtimes{\mathinner{\Delta\kern-.5\times}}
+\newcommand{\ud}{\mathrm{d}}
+
+%% Cambia la apariencia de los vectores
+\def\vec#1{\mathchoice{\mbox{\boldmath$\displaystyle#1$}} {\mbox{\boldmath$\textstyle#1$}} {\mbox{\boldmath$\scriptstyle#1$}} {\mbox{\boldmath$\scriptscriptstyle#1$}}}
+
+%% Define el símbolo de la transformada de Fourier. Llamada: \Fourier{}
+\newcommand{\Fourier}{\mathcal{F}}
+
+%% Define el comando para señalar un dato con un círculo
+\newcommand{\circled}[1]{\textnormal{\hspace{-0.5em} \LARGE {\color{Maroon}$\bigcirc$} \hspace{-1.2em} \normalsize $#1$ \hspace{0pt}}}
+\newcommand{\circledtwochars}[1]{\textnormal{\hspace{-1.1ex} \LARGE{\color{Maroon}$\bigcirc$}\hspace{-1.15em} \normalsize $#1$ \hspace{0pt}}}
+
+%********************************************************************
+% Redefinir en español la edición en la bibliografía
+%*******************************************************
+
+\declarebtxcommands{spanish}{%
+\def\btxnumeralshort#1{%
+${#1}^a$}%\btxnumeralfallback{spanish}{#1}}%
+\def\btxnumerallong#1{%
+${#1}^a$}%\btxnumeralfallback{spanish}{#1}}%
+}
+
+%********************************************************************
+% Renombrar al español algunos identificadores
+%*******************************************************
+
+\renewcommand{\contentsname}{Lista de Contenidos}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\bibname}{Bibliografía}
+\renewcommand{\partname}{Parte}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\newcommand{\tablaname}{Tabla}
+\renewcommand{\cfttabpresnum}{\tablaname~}
+
+\renewcommand{\person}[1]{{\color{Maroon}{#1}}}
+
+\selectbiblanguage{spanish}
+
+%\renewcommand{\spacedallcaps}[1]{\textsc{\MakeTextUppercase{#1}}}
+%\renewcommand{\spacedlowsmallcaps}[1]{\textsc{\MakeTextUppercase{#1}}}
+
+%********************************************************************
+% Tipos de letras
+%*******************************************************
+
+%\renewcommand{\encodingdefault}{T1}
+%\renewcommand{\familydefault}{gm}%papyrus}%bradley} %pbk,ppl
+%\renewcommand{\seriesdefault}{b}
+
+%\renewcommand{\rmdefault}{bradley}
+
+\newcommand{\Copyright}{{\small$^\mathrm{\copyright}$}~}
+\newcommand{\apriori}{\emph{a priori}\xspace}
+\newcommand{\aposteriori}{\emph{a posteriori}\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\cronbach}{\mbox{$\alpha$--\emph{Cronbach}}\xspace}
+
+\newcommand{\itemlabel}[1]{{\color{Maroon}{\textsc{#1}}}}
+
+\newcommand{\mysize}{\tiny}
+
+%********************************************************************
+% Colores
+%*******************************************************
+
+%\definecolor[named]{ultralightOrange}{rgb}{1,.94,.72}
+%\definecolor[named]{highlightOrange}{rgb}{1,.86,.29}
+%\definecolor[named]{lightOrange}{rgb}{1,.45,0}
+\definecolor[named]{darkOrange}{rgb}{.8,.3,0}
+
+\definecolor[named]{minimumOrange}{rgb}{1,.976,.474}
+\definecolor[named]{ugrOrange}{rgb}{.945,.365,.165} % PANTONE 179: {R:241, G:93, B:42}
+%\definecolor[named]{ugrOrange}{cmyk}{0,.309,.368,0} % PANTONE 179: {C:0, M:79, Y:94, K:0}
+\definecolor[named]{ugrGray}{rgb}{.463,.482,.494}
+
+%\definecolorseries{ugrOrangeSerie}{rgb}{last}{ugrOrange}{white}
+%\resetcolorseries[10]{ugrOrangeSerie}
+
+\colorlet{ultralightOrange}{ugrOrange!5!minimumOrange}
+\colorlet{highlightOrange}{ugrOrange!25!minimumOrange}
+\colorlet{lighterOrange}{ugrOrange!40!minimumOrange}
+\colorlet{lightOrange}{ugrOrange!75!minimumOrange}
+
+\definecolor{colorCorporativoMasSuave}{named}{ultralightOrange}
+\definecolor{colorCorporativoSuave}{named}{highlightOrange}
+\definecolor{colorCorporativoMedioSuave}{named}{lighterOrange}
+\definecolor{colorCorporativoMedio}{named}{lightOrange}
+\definecolor{colorCorporativo}{named}{ugrOrange}
+\definecolor{colorCorporativoOscuro}{named}{darkOrange}
+\definecolor{Maroon}{named}{colorCorporativoOscuro}
+
+\definecolor{headColor}{named}{white}%{colorCorporativoMasSuave}
+\definecolor{titleNumbercolor}{named}{ugrGray}
+\definecolor{titlecolor}{named}{ugrOrange}
+\definecolor{alternateTitlecolor}{named}{darkOrange}
+
+\newcolumntype{A}{%
+>{\color{black}\columncolor{colorCorporativoSuave}}%
+p{0.95\textwidth}}
+
+\newcolumntype{B}{%
+>{\color{black}\columncolor{colorCorporativoMasSuave}}%
+p{0.95\textwidth}}
+
+\newcolumntype{C}{%
+>{\columncolor{colorCorporativoSuave}}p{\textwidth}}
+%>{\columncolor{colorCorporativo}}p{4pt}}
+
+\newcolumntype{D}{%
+>{\color{black}\fontfamily{pbk}\selectfont\columncolor{colorCorporativoSuave}}p{8em}}
+%>{\columncolor{colorCorporativo}}p{4pt}
+
+%********************************************************************
+% Cabeceras
+%*******************************************************
+
+\def\ptctitle{índice}
+\def\mtctitle{índice}
+\def\stctitle{índice}
+\setlength{\mtcindent}{0pt}
+\renewcommand{\mtifont}{\normalsize\scshape\lsstyle}
+
+%\typearea[current]{last}
+%\typearea[current]{current}
+%\setlength{\topmargin}{-4em}
+%\setlength{\textheight}{590.80026pt}%{595.80026pt}
+%\setlength{\tabcolsep}{1em}
+
+% ********************************************************************
+% Variables (utilizadas en el capitulo de Resultados de Encuestas)
+%*********************************************************************
+
+\FPset{initialPopulation}{26}
+\FPset{totalPopulation}{190}
+\FPset{twoSurveysCompleted}{37}
+\FPset{oneSurveyCompleted}{13}
+\FPset{noneSurveyCompleted}{18}
+\FPset{noResponse}{2}
+\FPset{reenvySeedPopulation}{7}
+
+% No tocar esto calcula automatico. Modificar lo de arriba
+\FPeval{registeredUsers}{clip(\noResponse + \noneSurveyCompleted + \oneSurveyCompleted + \twoSurveysCompleted)}
+\FPeval{oneAndTwoSurveysCompleted}{clip(\oneSurveyCompleted + \twoSurveysCompleted)}
+\FPeval{increasePopulation}{ round( (100. * \registeredUsers / \initialPopulation) : 1 ) }
+\FPeval{populationGeneralRate}{round( ( 100. * \registeredUsers / \totalPopulation) : 1 ) }
+\FPeval{populationAdaptedRate}{round( ( 100. * \registeredUsers / \registeredUsers) : 1 ) }
+\FPeval{twoSurveysGeneralResponseRate}{round( ( 100. * \twoSurveysCompleted / \totalPopulation) : 1 ) }
+\FPeval{oneSurveyGeneralResponseRate}{round( ( 100. * \oneAndTwoSurveysCompleted / \totalPopulation) : 1 ) }
+\FPeval{twoSurveysAdaptedResponseRate}{round( ( 100. * \twoSurveysCompleted / \registeredUsers) : 1 ) }
+\FPeval{oneSurveyAdaptedResponseRate}{round( ( 100. * \oneAndTwoSurveysCompleted / \registeredUsers) : 1 ) }
+\FPeval{dispersionFactor}{round( (\reenvySeedPopulation / \initialPopulation) : 1 ) }
+\FPeval{dispersionPorcentage}{round( ( 100. * \reenvySeedPopulation / \initialPopulation) : 1 ) }
+
+% ********************************************************************
+% Variables (utilizadas en el capitulo de Resultados de Encuestas)
+%*********************************************************************
+
+\FPset{meansobel80}{2.04}
+\FPset{meansobel90}{2.31}
+\FPset{meancanny80}{5.68}
+\FPset{meancanny90}{3.70}
+\FPset{meanlog95}{3.33}
+\FPset{meanlog120}{2.77}
+\FPset{meanlipsobel80}{5.63}
+\FPset{meanlipsobel90}{6.33}
+\FPset{meanlipcanny80}{6.87}
+\FPset{meanlipcanny90}{7.76}
+\FPset{meanliplog95}{4.53}
+\FPset{meanliplog120}{4.17}
+
+\FPset{desvsobel80}{0.72}
+\FPset{desvsobel90}{0.58}
+\FPset{desvcanny80}{0.93}
+\FPset{desvcanny90}{0.93}
+\FPset{desvlog95}{0.93}
+\FPset{desvlog120}{0.67}
+\FPset{desvlipsobel80}{1.01}
+\FPset{desvlipsobel90}{1.52}
+\FPset{desvlipcanny80}{1.09}
+\FPset{desvlipcanny90}{0.91}
+\FPset{desvliplog95}{1.23}
+\FPset{desvliplog120}{1.33}
+
+\FPset{lowvisionsobel80}{1.56}
+\FPset{lowvisionsobel90}{1.72}
+\FPset{lowvisioncanny80}{4.70}
+\FPset{lowvisioncanny90}{2.72}
+\FPset{lowvisionlog95}{2.57}
+\FPset{lowvisionlog120}{2.05}
+\FPset{lowvisionlipsobel80}{4.49}
+\FPset{lowvisionlipsobel90}{5.21}
+\FPset{lowvisionlipcanny80}{6.30}
+\FPset{lowvisionlipcanny90}{7.30}
+\FPset{lowvisionliplog95}{3.65}
+\FPset{lowvisionliplog120}{3.00}
+
+\FPset{stdvisionsobel80}{2.09}
+\FPset{stdvisionsobel90}{2.40}
+\FPset{stdvisioncanny80}{5.79}
+\FPset{stdvisioncanny90}{3.85}
+\FPset{stdvisionlog95}{3.41}
+\FPset{stdvisionlog120}{2.88}
+\FPset{stdvisionlipsobel80}{5.75}
+\FPset{stdvisionlipsobel90}{6.51}
+\FPset{stdvisionlipcanny80}{6.93}
+\FPset{stdvisionlipcanny90}{7.83}
+\FPset{stdvisionliplog95}{4.62}
+\FPset{stdvisionliplog120}{4.35}
+
+\FPset{cbvsobel80}{0.77}
+\FPset{cvesobel80}{1.03}
+\FPset{bvvesobel80}{1.34}
+\FPset{cbvsobel90}{0.75}
+\FPset{cvesobel90}{1.04}
+\FPset{bvvesobel90}{1.40}
+\FPset{cbvcanny80}{0.83}
+\FPset{cvecanny80}{1.02}
+\FPset{bvvecanny80}{1.23}
+\FPset{cbvcanny90}{0.74}
+\FPset{cvecanny90}{1.04}
+\FPset{bvvecanny90}{1.42}
+\FPset{cbvlog95}{0.77}
+\FPset{cvelog95}{1.03}
+\FPset{bvvelog95}{1.33}
+\FPset{cbvlog120}{0.74}
+\FPset{cvelog120}{1.04}
+\FPset{bvvelog120}{1.40}
+\FPset{cbvlipsobel80}{0.80}
+\FPset{cvelipsobel80}{1.02}
+\FPset{bvvelipsobel80}{1.28}
+\FPset{cbvlipsobel90}{0.82}
+\FPset{cvelipsobel90}{1.03}
+\FPset{bvvelipsobel90}{1.25}
+\FPset{cbvlipcanny80}{0.92}
+\FPset{cvelipcanny80}{1.01}
+\FPset{bvvelipcanny80}{1.10}
+\FPset{cbvlipcanny90}{0.94}
+\FPset{cvelipcanny90}{1.01}
+\FPset{bvvelipcanny90}{1.07}
+\FPset{cbvliplog95}{0.81}
+\FPset{cveliplog95}{1.02}
+\FPset{bvveliplog95}{1.27}
+\FPset{cbvliplog120}{0.72}
+\FPset{cveliplog120}{1.04}
+\FPset{bvveliplog120}{1.45}
+
+\FPset{cbvcorrelacion}{0.9903}
+\FPset{cvecorrelacion}{0.9998}
+\FPset{bvccorrelacion}{0.9903}
+\FPset{bvvecorrelacion}{0.9874}
+\FPset{veccorrelacion}{0.9998}
+\FPset{vebvcorrelacion}{0.9874}
+
+\FPset{cbvAvgNoLIP}{0.7645}
+\FPset{cveAvgNoLIP}{1.0316}
+\FPset{bvveAvgNoLIP}{1.3521}
+\FPset{cbvDesvTipNoLIP}{0.0343}
+\FPset{cveDesvTipNoLIP}{0.0814}
+\FPset{bvveDesvTipNoLIP}{0.0694}
+\FPset{cbvAvgLIP}{0.8342}
+\FPset{cveAvgLIP}{1.0221}
+\FPset{bvveAvgLIP}{1.2362}
+\FPset{cbvDesvTipLIP}{0.0814}
+\FPset{cveDesvTipLIP}{0.0129}
+\FPset{bvveDesvTipLIP}{0.0136}
+\FPset{cbvAvg}{0.7994}
+\FPset{cveAvg}{1.0269}
+\FPset{bvveAvg}{1.2941}
+\FPset{cbvDesvTip}{0.0698}
+\FPset{cveDesvTip}{0.0120}
+\FPset{bvveDesvTip}{0.1195}
+
+% No tocar esto calcula automatico. Modificar lo de arriba
+\FPeval{registeredUsers}{clip(\noResponse + \noneSurveyCompleted + \oneSurveyCompleted + \twoSurveysCompleted)}
+
+\newboolean{TesisCompleta}
+\setboolean{TesisCompleta}{true}
+
+\newcounter{IncluyeCapitulo}
+\setcounter{IncluyeCapitulo}{3}
+% ********************************************************************
+% ********************************************************************
+% ********************************************************************
+% Comienza el documento
+% ********************************************************************
+% ********************************************************************
+% ********************************************************************
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{spanish}
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
+\renewcommand{\contentsname}{Lista de Contenidos}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\bibname}{Bibliografía}
+\renewcommand{\partname}{Parte}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figureautorefname}{Figura}
+\renewcommand{\tableautorefname}{Tabla}
+\renewcommand{\paragraphautorefname}{P\'arrafo}
+\renewcommand{\subparagraphautorefname}{Subp\'arrafo}
+\renewcommand{\footnoteautorefname}{Nota al pie}
+\renewcommand{\FancyVerbLineautorefname}{}
+\renewcommand{\theoremautorefname}{Teorema}
+\renewcommand{\appendixautorefname}{Ap\'endice}
+\renewcommand{\equationautorefname}{Ecuaci\'on}
+\renewcommand{\itemautorefname}{Item}
+\newcommand*{\subfigureautorefname}{Figura}
+
+% Parámetros para Lettrine (lo de la primera letra más grande en los comienzos de los capítulos)
+%
+\setcounter{DefaultLines}{2}
+\renewcommand{\DefaultLoversize}{0.1} %0.25
+\renewcommand{\DefaultLraise}{0.3} %0.25
+\renewcommand{\DefaultLhang}{0.5} %0.5
+\setlength{\DefaultFindent}{0pt}%0.5em}
+\setlength{\DefaultNindent}{0pt}%0.1em}
+\setlength{\DefaultSlope}{0pt}
+\renewcommand{\LettrineFontHook}{\color{colorCorporativoOscuro}\fontfamily{fau}}%{fau}pzc}\fontseries{bx}\fontshape{it}}
+\renewcommand{\LettrineTextFont}{\color{colorCorporativoOscuro}\fontfamily{fau}\scshape}
+
+\pagenumbering{roman}
+\pagestyle{scrheadings}%{plain}
+
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+
+%********************************************************************
+% Definiciones Captions
+%*******************************************************
+
+\sidecaptionvpos{figure}{t}
+
+%********************************************************************
+% Frontmatter
+%*******************************************************
+% \include{FrontBackmatter/DirtyTitlepage}
+\pagecolor{white}
+\include{FrontBackmatter/SignedTitlepage}%\include{FrontBackmatter/Titlepage}
+\include{FrontBackmatter/Titleback}
+\cleardoublepage
+%\include{FrontBackmatter/SignedTitlepage}
+%\cleardoublepage
+\include{FrontBackmatter/Vistobueno}
+\cleardoublepage
+\include{FrontBackmatter/Dedication}
+\cleardoublepage
+\include{FrontBackmatter/Abstract}
+\cleardoublepage
+\include{FrontBackmatter/Publication}
+\cleardoublepage
+\include{FrontBackmatter/Acknowledgments}
+\pagestyle{scrheadings}
+\cleardoublepage
+\include{FrontBackmatter/Contents}
+% *******************************************************
+% Mainmatter
+% *******************************************************
+\pagenumbering{arabic}
+
+\ifthenelse{\boolean{TesisCompleta}}{
+%-----------------------------
+\myPart{Introducción}\label{part:introduccion}
+\include{Chapters/intro}
+\include{Chapters/procImagenes}
+\include{Chapters/evaluacionCalidad}
+\include{Chapters/cuestionarios}
+\include{Chapters/BajaVision}
+%-----------------------------
+\myPart{Método y Materiales}\label{part:metodoYmateriales}
+\include{Chapters/convLIP}
+\include{Chapters/criterios_calidad}
+\include{Chapters/cuestionariosBordes}
+%-----------------------------
+\myPart{Resultados Experimentales}\label{part:resultadosExperimentales}
+\include{Chapters/experimentosConvLIP}
+\include{Chapters/resultadosEncuestas}
+%-----------------------------
+\myPart{Discusión y Conclusiones}\label{part:discusionYconclusiones}
+\include{Chapters/discusion}
+\include{Chapters/conclusiones}
+}
+{
+%-----------------------------
+\myPart{Introducción}\label{part:introduccion}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/procImagenes}}{\myChapter{Técnicas de procesamiento de imágenes}\label{chap:ProcImagenes}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/evaluacionCalidad}}{\myChapter{Evaluación de la calidad de imágenes procesadas}\label{chap:MOS}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{4}}{\include{Chapters/cuestionarios}}{\myChapter{Encuestas}\label{chap:encuestas}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
+%-----------------------------
+\myPart{Método y Materiales}\label{part:metodoYmateriales}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{6}}{\include{Chapters/convLIP}}{\myChapter{Convolución LIP}\label{chap:convLIP}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{7}}{\include{Chapters/criterios_calidad}}{\myChapter{Criterios para la Evaluación de la Calidad de Bordes}\label{chap:criterios}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{8}}{\include{Chapters/cuestionariosBordes}}{\myChapter{Recomendaciones para la Construcción de Cuestionarios de calidad de bordes}\label{chap:recCuestCalidadBordes}}
+%-----------------------------
+\myPart{Resultados Experimentales}\label{part:resultadosExperimentales}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{9}}{\include{Chapters/experimentosConvLIP}}{\myChapter{Aplicaciones Convolución LIP}\label{chap:aplicacionesConvLIP}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{10}}{\include{Chapters/resultadosEncuestas}}{\myChapter{Resultados de los cuestionarios de calidad de bordes}\label{chap:resultadosCuestionarios}}
+%-----------------------------
+\myPart{Discusión y Conclusiones}\label{part:discusionYconclusiones}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{11}}{\include{Chapters/discusion}}{\myChapter{Discusión}\label{chap:discusion}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{12}}{\include{Chapters/conclusiones}}{\myChapter{Conclusiones}\label{chap:conclusiones}}
+
+}
+
+% *******************************************************
+% Backmatter
+% *******************************************************
+\appendix
+\myPart{Apéndices}
+\include{Chapters/apendiceA}
+\include{Chapters/apendiceB}
+\include{Chapters/apendiceC}
+%********************************************************************
+% Other Stuff in the Back
+%*******************************************************
+\cleardoublepage
+\include{FrontBackmatter/Bibliography}
+% \cleardoublepage
+% \include{FrontBackmatter/Colophon}
+\cleardoublepage
+\include{FrontBackmatter/Declaration}
+\cleardoublepage
+%La contraportada tiene que estar en página par!!
+% \include{FrontBackmatter/DirtyBackpage}
+
+% ********************************************************************
+% Game Over: Restart, Restore or Quit?
+%*******************************************************
+\end{document}
+% ********************************************************************

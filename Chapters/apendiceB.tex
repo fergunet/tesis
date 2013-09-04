@@ -1,0 +1,75 @@
+\myChapter{Apéndice}\label{chap:apendiceB}
+\minitoc\mtcskip
+\vfill
+\section{Demostración del rango de funcionamiento de la\\Multiplicación--\textsc{LIP}}\label{sec:demoMultLIP}
+\lettrine{E}{n} este apéndice se demuestra que el rango de los resultados del operador \mbox{Multiplicación--\textsc{LIP}} es $(0,M)$. Es decir, se desea demostrar:
+\begin{equation}
+0 < \alpha \LIPtimes \widehat{f} < M \qquad \forall \alpha \in \mathbb{R}, \forall \widehat{f} \in (0,M) \subseteq \mathbb{R}\label{eq:demostracionMultLIP}
+\end{equation}
+
+\noindent Se reescribe \eqref{eq:demostracionMultLIP} a partir de la definición matemática del operador \mbox{Multiplicación--\textsc{LIP}} (definido en \eqref{eq:LIPtimes}), utilizando únicamente operadores tradicionales.
+
+\begin{equation}
+0 < M - M \cdot \left(1-\frac{\widehat{f}}{M}\right)^\alpha < M \label{eq:demostracionMultLIPestandar}
+\end{equation}
+
+\noindent Esta demostración se divide en dos trozos. En el primero, se demuestra que $0 < \alpha \LIPtimes \widehat{f}$; mientras que en una segunda parte se demuestra que $\alpha \LIPtimes \widehat{f} < M$.
+\vfill
+\clearpage
+
+\subsection{Valores superiores a cero}
+
+\noindent Se toma la primera parte que se desea demostrar $\left( 0 < \alpha \LIPtimes \widehat{f}\right)$.  Para confirmar dicha afirmación, se utiliza el mecanismo de \emph{reducción al absurdo}. Para lo cual, se niega la afirmación que se desea demostrar:
+
+\begin{equation}
+0 \not< M - M \cdot \left(1-\frac{\widehat{f}}{M}\right)^\alpha &\Rightarrow&
+0 \ge M - M \cdot \left(1-\frac{\widehat{f}}{M}\right)^\alpha  \label{eq:demostracionMultLIPcero}
+\end{equation}
+
+\noindent Partiendo de \eqref{eq:demostracionMultLIPcero}, se opera hasta obtener inecuación simple que permita un análisis directo. 
+
+\begin{eqnarray}
+0 \ge M \cdot \left(1 - \left(\frac{M-\widehat{f}}{M}\right)^\alpha \right) &\Rightarrow& 0 \ge 1 - \left(\frac{M-\widehat{f}}{M}\right)^\alpha \nonumber \\
+\left(\frac{M-\widehat{f}}{M}\right)^\alpha \ge 1 &\Rightarrow & \frac{\left(M-\widehat{f}\right)^\alpha}{M^\alpha} \ge 1 \nonumber \\
+\left(M-\widehat{f}\right)^\alpha &\ge& M^\alpha \label{eq:multLIPuno}
+\end{eqnarray}
+
+\noindent Se aplica el logaritmo neperiano a ambos partes de la inecuación \eqref{eq:multLIPuno}.
+
+\begin{eqnarray}
+\log\left(M-\widehat{f}\right)^\alpha \ge \log\left(M^\alpha\right) &\Rightarrow& \alpha \cdot \log\left(M-\widehat{f}\right) \ge \alpha \cdot \log M \nonumber \\
+\log\left(M-\widehat{f}\right) \ge \log M &\Rightarrow & \frac{\log\left(M - \widehat{f}\right)}{\log M} \ge 0 \nonumber \\
+\log \left(M - \widehat{f} - M\right) \ge 0 &\Rightarrow & \log \left(-\widehat{f}\right) \ge 0 \label{eq:multLIPdos}
+\end{eqnarray}
+
+\noindent Sabiendo que, por definición, $\widehat{f} \in (0,M)\subseteq \mathbb{R}$, la inecuación \eqref{eq:multLIPdos} no puede satisfacerse, puesto que no existe el logaritmo de un número negativo. Consecuentemente, se puede afirmar con total seguridad que la hipótesis de partida es falsa, y por tanto:
+\begin{equation}
+0 < \alpha \LIPtimes \widehat{f} \qquad \forall \alpha \in \mathbb{R}, \forall \widehat{f} \in (0,M) \subseteq \mathbb{R}\label{eq:multLIPrangoInferior}
+\end{equation}
+
+\noindent Nótese que no influye el valor de $\alpha$ en la determinación del rango de salida.
+
+\subsection{Valores inferiores a M}
+
+\noindent La segunda parte de \eqref{eq:demostracionMultLIPestandar} pretende demostrar que $\left(\alpha \LIPtimes \widehat{f} < M\right)$.  Para dicha demostración, como en el caso anterior, se utiliza el mecanismo de \emph{reducción al absurdo}. Se niega la afirmación que se desea demostrar y se opera:
+
+\begin{equation}
+M - M \cdot\left(1 - \frac{\widehat{f}}{M}\right)^\alpha \not<  M\Rightarrow
+M - M \cdot\left(1 - \frac{\widehat{f}}{M}\right)^\alpha \ge M \label{eq:demostracionMultLIPuno}
+\end{equation}
+
+\noindent Se sigue operando, obteniendo:
+
+\begin{eqnarray}
+M \cdot \left( 1 - \left(1 - \frac{\widehat{f}}{M}\right)^\alpha \right) \ge M & \Rightarrow & 1- \left(1 - \frac{\widehat{f}}{M}\right)^\alpha \ge 1 \nonumber \\
+- \left(1 - \frac{\widehat{f}}{M}\right)^\alpha \ge 0 &\Rightarrow& \left(1 - \frac{\widehat{f}}{M}\right)^\alpha \le 0 \nonumber\\
+\left(M - \widehat{f}\right)^\alpha \le 0 &\Rightarrow& M\cdot \widehat{f} \le 0 \quad \Rightarrow \quad M \le \widehat{f} \label{eq:multLIPtres}
+\end{eqnarray}
+
+\noindent Sin embargo, por definición, $\widehat{f} \in (0,M)\subseteq \mathbb{R}$. Por tanto, se tiene que $\widehat{f} < M$, lo que hace que la inecuación \eqref{eq:multLIPtres} no sea cierta. Esto permite deducir que el punto de partida es falso, y se puede afirmar lo contrario:
+\begin{equation}
+\alpha \LIPtimes \widehat{f} < M \qquad \forall \alpha \in \mathbb{R}, \forall \widehat{f} \in (0,M) \subseteq \mathbb{R}\label{eq:multLIPrangoSuperior}
+\end{equation}
+
+\subsection{Rango completo}
+\noindent Al unificar \eqref{eq:multLIPrangoInferior} y \eqref{eq:multLIPrangoSuperior} queda demostrado que el rango de salida del operador \mbox{Multiplicación--\textsc{LIP}} es $(0,M)$ para cualquier valor del operando $\alpha \in \mathbb{R}, \widehat{f} \in (0,M) \subseteq \mathbb{R}$, tal y como se ha expuesto en \eqref{eq:demostracionMultLIP}.

@@ -1,0 +1,32 @@
+%*******************************************************
+% Little Dirty Titlepage
+%*******************************************************
+\thispagestyle{empty}
+%\pdfbookmark[1]{Titel}{title}
+%*******************************************************
+
+\setlength{\unitlength}{1cm}
+\newfont{\TituloPrincipalFont}{pncb scaled 4500}%{eurb10 scaled 7000}%
+\newfont{\TituloSegundoFont}{pncb scaled 7805}%{pncb scaled 4500}%{eurb10 scaled 7000}%
+
+\fboxrule0pt
+
+\begin{picture}(25,17.6)
+\put(-4,0){\raisebox{-19cm}{\makebox{\rotatebox{45}{\includegraphics[width=30cm]{gfx/bordesLogoUGR.jpg}}}}}
+\hspace{-2.95cm}
+\put(0,0){\fcolorbox{ugrOrange}{ugrOrange}{\boxframe{2.5cm}{25cm}{0pt}}}
+\put(0,0){\raisebox{-7cm}{\fcolorbox{ugrOrange}{ugrOrange}{\boxframe{2.5cm}{25cm}{0pt}}}}
+
+\put(6.5,15){%
+\begin{minipage}{10cm}
+\fontfamily{pbk}\selectfont
+\centering
+\Large
+    \spacedallcaps{\myTitle}\\ \bigskip
+    {\color{ugrGray}\spacedlowsmallcaps{\myName}}
+\end{minipage}}
+
+\put(1.67,-2){\makebox{\rotatebox{90}{{\textcolor{white}{\TituloPrincipalFont Universidad de Granada}}}}}%1.62%1.78%2.28
+\put(2.63,-2){\makebox{\rotatebox{90}{{\textcolor{ugrOrange}{\TituloSegundoFont Tesis Doctoral}}}}}%2.63%3.13
+
+\end{picture}

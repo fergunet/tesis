@@ -1,0 +1,442 @@
+\myChapter{Encuestas}\label{chap:encuestas}
+\minitoc\mtcskip
+\vfill
+\lettrine{H}{abitualmente}, la captación y la evaluación de la opinión de usuarios se realiza utilizando cuestionarios o encuestas. Estas encuestas trasladan la opinión de la población (o al menos de una parte representativa de la misma) mediante las preguntas de dichos cuestionarios. La literatura cientí­fica actual sobre cuestionarios se centra principalmente en cuestionarios de tipo ``ling\"{u}í­stico'' en áreas de investigación económicas o sociales. Por tanto, el diseño de cuestionarios adecuados para la evaluación de la calidad del procesamiento de imágenes es un gran reto.\\
+\noindent En este capí­tulo se presentarán algunas ideas de cómo deben diseñarse los cuestionarios y qué problemas y limitaciones presentan los mismos. Se describirán diferentes tipos de sesgo que pueden afectar a las encuestas y se mostrarán preguntas de ejemplo que presentan algunos de los problemas y sesgos descritos. Finalmente, se expondrán brevemente varios métodos de análisis de cuestionarios para estudiar la validez y la fiabilidad de los cuestionarios.
+\vfill
+\section{Encuestas de opinión mediante cuestionarios}\label{sec:encuestas}
+\lettrine{D}{iversos} autores han estudiado las etapas en las que se divide un \emph{estudio de investigación}. Entendiendo dicho \emph{estudio de investigación} como un proceso cientí­fico mediante el cual se pretende evaluar la veracidad de unas hipótesis de trabajo a partir de datos obtenidos de una población (sea humana o no). \person{Burgess} \citep{burgess01} propone una lista concisa de 7 pasos:
+\begin{enumerate}
+\item Definir el propósito de la investigación; fijar los objetivos de la misma.
+\item Identificar la población y la muestra poblacional.
+\item Determinar cómo recabar las respuestas.
+\item Diseñar el cuestionario.
+\item Realizar una encuesta piloto en una muestra poblacional controlada.
+\item Realizar la encuesta global con el cuestionario final.
+\item Analizar los datos de la encuesta global.
+\end{enumerate}
+
+\noindent La lista anterior es bastante general y cada etapa puede presentar una complejidad elevada, así­ pues, \person{Oppenheim} \citep{oppenheim00} amplí­a y profundiza la lista, extendiendo la misma a 12 etapas o pasos:
+
+\begin{enumerate}
+\item Decidir cuáles son los \emph{propósitos} del estudio, tanto generales como especí­ficos. Traducir estos \emph{propósitos} en \emph{objetivos funcionales} (esto es, el conjunto de hipótesis que se desean investigar). Mediante estos \emph{objetivos funcionales} se construirá la definición de las \emph{variables} que se desean medir mediante las \emph{preguntas}.
+\item Realizar una revisión bibliográfica de la literatura cientí­fica.
+\item Conceptualizar de manera preliminar el estudio: Entrevistas exploratorias.
+\item Decidir el diseño del estudio y determinar su viabilidad.
+\item Decidir qué hipótesis se investigarán: crear un listado de \emph{objetivos funcionales} y de variables que se desean ``medir''.
+\item Determinar la muestra poblacional que será necesaria para obtener un muestreo válido: Representatividad, grupos de control, grupo de seguimiento, etc.
+\item Seleccionar los sujetos de la muestra poblacional que participarán el estudio de manera efectiva.
+\item Realizar el trabajo de campo: proceso de recolección de datos mediante entrevistas o cuestionarios.
+\item Procesar los datos: codificar los resultados y preparar los datos para su posterior análisis.
+\item Analizar los resultados mediante un estudio estadí­stico.
+\item Conjuntar todos los resultados y comprobar que las hipótesis se cumplen con los datos obtenidos.
+\item Escribir el informe final.
+\end{enumerate}
+
+\noindent Ambas listas están diseñadas teniendo en mente la finalidad de la obtención de resultados válidos, por lo que es de vital importancia definir correctamente los objetivos que se persiguen con el estudio de investigación. Estos objetivos son los que determinarán las demás etapas, ya que mediante la definición de los mismos podremos determinar la población destino y qué muestra poblacional debemos tomar de dicha población.\\
+\noindent Por ejemplo, si el objetivo deseado es estudiar el grado de aceptación de un nuevo biberón en Andalucí­a para una posible comercialización del mismo, la población destino serán los bebés menores de 1 año. De esta manera, teniendo en cuenta la concreción espacial y los lí­mites temporales, se reduce el universo completo de seres humanos del mundo: el estudio se centra en los bebés menores de un año que viven en Andalucí­a. También se puede especificar la muestra poblacional que se tomará para obtener resultados estadí­sticamente útiles. Para ello, se determina qué individuos se escogerán de entre la población inicial partiendo desde el objetivo inicial: calculando el grado de interés de cada individuo conforme se vayan tomando de la población, o bien, escogiéndolos previamente.\\
+\noindent En general, como se puede observar en ambas listas propuestas, el desarrollo de una encuesta y la captación efectiva de las respuestas de los entrevistados son sólo dos de las etapas que componen el \emph{estudio de investigación}.
+\section{?`Qué es un cuestionario?}
+\lettrine{L}{os} cuestionarios son los mecanismos más habituales para recoger información de las encuestas de opinión. El diseño de los cuestionarios es una de las etapas más importantes dentro de un estudio de investigación mediante encuestas de opinión. Un buen diseño del cuestionario, seleccionando bien las preguntas y las respuestas posibles, permitirá obtener respuestas de los entrevistados con las que proporcionar una conclusión que describa la opinión de dichos entrevistados.
+\subsection{Definición de qué es un cuestionario}
+La \definicion{\textsc{RAE}}{Real Academia Española de la Lengua} presenta en la $22^a$ Edición del Diccionario de la Lengua Espa\-ñola \citep{drae02} una entrada para la palabra \emph{cuestionario} que en su $2^a$ acepción se define como:\\[1em]
+\begin{tabular}{|A|}
+\hline
+\textsc{Cuestionario}: {\small sust. m. (lat. \emph{quaestionarius})}\\
+\vspace{-1em}\hspace{1em}2. \emph{``Lista de preguntas que se proponen con cualquier fin''}.\vspace{1em}\\
+\hline
+\end{tabular}\\[1em]
+\noindent Esta definición, aunque muy formal y académica, es muy vaga, y si no se contextualiza, es poco útil para su aplicación en un ámbito cientí­fico, por lo que, un cuestionario se podrí­a definir como:\\[1em]
+\begin{tabular}{|A|}
+\hline
+\textsc{Cuestionario}: \emph{``Conjunto de listas de preguntas que se utilizan para obtener información sobre lo que la gente opina, piensa o siente relativo a un servicio, producto o cuestión en particular, con un propósito especí­fico previamente fijado por el investigador que lo ha diseñado''.}\vspace{1em}\\
+\hline
+\end{tabular}\\[1em]
+\noindent Estas listas de preguntas pueden estar impresas o no, se pueden rellenar directamente por parte de los entrevistados o mediante entrevistadores que realicen las preguntas y cataloguen las respuestas, pueden \graffito{Los cuestionarios son herramientas muy flexibles y versátiles para obtener la opinión de una población.} realizarse de manera individual o grupal, etc. Como se puede observar, la taxonomí­a de cuestionarios que se ha presentado es extremadamente amplia, lo cual, aunque parezca un contrasentido, puede llegar a ser tanto una ventaja como una complicación.\\
+\noindent La ventaja se presenta porque se tiene disponible una herramienta tremendamente flexible, que va a permitir el acceso a muchas personas desde diferentes frentes de exploración y la obtención de muchos datos, que pueden ser:
+\begin{description}
+\item[Datos directos] Respuestas explí­citas de los entrevistados. Ej: \emph{?`Qué edad tiene Vd.?}
+\item[Datos indirectos] Deducciones obtenidas a partir de las respuestas de los entrevistados, pero no obtenidas directamente de una pregunta. Ej: Podemos obtener el rango de riqueza (rico, medio, pobre) a partir de los ingresos anuales, de los gastos habituales, etc.
+\item[Relaciones ocultas] Deducciones obtenidas al cruzar los datos de una población con diversas variables y de las que previamente no se conocí­a su interrelación. Ej: Deducir que en una población de ancianos en un lugar especí­fico el principal problema deja de ser el de \emph{subir escaleras} conforme los ancianos comienzan a interaccionar diariamente con otros ancianos fuera de su hogar.
+\end{description}
+\noindent La complicación en el diseño de las encuestas viene por la gran versatilidad disponible al existir tantos formatos diferentes de preguntas y tantas modalidades distintas para la captación de las respuestas. Además, \apriori, no es posible saber si un mecanismo de captación de respuestas es mejor que otro para una determinada población, si una pregunta está bien formulada para obtener un resultado válido, etc.
+\clearpage
+\subsection{Características buscadas con los cuestionarios}
+El principal cometido que se persigue con un cuestionario es:\\[1em]
+\begin{tabular}{|>{\color{black}\columncolor{colorCorporativoSuave}}p{0.89\textwidth}|}
+\hline
+\emph{Conseguir respuestas de los entrevistados basadas en \textsc{Opiniones Propias} que proporcionen una \textsc{Información Generalizable} mediante la cual contrastar la veracidad de unas hipótesis}.\vspace{1em}\\
+\hline
+\end{tabular}\\[1em]
+\noindent De la aseveración anterior hay que resaltar unos conceptos:
+\begin{itemize}
+\item Se desean obtener respuestas que expresen \textsc{Opiniones Propias}, por lo que la respuesta de cada entrevistado debe provenir exclusivamente de su propio conocimiento y capacidad de decisión, y en ningún caso debe estar influenciada por elementos externos, es decir, la respuesta no debe estar \textsc{sesgada}.
+\item Las respuestas de los entrevistados deben proporcionar \textsc{Información Generalizable}. La cual involucra todas aquellas evidencias e indicios que son comunes a un colectivo, es decir, que no son exclusivas de un individuo, por lo que de ellas se podrán deducir opiniones válidas para una población.
+\end{itemize}
+
+\noindent Para que las opiniones que se obtengan de los individuos sean \emph{\textsc{universales}}, la muestra de individuos a los que se les realice la entrevista ha de ser seleccionada minuciosamente en una fase previa al diseño de las preguntas. Esta selección deberí­a garantizar que la muestra poblacional escogida representa completamente a la población universo.
+\section{Mecanismos de recolección de las respuestas}
+\lettrine{U}{n} aspecto muy importante, que determina en gran modo el diseño de los cuestionarios, es definir cómo se obtendrán las respuestas de los encuestados. Existen 2 tipos principales de mecanismos de recolección de respuestas:
+\begin{aenumerate}
+\item Entrevistas estructuradas.
+\item Cuestionarios auto--administrados.
+\end{aenumerate}
+
+\noindent A continuación, se describen los dos mecanismos de recolección de datos, tras lo que se expondrán brevemente los tipos de preguntas más habituales.
+\subsection{Entrevistas estructuradas}
+La recolección de respuestas mediante ``entrevistas estructuradas'', involucra a un entrevistador, que guí­a la entrevista según las respuestas del entrevistado. Estas entrevistas se realizan generalmente cara a cara o mediante llamada telefónica. El hecho de que el entrevistador realice de manera oral las preguntas, con una \emph{realimentación} inmediata por parte de los entrevistados, hace que las frases se propongan de manera diferente a como se harí­a si estas preguntas se hicieran por escrito. En este tipo de cuestionarios, además de incluir frases para los entrevistadores, estos deben ser instruidos para que sepan responder a las dudas que les surjan a los entrevistados, así­ como para que sean capaces de llevar una encuesta dinámica y ágil. Usualmente, estas encuestas son de corta duración (no suelen superar los 10 minutos en el peor de los casos), y están recomendadas para la obtención de estados de opinión puntuales (por ejemplo, en elecciones y votaciones).\\[1em]
+\noindent Sus grandes ventajas son: su inmediatez y su alta tasa de respuestas (salvo para encuestas que involucren aspectos de tipo sensible, en los que responder directamente a una persona pueda provocar rechazo). En cuanto a sus desventajas, el coste de este tipo de encuestas es elevado, lo que limita bastante el número de encuestados. Además, las respuestas tienen una alta probabilidad de ser ``polí­ticamente correctas'' al hacerse delante de una persona. Por último, su principal problema es que sólo pueden ser de tipo general, es decir, que no involucren procesos mentales excesivamente complejos, ya que en dichos casos, la mayorí­a de los encuestados abandonan.
+\subsection{Cuestionarios auto--administrados}
+El otro gran grupo de cuestionarios se denomina, de manera general, ``cuestionarios auto--administrados''. Al contrario que los anteriores no involucran la presencia activa de un entrevistador durante el proceso de recolección de las respuestas. Por tanto, es necesario añadir unas instrucciones precisas para los entrevistados, y que las preguntas se diseñen de forma que no surjan dudas. Se suele admitir que estos cuestionarios no se responden en una única sesión, así­ que deben diseñarse para poder dejarlos y continuar en otro momento. Debido a esto, los ``cuestionarios auto--administrados'' suelen ser más largos e incluir más preguntas que los que se realizan mediante ``entrevistas estructuradas''. Este mecanismo está especí­ficamente indicado para poblaciones muy dispersas y difí­cilmente accesibles mediante entrevistas directas.\\[1em]
+\noindent Presentan ciertas ventajas: son mucho más baratos que las ``entrevistas estructuradas'', permiten recolectar datos de procesos mentalmente más complejos (ya que el encuestado tiene más tiempo para responder) y permiten hacer preguntas de aspectos más sensibles. Sin embargo, entre desventajas destacan su bajo nivel de respuesta, su lentitud y, sobre todo, el poco control que se tiene sobre las respuestas: el entrevistador ``tiene que fiarse'' de que las respuestas están realmente meditadas (que no han sido respondidas sin reflexionar), y de que han sido proporcionadas por el propio entrevistado (no por otra persona).
+\clearpage
+\subsection{Tipos de preguntas}
+La tipologí­a de preguntas posibles en un cuestionario es muy amplia, a continuación se muestra un breve resumen de las principales categorí­as:
+\begin{aenumerate}
+\item \person{\textsc{Según la elección de las respuestas}}
+    \begin{description}
+        \item[Abiertas] Todas las respuestas son posibles, de manera que no existe una lista de respuestas entre las que escoger.
+        \item[Cerradas] Sólo se admiten como posibles respuestas las existentes dentro de una lista de opciones previamente diseñada por el encuestador.
+        \item[Semicerradas] Se le proponen al encuestado una lista de posibles respuestas (habitualmente, las consideradas más comunes) y se le proporciona la opción de añadir otra respuesta de manera libre.
+    \end{description}
+\item \person{\textsc{Según el tipo de las respuestas}}
+    \begin{description}
+        \item[Dicotómicas] Las respuestas son del tipo \mbox{verdadero/falso}, \mbox{sí­/no} u otras opciones similares.
+        \item[Categorizadas o de escala ordinal] Las respuestas suelen ser adjetivos o adverbios, que describen algún tipo de graduación subjetiva, con los que los encuestados responden a las preguntas.
+        \item[Valoración o de escala numérica] Las respuestas son valores numéricos que tienen asociado un orden que permite a los encuestados proporcionar su grado de aceptación o rechazo respecto a lo planteado en la pregunta. También pueden indicar el orden relativo entre las distintas opciones planteadas.
+    \end{description}
+\item \person{\textsc{Según la captura de los datos deseados}}
+    \begin{description}
+        \item[Directas] Si se pregunta directamente al encuestado por la variable que se desea medir.
+        \item[Indirectas] Si se pregunta al encuestado por otra cuestión, que permite determinar la variable deseada.
+    \end{description}
+\item \person{\textsc{Según el número de respuestas por pregunta}}
+    \begin{description}
+        \item[Respuesta única] Sólo se admite una respuesta por pregunta.
+        \item[Respuesta múltiple] Es admisible proporcionar varias respuestas para una misma pregunta. Dentro de este tipo de preguntas se tienen dos divisiones:
+        \begin{itemize}
+            \item \emph{Respuestas múltiples sin repetición}: Se admiten varias respuestas por pregunta pero no es posible repetir varias veces la misma respuesta.
+            \item \emph{Respuestas múltiples con repetición}: Se admiten varias respuestas para una misma pregunta y es posible seleccionar la misma respuesta varias veces.
+        \end{itemize}
+    \end{description}
+\end{aenumerate}
+\section{Limitaciones de los cuestionarios}
+\lettrine{A}{ntes} de estudiar más a fondo los cuestionarios, conviene saber qué se puede obtener utilizando los estudios basados en encuestas. Estos estudios pueden servir tanto como instrumentos de recogida de datos, como mecanismos para el análisis de variables indirectas. Esta gran versatilidad permite su aplicación en muchas temáticas diferentes. Por tanto, para todos aquellos que se acercan por primera vez a las encuestas existe una tendencia generalizada a pensar que éstas ``\emph{son comodines que sirven para todo}'' \citep{alviramartin04}. Sin embargo, las encuestas muestran limitaciones y condicionantes que hacen que éstas no sean válidas en todos los casos.\\
+\noindent Por ejemplo, las encuestas no son apropiadas para investigar las razones, motivos o causas subjetivas de comportamientos o fenómenos poco conocidos, en poblaciones pequeñas o poco frecuentes y/o difí­ciles de acceder. La encuesta es un método dirigido a la descripción y a la constatación de hipótesis, más que al descubrimiento o a la elaboración de hipótesis o teorí­as. A continuación, se mostrarán algunas de las crí­ticas más habituales que se hacen a las encuestas.
+\begin{description}
+\item[Falta de objetividad] Los resultados de las encuestas dependen del contexto del significado e interpretación de las preguntas por parte de los entrevistados. Además, la perspectiva teórica que se haya escogido influye en la información recogida (\emph{sólo se puede encontrar lo que se busca}).
+\item[Influencia en las respuestas] Las propias preguntas realizadas en las encuestas pueden crear opiniones \emph{ex novo} en individuos que no han reflexionado nunca sobre un tema.
+\item[Atomismo] La información que surge de la encuesta, en muchos casos, es una mera agregación de respuestas individuales que no tienen en cuenta interacciones sociales, relaciones, ni otros aspectos relativos a la estructura social que no se hayan tenido en cuenta en el modelo conceptual con el que se ha diseñado el cuestionario.
+\item[Captura estática de la realidad] Los resultados de las encuestas muestran, en el mejor de los casos, una ``fotografí­a'' estática de las opiniones en un momento puntual. Esto obligarí­a a realizar estudios en distintos instantes temporales, con la consiguiente dificultad para integrar todas las opiniones.
+\item[Limitación del ámbito de aplicación] Las encuestas no están previstas para ámbitos de estudio en los que las medidas no se puedan obtener mediante preguntas subjetivas. Por ejemplo, en los ámbitos de ciencias naturales es absurdo realizar los estudios utilizando encuestas, puesto que en la mayorí­a de los casos, no se puede preguntar a los sujetos (no son humanos, pueden ser animales, plantas, etc.). Además, en estos ámbitos las medidas objetivas son más precisas y se pueden obtener directamente.
+\item[Costes elevados] La realización de un estudio de investigación mediante cuestionarios es caro, tanto en tiempo como en costes económicos y medios materiales y humanos.
+\end{description}
+
+\noindent Como resumen, se puede afirmar que las encuestas son instrumentos estructurados de captura de información, que podrí­an influir en la información recogida. Los cuestionarios son útiles, ante todo, para describir y contrastar hipótesis o modelos. Por el contrario, no son recomendables para construir teorí­as o para deducir hipótesis nuevas.
+\section{Fuentes de error en los cuestionarios}
+\lettrine{L}{a} validez de los resultados que se obtengan de un cuestionario dependerá de qué se ha preguntado, cómo se ha preguntado, a quién se le ha preguntado, qué opciones se han ofrecido para responder, en qué contexto se ha realizado la pregunta y otros aspectos relacionados con la encuesta y con su administración. A veces, los resultados obtenidos a partir de una encuesta varí­an con respecto a la opinión real de la población, obtenida mediante otras encuestas o bien utilizando otros cuestionarios que han sido validados previamente. Dicha variación es debida a la presencia de errores, que pueden ser \emph{sistemáticos} o \emph{aleatorios}. Los errores \emph{aleatorios} no tienen gran incidencia en el conjunto de la encuesta, puesto que ni sobreestiman ni subestiman los valores promedio, y si la muestra poblacional es suficientemente grande, pueden mitigarse fácilmente. Sin embargo, los errores \emph{sistemáticos} pueden llegar a producir un falso aumento o disminución del valor promedio, produciendo un \definicion[-3em]{sesgo}{Error que aparece en los resultados que puede conducir a conclusiones que son sistemáticamente diferentes de la verdad o incorrectas.} en los resultados. Estos sesgos pueden tener su origen en el diseñador de la encuesta, el encuestador o los entrevistados y, a su vez, pueden ser intencionados o no. La mayorí­a de errores provienen del diseño del cuestionario y de las preguntas, dentro de las que las principales fuentes de error son \citep{ceadancona04}:\\
+\person{\textsc{Errores de especificación conceptual}} El modelo subyacente sobre el que se construye la encuesta está mal construido.
+\begin{aenumerate}
+\item \emph{Problemas de connotación}: Confusión de significados porque el modelo está asociado a más de un significado o porque hay varios modelos diferentes que pueden responder al mismo significado y los investigadores no han hecho explí­cito lo que pretenden.
+\item \emph{Problemas de denotación}: Modelos débilmente definidos y ``vagos'' en cuanto a su precisión, en los que no están claramente especificados los objetos, entidades o referentes a los que se aplica.
+\item \emph{Problemas terminológicos}: Fallos de elección de etiquetas lin\-g\"{u}í­s\-ti\-cas o conceptuales para definir el modelo que inducen a ca\-rac\-te\-rí­s\-ti\-cas o referentes erróneos.
+\end{aenumerate}
+
+
+\noindent \person{\textsc{Errores debidos a la formulación de las preguntas}} Las preguntas o las opciones de respuesta provocan que los encuestados escojan una opción distinta a la opinión real que tienen sobre los objetivos de investigación asociados a cada pregunta.
+
+\begin{aenumerate}
+\item \textsc{Sesgo de especificación}: \noindent No existe una correspondencia entre la pregunta y los objetivos de la investigación: se está haciendo una pregunta que no mide realmente lo que se habí­a planteado en los objetivos del cuestionario.
+\item \textsc{Sesgo de medición}: \noindent La pregunta está bien planteada y está acorde con los objetivos del cuestionario, pero la respuesta que proporcionan los encuestados no coincide con su opinión real.
+\begin{enumerate}
+\item \emph{Sesgo de interpretación de términos}: \noindent Se produce al introducir palabras ambiguas o con diferentes connotaciones, que pueden ser interpretados por los encuestados de diferente manera a como fueron ideadas por el diseñador de la encuesta.
+\item \emph{Sesgo de redacción}: \noindent La redacción de la pregunta hace que el entrevistado tenga cierta tendencia a escoger una determinada respuesta.
+\item \emph{Sesgos debidos al orden de las respuestas}, (\emph{Sesgo de pri\-ma\-cía}, \emph{Sesgo de recencia}): \noindent Dependiendo del tipo de encuesta, el orden en el que se ofrecen las respuestas a los entrevistados puede hacer que se seleccione preferentemente alguna de ellas. En las encuestas en las que los entrevistados no pueden visualizar las opciones, existe una tendencia a seleccionar la primera alternativa que se mencione (\emph{efecto de primací­a}) o la última (\emph{efecto de recencia}), con independencia del contenido de la respuesta en sí­.
+\item \emph{Sesgo de contexto}: \noindent Los encuestados suelen interpretar los cuestionarios como preguntas enlazadas una tras otra y construyen relaciones internas entre las diferentes preguntas, de tal forma, que las respuestas de una pregunta suelen estar influenciadas en las preguntas anteriores y posteriores, es decir, en el \emph{contexto de la pregunta}.
+\item \emph{Sesgo de deseabilidad social}: \noindent En los cuestionarios que se pregunta por aspectos sensibles que pueden inhibir al encuestado a dar una respuesta veraz, en muchos casos, lo que se obtiene no es la opinión real que tiene el entrevistado sino respuestas ``polí­ticamente correctas'' o socialmente deseables. También aparece este tipo de sesgo cuando elige una respuesta que él cree que es la que se espera que dé, es decir, cuando el encuestado se quiere ajustar a las expectativas o demandas del investigador.
+\item \emph{Sesgo de aquiescencia}: \noindent Este sesgo se produce cuando el encuestado elige la respuesta afirmativa o que el entrevistado cree que supone un mayor consenso.
+\item \emph{Sesgo de repetición de respuestas}: \noindent Cuando hay muchas preguntas seguidas que tienen las mismas opciones de respuesta, los entrevistados pueden llegar a mostrar una tendencia a repetir las mismas respuestas pregunta tras pregunta.
+\item \emph{Sesgo de aversión de extremos}: \noindent En las preguntas con respuestas categorizadas, los encuestados tienden a evitar los extremos, en particular si estos son absolutos (no suelen escoger opciones como ``siempre'' o ``nunca'', sino ``casi siempre'' o ``casi nunca'').
+\end{enumerate}
+\end{aenumerate}
+
+\noindent Estos sesgos han sido ampliamente estudiados \citep{ceadancona04,alviramartin04,estadisticaURL} y existen muchos trabajos para evitar en la medida de lo posible la influencia de estas fuentes de error.\\
+\noindent Además de los anteriores sesgos, que aparecen debidos al diseño del cuestionario y de las preguntas, existen otras fuentes de error adicionales, introducidas por otras causas diferentes a las anteriormente citadas, entre las que cabe destacar:
+\begin{description}
+\item[Errores poblacionales] Están debido a una mala selección de la muestra de la población sobre la cual se realizará el estudio. Suelen llamarse \emph{Sesgo por selección} o \emph{Sesgo poblacional}.
+\item[Errores por no respuesta] En los casos en los que no se responda el cuestionario completo, o a una pregunta determinada de dicho cuestionario, hay que determinar el porqué. Puede ser por desconocimiento de la temática que se pregunta, por negarse a compartir la información de dicha cuestión, por omisión involuntaria, etc. Todas aquellas preguntas que no son respondidas por los encuestados, pueden alterar el resultado promedio completo, o bien, dar una excesiva importancia a las respuestas proporcionadas por otros encuestados, desplazando el resultado hacia la opinión personal de uno de esos encuestados y no hacia la opinión global, a lo que se le llama \emph{Sesgo por no respuesta}.
+\item[Errores de finalidad] Cuando el encuestado conoce (o cree conocer) la finalidad u objetivo asociado una pregunta y adapta su respuesta a dicha finalidad u objetivo. Se denomina \emph{Sesgo por finalidad}.
+\end{description}
+
+\noindent En la sección \ref{sec:poblacion}, se profundizará sobre el \emph{Sesgo por selección}. El segundo tipo (\emph{Sesgo por no respuesta}) se suele dar en las encuestas de tipo personal o en las que hay que dar una opinión de tipo subjetivo; en estas situaciones, es posible que los entrevistados no se atrevan o no sean capaces de responder a algunas preguntas. El \emph{Sesgo de deseabilidad social} aparecerí­a en los casos en que estas preguntas se respondan, pero con respuestas ``polí­ticamente correctas'', diferentes de la opinión real de los entrevistados. Otra opción posible es que se produzcan respuestas al azar por desconocimiento del tema, aunque no serí­a demasiado grave, puesto que no generarí­a un error sistemático, sino aleatorio, que se podrí­a mitigar con una muestra poblacional suficientemente amplia. El tratamiento de la ``no repuesta'' en cuestionarios tiene una vital importancia, ya que puede alterar completamente los resultados promedio, por un lado, proporcionando excesiva importancia a aquellos cuestionarios que sí­ han sido respondidos, y por otra parte, porque se ignora el motivo por el cual no se han contestado estos cuestionarios o preguntas. Para evitar, o al menos, limitar  estos efectos, se sugiere introducir en los cuestionarios pilotos, previos al diseño del cuestionario final, una opción de ``No Sabe'' y otra de ``No contesta'' pudiendo indicar el motivo. Estas opciones de respuestas \emph{abiertas} permiten a los investigadores contar con más elementos de juicio para un mejor diseño de las preguntas. Existen muchos trabajos cientí­ficos \citep{argimonpallas05,alviramartin04,ceadancona04,estadisticaURL} que se pueden consultar para ampliar información sobre estos tipos de sesgos y conocer, con mayor detalle, los mecanismos habituales que se pueden utilizar para minimizar el efecto de los mismos.\\
+\noindent Finalmente, el \emph{Sesgo por finalidad} es una aportación que realiza el autor de esta Tesis en vista de los resultados obtenidos en el ámbito de las encuestas en las ingenierí­as, aunque es fácilmente exportable a prácticamente todos los campos del saber. Este tipo de sesgo se describirá con mayor concreción en el Capítulo \ref{chap:recCuestCalidadBordes}.
+
+\section{Elección de la muestra poblacional}
+\lettrine{U}{na} de las fases más importantes en el desarrollo de una encuesta es la elección de un grupo de individuos válido y representativo de la población sobre la que se obtendrán las conclusiones. Esta fase puede ser tan simple como un muestreo aleatorio dentro de un grupo poblacional amplio, si se considera que todos los individuos de dicha población proporcionan información con una validez similar, y que no se presentan influencias importantes en sus respuestas. Sin embargo, para encuestas de opinión en las que las respuestas de los individuos pueden estar muy influenciadas por su estatus, condición social, situación geográfica, etc., la elección de los individuos para lograr una muestra poblacional no sesgada puede llegar a significar un escollo considerable.\\
+\noindent Hay ciertas cuestiones que hay que determinar a la hora de escoger una muestra poblacional \citep{estadisticaURL}:
+\begin{itemize}
+\item El método de selección de los individuos de la población (tipo de muestreo).
+\item El tamaño de la muestra poblacional.
+\item El grado de fiabilidad de las conclusiones en función de la muestra poblacional escogida (probabilidad del error).
+\end{itemize}
+\subsection{Selección de individuos}\label{sec:poblacion}
+Una selección incorrecta de la muestra poblacional puede provocar errores posteriores a la hora de estimar las correspondientes opiniones de la población. Por ejemplo, si la muestra perteneciese a un nicho poblacional poco representativo del total de la población, las respuestas y las conclusiones obtenidas no serí­an válidas, ya que habrí­an sufrido \emph{Sesgo por selección}. Según \person{Lagares} y \person{Puerto} \citep{estadisticaURL}, de manera generalizada, para evitar este sesgo se debe realizar una criba previa en la que se indica cuántos individuos se van a tomar, por ejemplo, de cada determinada edad, en cada zona, y con qué caracterí­sticas en particular. Para realizar esta criba \apriori se aplican unas técnicas, denominadas ``de muestreo'', que se exponen a continuación:
+\begin{aenumerate}
+ \item Muestreo al azar (con y sin reemplazamiento).
+ \item Muestreo estratificado.
+ \item Muestreo por conglomerados o por racimos.
+ \item Muestreo sistemático.
+\end{aenumerate}
+
+\noindent También se pueden dar mezclas entre ellas, como por ejemplo, en el caso del muestreo estratificado por conglomerados, en el que la población se subdivide en distintos conglomerados lo más homogéneos entre sí­ que a su vez se tratan de manera estratificada (según diferentes conceptos geográficos, sociales, etc.).\\
+\noindent Sin embargo, no siempre se puede aplicar una criba previa a la encuesta, ya que a veces se desconoce la clasificación de cada individuo dentro de la muestra poblacional, por lo que para estos casos, lo que se realiza es un descarte \emph{a posteriori} de aquellas respuestas que se desví­en en exceso del comportamiento medio, tratándolas como valores anómalos o extremos.
+\subsubsection{Tamaño de la muestra}
+Aunque se sabe que cuanto mayor sea el tamaño de la muestra poblacional, menor será el error inferido, factores como el coste económico, la disponibilidad de tiempo, etc., suelen poner limitaciones a la hora de fijar el valor de este parámetro. Por ello, previamente se debe conocer el tamaño mí­nimo que deberí­a tener la muestra poblacional para que las conclusiones que se extraigan de las respuestas de los entrevistados sean representativas de la opinión de toda la población. Existen fórmulas que determinan estadí­sticamente este valor, en función del error mí­nimo admisible, de si es conocida o no la varianza poblacional, de si se conoce el número de individuos de toda la población, etc. En general, el tamaño de la muestra viene determinado por el nivel de confianza que se pueda obtener de las conclusiones utilizando un determinado tamaño de muestra poblacional. De tal forma que cuanta mayor precisión se requiera para las conclusiones, mayor deberá ser el tamaño de la muestra exigida.
+\subsubsection{Grado de fiabilidad de los resultados}
+Como se ha visto en apartados anteriores, todas las decisiones que se toman con respecto al diseño de una encuesta se realizan teniendo en cuenta las conclusiones que se pretendan obtener. En particular, si se desean unas conclusiones muy precisas, será necesaria una muestra amplia, en la que los individuos se hayan seleccionado con una precisión elevada, rechazando aquellos que pudieran falsear los resultados generales. En cambio, si simplemente son admisibles unos resultados que muestren \emph{grosso modo} los aspectos principales de una determinada población, bastará con una muestra de tamaño reducido y un proceso de selección de individuos no excesivamente exigente.\\
+\noindent Sin embargo, puede que en algunas ocasiones no exista la posibilidad de elegir a los individuos que formarán parte de la muestra. En estos casos, es interesante calcular el grado de fiabilidad de los resultados obtenidos en función del tamaño de la selección de la muestra poblacional.\\
+\noindent Para cada una de las variables cuyo valor se intenta obtener mediante la encuesta, su grado de fiabilidad se puede determinar como un valor único o como un intervalo de confianza. En ambos casos, se realiza una estimación de la distribución estadí­stica que modela cada medida observada, y en función de dicha distribución, se determina el valor (o el intervalo de valores) que delimita el lí­mite que permitirí­a identificar un valor concreto de esa medida dentro de un rango válido o aceptable para dicha variable. Las distribuciones estadí­sticas más utilizadas para este propósito son la distribución Normal o Gaussiana, la $\chi^2$, la uniforme, la ``t'' de Student, la ``F'' de Snedecor, etc. De entre ellas, se escogerá la que mejor se ajuste a los valores de cada variable.
+\section{Diseño de un cuestionario}\label{sec:diseno-cuestionario}
+\lettrine{C}{omo} se ha mostrado en la Sección \ref{sec:encuestas}, el diseño del cuestionario es sólo uno de los pasos del proceso de estudio de investigación mediante cuestionarios. Sin embargo, aunque todos los pasos citados con anterioridad son imprescindibles para obtener datos fiables y útiles, el desarrollo del cuestionario es la etapa del proceso que más esfuerzo requiere y en la que mayor cantidad de decisiones se han de tomar. Así­ pues, suponiendo que el resto de pasos necesarios para la realización de una encuesta de opinión se han realizado previamente, el diseño de un cuestionario se puede dividir en tres apartados:
+\begin{enumerate}
+\item Determinar qué variable se controla con cada pregunta que se vaya a realizar.
+\item Seleccionar la tipologí­a de cada una de las preguntas y especificar su redacción.
+\item Diseñar la secuencia de preguntas y la distribución gráfica general del cuestionario.
+\end{enumerate}
+\subsection{Dificultades para construir buenas preguntas}
+Dentro del ámbito de las encuestas de opinión hay una obviedad muy clara: \emph{Para obtener buenas respuestas, hay que hacer buenas preguntas a la gente correcta}. A pesar de lo que se muestra en esta afirmación, es \graffito{Las buenas respuestas provienen de buenas preguntas a la gente correcta.} conveniente desmenuzarla para entenderla mejor. Las respuestas ``\emph{buenas}'' son aquellas estadí­sticamente relevantes, de las que se pueden obtener deducciones estadí­sticas que coincidan con la población completa. En cuanto a la gente ``\emph{correcta}'', se entiende que deben ser individuos de una muestra poblacional representativa.\\
+\noindent Por tanto, reescribiendo la frase anterior se puede obtener una afirmación menos ``directa'' aunque más correcta: \emph{Para obtener respuestas que estadí­sticamente proporcionen información relevante, hay que saber hacer buenas preguntas a los individuos de una muestra poblacional correctamente escogida y suficientemente representativa}.\\
+\noindent Lo único que ha faltado por concretar es qué se entiende por \textsc{buenas preguntas}. La respuesta a esta pregunta es bastante complicada, ya que \apriori no es posible determinar si una pregunta es buena o es mala. Sin embargo, existen bastantes trabajos \citep{bradburn04,oppenheim00,hayes99} en los que se recomiendan normas generales para la redacción de las preguntas, principalmente para encuestas de tipo social. Ejemplos de estas recomendaciones son:
+\begin{itemize}
+\item Realizar preguntas para obtener una de las respuestas objeto de estudio, no caer en la tentación de preguntar ``porque es interesante saber algo''. Este tipo de preguntas suelen confundir a los entrevistados, descentrándolos del cometido principal.
+\item Limitar la longitud de los cuestionarios, ya que los cuestionarios excesivamente largos no se suelen contestar completamente por parte de los entrevistados, o bien, al alargarse el tiempo, no contienen respuestas muy fiables.
+\item Comenzar con preguntas sencillas y atrayentes para los entrevistados, a las que no tengan que dedicar excesivo tiempo para pensar la respuesta. Esta estrategia les anima a continuar. Si las preguntas iniciales son demasiado crí­ticas, o implican que los entrevistados les dediquen mucho tiempo para pensar las respuestas, es muy probable que renuncien a continuar con el cuestionario.
+\item Utilizar preguntas directas y con un lenguaje simple. Las preguntas enrevesadas, con un lenguaje excesivamente técnico, o por el contrario, utilizando jerga, habitualmente no son comprendidas por los entrevistados, y por lo tanto, sus respuestas suelen ser poco fiables.
+\end{itemize}
+
+\noindent Las recomendaciones anteriores son de tipo general. Sin embargo, observando determinadas preguntas se pueden deducir otras recomendaciones más especí­ficas para la redacción de las preguntas en particular. A continuación, se propone un conjunto de preguntas \emph{mal planteadas}, junto con la explicación de porqué se considera que dichas preguntas no están bien formuladas y cómo rehacerlas para obtener \textsc{buenas preguntas}.
+
+\paragraph{Evitar la Ambig\"{u}edad:} \noindent Estos ejemplos muestran que no se deben diseñar preguntas que puedan tener múltiples interpretaciones o preguntas que fuercen al encuestado a responder de una determinada manera específica.\\[-0.5em]
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{?`Qué te gusta más, el sabor cí­trico o la textura crujiente del helado?}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Se dan demasiadas combinaciones para las respuestas: que al entrevistado le guste el sabor cí­trico pero no la textura crujiente, que le gusten ambos, que no le gusten ninguna de las dos, que le guste la textura crujiente pero no el sabor, o incluso que le gusten ambos, pero por separado.\\
+\hline
+\end{tabular}\graffito{Preguntar por un único aspecto en cada pregunta.}\vspace{1em}\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{?`Qué sistema operativo utilizas en tu PC?}\\
+\rowcolor{colorCorporativoSuave}\hspace{1em}\emph{Windows XP o Windows Vista}.\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}No es una buena pregunta, puesto que se pueden dar otros muchos tipos de sistemas operativos: ninguno, Linux, Solaris, MacOS, otras versiones diferentes de MS Windows, etc.\\
+\hline
+\end{tabular}\graffito{Cubrir todas las respuestas posibles para cada pregunta.}\vspace{1em}\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{?`Qué lugares te gustarí­a visitar como turista?}\\
+\rowcolor{colorCorporativoSuave}\hspace{1em}\emph{Paris, Madrid o Francia.}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Las respuestas no han sido correctamente seleccionadas y pueden presentar dudas a los entrevistados, ya que el que se escoja visitar Francia no es excluyente para escoger Paris.\\
+\hline
+\end{tabular}\graffito{Selecciona respuestas mutuamente excluyentes entre sí­.}\vspace{1em}\\
+
+\noindent Con recomendaciones de este tipo se pretende prevenir la ambig\"{u}edad en las preguntas. Evitando este problema, se trata de obtener de los entrevistados respuestas veraces. La veracidad de las respuestas tiene que venir de dos frentes: los entrevistados deben entender perfectamente lo que se les pregunta y han de tener opinión propia sobre la cuestión.
+\paragraph{Preguntas Capciosas y mal planteadas:} \noindent Este contexto abarca tanto las \definicion[-1em]{preguntas capciosas}{Que se diseñan para arrancar al interlocutor una respuesta que favorezca a los propósitos de quien las formula, o para que éste último guí­e las respuestas del primero en una determinada dirección.}, que están diseñadas con una intencionalidad predeterminada por parte del encuestador, como las preguntas que, por su redacción, provocan una influencia no deseada en la respuesta de los entrevistados, aunque, \apriori no han sido diseñadas con ninguna intencionalidad. Estas recomendaciones pretenden la independencia de las respuestas de los encuestados. Ésta proviene principalmente de la necesidad de separar el pensamiento del entrevistado de las ideas preconcebidas del entrevistador: el entrevistado debe responder por sí­ mismo, sin ayuda, guí­a o consejo del entrevistador. Es evidente que para que los resultados de la encuesta sean válidos, el entrevistador debe evitar expresar cualquier opinión personal o cualquier resultado general, ya que estos comentarios, sugerencias o datos adicionales suelen condicionar las respuestas.El primer ejemplo introduce información propia del entrevistador en la pregunta:\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{En lo concerniente a Fórmula 1, sabiendo que Ferrari es la mejor escuderí­a, ?`cree Vd. que este año conseguirán revalidar el tí­tulo?}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Esta se puede considerar una \textsc{Pregunta Capciosa}: la información de que Ferrari es la mejor escuderí­a es propia del entrevistador y no proporciona información útil para el entrevistado, por lo que influye (o al menos podrí­a influir) en la respuesta del entrevistado. Una pregunta más aséptica y neutral serí­a: \emph{?`Cree Vd. que Ferrari conseguirá revalidar el tí­tulo de Fórmula 1 este año?}\\
+\hline
+\end{tabular}\graffito{No introducir opiniones personales del entrevistador en el cuerpo de las preguntas.}\vspace{1em}\\
+
+\noindent En este ejemplo, se añade información general que puede condicionar la respuesta:\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{?`Está Vd. de acuerdo con la mayorí­a de la gente que opina que la economí­a va bien?}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Esta pregunta, \apriori, no puede ser considerada una \textsc{Pregunta Capciosa}, sin embargo, está mal diseñada, ya que podrí­a inducir un \emph{sesgo de deseabilidad social}. Al introducir información sobre qué ha contestado ``la mayorí­a de la gente'', se está proporcionando al entrevistado datos sobre las respuestas que ya se han obtenido. Esto, en cierto modo, obliga al entrevistado a dar una respuesta similar a los demás. La pregunta estarí­a mejor formulada como \emph{?`Cree Vd. que la economí­a va bien?}\\
+\hline
+\end{tabular}\graffito{No añadir datos de opiniones de tipo general que puedan influir en la respuesta.}
+
+\paragraph{Preguntas con exceso de información:} \noindent Existe otro tipo de condicionamiento de las respuestas, que es mucho más sutil, y que en la mayorí­a de los casos no se realiza conscientemente por parte del entrevistador. Suele aparecer cuando se incluye información adicional, datos o descripciones para explicar el entorno en el que se ubica una determinada pregunta. Esta información puede llegar a modificar o alterar la independencia de los entrevistados, y resulta muy difí­cil, a veces imposible, evitar este efecto.\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{Las tres grandes compañí­as de desarrollo de videoconsolas, Sony, Microsoft y Nintendo, han sacado al mercado diferentes consolas de última generación, cada una de éstas con distintos precios (de manera aproximada, PS3 de Sony: \EUR{400}; Xbox360 de Microsoft, \EUR{300}; Wii de Nintendo, \EUR{250}). ?`Cuál considera que es la mejor de estas tres consolas en relación calidad--precio?}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}El entrevistador ha proporcionado los precios aproximados de las tres videoconsolas como datos para que el entrevistado posea más información y pueda opinar con mayor fiabilidad. Al asegurarse el entrevistador de que el entrevistado posee información sobre el precio, éste presupone que el entrevistado podrá opinar mejor. Sin embargo, al dar información sobre el precio puede que no se obtenga la opinión directa del entrevistado, ya que dicha información podrí­a modificar la opinión prefijada que el entrevistado pudiese tener, lo cual puede ser aceptable o no según los casos. Por ejemplo, si no se hubiesen incluido los precios y el entrevistado no tuviese una información exacta del precio de cada consola, o si su información fuese errónea, probablemente su respuesta serí­a diferente.\\
+\hline
+\end{tabular}\graffito{Sin ser erróneo, añadir ciertos datos, que el entrevistador debe presuponer que conocen los entrevistados, puede influir en las respuestas.}\vspace{1em}
+\subsection{Buenas preguntas con buenas respuestas}
+De manera análoga al planteamiento de las preguntas, si se ofrecen respuestas acotadas, su redacción debe seguir una serie de recomendaciones para que no influyan en la decisión de los entrevistados. En algunos casos, la inclusión de información adicional en las respuestas, ya sea explí­cita o subjetiva, puede influir de forma capciosa y malintencionada en los entrevistados, de manera análoga a la que se ha comentado anteriormente para las preguntas. En otros casos, puede que sea la información adicional incluida en las preguntas la que condicione la selección de una de las posibles respuestas por parte del entrevistado.
+\paragraph{Información explícita en las respuestas:} \noindent La inclusión de información detallada en las respuestas puede influir en la selección que haga el encuestado.\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{El gobierno pretende aumentar el impuesto de circulación con el objetivo de concienciar a la población acerca del cambio climático. Según Vd. ?`qué vehí­culos deberí­an pagar mayores impuestos por dicho concepto? (Puede seleccionar más de una)}.\\
+\rowcolor{colorCorporativoSuave}\emph{a. Los vehí­culos que más contaminan ($4\times 4$ y todoterrenos).}\\
+\rowcolor{colorCorporativoSuave}\emph{b. Todos los vehí­culos industriales (camiones, furgonetas y similares).}\\
+\rowcolor{colorCorporativoSuave}\emph{c. Todos los vehí­culos por igual.}\\
+\rowcolor{colorCorporativoSuave}\emph{d. No deberí­an aumentar el impuesto de circulación por ese motivo.}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}La primera respuesta añade explí­citamente ejemplos de cuáles considera el entrevistador que son los vehí­culos que más contaminan ($4\times 4$ y todoterrenos). Esta opinión del entrevistador no deberí­a estar incluida puesto que puede estar limitando la elección del entrevistado.\\
+\hline
+\end{tabular}\graffito[3em]{No añadir información adicional en las respuestas.}\\
+
+\paragraph{Información subjetiva en las respuestas:} \noindent También se debe evitar el uso de información adicional en las respuestas que pueda ser interpretada de manera subjetiva por los entrevistados. Ocurre especialmente al utilizar imágenes, videos, sonidos, etc., aunque también puede producirse en cualquier tipo de respuesta, si se expresa mediante términos vagos que el usuario pueda interpretar subjetivamente.\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{El gobierno está pensando aumentar los fondos de las campañas sociales de apoyo a la familia. ?`Quién cree Vd. que deberí­a sufragar principalmente dichos fondos? (Puede seleccionar más de una)}.\\
+\rowcolor{colorCorporativoSuave}\emph{a. Los ricos.}\\
+\rowcolor{colorCorporativoSuave}\emph{b. Todas las empresas que tengan más de 1000 empleados.}\\
+\rowcolor{colorCorporativoSuave}\emph{c. Toda la sociedad a través del impuesto de IRPF.}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Aunque la pregunta está bien planteada, entre las respuestas que se ofrecen se incluye una que tiene connotaciones negativas: ``los ricos''. Al no determinar de manera explí­cita qué requisitos debe cumplir una persona para ser considerada rica, esta respuesta es un ``cajón de sastre'' en el que cada entrevistado puede incluir de manera subjetiva a cualquier persona. Además, el sustantivo ``rico'' podrí­a suscitar en los entrevistados ideas peyorativas con respecto a la relación del compromiso social global frente a la situación económica de dichas personas.\\
+\hline
+\end{tabular}\graffito{No utilizar expresiones que tengan connotaciones subjetivas adicionales, ya sean positivas o negativas.}\\
+
+\paragraph{Subjetividad comparada:} \noindent Aparece en preguntas en las que se comparan dos o más posibilidades entre sí­. En estas preguntas no se solicita la opinión de manera absoluta sobre un aspecto en particular, sino en relación (comparándolo) con otro.\\
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline
+\rowcolor{colorCorporativoSuave}\textsc{Ejemplo:}\\
+\rowcolor{colorCorporativoSuave}\emph{Con respecto a la calidad de la comida en los locales de comida rápida, seleccione con cuál de las siguientes afirmaciones está Vd. de acuerdo:}\\
+\rowcolor{colorCorporativoSuave}\emph{a. Es peor que la de los locales de comida tradicional.}\\
+\rowcolor{colorCorporativoSuave}\emph{b. Tienen la misma calidad que la de los locales de comida tradicional.}\\
+\rowcolor{colorCorporativoSuave}\emph{c. Es mejor que la de los locales de comida tradicional.}\\
+\hline
+\rowcolor{colorCorporativoMasSuave}\textsc{Comentario:}\\
+\rowcolor{colorCorporativoMasSuave}Es probable que el entrevistador pretenda, con esta comparación, averiguar la opinión de los entrevistados acerca de la calidad de la comida en los locales de comida rápida. Sin embargo, dicha comparación no indica lo buena o mala que el entrevistado considera en sí­ la calidad de la comida de los locales de comida rápida, sino si la considera mejor o peor que los de comida tradicional. El entrevistado puede considerar que los dos tienen muy mala calidad, aunque uno de los dos sea aún peor que el otro; o justo al revés, que los dos tengan buena calidad, aunque uno de ellos tenga mejor calidad que el otro. Es decir, que la subjetividad comparativa que se introduce no se resuelve con una sola pregunta. Habrá que hacer más preguntas para catalogar la calidad individual de cada uno de los dos.\\
+\hline
+\end{tabular}\graffito{Las respuestas subjetivas comparativas no garantizan conclusiones con catalogación absoluta, sino relativa.}\vspace{1em}\\
+\clearpage
+\section{Análisis del cuestionario}\label{sec:analisisCuestionario}
+
+\lettrine{H}{asta} ahora se ha expuesto una serie de recomendaciones para diseñar un buen cuestionario desde el punto de vista lin\-g\"{u}í­s\-ti\-co y sociológico. Sin embargo, para determinar la corrección del cuestionario hay que realizar un análisis estadí­stico del mismo.\\
+\noindent Desde dicho ámbito, un cuestionario pretende realizar una medida indirecta de una o varias variables estadí­sticas no mesurables directamente. Debido a esta capacidad de medida, a los cuestionarios también se les suele denominar \definicion[-2em]{instrumentos}{Cuestionarios}. Las preguntas individuales utilizadas dentro de un cuestionario se llaman \definicion[-1.5em]{items}{Preguntas individuales de un cuestionario}, que se agrupan en \definicion[0.1em]{dominios}{Agrupaciones de preguntas de un cuestionario que son relativas a un mismo aspecto} (también referidos en la literatura cientí­fica como \textsc{subescalas}). Habitualmente cada \textsc{dominio} tiene asociada una variable estadí­stica diferente.\\
+\noindent Los diseñadores suelen agrupar los \textsc{items} en \textsc{dominios} de tres maneras maneras diferentes:
+\vspace{-0.5em}
+\begin{aenumerate}
+\item Basándose exclusivamente en el juicio de uno o varios expertos.
+\item Basándose exclusivamente en la exploración preliminar de los Componentes Principales de cada pregunta del cuestionario (mediante \definicion[-3em]{PCA}{En inglés,  \textsc{Principal Component Analysis}, Análisis de Componentes Principales}).
+\item Basándose en el juicio del experto, refinado o reforzado mediante una exploración confirmatoria con \textsc{PCA}.
+\end{aenumerate}
+\vspace{-0.5em}
+
+\noindent El análisis estadí­stico \textsc{PCA} busca la correlación de las respuestas entre los diferentes \textsc{items} del cuestionario y trata de comprobar si las respuestas sostienen estadí­sticamente la distribución de \textsc{dominios} que se ha realizado. Si un conjunto de \textsc{items} presentan una alta correlación, entonces probablemente midan la misma variable estadí­stica y por tanto, es posible asignarlos a un mismo \textsc{dominio}. Por el contrario, si los \textsc{items} muestran una baja correlación, entonces es probable que midan variables estadí­sticas diferentes y que no pertenezcan al mismo \textsc{dominio}. Finalmente, existen \textsc{items} que podrí­an correlacionarse con varias variables estadí­sticas diferentes, por lo que podrí­an incluirse en diferentes \textsc{dominios}. Por tanto, los componentes principales que se obtienen tras la aplicación de \textsc{PCA} al cuestionario representan estimaciones de aquellas variables que estadí­sticamente son independientes.
+\vspace{-1em}
+\subsection{Validación del cuestionario}\label{sec:validacionCuestionario}
+Uno de los aspectos más deseados, y a la vez más complejos, cuando se trabaja con cuestionarios es la garantí­a de su \definicion[-0.5em]{validez}{Determina si un cuestionario realmente mide lo que afirma medir.}. La \textsc{validez} de un cuestionario se puede observar desde tres evidencias diferentes:
+\vspace{-1em}
+\begin{aenumerate}
+\item Validez de \textsc{constructo}.
+\item Validez de contenido.
+\item Validez de criterio.
+\end{aenumerate}
+
+\noindent La \emph{validez de \definicion{constructo}{Del latí­n, construcción teórica de una variable compleja, compuesta por varios dominios}} se utiliza para demostrar que las respuestas obtenidas a través del cuestionario se ajustan al mismo número de \textsc{dominios} incluidos en el diseño del cuestionario. Para comprobarla se aplican tanto \textsc{PCA} (validez factorial) como intercorrelaciones (validaciones de convergencia y de divergencia) sobre el total de las respuestas obtenidas.\\
+\noindent Mediante la \emph{validez de contenido} se justifica la elección de los diferentes \textsc{items} utilizados dentro del cuestionario, así­ como la de las escalas de sus respuestas. Esta validez se comprueba mediante el consenso de los expertos, que deben estar de acuerdo en que tanto las preguntas como sus posibles respuestas son acordes al ámbito del cuestionario.\\
+\noindent Finalmente, la \emph{validez de criterio} comprueba si el \textsc{instrumento} es suficientemente sensible y especí­fico como para ser útil en la medida del concepto para el que se construyó el cuestionario. Para ello, se compara la capacidad de discriminación del cuestionario frente a un \definicion[-2.5em]{Gold Standard}{Una medida objetiva e inequí­voca que permita determinar de manera perfecta y sin error la variable que se desea observar en cada individuo. Muchas veces, no existe o es muy compleja de conseguir.}. A veces, también se pueden utilizar medidas indirectas. Por ejemplo, para determinar si un paciente sufre \textsc{Baja Visión} se pueden utilizar instrumentos que midan su agudeza visual o su campo de visión. Es evidente que si al realizar una medición del campo de visión de un paciente, éste es menor del 20 \%, el paciente sufre \textsc{Baja Visión}. Por otra parte, también se podrí­a llegar a dicha conclusión utilizando un cuestionario que vaya realizando preguntas hasta determinar de forma indirecta si un paciente sufre \textsc{Baja Visión}. En este caso, se podrí­a asegurar la \emph{validez de criterio} de dicho cuestionario si sus conclusiones acerca de la \textsc{Baja Visión} de todos los pacientes encuestados coinciden con los resultados proporcionados por los instrumentos de medida del campo visual.
+
+\subsection{Fiabilidad del cuestionario}
+Otro aspecto de gran importancia que hay que tener en cuenta a la hora de aplicar un cuestionario es la fiabilidad de las medidas que proporciona. La \definicion[-2.9em]{fiabilidad}{Capacidad de un cuestionario de obtener resultados análogos con otras muestras poblacionales o en otros instantes temporales.} se puede comprobar desde varios puntos de vista:
+
+\begin{description}
+\item[Fiabilidad Interna] Comprueba si los \textsc{items} muestran consistencia interna, es decir, si todos los \textsc{items} que están agrupados en un mismo \textsc{dominio} presentan una alta correlación.
+\item[reaplicabilidad] Comprueba si los resultados obtenidos al volver a aplicar los cuestionarios son estadí­sticamente similares a los obtenidos al aplicarlos por primera vez (también llamado efecto \emph{``test--retest''}).
+\end{description}
+
+\noindent En ambos casos se utilizan métodos como el cálculo del estadí­stico $\alpha$--\emph{Cronbach}, medidas de la correlación intraclases, o estadí­sticos equivalentes como el \emph{í­ndice de concordancia de Kendall}, el coeficiente de concordancia de las correlaciones o el coeficiente \emph{Kappa}.
+\subsection{Alfa de Cronbach}
+\noindent El estadístico $\alpha$--\emph{Cronbach} se utiliza como una de las medidas de fiabilidad o consistencia interna de un cuestionario psicométrico sobre una muestra específica de encuestados. La fórmula asociada a dicho estadístico se muestra en \eqref{eq:alfa-cronbach}.
+\begin{equation}
+\alpha_{\mathrm{cronbach}} = \frac{K}{K-1}\cdot\left( 1 - \frac{\sum_{i=0}^n \sigma_{Y_i}^2}{\sigma_X^2}\right) \label{eq:alfa-cronbach}
+\end{equation}
+Donde $K$ representa el número de preguntas o ítems que componen el cuestionario, $\sigma_{Y_i}^2$ es la varianza de las respuestas de los encuestados teniendo en cuenta únicamente la pregunta i--ésima y con $\sigma^2_X$ se indica la varianza de la totalidad de las preguntas para el mismo conjunto de encuestados indicado con anterioridad.\\
+\noindent Este estadístico se puede utilizar para calcular la fiabilidad, en términos de consistencia interna, de una encuesta, siempre y cuando ésta presente las siguientes características:
+\begin{enumerate}
+\item La encuesta está compuesta por preguntas que se combinan entre sí mediante sumas para proporcionar una puntuación global.
+\item Todas las preguntas miden la misma característica con la misma proporcionalidad. Es decir, no existen preguntas en la que un valor menor signifique que la característica medida se presenta en mayor grado. Todas las preguntas deben mostrar una correlación lineal positiva en la graduación de las respuestas.
+\item Todas las preguntas deben estar en la misma escala de graduación. No es admisible tener preguntas valuadas en un rango contínuo $[0,10]$ y otras en un rango dicotómico $0-1$.
+\end{enumerate}
+\noindent En caso de que las encuestas no cumplan todos estos requisitos, habrá que hacer una recodificación de los datos para adaptarlos a estas exigencias.
+\subsubsection{Descripción cualitativa del valor numérico del estadístico}
+El estadístico $\alpha$--\emph{Cronbach} presenta una doble interpretación, desde un punto de vista sociológico y desde un punto de vista matemático. En el plano sociológico, \graffito{Un $\alpha$--\emph{Cronbach} cercano a 1 muestra una alta fiabilidad interna.} lo deseable para crear una encuesta fiable es que todas las preguntas que componen el cuestionario estén muy correlacionadas entre sí. Este estadístico permite una medida cuantitativa del grado de cohesión que muestran todas las preguntas entre sí. Desde un punto de matemático, el nivel máximo de correlación se alcanza cuando las respuestas de las preguntas $Y_1, Y_2, \ldots , Y_K$ son idénticas. En ese caso, se cumple que $\sigma_{Y_j}^2 = K^2\cdot\sigma_X^2$, y también que, $\sum_{i=1}^K \sigma_i^2 = K\cdot\sigma_X^2$, por lo que \eqref{eq:alfa-cronbach} se puede simplificar, obteniéndose como resultado en dicho caso el valor $1$. El opuesto sucede cuando cada pregunta es completamente independiente de las demás y, por tanto, no preguntan sobre un ámbito común. Para ese supuesto, al ser cada pregunta independiente, la varianza total es igual a la suma de la varianza de cada pregunta, esto es: $\sigma_X^2 = \sum_{i=1}^K \sigma_{Y_i}^2$. Esta formulación hace que \eqref{eq:alfa-cronbach} se iguale a $0$. Finalmente, en los casos en los que existan preguntas que estén inversamente correlacionados, $\alpha$--\emph{Cronbach}  puede llegar a alcanzar valores negativos.\\
+\noindent Este estadístico muestra un comportamiento matemático en el que se sobrevalora mucho el número de preguntas. De tal manera que para un cuestionario con un número $K$ de preguntas se obtiene un cierto valor $\alpha$--\emph{Cronbach}, si se añaden preguntas a dicho cuestionario, independientemente del grado de relación de estas nuevas preguntas con las anteriores, el valor $\alpha$--\emph{Cronbach} aumenta. Por tanto, cuestionarios que presentan valores muy elevados del estadístico $\alpha$--\emph{Cronbach} han de tomarse en cuenta con cierta prudencia, puesto que esos valores podrían provenir de una sobrevaloración por un número elevado de preguntas más que por presentar una gran consistencia entre las preguntas. Para dar validez a estos resultados hay que analizar otros estadísticos, que reafirmen la consistencia de los resultados.
+\subsection{Coeficiente de Correlación Intraclase}
+\noindent El \definicion{ICC}{En inglés, \textsc{Intraclass Correlation Coeficient}, Coeficiente de Correlación Intraclase} \cite{shrout79} es un estadístico que mide la coherencia de las respuestas con diversos grados de libertad. Ha sido utilizado habitualmente para mostrar el grado de correlación en las pruebas \emph{test--retest} y en las pruebas de concordancia entre múltiples mediciones de una misma variable. También se ha utilizado para estimar la fiabilidad entre las medidas de distintos evaluadores sobre conjuntos de sujetos u observadores diferentes, o bien, sobre el mismo conjunto de sujetos fijo pero con diferentes instrumentos de medida. La interpretación matemática del \textsc{ICC} se deriva de un modelo de análisis de varianza con efectos mixtos. La varianza total entre las mediciones se debe a tres factores: diferencias de interpretación entre observadores y evaluadores de dichos observadores (o bien entre distintos instrumentos de medida), las diferencias entre las diferentes variables medidas y los residuos de error en la varianza que no se explican por los otros casos. En general, \textsc{ICC} se calcula como la relación de las varianzas entre las respuestas de los sujetos y las de los residuos de error:
+\begin{equation}
+\textrm{ICC} = \frac{\sigma^2_{sujetos}}{\sigma^2_{sujetos}+\sigma^2_{error}}
+\end{equation}
+\person{Shrout} y \person{Fleiss} definieron \cite{shrout79} tres formulaciones de \textsc{ICC}, en las que las varianzas se estiman mediante análisis ANOVA.
+\begin{description}
+\item[ICC(1,k)] Conjunto de evaluadores seleccionado aleatoriamente. Conjunto de sujetos seleccionados aleatoriamente. Selección aleatoria de un evaluador para cada sujeto. Diseño anidado.\\
+Se debe aplicar sobre cuestionarios con diseño anidado de diferentes sujetos bajo cada evaluador, en el que el conjunto de evaluadores (o el conjunto de instrumentos de medida) se seleccionan aleatoriamente y el conjunto de sujetos u observadores se selecciona también de manera aleatoria. La fórmula para calcular ICC(1,k) es:
+\begin{equation}
+\textrm{ICC}(1,k) = \frac{\sigma_p^2}{\sigma_p^2 + \frac{\sigma_i^2}{k}}
+\end{equation}
+Ésta calcula el grado de acuerdo en la respuesta de la media de $k$ evaluadores, donde $\sigma_p^2$ representa la varianza de la población y $\sigma_i^2$ indica la varianza de las respuestas intra--personas, estimadas mediante análisis ANOVA.
+\item[ICC(2,k)] Conjunto de evaluadores seleccionado aleatoriamente. Conjunto de sujetos seleccionados aleatoriamente. Diseño cruzado.\\
+Se utiliza sobre cuestionarios con diseño cruzado de sujetos y evaluadores, en los que tanto el conjunto de evaluadores como el conjunto de sujetos se seleccionan de manera aleatoria. La fórmula para calcular ICC(2,k) es:
+\begin{equation}
+\textrm{ICC}(2,k) = \frac{\sigma_p^2}{\sigma_p^2 + \frac{(\sigma_r^2+\sigma_e^2)}{k}}
+\end{equation}
+Esta formulación calcula el grado de acuerdo medio a lo largo de un conjunto aleatorio de $k$ evaluadores, donde $\sigma_p^2$ representa la varianza de la población, $\sigma_r^2$ representa la varianza sobre el conjunto de evaluadores y $\sigma_e^2$ indica la varianza de los residuos de error.
+\item[ICC(3,k)] Conjunto de evaluadores fijo. Conjunto de sujetos seleccionados aleatoriamente. Diseño cruzado.\\
+Aplicado con cuestionarios con diseño cruzado de sujetos y evaluadores. Para el cálculo de este estadístico, tanto el conjunto de evaluadores (o el conjunto de instrumentos de medida) como el conjunto de observadores, se seleccionan de forma aleatoria. La fórmula para calcular ICC(3,k) es:
+\begin{equation}
+\textrm{ICC}(3,k) = \frac{\sigma_p^2}{\sigma_p^2 + \frac{\sigma_e^2}{k}}
+\end{equation}
+Gracias a la cual se calcula la consistencia/fiabilidad de la respuesta media a lo largo de un conjunto fijo de $k$ evaluadores.
+\end{description}
+\noindent Estas tres formulaciones producen resultados totalmente diferentes y no son intercambiables, por lo tanto, la elección correcta del estadístico es fundamental. Una descripción extensa y pormenorizada de estos ha sido realizada por \person{McGraw} y \person{Wong} \cite{mcgraw96}.\\
+\subsubsection{Descripción cualitativa del valor numérico del estadístico}
+El valor del estadístico \textsc{ICC} se suele analizar utilizando la Tab. \ref{tbl:cualitativaICC} para determinar, de manera cualitativa, el grado de acuerdo entre los diversos evaluadores y/o sujetos, o bien el grado de fiabilidad de las respuestas medias de los evaluadores y/o sujetos.
+\begin{SCtable}[][!ht]
+\begin{tabular}{p{0.4\textwidth}p{0.4\textwidth}} \hline % p{0.55\textwidth}l
+\rowcolor{colorCorporativoSuave} \textsc{ICC}  & \textsc{Valoración} \\
+\hline \hline
+\rowcolor{colorCorporativoMasSuave} $ < 0.1$ &  Nula \\
+\hline
+\rowcolor{colorCorporativoSuave}    $ 0.11 - 0.3$ & Pobre  \\
+\hline
+\rowcolor{colorCorporativoMasSuave} $ 0.31 - 0. 5$ & Mediocre\\
+\hline
+\rowcolor{colorCorporativoSuave} $0.51 - 0.7 $ & Moderado \\
+\hline
+\rowcolor{colorCorporativoMasSuave} $ 0.71 - 0.9$ & Bueno  \\
+\hline
+\rowcolor{colorCorporativoSuave}  $ > 0.91$ &  Excelente \\
+\hline
+\end{tabular}\caption[Valoración cualitativa del ICC]{Valoración cualitativa del ICC.\label{tbl:cualitativaICC}}
+\end{SCtable}
+
+\section{Conclusiones}
+\lettrine{S}{e} ha utilizado este capí­tulo para presentar los estudios de investigación mediante cuestionarios, mostrando las fases que hay que seguir para desarrollarlos. También se han indicado los diversos métodos para la recolección de las respuestas de los entrevistados, las limitaciones que presentan tanto los cuestionarios, en general, como estos mecanismos de recolección de respuestas, en particular.\\
+\noindent Se ha dedicado una sección completa a la descripción y estudio de las fuentes de errores en los cuestionarios. En este contexto, se ha identificado un tipo de error, el \emph{sesgo por finalidad}, del que no se tiene constancia que hubiera sido estudiado o descrito en la literatura cientí­fica con anterioridad a esta Tesis. Debido al interés que esta nueva aportación pudiera suscitar, se dedicará un apartado en el Cap. \ref{chap:recCuestCalidadBordes} a describir y estudiar este \emph{sesgo}, y a proponer posibles soluciones al mismo para eliminar o limitar su efecto en lo posible.\\
+\noindent También es importante hacer notar el trabajo desarrollado en la Sec. \ref{sec:diseno-cuestionario}, en la que no sólo se han indicado las recomendaciones propuestas por otros autores para el diseño de las preguntas de los cuestionarios, sino que se han propuesto ejemplos que muestran preguntas erróneas, con la explicación detallada de porqué se pueden considerar que son erróneas y posibles soluciones, en cada caso.\\
+\noindent El Capí­tulo \ref{chap:ProcImagenes} sirvió para exponer los fundamentos de diferentes metodologías en el ámbito del procesamiento de imágenes y de algunos algoritmos de extracción de bordes; en el Capí­tulo \ref{chap:MOS} se mostró que para determinar la calidad de los resultados de dichos algoritmos, los resultados más precisos se obtienen utilizando la evaluación subjetiva. En este Capí­tulo \ref{chap:encuestas}, se ha profundizado en los cuestionarios y en cómo se deben diseñar para que estos sean capaces de obtener medidas correctas de variables subjetivas dentro de una población de individuos, como la calidad percibida por los usuarios. El próximo capítulo se realizará una exposición de diferentes estudios de investigación basados en cuestionarios para pacientes con \textsc{Baja Visión}, que permitirá determinar los \textsc{Dominios} más relevantes para estos pacientes.
