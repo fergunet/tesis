@@ -1,0 +1,11 @@
+#!/bin/sh
+
+rm *.mtc
+rm *.aux
+rm *.bbl
+rm *.blg
+rm *.log
+rm *~
+rm *.dvi
+
+pdflatex tesis.tex && pdflatex tesis.tex && bibtex tesis && pdflatex tesis.tex && pdflatex tesis.tex &pdflatex tesis.tex && echo "-----------------------------"
