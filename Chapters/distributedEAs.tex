@@ -1,33 +1,112 @@
-\myChapter{Distributed Evolutionary Algorithms}\label{chap:MOS}
+\myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}
 \minitoc\mtcskip
 \vfill
-\lettrine{E}{volutionary} 
-\section{Parallel and Distributed Evolutionary Algorithms models}
-\lettrine{T}{here} are different ways to parallelize the EAs, being the most extended:
+\lettrine{T}{he} term Evolutionary Algorithm \cite{} is used to describe computer-based problem solving systems that use computational models whose design is based in evolution mechanisms. %CAMBIAR Y CITAR AL LIBRO DE EIBEN
 
-\subsection{Farming model (centralized EAs)} 
-A central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
-\subsection{Island model (distributed EAs)}
-A number of nodes executes simultaneously the EA, working with different sub-populations at the same time. Each certain number of generations is interchanged (migrated) between populations. Figure \ref{fig:islands} shows this model with a ring topology.
+
+
+\section{Types of Evolutionary Algorithm}
+
+\begin{SaveVerbatim}{BasicEAtext}
+BEGIN
+ INITIALISE population with random candidate solutions;
+ EVALUATE each candidate;
+ REPEAT UNTIL (TERMINATION CONDITION is satisfied) DO
+   1 SELECT parents;
+   2 RECOMBINE pairs of parents;
+   3 MUTATE the resulting offspring;
+   4 EVALUATE new candidates;
+   3 SELECT individuals for the next generation;
+ OD
+END
+\end{SaveVerbatim}
+
+
+\begin{SCfigure}[][!hb]
+\begin{tabular}{|A|}
+\hline
+\BUseVerbatim{BasicEAtext}
+\\
+\hline
+\end{tabular}
+\caption{General scheme of an evolutionary algorithm in pseudo-code}
+\label{tab:basicscheme}
+\end{SCfigure}
+
+
+
+\subsection{Genetic Algorithms}
+
+\definicion{GAs}{Genetic Algorithms} are a type of optimization algorithms THAT %EIBEN
+These kind of algorithms were proposed by \citep{holland1975adaptation}, and also studied by 
+
+\subsection{Evolution Strategies}
+
+\subsection{Genetic Programming}
+
+\subsection{Evolutionary Programming}
+
+
+\section{Parallel and Distributed Evolutionary Algorithms models}
+
+\lettrine{T}{wo} main types of parallelization models for EAs are classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}.
+
+
+
+\subsection{Global parallel evolutionary algorithms}%Farming model (centralized EAs) 
+In this model, also called \textsc{Farming model} or \textsc{Centralized EAs}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.%An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=26pc]{gfx/masterslave.jpg}
+\caption{Master-slave model.}
+\label{fig:masterslave}
+\end{SCfigure}
+
+\subsection{Spatially structured algorithms}%Island model (distributed EAs)
+\subsubsection {Coarse-grained approach} One of the most usual approachs is the \textsc{Island model}, where a number of nodes executes simultaneously the EA, working with different sub-populations at the same time. Each certain number of generations is interchanged (migrated) between populations. Figure \ref{fig:ring} shows this model with a ring topology.
 
 \begin{SCfigure}[20][htb]
 \centering
 \includegraphics[width=26pc]{gfx/ring.jpg}
 \caption{Island model scheme using a neighborhood ring topology.}
-\label{fig:islands}
+\label{fig:ring}
 \end{SCfigure}
 
-\subsection{Cellular EAs (fine grain EAs)}
-Each node has one individual of the population, and selection and reproduction is limited with the individuals of the neighbourhood of the node \cite{CELLULAR}. Usually a bi-dimensional grid is used for topology. 
+\subsubsection{Fine-grained approach}
 
-\subsection{Non conventional methods}
+In this approach, or Cellular EAs (CEAs) each node has one individual of the population, and selection and reproduction is limited with the individuals of the neighbourhood of the node \cite{CELLULAR}. Usually a bi-dimensional grid is used for topology, such as the one showed in the Figure \ref{fig:cellular}.
 
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=5cm]{gfx/cellular.jpg}
+\caption{Cellular Evolutionary Algorithm.}
+\label{fig:cellular}
+\end{SCfigure}
+
+\subsection{Non-conventional approachs}
+Appart from the previous approaches, new ones have been proposed, with the aim of new technologies, such as Cloud Computing, or the usage of heterogeneous hardware. For example, the \textsc{pool-based EAs} (p-EAs), where computational nodes exchange individuals using a shared pool. DECIR SQUE HAY EN EL POOL. This can lead to automatic load-balancing and synchronization, allowing the addition and removing of computers. Different technologies can be used, for example, in the work of \person{Meri \etal},  where the pool used is based in the Dropbox\texttrademark or SugarSync\texttrademark file storage services. Other authors propose the use of non-relational databases, such as the work of Merelo \etal \cite{merelo2010fluid}, using FluidDB. These databases allow...
+
+%PREGUNTARLE A JJ SI EL POOL ES
+%a) Una isla y los tipos acceden
+%b) Una manera de intercambiar individuos
+
+In \cite{merelo2012pool} the same authors improve the design, proposing an asynchronous, fault-tolerant, and scalable dEA, based on the object store CouchDB. The results show that adding clients could not scaly, but increase the fault tolerance. Also, their experimentation shows a good methodology for designing EAs in heterogeneous distributed systems, which have the impossibility of analytic performance prediction.
+
+\definicion{P2P}{Peer-to-peer} systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in this networks can appear or disappear dynamically. This platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} creates a decentralised population, where every peer has a single individual, and new individuals are created combining the ones in their current neighbors. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can interchanged and combined. Figure \ref{fig:evag} shows this algorithm and population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic population. 
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=26pc]{gfx/evag.jpg}
+\caption{P2P Evolutionary Algorithm: EvAg.}
+\label{fig:evag}
+\end{SCfigure}
 
 
 
 \section{Frameworks for Evolutionary Algorithms}
-
-In \cite{GENERICITY05}, \person{Gagn{\'e}and Parizeau} presented six criteria for qualify EA frameworks: generic representation, fitness, operator, model, parameters management and configurable output. In this work we show how SOA follows these lines of genericity, but can also extend them:
+%%DECIR QUE HAY MUCHOS FRAMEWORKS ACTUALMENTE
+In \cite{GENERICITY05}, \person{Gagn{\'e} and Parizeau} presented six criteria for qualify EA frameworks: generic representation, fitness, operator, model, parameters management and configurable output. In this work we show how SOA follows these lines of genericity, but can also extend them:
 \begin{itemize}
 \item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces must be abstract enough to avoid their modification.
 \item Programming language independence: for example, services implemented in Java can use services implemented in C++ and vice-versa.
@@ -50,13 +129,13 @@ Object Oriented frameworks, such as Al\-go\-rithm::Evo\-lu\-tionary \citep{PERL}
  services (operators) outside the source code.
 
 \subsection{Parallel frameworks} 
-Parallelism and distribution are added in other frameworks, such as
+Parallelism and distribution have been added to other frameworks, such as
 MALLBA \citep{MALLBA}, \definicion{DREAM}{Distributed Resource Evolutionary Algorithm Machine} \citep{DREAM} or \definicion{ECJ}{Evolutionary Computation in Java} \citep{ECJ}, but
 using external libraries (such as \definicion{MPI}{Message Passing Interface} or \definicion{DRM}{Distributed Resource Machine}), so the code that uses these
 libraries is mixed with the algoritmh's code.
 
 
- Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, the only service oriented optimization framework is GridUFO \citep{GRIDUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tablaframeworks} shows a summary of the previous frameworks.
+ Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, the only service oriented optimization framework is GridUFO \citep{GRIDUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tab:frameworks} shows a summary of the previous frameworks.
 
 
 \begin{SCtable}[][t]
@@ -90,11 +169,4 @@ dynamic control of operators, or an user interface). The authors should
 improve their frameworks adding SOA technologies in order to facilitate the
 communication and integration among them. As \person{Parejo \etal}  suggest in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out.
 
-\begin{SCtable}[][!hb]
-\begin{tabular}{|A|}
-\hline
-AQUI PUEDE IR EL ALGORITMO
-\\
-\hline
-\end{tabular}\caption[Criterios generales calidad]{Criterios generales para la evaluación de la calidad de los algoritmos de extracción de bordes.}\label{tab:criteriosGenerales}
-\end{SCtable}
+
