@@ -1,7 +1,7 @@
 \myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} term Evolutionary Algorithm \cite{Eiben2005WhatIs} is used to describe computer-based problem solving systems that use computational models whose design is based in evolution mechanisms. They are based in a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the enviromental pressure, leads to an increase of the \textsc{fitness} of the individuals. This fitness is a evaluation function that describes the quality of the solution of the problem to solve. Individuals of the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA is described in Figure \ref{fig:basicscheme}.
+\lettrine{T}{he} term Evolutionary Algorithm \cite{eiben2010whatis} is used to describe computer-based problem solving systems that use computational models whose design is based in evolution mechanisms. They are based in a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the enviromental pressure, leads to an increase of the \textsc{fitness} of the individuals. This fitness is a evaluation function that describes the quality of the solution of the problem to solve. Individuals of the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA is described in Figure \ref{fig:basicscheme}.
 
 
 
@@ -47,16 +47,19 @@ During the execution of the EAs, two different phases exist:
 
 \subsection{Genetic Algorithms}
 
-\definicion{GAs}{Genetic Algorithms} are a type of optimization algorithms THAT %EIBEN
-These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{} and \person{Michalewicz} \cite{}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome}. The individuals are selected proportionally to their fitness, then recombination and/or mutation are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization, transportation \cite{}, artificial intelligence in videogames \cite{}, or generative art \cite{}, among others. 
+Genetic Algorithms (GAs) are a type of optimization algorithms THAT %EIBEN
+These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome}. The individuals are selected proportionally to their fitness, then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatory optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{}, among others. 
 
 \subsection{Evolution Strategies}
 
-The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers, with differences with respect the GAs. The main difference is the inclusion of self-adaptation of the 
-
-\subsection{Genetic Programming}
+The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers, with differences with respect the GAs. The main difference is the inclusion of self-adaptation of the mutation rate, being coded in each individual. Also, the parent selection is performed randomly. ES have been applied in fields such as Evolutionary Robotics \cite{Garcia2012testing}.
 
 \subsection{Evolutionary Programming}
+
+\subsection{Genetic Programming}
+The objective of this technique is to create functions to solve determined problems. It tries to create progrmas using the evolution principles applied to the other paradigms of the Evolutionary Computation (EC). Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}.
+
+
 
 \subsection{Differential Evolution}
 
