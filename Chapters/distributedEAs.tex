@@ -4,10 +4,6 @@
 \lettrine{T}{he} term Evolutionary Algorithm \cite{eiben2010whatis} is used to describe computer-based problem solving systems that use computational models whose design is based in evolution mechanisms. They are based in a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the enviromental pressure, leads to an increase of the \textsc{fitness} of the individuals. This fitness is a evaluation function that describes the quality of the solution of the problem to solve. Individuals of the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA is described in Figure \ref{fig:basicscheme}.
 
 
-
-
-
-
 \begin{SaveVerbatim}{BasicEAtext}
 BEGIN
  INITIALISE population with random candidate solutions;
@@ -40,49 +36,64 @@ During the execution of the EAs, two different phases exist:
 \item[Explotation] Concentration in the neighbourhood of the best solutions.
 \end{description}
 
+This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify the common elements which compose them. Also, the most extended models to parallelize EAs are presented, to understand all the possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analyzed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
+
 \section{Types of Evolutionary Algorithm}
 
-\lettrine{A}{lthough} the EAs follows the previous scheme, they have differences depending of the representation of the solutions, the problems to solve, and other features.
+\lettrine{A}{lthough} the EAs follows the previous scheme showed in Figure \ref{fig:basicscheme}, they have differences depending of the representation of the solutions, the problems to solve, and other features.
 
 
 \subsection{Genetic Algorithms}
 
-Genetic Algorithms (GAs) are a type of optimization algorithms THAT %EIBEN
 These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome}. The individuals are selected proportionally to their fitness, then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatory optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{}, among others. 
 
 \subsection{Evolution Strategies}
 
-The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers, with differences with respect the GAs. The main difference is the inclusion of self-adaptation of the mutation rate, being coded in each individual. Also, the parent selection is performed randomly. ES have been applied in fields such as Evolutionary Robotics \cite{Garcia2012testing}.
+The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers, with differences with respect the GAs. The main difference is the inclusion of self-adaptation of the mutation rate, being coded in each individual \cite{eiben2005shared}. Also, the parent selection is performed randomly. ES have been applied in fields such as Evolutionary Robotics \cite{Garcia2012testing}.
 
 \subsection{Evolutionary Programming}
+In Evolutionary Programming (EP), the representation of the solution depends of the nature of the problem to solve, for example, use neuronal networks as individuals \cite{}. The mutation is performed after analyze the 
 
 \subsection{Genetic Programming}
-The objective of this technique is to create functions to solve determined problems. It tries to create progrmas using the evolution principles applied to the other paradigms of the Evolutionary Computation (EC). Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}.
+The objective of this technique is to create functions to solve determined problems. It tries to create progrmas using the evolution principles applied to the other paradigms of the Evolutionary Computation (EC). Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}, among others.
 
 
 
 \subsection{Differential Evolution}
+Differential Evolution \cite{} also exploits a population of potential solutions. Three individuals are selected randomly from the population to create \textsc{random noisy vectors}. These vectors are recombined with original random individuals to create the \textsc{trial vectors}. These vectors are compared one by one with the original vector and the better of each comparison is kept for the next generation.
+
+Table \ref{tab:summaryEAs} shows the main differences between all this types of EAs. Note that we have selected the common features of each algorithm. For example, the replacement in GAs can be different from the generational one, or the representation can also be a real-value vector. 
+
+\begin{SCtable}[][t]
+\resizebox{11cm}{!}{
+\begin{tabular}{llllll}
+\hline
+				& Genetic algorithm 	 & Evolution Strategy  & Evolutionary Programming & Genetic Programming & Differential evolution  \\
+\hline\hline
+Representation  & Finite alphabet strings & Real-value vectors  & 					& Tree 				& Real-value vectors 	 \\
+Initialization  & \multicolumn{5}{c}{Multi-column} Random, depending of the problem and individual structure	 						 \\
+Selection 	& Fitness proportional 	& Random 				& 						& Fitness proportional & Random to create noisy vectors \\
+Recombination   & Genome crossover		& Genome crossover		& 						& Sub-tree exchange		& Random gene by gene			\\
+Mutation  		& Random 				& Gaussian perturbation	& 						& Random 				& Implicit in the noisy vectors	 \\
+Replacement		& Generational			& ($\mu,\lambda$) or ($\mu + \lambda$) &			& Generational 			& Compared with the original	 \\
+\hline
+\end{tabular}
+}
+\caption{Differences beetween the types of EAs.}
+\label{tab:summaryEAs}
+\end{SCtable}
 
 \subsection{Memetic Algorithms}
 
 Memetic Algorithms (MAs) are based in the concept of \textsc{meme} proposed by \person{Dawkins} \cite{dawkins2006selfish}. A meme is domain specific knowledge coded in a computational representation to effective solving a problem. It is a cultural know-how building-block transmittable and replicable.
 
-This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods coupled with some kind of local search. Initially, the hybridation was made just combining two o more methods with some kind of problem knowledge. For example genetic local search \cite{}. The local search can performed before, during, or after the evalutation. New trends, such as adaptative MAs \cite{ong2006classification} leads to the usage of several memes for search and decide dynamically which meme to apply to each individual. \person{Ong \etal} propose the next classification for this kind of algorithms:
+This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained coupled with some kind of local search. Initially, the hybridation was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing \cite{Rodriguez2012Hybrid}. The local search can performed before, during, or after the evalutation. New trends, such as adaptative MAs \cite{ong2006classification} leads to the usage of several memes for search and decide dynamically which meme to apply to each individual. For example, \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose a meme to apply depending the time and the region of the search space. Or, in a brief, heuristic to choose memes. \person{Krasnogor \etal} \cite{krasnogor2002multimeme} applied the 
+inclusion of the memetic codification inside the individual chromosome (\textsc{Multimemes}) to select which meme to use,  or codify a set of rules, as proposed by \person{Smit} \cite{smith2002co} (\textsc{Co-evolving MAs}). 
 
-\begin{description}
-\item[Hyperheuristic Adaptive MAs] \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose a meme to apply depending the time and the region of the search space. Or, in a brief, heuristic to choose memes.
-
-
-\item[Multimemes and Co-Evolving MAs] \person{Krasnogor \etal} \cite{krasnogor2002multimeme} proposes the inclusion of the memetic codification inside the individual chromosome to select wich meme to use, or codify a set of rules, as proposed by \person{Smit} \cite{smith2002co}. 
-
-\item[Meta-Lamarckian Learning] 
-\end{description}
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
 
-\lettrine{T}{wo} main types of parallelization models for EAs are classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}.
-
-
+\lettrine{E}{volutionary} Algorithms are inherentely parallelizable. Fitness evaluation can be distributed into several slave machines, or distribute the population in different nodes to be evolved at the same time. Two main types of parallelization models for EAs are classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}.
 
 \subsection{Global parallel evolutionary algorithms}%Farming model (centralized EAs) 
 In this model, also called \textsc{Farming model} or \textsc{Centralized EAs}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.%An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
@@ -116,11 +127,9 @@ In this approach, or Cellular EAs (CEAs) each node has one individual of the pop
 \end{SCfigure}
 
 \subsection{Non-conventional approachs}
-Appart from the previous approaches, new ones have been proposed, with the aim of new technologies, such as Cloud Computing, or the usage of heterogeneous hardware. For example, the \textsc{pool-based EAs} (p-EAs), where computational nodes exchange individuals using a shared pool. DECIR SQUE HAY EN EL POOL. This can lead to automatic load-balancing and synchronization, allowing the addition and removing of computers. Different technologies can be used, for example, in the work of \person{Meri \etal},  where the pool used is based in the Dropbox\texttrademark or SugarSync\texttrademark file storage services. Other authors propose the use of non-relational databases, such as the work of Merelo \etal \cite{merelo2010fluid}, using FluidDB. These databases allow...
+Appart from the previous approaches, new ones have been proposed, with the aim of new technologies, such as Cloud Computing, or the usage of heterogeneous hardware. For example, distributed EAs can be executed in mobile devices \cite{Garcia2009Mobile} or inside robots, who learns from the environment on-line \cite{Garcia2012testing}. 
 
-%PREGUNTARLE A JJ SI EL POOL ES
-%a) Una isla y los tipos acceden
-%b) Una manera de intercambiar individuos
+Other technologies leads to \textsc{Pool-based EAs} (p-EAs), where computational nodes exchange individuals using a shared pool. This allows massive scalability with a heterogeneous underliyng structure. This pool can be the global population, and the nodes asynchronously reads and evaluate the individuals, or each node behaves as an island and uses the pool to share individuals. This can lead to automatic load-balancing and synchronization, allowing the addition and removing of computers. Different technologies can be used, for example, in the work of \person{Meri \etal},  where the pool used is based in the Dropbox\texttrademark or SugarSync\texttrademark file storage services. Other authors propose the use of non-relational databases, such as the work of Merelo \etal \cite{merelo2010fluid}, using FluidDB. These databases allow...
 
 In \cite{merelo2012pool} the same authors improve the design, proposing an asynchronous, fault-tolerant, and scalable dEA, based on the object store CouchDB. The results show that adding clients could not scaly, but increase the fault tolerance. Also, their experimentation shows a good methodology for designing EAs in heterogeneous distributed systems, which have the impossibility of analytic performance prediction.
 
@@ -136,7 +145,8 @@ In \cite{merelo2012pool} the same authors improve the design, proposing an async
 
 
 \section{Frameworks for Evolutionary Algorithms}
-%%DECIR QUE HAY MUCHOS FRAMEWORKS ACTUALMENTE
+There exist a large number of framework for Evolutionary Algorithms available for download. Practically every programming language has his own implementation of the basic elements that form an EA. This implies a large effort made in each one, because these elements not compatible among them. It is also difficult to migrate the code from a framework to another, because the existence is hidden global variables or language specific features (such as lambda-programming). Even as SOA is used extensively in software development, it is not widely accepted in the main EA software.
+
 In \cite{GENERICITY05}, \person{Gagn{\'e} and Parizeau} presented six criteria for qualify EA frameworks: generic representation, fitness, operator, model, parameters management and configurable output. In this work we show how SOA follows these lines of genericity, but can also extend them:
 \begin{itemize}
 \item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces must be abstract enough to avoid their modification.
@@ -145,7 +155,7 @@ In \cite{GENERICITY05}, \person{Gagn{\'e} and Parizeau} presented six criteria f
 \item Flexibility: easy to add and remove elements to use the self-adaptation or other mechanisms.
 \end{itemize}
 
-Even as SOA is used extensively in software development, it is not widely accepted in the main EA software. 
+ 
 
 \subsection{Object Oriented Frameworks}
 Firstly, there exist
@@ -166,7 +176,7 @@ using external libraries (such as \definicion{MPI}{Message Passing Interface} or
 libraries is mixed with the algoritmh's code.
 
 
- Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, the only service oriented optimization framework is GridUFO \citep{GRIDUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tab:frameworks} shows a summary of the previous frameworks.
+ Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, the only service oriented optimization framework is gridUFO \citep{gridUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tab:frameworks} shows a summary of the previous frameworks.
 
 
 \begin{SCtable}[][t]
@@ -184,7 +194,7 @@ libraries is mixed with the algoritmh's code.
 \rowcolor{colorCorporativoMasSuave}METCO		& OO		& C++		& MPI		& N/A	   		&	\\
 \rowcolor{colorCorporativoSuave}JCLEC		& OO		& Java		& N/A		& GNU/GL   		&	\\
 \rowcolor{colorCorporativoMasSuave}Algorithm::Evol.& OO		& Perl		& N/A		& GNU/GPL  		& 	\\
-\rowcolor{colorCorporativoSuave}GridUFO		&SO		& Java		& Web Services	& N/A  			& 	\\
+\rowcolor{colorCorporativoSuave}gridUFO		&SO		& Java		& Web Services	& N/A  			& 	\\
 \hline
 %OSGiLiath	&OO/SO/PO 	& 2010			& Java		& Distributed OSGi	& GNU/GPL  	& Lifecycle management	\\
 \end{tabular}
@@ -193,11 +203,37 @@ libraries is mixed with the algoritmh's code.
 \label{tab:frameworks}
 \end{SCtable}
 
-In brief, although these frameworks follows the six criteria for genericity proposed in \cite{GENERICITY05}, they present some shortcomings when it is needed to develop
+In brief, although these frameworks follows the six criteria for genericity 
+proposed in \cite{GENERICITY05}, they present some shortcomings when it is needed to develop
 or add new features: the user is forced to modify the source code
 or stop the execution to add new functionalities (like load balancing,
 dynamic control of operators, or an user interface). The authors should
 improve their frameworks adding SOA technologies in order to facilitate the
-communication and integration among them. As \person{Parejo \etal}  suggest in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out.
+communication and integration among them. As \person{Parejo \etal}  suggest
+ in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out.
 
 
+\subsection{Grid Computing middlewares and Volunteer Computing}
+
+Grids are distributed computing systems that allow sharing not geographically centered resources to solve large scale problems. Web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works.
+
+\textsc{Volunteer computing} \cite{anderson2005high} proposes the creation of infrastructures to allow people donate CPU cycles for a combined computational effort. The main difference with grid computing are the un-trusted resources: some nodes could return intentionally wrong results, so it requires possibility of replication. Also, the control is usually BLABLA . \definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used middlewares in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients asks to the server for works, download information, compute the data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this archytecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without install any other software.
+
+Previous systems have the possibility of task distribution among the nodes, following a master-slave model, but without interaction between clients.
+
+Although all the approaches described in previous sub-sections are focused on the implementation of distributed EAs, the abstraction level of each alternative can be quite different, as shown in Figure \ref{fig:soagrid}. As SOA is a methodology and not a technology, areas such as Evolutionary Robotics, or EA classic frameworks (i.e. OSGiLiath) can use SOA to be designed and developed. Implementation technologies, such as Web Services are the gap between SOA (abstract) and grid (infrastructure) where interfaces are designed using SOA principles (dynamism, visibility, loose-coupling and heterogeneity). Finally, Cloud Computing can be seen as a combination that extends SOA adding the scalability of grid \citep{SOALIB}.
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=26pc]{gfx/soagrid.jpg}
+\caption{SOA as abstract paradigm to develop in different EAs areas. Using especific technologies such as Web Services allows grid integration.}
+\label{fig:soagrid}
+\end{SCfigure}
+
+
+\section {Conclusions}
+\lettrine{E}{volutionary} Algorithms, and their subtypes(GAs, ES or GP) follow a number of common steps: Initialization, Evaluation, Selection, Recombination, Mutation and Replacement. There exist many variations of these steps, and the different combinations can describe one algorithm or another. These elements are candidate to be designed as services, as they can behave as input/output functions. Memetic Algorithms also include extra elements that can be applied .
+
+Distributed EAs
+
+And finally, there exist a large number of different (and incompatible frameworks).
