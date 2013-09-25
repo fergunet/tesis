@@ -1,7 +1,7 @@
 \myChapter{Evolutionary Algorithms}\label{chap:dEAs}
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} term Evolutionary Algorithm is used to describe a computer-based problem solving system that use computational models whose design is inspired by evolution mechanisms. They are based in a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the enviromental pressure, leads to an increase of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. This fitness is a evaluation function that describes the quality of the solution of the problem to solve. Individuals of the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA is described in Figure \ref{fig:basicscheme}.
+\lettrine{T}{he} term Evolutionary Algorithm is used to describe a computer-based problem solving system that use computational models whose design is inspired by evolution mechanisms. They are based in a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the environmental pressure, leads to an increase of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. This fitness is a evaluation function that describes the quality of the solution of the problem to solve. Individuals of the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA is described in Figure \ref{fig:basicscheme}.
 
 
 \begin{SaveVerbatim}{BasicEAtext}
@@ -43,24 +43,24 @@ According to \cite{eiben2010whatis} the features of an EA are:
 %\item[Explotation] Concentration in the neighbourhood of the best solutions.
 %\end{description}
 
-This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify the common elements which compose them. Also, the most extended models to parallelize EAs are presented, to understand all the possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analyzed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
+This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify the common elements which compose them. Also, the most extended models to parallelize EAs are presented, to understand all the possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
 
 \section{Types of Evolutionary Algorithms}
 
 \lettrine{A}{lthough} the EAs follows the previous scheme showed in Figure \ref{fig:basicscheme}, they have differences depending of the representation of the solutions, the problems to solve, and other features. This section explains the traditional variants, according to the book of \person{Eiben and Smith} \cite{eiben2003introduction}.
 
 \begin{description}
-\item [Genetic Algorithms] These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome}. The individuals are selected proportionally to their fitness, then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatory optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{}, among others. 
+\item [Genetic Algorithms] These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome}. The individuals are selected proportionally to their fitness, then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatory optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{Garcia2013RGB}, among others. 
 
 \item[Evolution Strategies] The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers. The main difference with the GAs is the inclusion of self-adaptation of the mutation rate, being coded in each individual \cite{eiben2005shared}. Also, the parent selection is performed randomly. ES have been applied in fields such as Evolutionary Robotics \cite{Garcia2012testing}.
 
-\item[Evolutionary Programming] In Evolutionary Programming (EP), the representation of the solution depends of the nature of the problem to solve, for example, use neuronal networks as individuals \cite{}.
+\item[Evolutionary Programming] In Evolutionary Programming (EP), the representation of the solution depends of the nature of the problem to solve, for example, use neuronal networks as individuals \cite{Castillo1999gprop}.
 
-\item[Genetic Programming] The objective of this technique is to create functions to solve determined problems. It tries to create programs using the evolution principles applied to the other paradigms of the Evolutionary Computation (EC). Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}, among others.
+\item[Genetic Programming] The objective of this technique is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}, among others.
 
 \end{description}
 
-Other EAs have been proposed, such as Differential Evolution (DE) \cite{storn1997differential}, Estimation of Distribution Algorithms (EDAs) \cite{larranaga2002estimation} or Bayesian Optimization Algorithms \cite{pelikan2005bayesian}.
+Other EAs have been proposed, such as \textsc{Differential Evolution} (DE) \cite{storn1997differential}, \textsc{Estimation of Distribution Algorithms} (EDAs) \cite{larranaga2002estimation} or \textsc{Bayesian Optimization Algorithms} \cite{pelikan2005bayesian}. %SEGURO QUE SON EAS?
 
 
 %\subsection{Differential Evolution}
@@ -83,25 +83,25 @@ Other EAs have been proposed, such as Differential Evolution (DE) \cite{storn199
 %\hline
 %\end{tabular}
 %}
-%\caption{Differences beetween the types of EAs.}
+%\caption{Differences between the types of EAs.}
 %\label{tab:summaryEAs}
 %\end{SCtable}
 
 
 
-Combining elements of previous algorithms \textsc{Memetic Algorithms} (MAs) are based in the concept of \textsc{meme} proposed by \person{Dawkins} \cite{dawkins2006selfish}. A meme is domain specific knowledge coded in a computational representation to effective solving a problem. %It is a cultural know-how building-block transmittable and replicable.
+Combining elements of previous algorithms with other heuristics are the base of the \textsc{Memetic Algorithms} (MAs). These algorithms are based in the concept of \textsc{meme} proposed by \person{Dawkins} \cite{dawkins2006selfish}. A meme is domain specific knowledge coded in a computational representation to effective solving a problem. %It is a cultural know-how building-block transmittable and replicable.
 
-This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridation was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing \cite{Rodriguez2012Hybrid}. The local search can performed before, during, or after the evalutation. New trends, such as adaptative MAs \cite{ong2006classification} leads to the usage of several memes for search and decide dynamically which meme to apply to each individual. For example, \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose a meme to apply depending the time and the region of the search space. Or, in a brief, heuristic to choose memes. \person{Krasnogor \etal} \cite{krasnogor2002multimeme} applied the 
+This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridization was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing \cite{Rodriguez2012Hybrid}. The local search can performed before, during, or after the evaluation. New trends, such as adaptative MAs \cite{ong2006classification} leads to the usage of several memes for search and decide dynamically which meme to apply to each individual. For example, \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose a meme to apply depending the time and the region of the search space (or, in a brief, heuristic to choose memes). \person{Krasnogor \etal} \cite{krasnogor2002multimeme} applied the 
 inclusion of the memetic codification inside the individual chromosome (\textsc{Multimemes}) to select which meme to use,  or codify a set of rules, as proposed by \person{Smit} \cite{smith2002co} (\textsc{Co-evolving MAs}). 
 
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
 
-\lettrine{E}{volutionary} Algorithms are inherentely parallelizable. Fitness evaluation can be distributed into several slave machines, or distribute the population in different nodes to be evolved at the same time. In 2002, two main types of parallelization models for EAs were classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}. However, with the aim of new technologies and architectures, new ways for parallelize EAs have been proposed. For example P2P-EAs do not fit with this classification.
+\lettrine{E}{volutionary} Algorithms are inherently parallelizable. Fitness evaluation can be distributed into several slave machines, or distribute the population in different nodes to be evolved at the same time. In 2002, two main types of parallelization models for EAs were classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}. However, with the aim of new technologies and architectures, such as P2P, new ways for parallelize EAs have been proposed.
 
 \subsection{Traditional parallelization classification}
 
-In this classification, issues such as fault-tolerance, churn, massive scalability or desentralisation are not taking into account. The number of computational nodes are fixed during all the execution and 
+In this classification, issues such as fault-tolerance, churn, massive scalability or decentralization are not taking into account. The number of computational nodes are fixed during all the execution and both the network and the nodes are reliable and trustworthy.
 
 \subsubsection{Global parallel evolutionary algorithms}
 In this model, also called \textsc{Farming model} or \textsc{Centralized EAs}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.%An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
@@ -116,16 +116,16 @@ In this model, also called \textsc{Farming model} or \textsc{Centralized EAs}, t
 \subsubsection{Spatially structured algorithms}
 The parallelism is performed at population level, that is, dividing the population among the different computing elements.
 \begin{description}
-\item[Coarse-grained approach] One of the most usual approachs is the \textsc{Island model}, where a number of nodes executes simultaneously the EA, working with different sub-populations at the same time. Each certain number of generations is interchanged (migrated) between populations. Figure \ref{fig:ring} shows this model with a ring topology.
+\item[Coarse-grained approach] One of the most usual approaches is the \textsc{Island model}, where a number of nodes executes simultaneously the EA, working with different sub-populations at the same time. Each certain number of generations is interchanged (migrated) between populations. Figure \ref{fig:ring} shows this model with a ring topology.
 
 \begin{SCfigure}[20][htb]
 \centering
 \includegraphics[width=20pc]{gfx/ring.jpg}
-\caption{Island model scheme using a neighborhood ring topology.}
+\caption{Island model scheme using a neighbourhood ring topology.}
 \label{fig:ring}
 \end{SCfigure}
 
-\item[Fine-grained approach] In this approach, or Cellular EAs (CEAs) each node has one individual of the population, and selection and reproduction is limited with the individuals of the neighbourhood of the node \cite{CELLULAR}. Usually a bi-dimensional grid is used for topology, such as the one showed in the Figure \ref{fig:cellular}.
+\item[Fine-grained approach] In this approach, also called Cellular EAs (CEAs), each node has one individual of the population, and selection and reproduction is limited with the individuals of the neighbourhood of the node \cite{CELLULAR}. Usually a bi-dimensional grid is used for topology, such as the one showed in the Figure \ref{fig:cellular}.
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -137,11 +137,11 @@ The parallelism is performed at population level, that is, dividing the populati
 \end{description}
 
 \subsection{Non-conventional approaches}
-Appart from the previous classification, with the aim of new technologies, such as \textsc{cloud computing}, \definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous hardware, new approaches have been proposed. Distributed EAs can be executed in other computing elements different than the classic ones, for example, in mobile devices \cite{Garcia2009Mobile}, ``smart dust'' \cite{} or inside robots, who on-line learn from the environment \cite{Garcia2012testing}. But with the advancement of the Internet, where hundreds of nodes can co-operate, and whose behaviour is not totally controlled or predicted, is when new distributed approachs have appeared. 
+Aside from the previous classification, with the aim of new technologies, such as \textsc{cloud computing}, \definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous hardware, new approaches have been proposed. Distributed EAs can be executed in other computing elements different than the classic ones. For example, in mobile devices \cite{Garcia2009Mobile}, ``smart dust'' \cite{Rollings2008smartdust} or inside robots, who on-line learn from the environment \cite{Garcia2012testing}. But with the advancement of the Internet, where hundreds of nodes can co-operate, and whose behaviour is not totally controlled or predicted, is when new distributed approaches have become more evident. 
 
 \subsubsection{P2P evolutionary algorithms}
 
-P2P systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in this networks can appear or disappear dynamically. This platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} creates a decentralised population, where every peer has a single individual, and new individuals are created combining the ones in their current neighbors. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can interchanged and combined. Figure \ref{fig:evag} shows this algorithm and population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic population. 
+P2P systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in this networks can appear or disappear dynamically. This platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA who uses a decentralized population, where every peer has a single individual, and new individuals are created combining the ones in their current neighbors. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can be interchanged and combined. Figure \ref{fig:evag} shows this algorithm and population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic population. 
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -151,7 +151,7 @@ P2P systems are parallel infrastructures composed by a large number of resources
 \end{SCfigure}
 
 \subsubsection{Pool-based algorithms}
-Other technologies leads to \textsc{Pool-based EAs} (p-EAs), where computational nodes exchange individuals using a shared pool. This allows massive scalability with a heterogeneous underliyng structure. This pool can be the global population, and the nodes asynchronously reads and evaluate the individuals, or each node behaves as an island and uses the pool to share individuals. This can lead to automatic load-balancing and synchronization, allowing the addition and removing of computers. Different technologies can be used, for example, in the work of \person{Meri \etal},  where the pool used is based in the Dropbox\texttrademark or SugarSync\texttrademark file storage services. Other authors propose the use of non-relational databases, such as the work of Merelo \etal \cite{merelo2010fluid}, using FluidDB.
+Other technologies leads to \textsc{Pool-based EAs}, where computational nodes exchange individuals using a shared pool. This allows massive scalability with a heterogeneous underlying structure. This pool can be the global population, and the nodes asynchronously reads and evaluate the individuals, or each node behaves as an island and uses the pool to share individuals. This can lead to automatic load-balancing and synchronization, allowing the addition and removing of computers. Different technologies can be used, for example, in the work of \person{Meri \etal},  where the pool used is based in the Dropbox\texttrademark or SugarSync\texttrademark file storage services. Other authors propose the use of non-relational databases, such as the work of Merelo \etal \cite{merelo2010fluid}, using FluidDB.
 
 In \cite{merelo2012pool} the same authors improve the design, proposing an asynchronous, fault-tolerant, and scalable dEA, based on the object store CouchDB. The results show that adding clients could not scaly, but increase the fault tolerance. Also, their experimentation shows a good methodology for designing EAs in heterogeneous distributed systems, which have the impossibility of analytic performance prediction.
 
@@ -227,11 +227,11 @@ communication and integration among them. As \person{Parejo \etal}  suggest
 
 Web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works.
 
-\definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients asks to the server for works, download information, compute the data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this archytecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without install any other software.
+\definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients asks to the server for works, download information, compute the data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this architecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without install any other software.
 
 Previous systems have the possibility of task distribution among the nodes, following a master-slave model, but without interaction between clients.
 
-Although all the approaches described in previous sub-sections are focused on the implementation of distributed EAs, the abstraction level of each alternative can be quite different, as shown in Figure \ref{fig:soagrid}. As SOA is a methodology and not a technology, areas such as Evolutionary Robotics, or EA classic frameworks (for example, OSGiLiath) can use SOA to be designed and developed. Implementation technologies, such as Web Services are the gap between SOA (abstract) and grid (infrastructure) where interfaces are designed using SOA principles (dynamism, visibility, loose-coupling and heterogeneity). Finally, cloud computing can be seen as a combination that extends SOA adding the scalability of grid \citep{SOALIB}.
+Although all the approaches described in previous sub-sections are focused on the implementation of distributed EAs, the abstraction level of each alternative can be quite different, as shown in Figure \ref{fig:soagrid}. This figure has been updated from the one presented in \cite{SOALIB}. As SOA is a methodology and not a technology, areas such as Evolutionary Robotics, or EA classic frameworks (for example, OSGiLiath) can use SOA to be designed and developed. Implementation technologies, such as Web Services are the gap between SOA (abstract) and grid (infrastructure) where interfaces are designed using SOA principles (dynamism, visibility, loose-coupling and heterogeneity). Finally, cloud computing can be seen as a combination that extends SOA adding the scalability of grid, ad sugested by \person{Jamil} \citep{SOALIB}.
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -244,9 +244,9 @@ Although all the approaches described in previous sub-sections are focused on th
 \section {Conclusions}
 \lettrine{E}{volutionary} Algorithms, and their subtypes (GAs, ES or GP, among others) follow a number of common steps: initialization, evaluation, selection, recombination, mutation, replacement and stop criterion. There exist many variations of these steps, and the different combinations can specify one algorithm or another. These elements are candidate to be designed as services, as they can behave as input/output functions. Memetic Algorithms also include extra elements that can be applied, and different heuristic can be combined during the algorithm's run.
 
-Distributed EAs can improve the algorithmic and computational performance. Classic parallelization approachs, such as the master-slave or island-based models, have been updated with the usage of new trends as P2P or pool-based EAs. These new approachs manage with computational nodes entering and exiting during the experiment runtime or heterogeneous architectures.
+Distributed EAs can improve the algorithmic and computational performance. Classic parallelization approaches, such as the master-slave or island-based models, have been updated with the usage of new trends as P2P or pool-based EAs. These new approachs manage with computational nodes entering and exiting during the experiment runtime or heterogeneous architectures.
 
-Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocolos. 
+Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. 
 
 All these facts have motivated us to create a proper way to define services for evolutionary algorithms.
 \begin{itemize}
