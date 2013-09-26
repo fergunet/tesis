@@ -135,7 +135,7 @@
 \usepackage{fancyvrb} %FERGU
 %\usepackage[a4,frame,center]{crop} %,cross
 
-
+\input{coloricos} %OJO CON ESTO (EVOSOFT) vs highlight.sty de SOA-SOCO
 %*******************************************************
 \usepackage{classicthesis-ldpkg}
 %*******************************************************
@@ -493,7 +493,7 @@ p{0.95\textwidth}}
 \setboolean{PaginasDeInicio}{false}
 
 \newcounter{IncluyeCapitulo}
-\setcounter{IncluyeCapitulo}{3}
+\setcounter{IncluyeCapitulo}{2}
 % ********************************************************************
 % ********************************************************************
 % ********************************************************************
@@ -608,8 +608,8 @@ p{0.95\textwidth}}
 %-----------------------------
 \myPart{Introduction}\label{part:introduccion}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/procImagenes}}{\myChapter{Técnicas de procesamiento de imágenes}\label{chap:ProcImagenes}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
+%\ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{4}}{\include{Chapters/cuestionarios}}{\myChapter{Encuestas}\label{chap:encuestas}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
