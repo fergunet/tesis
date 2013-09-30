@@ -1,7 +1,7 @@
 \myChapter{Service Oriented Architecture}\label{chap:soa}
 \minitoc\mtcskip
 \vfill
-\lettrine{R}{esearch} in Service Oriented Architectures (SOA) \citep{PAPAZOGLOU} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{COMPOSITION}.
+\lettrine{R}{esearch} in Service Oriented Architectures (SOA) \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{COMPOSITION}.
 
 
 
@@ -15,7 +15,7 @@
 \end{SCfigure}
 
 
-Service Oriented Architecture  is a computational
+Service Oriented Architecture (SOA) is a computational
 paradigm where the users interact with each other using the concept of
 {\em service}. A service is a distributed entity (such as node, program,
 function), used to obtain a result, increasing the integration of heterogeneous
@@ -29,22 +29,23 @@ other side of the world without even knowing which programming language
 has been used to implement it.
 
 
-
 With the advancement of the Internet, new scientific communities, based on interoperable and distributed platforms are emerging. These communities allow scientist to collaborate in their research, sharing data and remote access to their programs. To achieve this, they use SOA, due to standards usage. Users publish and use flexible, interoperable and configurable services. These services can be created from scratch or by leveraging existing software. 
 
-\cite{SERVICEORIENTEDSCIENCE05} defines the term ``Service Oriented
+\person{Foster} \cite{Foster2005Science} defines the term ``Service Oriented
 Science'' as the pursuit of scientific research using distributed and
 interoperable networks, being the uniformity of
 these interfaces the key to success. Thanks to it, researchers can discover and access
 the services without developing specific access for each data source, or
 program. Therefore, this paradigm has the potential to increase the
-scientific productivity due to these public and distributed services, and also to increase the data analysis automation in computing. There are many examples that attempt to boost this paradigm, like Open Science Grid \citep{OPENSCIENCEGRID} and GLOBUS \citep{GLOBUS}. These projects are scientific communities and globally distributed infrastructures that support scientific and integrated applications of different domains.
+scientific productivity due to these public and distributed services, and also to increase the data analysis automation in computing. There are many examples that attempt to boost this paradigm, like Open Science Grid \citep{Altunay2011OpenScience} and GLOBUS \citep{Foster2005Globus}. These projects are scientific communities and globally distributed infrastructures that support scientific and integrated applications of different domains.
 It is necessary to remark that services implementation technology is not the
-great challenge in SOA (neither the specific technology presented in
-this work).
-Its main goal is to increase the effort to migrate the
+great challenge in SOA, but to increase the effort to migrate the
 existing work and to change the mind of researchers and
 practitioners. 
+
+\section{What is a Service?}
+
+
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -54,6 +55,8 @@ practitioners.
 \end{SCfigure}
 
 
+
+
 Figure \ref{soadiagram} shows the basic interaction among
 services. First, the {\em service provider} exposes the service, publishing
 its interface in the {\em service broker}. The {\em service consumer} (or
@@ -61,7 +64,15 @@ its interface in the {\em service broker}. The {\em service consumer} (or
 interface. Then the request is performed by the {\em consumer} (which uses or
 consumes the service).  
 
-Moreover, several implementations of a specific service  can exist (in one or several machines). The broker can choose which one to use  each time, or offer another if a service is unavailable. Implementations  may also have a different behavior, so the researcher can take advantage to create an auto-adaptive algorithm to select different implementations according to some criteria. Figure \ref{SERVICEBASIC} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
+According to \person{Channabasavaiah \etal} \cite{Channabasavaiah2003migrating} services must follow the next characteristics:
+
+\begin{itemize}
+\item All functions in SOA are services. This means that every component in SOA must be modelled as a service, or as aggregation of services. 
+\item Services are autonomous. Consumers do not need to know how the service implementation performs their function., as services behave as a ``black box''.
+\item Interfaces are invocable. This means that services must be undistinguishable of being local or remote, being independent of the protocol to stablish the connection.
+\end{itemize}
+
+Moreover, several implementations of a specific service  can exist (in one or several machines). The broker can choose which one to use  each time, or offer another if a service is unavailable. Implementations  may also have a different behavior, so the researcher can take advantage to create an auto-adaptive algorithm to select different implementations according to some criteria. Figure \ref{fig:servicebasic} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
 
 
 The service broker in a SOA can be implemented in several ways and have
@@ -77,7 +88,7 @@ algorithm is running.
 \centering
 \includegraphics[width=26pc]{gfx/soa/serviceEA.jpg}
 \caption{Example of usage of a service implementation.}
-\label{SERVICEBASIC}
+\label{fig:servicebasic}
 \end{SCfigure}
 
 
@@ -85,19 +96,23 @@ algorithm is running.
 
 An important SOA capability is that it is not focused on a specific
 implementation, but offers a set of guidelines to help the
-developers. In \citep{SOMA} these guidelines and good practices, and also the differences between SOA and Object Oriented
+developers. In \citep{Arsanjani2008SOMA} these guidelines and good practices, and also the differences between SOA and Object Oriented
 Programming (OOP) are
 explained: the main difference between SOA and imperative programming or OOP is the order of service execution. This order is not necessarily static, because the services are designed to be used in a non-established and configurable order. Furthermore, another important difference is that services can be dynamically discovered and used (while in OOP must be previously known and can not change during execution), being also one of the most important capabilities the (optional) distribution in a network. Finally, in OOP the programming language must be the same for each method call.
 
 \section{Implementation technologies}
 
-\subsection{SOAP, WSDL and BPEL}
+\subsection{Web Services}
+
+The most popular services implementations are the Web Services \cite{Papazoglou2007SOA}, whose standards are Web Services Description Language (WSDL), Simple Object Access Protocol (SOAP), and Universal Description, Discovery and Integration registry (UDDI).
+
+
 
 \subsection{OSGi}
 OSGi, was proposed by a consortium of more than
 eighty companies in order to develop an infrastructure for the
 deployment of service in heterogeneous network of devices, mainly
-oriented to domotics \cite{GATEWAY}. Nowadays it defines a
+oriented to domotics \cite{GarciaSanchez2013Gateway}. Nowadays it defines a
 specification for a Service Oriented Architecture for virtual
 machines (VMs). It provides very desiderable features, like
 packet abstraction, life-cycle management, packaging or versioning,
@@ -110,7 +125,7 @@ OSGi Alliance has developed several standard component interfaces for
 common usage patterns, like HTTP servers, configuration, logs, security,
 management or XML management among others, whose implementations can
 be obtained by third-parties. Nowadays there are some challenges 
-in the OSGi development \cite{OSGICHALLENGES}, but they only affect the creation of very complex applications.
+in the OSGi development \cite{Kriens2008OsgiChallenges}, but they only affect the creation of very complex applications.
 
 This advantages are not so
                                costly, as can be thought: the OSGi
@@ -131,11 +146,11 @@ This advantages are not so
                                 also big application servers
                                (Glassfish or IBM Websphere) or
                                residential gateways
-                               \cite{GATEWAY}, among other
+                               \cite{GarciaSanchez2013Gateway}, among other
                                examples. 
 
 \subsection{OSGi Architecture}
-To understand how OSGi \cite{OSGI} works and which capabilities could offer to the OSGiLiath users it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this Figure are:
+To understand how OSGi \cite{Moussa2010Composition} works and which capabilities could offer to the OSGiLiath users it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this Figure are:
 
 \begin{itemize}
 \item Bundles: Bundles are the OSGi components made by developers. Is a normal {\em jar} file including Java classes and interfaces with different MANIFEST.MF and extra files (such as the Service Descriptions).
@@ -171,7 +186,7 @@ bundles.
 
 Java programmers are familiar with the {\em jar} concept. The first difference among a {\em bundle} and a {\em jar} is that the second has a MANIFEST.MF file adapted to be used in OSGi. This file indicates which clases imports or exports the {\em bundle}. An example can be seen in Figure \ref{fig:manifest}. This file shows the name of the bundle and its version (this is useful to select specific services), and the execution environment (that is, the Java Virtual Machine required). Also, this file specifies the XML files of the declarative services (in section {\em Service-Component}). However, this {\em bundle} can be used as a normal {\em jar} outside OSGi.
 
-\begin{figure}[t]
+\begin{SCfigure}[20][htb]
 \noindent
 \ttfamily
 \hlstd{}{\bf Manifest-Version:} 1.0\\
@@ -202,7 +217,7 @@ OSGI-INF/vrpfitnesscalculator.xml,\\
 \normalfont
 \caption{Example of MANIFEST.MF. This example defines which packages are necessary to activate the bundle and which packages are exported.}
 \label{fig:manifest}
-\end {figure}
+\end {SCfigure}
 
 
 
