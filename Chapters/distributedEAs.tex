@@ -157,7 +157,80 @@ Other technologies lead to \textsc{Pool-based EAs}, where computational nodes ex
 Grids are distributed computing systems that allow sharing not geographically centered resources to solve large scale problems. \textsc{Volunteer computing} \cite{anderson2005high} proposes the creation of infrastructures to allow people donate CPU cycles for a combined computational effort. Irs main difference with grid computing is the presence of un-trusted resources: some nodes could return intentionally wrong results, so it requires possibility of replication. Also, the control of the participating nodes is not maintained by the experiment launcher. EAs have been used in these systems, using different techniques, such as virtualization \cite{Fernandez2013BOINC} or ``parasite'' computing \cite{Merelo2007browser}.
 
 
+\section{Parameter adaptation in Evolutionary Algorithms}
 
+BLABLABLA
+
+\subsection{Parameter Control and Parameter Tuning}
+Two different approaches about the algorithm parameter setting exist in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters of the Evolutionary Algorithm (EA) and changing these parameters in running time. The parameter tuning consist in establishing a good set of parameters {\em before} the run (and do not change these parameters during runtime).
+
+Eiben, in \cite{ParameterControlEiben07} proposes the next taxonomy for the parameter control, according {\em how} are changes made:
+\begin{itemize}
+\item Deterministic methods: changes in parameter are triggered by a deterministic rule (for example, increase mutation rate after certain number of generations).
+\item Adaptative methods: parameters change depending some behaviour (for example, increase mutation rate if the WHAT)
+\item Self-adaptative methods: parameters are encoded in the chromosome of the individuals of the population (for example, mutation rate is a value in the chromosome).
+\end{itemize}
+
+Other classifications for control techniques in EAs are presented in that work. For example, regarding to {\em what} is changed:
+\begin{itemize}
+\item Representation
+\item Evaluation function
+\item Variation of operators and their rates
+\item Selection operators
+\item Replacement operator
+\item Population
+\end{itemize}
+
+Finally, a third classification can be obtained according what evidence is available:
+\begin{itemize}
+\item Absolute evidence: The parameter changes if a rule is activated if an specific event occurs. For example: increase mutation rate when diversity drops. Human knowledge is necessary.
+\item Relative evidence: Parameters are compared with the fitness of their produced offspring and the best values are rewarded. It is not deterministic.
+\end{itemize}
+
+\subsection{Adaptation in heterogeneous clusters}
+
+One of the problems in parameter adaptation in heterogeneous clusters is 
+the computational load representation. It depends of the algorithm, size of the problem, 
+language, compiler or hardware characteristics, and the results obtained from artificial 
+benchmarks (such as  Linpack \cite{LinpackEndo10}) should not be extolled as identificative 
+of the system performance \cite{LinpackDongarra03}. For example, in the work of \person{Garamendi 
+\etal} \cite{Garamendi2006Parallel},  a small benchmark was executed in all nodes at the beginning
+of the algorithm in order to distribute individuals of an Evolutionary Strategy
+ (ES), following a master-slave model. The computational load by artificial benchmarks may not accurately 
+ represent the correct load of the algorithm, so, as proposed in this paper, information 
+ about the algorithm itself should be used for calibration.
+
+In other works, there are not direct relation with the algorithm parameters and 
+computational resources of the nodes. For example, \person{Dom\'inguez \etal} \cite{Dominguez13HydroCM} 
+divided the available devices in ``faster'' and ``slower'' nodes to create a distributed hybrid 
+meta-heuristic that combines two different EAs: Genetic Algorithms (GAs) and Simulated
+Annealing (SA). Their system executes the heavy (in computational
+terms) algorithms (GAs) in the faster nodes (computational devices), and
+simpler meta-heuristics (SA) in the slower ones, obtaining better results
+than other configurations.  \person{Gong \etal} in \cite{Gong2005HeterogeneousTopology} also ordered 
+the nodes by their computational power to test different topology configurations in a distributed EA.
+Besides from ordering the nodes taking into account 
+only their previously known computational resources, the results of the previous works were not compared in a homogeneous 
+cluster to validate if the adaptation takes advantage of the heterogeneity 
+of the cluster, as proposed in this paper.
+
+The heterogeneous computational performance of nodes or network speed can affect the performance of an algorithm. In \cite{Alba2002Heterogeneous},
+ \person{Alba \etal} compared a distributed Genetic Algorithm (dGA), one of
+ the sub-types of EAs, on homogeneous and heterogeneous clusters. 
+ Super-linear performance in terms of iterations was obtained in the heterogeneous ones,
+ being more efficient than the same algorithm running on homogeneous
+ machines. However, the parameter setting was the same in both
+ clusters and they not adapted the parameters to the machines used.
+
+ Adapting algorithm parameters to computational nodes derives in heterogeneous parameter sets. These sets can improve the results in homogeneous hardware, for example, setting a random set of parameters in each homogeneous node can also increase the
+performance of a distributed Genetic Algorithm, as explained by \person{Gong
+and Fukunaga} in \cite{Gong2011HeterogeneousParameters}. That model
+outperformed a tuned canonical dGA with the same parameter values in
+all islands. Also, adapting the migration rate produced better
+results than homogeneous periods, as explained by \person{Salto and Alba} in
+\cite{Salto2012HeterogeneousMigration}. This indicates that heterogeneous parameters
+ may lead to an increase of performance, so it is necessary to valid if the 
+ performance is due to the parameter set or by the heterogeneous devices combination.
 
 
 \section{Frameworks for Evolutionary Algorithms}
