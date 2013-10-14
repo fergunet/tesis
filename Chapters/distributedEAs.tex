@@ -167,7 +167,7 @@ Two different approaches about the algorithm parameter setting exist in EC: {\em
 Eiben, in \cite{ParameterControlEiben07} proposes the next taxonomy for the parameter control, according {\em how} are changes made:
 \begin{itemize}
 \item Deterministic methods: changes in parameter are triggered by a deterministic rule (for example, increase mutation rate after certain number of generations).
-\item Adaptative methods: parameters change depending some behaviour (for example, increase mutation rate if the WHAT)
+\item Adaptative methods: parameters change depending some behaviour (for example, increase mutation rate if the average fitness of the population stagnates)
 \item Self-adaptative methods: parameters are encoded in the chromosome of the individuals of the population (for example, mutation rate is a value in the chromosome).
 \end{itemize}
 
@@ -308,7 +308,7 @@ Previous systems have the possibility of task distribution among the nodes, foll
 
 Distributed EAs can improve the algorithmic and computational performance. Classic parallelization approaches, such as the master-slave or island-based models, have been updated with the usage of new trends as P2P or pool-based EAs. These new approaches manage with computational nodes entering and exiting during the experiment runtime or heterogeneous architectures.
 
-Other research lines, such as the parameter adaptation can imply the existence of some kind of dynamism involving the parts that compose an algorithm: for example, different recombinators or mutators working at the same time. Moreover, there exist several lines of parameter adaptation in dynamic and heterogeneous environments, with different computational elements are working at the same time.
+Other research lines, such as the parameter adaptation can imply the existence of some kind of dynamism involving the parts that compose an algorithm: for example, different recombinators or mutators working at the same time. Moreover, there exist several lines of parameter adaptation in dynamic and heterogeneous environments, where different computational elements are working at the same time.
 
 Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out. Moreover, it is difficult to access, in a public way, to available public systems to execute existent EAs to validate experiments and save time.
 
