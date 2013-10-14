@@ -54,7 +54,7 @@ This chapter introduces a general overview of the most used types of Evolutionar
 
 \item[Evolution Strategies] The Evolution Strategies (ES) are used to solve problems whose solution is included in the domain of real numbers. Their main difference with GAs is the inclusion of self-adaptation of the mutation rate, being coded in each individual \cite{eiben2005shared}. Also, the parent selection is performed randomly. ES have been applied in fields such as Evolutionary Robotics \cite{Garcia2012testing}.
 
-\item[Evolutionary Programming] In Evolutionary Programming (EP), the representation of the solution depends on the nature of the problem being solved, for example, neuronal networks can be used as individuals \cite{Castillo1999gprop}.
+\item[Evolutionary Programming] In Evolutionary Programming (EP), the representation of the solution depends on the nature of the problem being solved, for example, neuronal networks \cite{Castillo1999gprop} or Radial Basis Functions (RBFs) \cite{Gonzalez2003multiobjective} have been used as individuals.
 
 \item[Genetic Programming] The objective of this technique is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}, among others.
 
@@ -159,7 +159,7 @@ Grids are distributed computing systems that allow sharing not geographically ce
 
 \section{Parameter adaptation in Evolutionary Algorithms}
 
-BLABLABLA
+\lettrine{P}arameter adaptation refers to...
 
 \subsection{Parameter Control and Parameter Tuning}
 Two different approaches about the algorithm parameter setting exist in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters of the Evolutionary Algorithm (EA) and changing these parameters in running time. The parameter tuning consist in establishing a good set of parameters {\em before} the run (and do not change these parameters during runtime).
@@ -234,7 +234,7 @@ results than homogeneous periods, as explained by \person{Salto and Alba} in
 
 
 \section{Frameworks for Evolutionary Algorithms}
-There exist a large number of frameworks for Evolutionary Algorithms freely available for download. Practically every programming language has its own implementation of the basic elements that form an EA. This implies a large effort made in each one, because these elements are not compatible among them. It is also difficult to migrate the code from a framework to another, because design choices, such as the existence of hidden global variables or language specific features (such as functional programming \cite{Cruz2013Erlang}). 
+\lettrine{T}here exist a large number of frameworks for Evolutionary Algorithms freely available for download. Practically every programming language has its own implementation of the basic elements that form an EA. This implies a large effort made in each one, because these elements are not compatible among them. It is also difficult to migrate the code from a framework to another, because design choices, such as the existence of hidden global variables or language specific features (such as functional programming \cite{Cruz2013Erlang}). 
 
  
 
@@ -294,35 +294,22 @@ dynamic control of operators, or an user interface).
 
 \subsection{Grid and volunteer computing frameworks}
 
-In one hand, web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works.
+There exist authors describing EAs being executed in grids \citep{grid8,grid4,grid10}, but no information about how to design these services for EAs has been provided in previous works. %%CAMBIAR!!
 
 On the other hand, \definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and the creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients ask the server for works, download information, compute data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this architecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without install any other software.
 
 Previous systems have the possibility of task distribution among the nodes, following a master-slave model, but without interaction between clients.
 
-Although all the approaches described in previous sub-sections are focused on the implementation of distributed EAs, the abstraction level of each alternative can be quite different, as shown in Figure \ref{fig:soagrid}. This figure has been updated from the one presented in \cite{SOALIB}. As SOA is a methodology and not a technology, areas such as Evolutionary Robotics, or EA classic frameworks can use SOA to be designed and developed. Implementation technologies, such as Web Services are the gap between SOA (abstract) and grid (infrastructure) where interfaces are designed using SOA principles (dynamism, visibility, loose-coupling and heterogeneity). Finally, cloud computing can be seen as a combination that extends SOA adding the scalability of grid, ad sugested by \person{Jamil} \citep{SOALIB}.
 
-\begin{SCfigure}[20][htb]
-\centering
-\includegraphics[width=26pc]{gfx/distributed/soagrid.jpg}
-\caption{SOA as abstract paradigm to develop in different EAs areas. Using especific technologies such as Web Services allows grid integration.}
-\label{fig:soagrid}
-\end{SCfigure}
 
 
 \section {Conclusions}
-\lettrine{E}{volutionary} Algorithms, and their subtypes (GAs, ES or GP, among others) follow a number of common steps: initialization, evaluation, selection, recombination, mutation, replacement and stop criterion. There exist many variations of these steps, and the different combinations can specify one algorithm or another. These elements are candidate to be designed as services, as they can behave as input/output functions. Memetic Algorithms also include extra elements that can be applied, and different heuristics can be combined during the algorithm's run.
+\lettrine{E}{volutionary} Algorithms, and their subtypes (GAs, ES or GP, among others) follow a number of common steps: initialization, evaluation, selection, recombination, mutation, replacement and stop criterion. There exist many variations of these steps, and the different combinations can specify one algorithm or another. Memetic Algorithms also include extra elements that can be applied, and different heuristics can be combined during the algorithm's run.
 
 Distributed EAs can improve the algorithmic and computational performance. Classic parallelization approaches, such as the master-slave or island-based models, have been updated with the usage of new trends as P2P or pool-based EAs. These new approaches manage with computational nodes entering and exiting during the experiment runtime or heterogeneous architectures.
 
-Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. Even as SOA is used extensively in software development, it is not widely accepted in the main EA software. The authors should improve their frameworks adding SOA technologies in order to facilitate the communication and integration among them. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out.
+Other research lines, such as the parameter adaptation can imply the existence of some kind of dynamism involving the parts that compose an algorithm: for example, different recombinators or mutators working at the same time. Moreover, there exist several lines of parameter adaptation in dynamic and heterogeneous environments, with different computational elements are working at the same time.
 
-All these facts have motivated us to create a proper way to define services for evolutionary algorithms.
-\begin{itemize}
-\item Services can be combined in different ways to create the different types of EAs. The services must be designed taking into account the elements that form an EA. 
-\item Services are independent of the used technology or the communication protocol. For example, a fitness service can be distributed or local.
-\item Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where nodes control is not centralized. 
-\item Existent EA frameworks could also be adapted to be accessed as services.
-\end{itemize}
+Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out. Moreover, it is difficult to access, in a public way, to available public systems to execute existent EAs to validate experiments and save time.
 
-Next chapters will explain the chosen design principles for developing services for EAs.
+Next chapter will explain a possible technological solution to address previous issues.

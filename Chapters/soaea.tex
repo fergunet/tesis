@@ -1,0 +1,127 @@
+\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}
+\minitoc\mtcskip
+\vfill
+\lettrine{P}{atatin}
+
+In this chapter we are 
+
+\section{Design of a SOA for EAs}
+
+\subsection{Restrictions in EAs design}
+
+%%%PONER LO GENERICITY DE PAPAZOGLOU
+
+\subsection{Restrictions in SOA design}
+
+SOA follows these lines of genericity presented in previous sub-section, and can also extend them:
+\begin{itemize}
+\item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces must be abstract enough to avoid their modification.
+\item Programming language independence: for example, services implemented in Java can use services implemented in C++ and vice-versa.
+\item Distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators.
+\item Flexibility: easy to add and remove elements to use the self-adaptation or other mechanisms.
+\end{itemize}
+
+As explained in previous chapter, when developing within a SOA, \cite{PAPAZOGLOU} established that the services must be: 
+\begin{itemize}
+\item Abstract: many different implementations can use the same interface.
+\item Well-defined: the interface of the service must be fixed, and it can not change in time, because the consumers or implementations of this interface should be modified with it.
+\item Encapsulated: services can use other services, but only the interface should be used to consume a service.
+\item Reusable: services should be designed to be used by as many applications as possible. 
+\end{itemize}
+
+One of the main restrictions in SOA, appart from focusing in develop abstract services, is the stateless nature of services. Therefore, in SOA the services design must follow several guidelines.
+
+First, as services are unaware of others, there must not be global variables in any part of the code. Services are listening, and waiting to be executed. For example, a fitness service with a counter that is increased each time is called (to stop the algorithm if a limit is reached, for example). If several (and different) algorithms are working in parallel, and calling this function at the same time the counter would not distinguish between algorithms, giving erroneous results. However, a service that maintains some kind of state is allowed, for example, a statistic service that read events from all the algorithms being executed at the same time, but this should be managed to avoid errors.
+
+Also, a service must not be distinguishable from local or remote running in other node in the network. Every stage in the algorithm should be treated as service to be executed in local or in remote, even the {\em Population} or the {\em Parameters}. Mechanisms to ensure the correct data-sharing should be provided. Also, many implementations of the same service could exist at the same time (different implementations of {\em Crossover}, for example) and it should be correctly managed and used.
+
+Moreover, a service is always a request-response function. For example, the fitness calculation must not be a method of the {\em Individual} implementation, but a function that receives a list of individuals and returns a list of the calculated fitness of that individuals. This allow things such as remote fitness calculation and distributed load balancing, impossible to perform if the fitness is a method of the {\em Individual} class.
+
+Thinking as abstract as possible requires separate concepts such the order of recombination, and the crossover itself. Usually, after parent selection, individuals are crossed in order. However, if we need a different mechanism for mating (for example, using more than two parents, or parent selected several times) a duplication of effort is needed. That is the reason we should sepparate the concept {\em recombine} from {\em crossover}. 
+
+Finally, we must not make assumptions about services previously executed or being executed next. For example, services such {\em Recombinator} or {\em Mutator} should return the individuals with their fitness already calculated. Usually this step is performed in the last stage of the generation, but if we require the individuals for other tasks: for example, a Local Search or a statistics collector to guide the algorithm.
+
+\subsection{Other technological restrictions}
+
+In \cite{OSGILIATH} we also presented the advantages of using SOA in Evolutionary Algorithms area: firstly, SOA fits with the genericity advantages in the development of software for EAs \cite{GENERICITY05} and adds new features, like language independence and  distribution mechanisms. It also allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). This issue increases the interoperability between different software elements. Moreover, this allows easy code distribution: SOA does not require the use of a concrete implementation or library.
+
+In this work, a new process development, explaining the specific technology used is presented. The services developed must match with the next technological restrictions:
+\begin{itemize}
+\item These services can dynamically bound to cha\-nge the needed EA aspects. 
+\item The source code of  the basic EA services must not been re-written or re-compiled to achieve this task. 
+\item New services can be added in execution time. 
+\item No specific source code for a distribution must added, neither the existing source code of the services should be modified for this purpose (that is, changing distribution libraries must not add extra code in exisitng services).
+\end{itemize}
+
+\subsection{Designing the services}
+
+Taking into account the previous restrictions a possible way for designing services for EAs in shown:
+
+\begin{itemize}
+\item Individual representation. Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to operate properly.
+\item Fitness evaluation. Each problem should implement an interface of the fitness service that receives the individual, allowing the distribution of this service (instead of being a method in the {\em individual} class, for example). However, to be more flexible, the {\em fitness service} must receive a list of at least one individual, to facilitate the parallelism.
+\item Definition or addition of every type of operator. Thanks to the loose coupling of services, several crossover or mutation implementations can be created. Moreover, new operators can be added in execution time, without re-compiling the existing ones, or combining them according to several parameters, for example.
+\item Adaptation of the evolutionary model. The user can manually select the services to be combined to create a Genetic Algorithm or an Evolution Strategy, for example.
+\item Dynamic adaptation of the parameters. Parameters can also be a service, thus the EA developer obtains two advantages: it is not mandatory to distribute the parameters among all services, and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation \citep{SELFSTAR}.
+\item Flexible output mechanisms. The developers do not need skills in GUIs (Graphical User Interfaces) or logs programming, because as this kind of services are not coupled to the operators, they can access their information without any modification in the operators.
+\end{itemize}
+
+
+
+
+
+
+As previously stated, the 
+fitness should not be calculated within a method of an Individual class. To be less
+coupled, it should be implemented an an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible. Also the parameters should be
+a service for the same reason, allowing the possibility of performing
+experiments related to the parameter control or tuning \citep{PARAMETERTUNING11} in an efficient way
+(being separated from the code of the existing operators). Services such as the
+{\em recombinator} or the {\em mutator} should not receive one or two
+individuals, since not all EAs have the same behavior. They should receive a
+list of individuals to be crossed or mutated each generation. On the other way,
+{\em population} should not be a list of individuals: it should be a service
+to access the individuals and allow the variation of its structure (for example, a change
+from an unique population to a distributed island model) without
+affecting  the rest of the pieces of the algorithm. So, other services
+external to the EA could consult the {\em population} state and act
+accordingly to some rules. 
+
+Using the previous indications as a base, SOA-EA has been created. SOA-EA is an
+abstract architecture to develop service oriented EAs, independently
+of the technology to be used. Table \ref{tab:reasons} shows some reasons to
+migrate to SOA and how services in SOA-EA should be designed. 
+
+
+
+
+
+\begin{table*}[tb]
+
+\caption{Summary of migration from traditional EA programming to SOA}
+
+\label{tab:reasons}
+ \begin{center}
+%\begin{tabular}{p{2cm}p{}pp}
+\begin{tabular}{p{2cm}p{2.5cm}p{3cm}p{7cm}}
+%\begin{tabular}{llll}
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\textbf{Element} & \textbf{Current EAs development} & \textbf{Using SOA} & \textbf{Reason to migrate} \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+{\em Programming language} & Just one for all elements of the algorithm & Any & Services are independent of the programming language. Only the interface is required to use services  \\\hline
+{\em Operators} & Methods or functions & Services & Services allow the selection of a specific implementation during the algorithm execution, and also different programming languages or distribution models\\\hline
+{\em Operators behavior} & Methods applied to a single individual & Service that receive individual lists  & It allows  load balancing and distribution, and also to modify the operators in execution time\\\hline
+{\em Operator selection} & Modifying the source code & In a flexible way outside the source code & It is not mandatory to recompile the source code to integrate new operators \\\hline
+{\em Fitness} & Method that evaluates an individual & Service that evaluates an individual list & It allows the distribution, load balancing and addition of new fitness calculators in real time \\\hline
+{\em Population} & Array or individual list & Population service & It allows to change the population type and topography, by selecting the service implementation \\\hline
+{\em Self-adaptation} & Modifying source code for a specific experiment & Self-adapting service that selects specific operator implementations & It does not modify the created services and brings more flexibility in the dynamic adaptation \\\hline
+{\em Distribution} & Libraries like MPI & SOA mechanisms & SOA technologies allow changing the transmission protocol and using extra technologies without adding extra code\\
+\noalign{\smallskip}\hline
+
+\end{tabular}
+\end{center}
+\end{table*}
+
+\section{Example of creating a service oriented evolutionary algorithm}
+
+\section{Implementation using OSGi}

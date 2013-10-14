@@ -1,7 +1,9 @@
 \myChapter{Service Oriented Architecture}\label{chap:soa}
 \minitoc\mtcskip
 \vfill
-\lettrine{R}{esearch} in Service Oriented Architectures (SOA) \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{COMPOSITION}.
+\lettrine{P}{revious} chapter has explained some lacks in the development of EAs.
+
+Research in Service Oriented Architectures (SOA) \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{Moussa2010ServiceComposition}.
 
 
 
@@ -28,7 +30,6 @@ fitness function made publicly available by another researcher at the
 other side of the world without even knowing which programming language
 has been used to implement it.
 
-
 With the advancement of the Internet, new scientific communities, based on interoperable and distributed platforms are emerging. These communities allow scientist to collaborate in their research, sharing data and remote access to their programs. To achieve this, they use SOA, due to standards usage. Users publish and use flexible, interoperable and configurable services. These services can be created from scratch or by leveraging existing software. 
 
 \person{Foster} \cite{Foster2005Science} defines the term ``Service Oriented
@@ -45,7 +46,7 @@ practitioners.
 
 \section{What is a Service?}
 
-
+\lettrine{A}{} service can be seen as a function call which can be executed locally or remotelly, and which is independent of the programming language or running platform. Services have well defined interfaces, which depends of the desired technology to implement SOA. That means that the service users do not need to know the language implementation of the service or the operating system, and they are not forced to use a specific technology to access to that service.
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -102,6 +103,8 @@ explained: the main difference between SOA and imperative programming or OOP is 
 
 \section{Implementation technologies}
 
+\lettrine{D}espite the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the 
+
 \subsection{Web Services}
 
 The most popular services implementations are the Web Services \cite{Papazoglou2007SOA}, whose standards are Web Services Description Language (WSDL), Simple Object Access Protocol (SOAP), and Universal Description, Discovery and Integration registry (UDDI).
@@ -109,6 +112,7 @@ The most popular services implementations are the Web Services \cite{Papazoglou2
 
 
 \subsection{OSGi}
+
 OSGi, was proposed by a consortium of more than
 eighty companies in order to develop an infrastructure for the
 deployment of service in heterogeneous network of devices, mainly
@@ -349,3 +353,29 @@ ECF includes a number of protocols for service discovery and service providers:
 \item Service Discovery API: Includes protocols to announce and discover remote services: Zeroconf, SLP/RFC 2608, Zookeeper, file-based and others \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Discovery_API}}.
 \item Remote Service API: Includes protocols to establish the communication (data streams, formats and others): R-OSGi, ActiveMQ/JMS, REST, SOAP, XMPP, ECF Generic \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Remote_Services_API}}. This allow to communicate to systems that do not use OSGi or Java.
 \end{itemize}
+
+\section{Benefits of using SOA in Evolutionary Algorithms Area}
+
+\lettrine{S}OA has been used in the EA area, previously. For example, web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works. 
+
+In the previous chapter we described several lacks in the Evolutionary Algorithms area, such as the new trends of distributed programming where nodes enter and exit in runtime, or the incompatibility between frameworks, for example. All these facts have motivated us to create a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions.  
+
+\begin{itemize}
+\item Services can be combined in different ways to create the different types of EAs. The services must be designed taking into account the elements that form an EA. 
+\item Services are independent of the used technology or the communication protocol. For example, a fitness service can be distributed or local.
+\item Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where nodes control is not centralized. 
+\item Existent EA frameworks could also be adapted to be accessed as services.
+\item SOA is the key to develop Open Science \cite{Foster2005Science}.
+\end{itemize}
+
+Even as SOA is used extensively in software development area, it is not widely accepted in the main EA software. The authors should improve their frameworks adding SOA technologies in order to facilitate the communication and integration among them. Although all the approaches described in previous chapter are focused on the implementation of distributed EAs, the abstraction level of each alternative can be quite different, as shown in Figure \ref{fig:soagrid}. This figure has been updated from the one presented in \cite{SOALIB}. As SOA is a methodology and not a technology, areas such as Evolutionary Robotics, or EA classic frameworks can use SOA to be designed and developed. Implementation technologies, such as Web Services are the gap between SOA (abstract) and grid (infrastructure) where interfaces are designed using SOA principles (dynamism, visibility, loose-coupling and heterogeneity). Finally, cloud computing can be seen as a combination that extends SOA adding the scalability of grid, ad sugested by \person{Jamil} \citep{SOALIB}.
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=26pc]{gfx/soa/soagrid.jpg}
+\caption{SOA as abstract paradigm to develop in different EAs areas. Using especific technologies such as Web Services allows grid integration.}
+\label{fig:soagrid}
+\end{SCfigure}
+
+Next chapters will explain the chosen design principles for developing services for EAs.
