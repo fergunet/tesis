@@ -103,7 +103,7 @@ explained: the main difference between SOA and imperative programming or OOP is 
 
 \section{Implementation technologies}
 
-\lettrine{D}espite the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, ebXML and OSGi.
+\lettrine{D}{espite} the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, ebXML and OSGi.
 
 \subsection{Web Services}
 
@@ -120,7 +120,7 @@ In opposite to other remote procedure call methods, such as RMI (\emph{remote me
 
 \subsubsection{Self-description} The interfaces of the methods that can be accessed are specified by a Web Services Description Language (WSDL) \cite{WSDL}. The WSDL of a web service consists in an XML description of its interface, i.e., it is a file that describes the name of the methods, the parameters (number and type) and the type of response.
 
-\subsubsection{Self-discovery} UDDI (Universal Description, Discovery and Integration) \cite{UDDI} is a technical specification for describing, discovering and integrating web services \cite{Cerami2002Webservices}. This specification includes APIs for the storage and retrieval of information (also in an standarized XML format).
+\subsubsection{Self-discovery} UDDI ({\em Universal Description, Discovery and Integration}) \cite{UDDI} is a technical specification for describing, discovering and integrating web services \cite{Cerami2002Webservices}. This specification includes APIs for the storage and retrieval of information (also in an standarized XML format).
 
 
 \subsubsection{Other standarizations} One of the advantages of using web services, is that the aplication stack is growing with the WS-Extensions. That is, the basic specifications of Web Services (such as SOAP) can be extended with transactions, security or messaging, for example. The most used are \cite{Papazoglou2007SOA}:
@@ -131,7 +131,7 @@ In opposite to other remote procedure call methods, such as RMI (\emph{remote me
   \item WS-Reliable Messaging  and WS-Transaction (add-on mechanisms for the communication channel)
 \end{itemize}
 
-Also, functional extensions, such as WSRF \cite{WSRF}, allows the discovery, inspection and interaction with stateful resources in standard and interoperable ways.
+Also, functional extensions, such as WSRF \cite{WSRF}, allows the discovery, inspection and interaction with stateful resources in standard and interoperable ways. Finally, BPEL ({\em Business Process Execution Language})  \cite{BPEL} is an XML-based language to control the invocation of different Web services with added business logic to help large-scale programming.
 
 Several studies about e-science taking advantage of web services can be found in bibliography \cite{Oinn04Taverna,davidson08workflows,Ludascher06Kepler,Perera06workflows}.
 
@@ -389,7 +389,7 @@ Regardless of the chosen SOA framework, the business processes of the platform m
 
 \section{Benefits of using SOA in Evolutionary Algorithms Area}
 
-\lettrine{S}OA has been used in the EA area, previously. For example, web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works. 
+\lettrine{S}{OA} has been previously used in the EA area. For example, web services have been used in the grid area for optimization problems, as can be seen in the works of \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL interfaces and other transmission mechanisms (such as Remote Procedure Call \citep{grid6,grid7}). Although there also exist EAs to be executed in grids \citep{grid8,grid4,grid10}) no information about how to design these services for EAs has been provided in previous works. 
 
 In the previous chapter we described several lacks in the Evolutionary Algorithms area, such as the new trends of distributed programming where nodes enter and exit in runtime, or the incompatibility between frameworks, for example. All these facts have motivated us to create a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions.  
 
@@ -411,4 +411,4 @@ Even as SOA is used extensively in software development area, it is not widely a
 \label{fig:soagrid}
 \end{SCfigure}
 
-Next chapters will explain the chosen design principles for developing services for EAs.
+Next chapter will explain the design principles of SOA for developing services for EAs. Then, a specific SOA technology will be used to develop an implementation of a service oriented architecture for EAs.
