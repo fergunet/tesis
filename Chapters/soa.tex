@@ -1,7 +1,7 @@
 \myChapter{Service Oriented Architecture}\label{chap:soa}
 \minitoc\mtcskip
 \vfill
-\lettrine{P}{revious} chapter has explained some lacks in the development of EAs.
+\lettrine{P}{revious} chapter has explained some lacks in the development of EAs, mainly related with the integration of different frameworks, distributed programming and heterogeneity of computational environments, among others. This chapter explains the concept Service Oriented Architecture (SOA), with several associated technologies and methodologies, as a possible solution for these issues.
 
 Research in Service Oriented Architectures (SOA) \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{Moussa2010ServiceComposition}.
 
@@ -30,7 +30,7 @@ fitness function made publicly available by another researcher at the
 other side of the world without even knowing which programming language
 has been used to implement it.
 
-With the advancement of the Internet, new scientific communities, based on interoperable and distributed platforms are emerging. These communities allow scientist to collaborate in their research, sharing data and remote access to their programs. To achieve this, they use SOA, due to standards usage. Users publish and use flexible, interoperable and configurable services. These services can be created from scratch or by leveraging existing software. 
+Also, with the advancement of the Internet, new scientific communities, based on interoperable and distributed platforms are emerging. These communities allow scientist to collaborate in their research, sharing data and remote access to their programs. To achieve this, they use SOA, obtaining the benefices of the standards it offers. Users publish and use flexible, interoperable and configurable services. These services can be created from scratch or by leveraging existing software. 
 
 \person{Foster} \cite{Foster2005Science} defines the term ``Service Oriented
 Science'' as the pursuit of scientific research using distributed and
@@ -80,7 +80,7 @@ The service broker in a SOA can be implemented in several ways and have
 different behaviors: for example, the implementations of the services to be used can be
 defined in a text file (if the services do not change in execution
 time). However, the broker can also assign implementations to
-interfaces in an automatic way, or using several rules, for example,
+interfaces in an automatic way, or using several rules, for example, in the context of EAs,
 to distribute a fitness between several machines activated while the
 algorithm is running. 
 
@@ -103,7 +103,7 @@ explained: the main difference between SOA and imperative programming or OOP is 
 
 \section{Implementation technologies}
 
-\lettrine{D}{espite} the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, ebXML and OSGi.
+\lettrine{D}{espite} the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, \definicion{ebXML}{Electronic Business XML} and \definicion{Open Service Gateway Inititative}{OSGi}.
 
 \subsection{Web Services}
 
@@ -115,7 +115,7 @@ SOAP is a complete and mature protocol that allows to perform remote method call
 SOAP clients can access to objects and methods that are residing in remote servers, using a standard mechanism that makes transparent the details of implementation, such us the programming language of the
 routines, the operating system or the platform used by the provider of the service. 
 At the moment, there exist complete implementations of SOAP for Perl, Java, Python, C++ and most modern languages.
-In opposite to other remote procedure call methods, such as RMI (\emph{remote method invocation}, used by the Java language) or XML-RPC, SOAP has two main advantages: it can be used with any programming language, and it can use any type of transport (HTTP, SHTTP, TCP, SMTP, POP and other protocols). In this way, SOAP constitutes a high level protocol, making easy the task of distributing objects among different servers, and avoiding the difficulties derived of defining the message formats, nor the explicit call to remote servers.
+In opposite to other remote procedure call methods, such as RMI (\emph{remote method invocation}, used by the Java language) or XML-RPC, SOAP has two main advantages: it can be used with any programming language, and it can use any type of transport (\definicion{HTTP}{HyperText Transfer Protocol}, \definicion{SHTTP}{Secure HTTP}, \definicion{TCP}{Transmission Control Protocol}, \definicion{SMTP}{Simple Mail Transfer Protocol}, \definicion{POP}{Post Office Protocol} and other protocols). In this way, SOAP constitutes a high level protocol, making easy the task of distributing objects among different servers, and avoiding the difficulties derived of defining the message formats, nor the explicit call to remote servers.
 
 
 \subsubsection{Self-description} The interfaces of the methods that can be accessed are specified by a Web Services Description Language (WSDL) \cite{WSDL}. The WSDL of a web service consists in an XML description of its interface, i.e., it is a file that describes the name of the methods, the parameters (number and type) and the type of response.
@@ -136,7 +136,7 @@ Also, functional extensions, such as WSRF \cite{WSRF}, allows the discovery, ins
 Several studies about e-science taking advantage of web services can be found in bibliography \cite{Oinn04Taverna,davidson08workflows,Ludascher06Kepler,Perera06workflows}.
 
 \subsection{ebXML}
-ebXML defines a set of standards that allows the enterprises negotiate their products through the Internet. It is based on a well-defined documents interchange using a contract-based approach \cite{Patil03ebxmlVsWS}, providing a specification for messaging, registry/repositories and business processes description, and unlike other approaches, it is an horizontal standard (it is not oriented towards a specific industry sector). On the contrary, Web Services expose any kind of applications to the Web, so anyone can call them (service approach). Another main difference between Web Services and ebXML is that the former is based on BPEL, which can only describe the scenario inside a company, due to it has not all the information of the services being orchestrated, while the latter can be used to model a global choreography among several companies.
+ebXML defines a set of standards that allows the enterprises negotiate their products through the Internet. It is based on a well-defined documents interchange using a contract-based approach \cite{Patil03ebxmlVsWS}, providing a specification for messaging, registry/repositories and business processes description, and unlike other approaches, it is an horizontal standard (it is not oriented towards a specific industry sector). On the contrary, Web Services expose any kind of applications to the Web, so anyone can call them (service approach). Another main difference between Web Services and ebXML is that the former is based on BPEL, which can only describe the scenario inside a company, due to it has not all the information of the services being orchestrated, while the latter can be used to model a global choreography among several companies. Due to this, and because it is mainly focused to commercial and business processes we are not going to delve into this technology in this thesis.
 
 \subsection{OSGi}
 
@@ -172,16 +172,16 @@ This advantages are not so
                                 without it. Finally, from its
                                 specification in 1998 has been widely
                                 used as base in big projects: the
-                                Eclipse IDE (Integrated Development
-                                Environment) is built over OSGi, and
+                                Eclipse \definicion{IDE}{Integrated Development
+                                Environment} is built over OSGi, and
                                 also big application servers
-                               (Glassfish or IBM Websphere) or
+                               (Glassfish\footnote{\url{http://glassfish.java.net}} or IBM Websphere \footnote{\url{www.ibm.com/software/websphere/‎}}) or
                                residential gateways
                                \cite{GarciaSanchez2013Gateway}, among other
                                examples. 
 
 \subsubsection{OSGi Architecture}
-To understand how OSGi \cite{Moussa2010Composition} works and which capabilities could offer to the OSGiLiath users it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this Figure are:
+To understand how OSGi \cite{Moussa2010Composition} works and which capabilities could offer to the EA practitioners it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this Figure are:
 
 \begin{itemize}
 \item Bundles: Bundles are the OSGi components made by developers. Is a normal {\em jar} file including Java classes and interfaces with different MANIFEST.MF and extra files (such as the Service Descriptions).
@@ -324,7 +324,7 @@ The Event Administration in OSGi lets the usage of a blackboard communitacion ar
 %Fill Event Properties in a dictionary that will be passed as a parameter to the publish method.
 %Having the Topic Name and Properties, ready invoke one of the following methods of the Event Admin service: postEvent or sendEvent - while postEvent initiates synchronous delivery of the event, sendEvent initiates asynchronous delivery of the event. So by default, your option should be postEvent method unless you have strict requirements to not continue execution until all handlers of the event handle it.
 
-To send events to other bundles:
+The steps necessary to send events to other bundles:
 \begin{itemize}
 \item Acquire a reference to the EventAdmin OSGi service (via Declarative Services, for example).
 \item Pick a topic name for the event (for example {\em ``es/ugr/osgiliath/algorithms/endgeneration''})
@@ -351,7 +351,7 @@ For the other hand, the steps to handle events are:
 This code shows how to handle events. In this case we have published the {\em ExampleService} with the implementation {\em ExampleImpl}, that is listening under the topic {\em ``es/ugr/osgiliath/algorithms/*''}.
 
 \begin{lstlisting}
-class ExmplImpl implements ExmplService,EventHandler{
+class ExampleImpl implements ExampleService,EventHandler{
 
  public void handleEvent(Event ev){
   if(evt.getTopic().endsWith("endgeneration")){
@@ -370,7 +370,7 @@ class ExmplImpl implements ExmplService,EventHandler{
 
 
 \subsubsection{Distribution}
-In a good service-oriented framework for EAs all services must be capable to be indistinguishable of being a local or a remote service. Services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
+As previously said, all services must be capable to be indistinguishable of being a local or a remote service. Services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
 
 OSGi allows several implementations for the service distribution. ECF (Eclipse Communication Framework)\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation \cite{petzold2011dynamic}, and it also supports the largest number of transmission protocols, including both synchronous and asynchronous communication. It provides a modular implementation of the OSGi 4.2 Remote Services standard\footnote{\url{http://www.osgi.org/Release4/Download}}. This specification uses the OSGi service registry to expose remote services to other machines (being indistinguishable from the local ones). ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. % For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
 
