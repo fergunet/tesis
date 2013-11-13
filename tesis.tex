@@ -133,18 +133,19 @@
 \usepackage{ifthen}
 
 \usepackage{fancyvrb} %FERGU
+\usepackage{minted}
 %\usepackage[a4,frame,center]{crop} %,cross
 
 \input{coloricos} %OJO CON ESTO (EVOSOFT) vs highlight.sty de SOA-SOCO
 \usepackage[final]{listings}
-\lstset{
-basicstyle=\ttfamily \scriptsize,
-backgroundcolor=\color{ultralightOrange},
-language=c++,
-frame=single,
-stringstyle=\ttfamily,
-showstringspaces=false
-} %DENTRO DE ESO HAY OTRO LISTINGS QUE SE COME LO DE ARRIBA, PERO NO SE SI AFECTA OTRAS COSAS...
+%\lstset{
+%basicstyle=\ttfamily \scriptsize,
+%backgroundcolor=\color{ultralightOrange},
+%language=c++,
+%frame=single,
+%stringstyle=\ttfamily,
+%showstringspaces=false
+%} %DENTRO DE ESO HAY OTRO LISTINGS QUE SE COME LO DE ARRIBA, PERO NO SE SI AFECTA OTRAS COSAS...
 %*******************************************************
 \usepackage{classicthesis-ldpkg}
 %*******************************************************
@@ -619,7 +620,7 @@ p{0.95\textwidth}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
+%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
 %\myPart{Método y Materiales}\label{part:metodoYmateriales}

@@ -141,7 +141,7 @@ Aside from the previous classification, with the advent of new technologies, suc
 
 \subsubsection{P2P evolutionary algorithms}
 
-P2P systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in these networks can appear or disappear dynamically. These platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA that uses a decentralized population, where each peer has a single individual, and new individuals are created combining the ones in their current neighbors. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can be interchanged and combined. Figure \ref{fig:evag} shows this algorithm and its population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic (i.e. fully connected) population. 
+P2P systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in these networks can appear or disappear dynamically. These platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA that uses a decentralized population, where each peer has a single individual, and new individuals are created combining the ones in their current neighbours. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can be interchanged and combined. Figure \ref{fig:evag} shows this algorithm and its population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic (i.e. fully connected) population. 
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -154,12 +154,12 @@ P2P systems are parallel infrastructures composed by a large number of resources
 Other technologies lead to \textsc{Pool-based EAs}, where computational nodes exchange individuals using a shared pool. This allows massive scalability with a heterogeneous underlying structure. This pool can be used as the global population, and the nodes asynchronously read and evaluate the individuals. Another possibility is that each node behaves as an island and uses the pool to share individuals. This can lead to automatic load-balancing and synchronization, allowing the addition and removal of computers. Different technologies can be used. For example, in the work of \person{Meri \etal},  the pool used is based in the Dropbox\texttrademark\, or SugarSync\texttrademark\, file storage services. Other authors propose the use of non-relational databases, such as the work of \person{Merelo \etal} \cite{merelo2010fluid}, using FluidDB\texttrademark. In \cite{merelo2012pool} the same authors improve the design, proposing an asynchronous, fault-tolerant, and scalable dEA, based on the object store CouchDB\texttrademark. The results show that adding clients could not scale, but increase the fault tolerance. Also, their experimentation shows a good methodology for designing EAs in heterogeneous distributed systems, which have the impossibility of analytic performance prediction.
 
 \subsubsection{Grid and volunteer computing}
-Grids are distributed computing systems that allow sharing not geographically centered resources to solve large scale problems. There exist several works that describe EAs being executed in these systems \citep{grid8,grid4,grid10}. \textsc{Volunteer computing} \cite{anderson2005high} proposes the creation of infrastructures to allow people donate CPU cycles for a combined computational effort. Irs main difference with grid computing is the presence of un-trusted resources: for example, some nodes could return intentionally wrong results, so it requires possibility of replication. Also, the control of the participating nodes is not maintained by the experiment launcher. EAs have been used in these systems, using different techniques, such as virtualization \cite{Fernandez2013BOINC} or ``parasite'' computing \cite{Merelo2007browser}.
+Grids are distributed computing systems that allow sharing not geographically centred resources to solve large scale problems. There exist several works that describe EAs being executed in these systems \citep{grid8,grid4,grid10}. \textsc{Volunteer computing} \cite{anderson2005high} proposes the creation of infrastructures to allow people donate CPU cycles for a combined computational effort. Its main difference with grid computing is the presence of un-trusted resources: for example, some nodes could return intentionally wrong results, so it requires possibility of replication. Also, the control of the participating nodes is not maintained by the experiment launcher. EAs have been used in these systems, using different techniques, such as virtualization \cite{Fernandez2013BOINC} or ``parasite'' computing \cite{Merelo2007browser}.
 
 
 \section{Parameter adaptation in Evolutionary Algorithms}
 
-\lettrine{P}arameter adaptation refers to...
+\lettrine{O}{ne} of the greater challenges of the EC field is to find the appropriate values for EAs\cite{Eiben12Parameters}. Usually, these parameters are established by convection or after several test runs, for example. However, practitioners needs to put effort in find these values in order to attain significant performance in its EAs, even taking into account other variables, such as the computational power of the machines used.
 
 \subsection{Parameter Control and Parameter Tuning}
 Two different approaches about the algorithm parameter setting exist in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters of the Evolutionary Algorithm (EA) and changing these parameters in running time. The parameter tuning consist in establishing a good set of parameters {\em before} the run (and do not change these parameters during runtime).
@@ -254,7 +254,7 @@ Object Oriented frameworks, such as Al\-go\-rithm::Evo\-lu\-tionary \cite{PERL},
 Parallelism and distribution are possible in other frameworks, such as
 MALLBA \citep{MALLBA}, \definicion{DREAM}{Distributed Resource Evolutionary Algorithm Machine} \citep{DREAM} or \definicion{ECJ}{Evolutionary Computation in Java} \citep{ECJ}, but
 using external libraries (such as \definicion{MPI}{Message Passing Interface} or \definicion{DRM}{Distributed Resource Machine}), so the code that uses these
-libraries is mixed with the algoritmh's code.
+libraries is mixed with the algorithm's code.
 
 
  Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, %the only service oriented optimization framework is
@@ -286,7 +286,7 @@ libraries is mixed with the algoritmh's code.
 \end{SCtable}
 
 In brief, although these frameworks follow the six criteria for genericity 
-proposed by \person{Gagn\{'e} and Parizeao} in \cite{GENERICITY05}, they present some shortcomings when it is needed to develop
+proposed by \person{Gagn{\'e} and Parizeau} in \cite{GENERICITY05}, they present some shortcomings when it is needed to develop
 or add new features: the user is forced to modify the source code
 or stop the execution to add new functionalities (like load balancing,
 dynamic control of operators, or an user interface).
