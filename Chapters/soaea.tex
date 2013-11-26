@@ -132,7 +132,7 @@ As  stated above, a basic EA is formed by several steps. These steps are common 
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=8cm]{gfx/soaea/basicga.jpg}
+\includegraphics[width=10cm]{gfx/soaea/basicga.jpg}
 \caption{Basic genetic algorithm. White blocks are interfaces and gray blocks are implementations. In this case, we are using specific implementations to solve the Griewank function problem.}
 \label{BASICGAEXAMPLE}
 \end{SCfigure}
@@ -155,7 +155,7 @@ The difference between the previous version of a GA and the well known NSGA-II \
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=8cm]{gfx/soaea/nsga2.jpg}
+\includegraphics[width=10cm]{gfx/soaea/nsga2.jpg}
 \caption{Modification of the basic GA adding new service implementations (grey blocks with thick lines).}
 \label{fig:nsga2}
 \end{SCfigure}
@@ -172,20 +172,20 @@ As every service must keep the same behavior, independently of the machine that 
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=10cm]{gfx/soaea/fitnessdistributor.jpg}
+\includegraphics[width=10cm]{gfx/soaea/distributor.jpg}
 \caption{Fitness distributor. The thick line implementation also re-distribute the individuals.}
 \label{FITNESSDISTRIBUTOR}
 \end{SCfigure}
 
 
 
-One of the most extended model in parallel EAs is the island model. Using SOA-EA, the {\em Population} service implementation can be modified to become a distributed population. Each certain time, this population could exchange individuals with other populations modified by other algorithms. These populations should be added or deleted in execution time without affecting the algorithm execution. Figure \ref{POPULATION} shows this example, where the Island Population implementation maintains a list of references to other Population interfaces (which can be local or remote). Also other Population implementations exist (List Population is the usual list of individuals). If one of these population services drop, the others can continue working. The topology of these islands can also be managed from services (like the Island Population service, or another). The  modification and dynamism of the population structure is difficult to apply in existing frameworks without using SOA because it is necessary to create mechanisms to modify the population behavior, the operators to modify it, the data structures, and also the code to manage all. With he usage of SOA, and due to the capability of accessing to a population via its service interface, it is not necessary to modify the source code to modify the population and its behavior. Also, to avoid bottlenecks in distributed executions, asynchronous communication must be provided to avoid idle time. This kind of communication offers excellent performance when working with different nodes and operating systems, as demonstrated by \cite{HETEROGENEOUS}.
+One of the most extended model in parallel EAs is the island model. Using SOA-EA, the {\em Population} service implementation can be modified to become a distributed population. Each certain time, this population could exchange individuals with other populations modified by other algorithms. These populations should be added or deleted in execution time without affecting the algorithm execution. Figure \ref{POPULATION} shows this example, where a Replacer implementations maintains a list of references to other Population interfaces (which can be local or remote). Also other Population implementations exist (List Population is the usual list of individuals). If one of these population services drop, the others can continue working. The topology of these islands can also be managed from services (such as the Basic Replacer service, or another). The  modification and dynamism of the population structure is difficult to apply in existing frameworks without using SOA because it is necessary to create mechanisms to modify the population behavior, the operators to modify it, the data structures, and also the code to manage all. With he usage of SOA, and due to the capability of accessing to a population via its service interface, it is not necessary to modify the source code to modify the population and its behavior. Also, to avoid bottlenecks in distributed executions, asynchronous communication must be provided to avoid idle time. This kind of communication offers excellent performance when working with different nodes and operating systems, as demonstrated by \cite{HETEROGENEOUS}.
 
 
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=5cm]{gfx/soaea/population.jpg}
+\includegraphics[width=10cm]{gfx/soaea/island.jpg}
 \caption{Island model. From time to time, the implementation {\em Island Population} notifies the islands to initiate the migration.}
 \label{POPULATION}
 \end{SCfigure}
@@ -200,7 +200,7 @@ There are several ways to create self-adaptable algorithms using SOA-EA. For exa
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=5cm]{gfx/soaea/intelligent.jpg}
+\includegraphics[width=10cm]{gfx/soaea/intelligent.jpg}
 \caption{Self-adaptable Algorithm. The {\em Intelligent Operator Selector} selects which service implementation is used each time.}
 \label{INTELLIGENTALGORITHM}
 \end{SCfigure}
