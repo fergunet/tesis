@@ -1,9 +1,9 @@
 \myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}
 \minitoc\mtcskip
 \vfill
-\lettrine{S}{OA} provides a good set of solutions to solve some of the problems in the EA area, such as the lack of integration, standardization and dynamism control. It also allows ease of development in dynamic, distributed and heterogeneous systems. However, several restrictions must be taken into account. In this chapter, we present the existent restrictions in the EA design, according to WHATEVER. Also, the restrictions in SOA design (such as the unordered execution or distribution transparency) are explained to perform a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed.
+\lettrine{S}{OA} provides a good set of solutions to solve some of the problems in the EA area, such as the lack of integration, standardization and dynamism control. It also allows ease of development in dynamic, distributed and heterogeneous systems. However, several restrictions must be taken into account. In this chapter, we present the existent restrictions in the EA design, according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also, the restrictions in SOA design (such as the unordered execution or distribution transparency) are explained to perform a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed.
 
-SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establish that the phases of the SOA design are {\em identification}, {\em specification} and {\em realization} of the services and flows. In this chapter we identify the services that compose an EA and specify some of their possible behaviours. The realization of the designed services will be explained, using an specific technology, in next chapter. 
+SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establish that the phases of the SOA design are {\em identification}, {\em specification} and {\em realization} of the services and flows. In this chapter we identify the services that compose an EA and specify some of their possible behaviours. The realization of the designed services will be explained, using an specific technology, in the next chapter. 
 
 For a better understanding, a complete example of development of an EA is explained. This example is modified to show how to convert an algorithm to another, dynamic operator changing, load balancing and even intelligent aggregation of operators.
 
@@ -19,16 +19,22 @@ The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six cr
 \begin{itemize}
 \item Generic representation: independence of the structure of the individuals. Therefore, services must accept {\em Individuals} interfaces as inputs, not concrete implementations (such as vectors or lists).
 
-\item Generic fitness: 
+\item Generic fitness: Individual fitness should be as independent as possible from the selection operators and individual representation. That means that the fitness evaluation should be outside of the implementation of the individuals (for example, not implementing the fitness in the class that implements the individual). In the case of using SOA, the fitness must be a separate service.
 
-\item Generic operations
+\item Generic operations: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents) requires separation of the concept {\em Crossover} with only two elements, so the crossover steps should accept a list of individuals. Also, new operations must be created without affect the existent ones, allowing the interaction of a non-limited number several operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
 
-\item Generic evolutionary model 
+\item Generic evolutionary model: As explained in Chapter 2, there exist different ways to model an EA leading to a different algorithm (for example, a steady-state GA versus a generational GA, or a GA versus ES). There should be independence of the operators to be used in the model and be possible to change from a model to another. Therefore we can design an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps.
+%%%%%%IMPORTANTE PONER REFERENCIA AL CAPITULO 2 CON \REF
 
-\item Parameter management
+\item Parameter management: parameters, such as the population size, can be modified during runtime. Also, a good framework must accept the addition of new parameters.
 
-\item Configurable output
+\item Configurable output: the output must be configurable. This is due to different statistics could be used depending on the EA: for example, the GP tree depth in GP. Also, different outputs (console, files) should be managed.
+
+
+
 \end{itemize}
+
+All these characteristics of genericity for frameworks for EAs should be taken into account when designing services for EAs. However, requirements are aligned with the requirements for designing services.
 
 \subsection{Restrictions in SOA design}
 
@@ -226,4 +232,10 @@ There are several ways to create self-adaptable algorithms using SOA-EA. For exa
 
 
 Finally, another important usage of EAs is its hybridization with other metaheuristics, to obtain more effective search algorithms \cite{HybridRodriguez2012},  increasing the performance of intensification and diversification mechanisms. With  traditional frameworks this task can be difficult, mainly because the source code for each metaheuristic must be modified. Nevertheless, using SOA a combination of loosely coupled services could be used.
+
+\section{Conclusions}
+In this chapter we have presented the requirements in the EA design: generic representation, generic fitness, generic operations, generic evolutionary model, parameter management and configurable output. On the other hand, the requirements in SOA have been also shown: genericity in the service interfaces, programming language independence, distribution transparency and flexibility. All these requirements have been taken into account to model the services that compose a generic EA, and several guidelines about the design of these services have been explained. We have presented the steps to create a service-oriented evolutionary algorithm that takes advantages of the SOA capabilities. It has been explained how to modify the services to change from a model to another, adding transparent distribution and load-balancing or dynamic adaptation of the parameters.
+
+Next chapter will use a specific SOA technology (OSGi) to implement the examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA.
+
 
