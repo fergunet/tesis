@@ -3,7 +3,7 @@
 \vfill
 \lettrine{P}{revious} chapter has explained some lacks in the development of EAs, mainly related with the integration of different frameworks, distributed programming and heterogeneity of computational environments, among others. This chapter explains the concept Service Oriented Architecture (SOA), with several associated technologies and methodologies, as a possible solution for these issues.
 
-Research in Service Oriented Architectures (SOA) \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{Moussa2010ServiceComposition}.
+Research in SOA \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{Moussa2010ServiceComposition}.
 
 
 
@@ -103,7 +103,7 @@ explained: the main difference between SOA and imperative programming or OOP is 
 
 \section{Implementation technologies}
 
-\lettrine{D}{espite} the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, \definicion{ebXML}{Electronic Business XML} and \definicion{Open Service Gateway Initiative}{OSGi}.
+\lettrine{D}{espite} the fact the concept service is independent to the technology used, there exist several ways to use and implement them, being the most extended the Web Services, \definicion{ebXML}{Electronic Business XML} and \definicion{OSGi}{Open Service Gateway Initiative}.
 
 \subsection{Web Services}
 
@@ -199,10 +199,10 @@ This advantages are not so
                                examples. 
 
 \subsubsection{OSGi Architecture}
-To understand how OSGi \cite{Moussa2010Composition} works and which capabilities could offer to the EA practitioners it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this Figure are:
+To understand how OSGi \cite{Moussa2010Composition} works and which capabilities could offer to the EA practitioners it is necessary to understand how OSGi is built. OSGi has a layered model that is depicted in Figure \ref{fig:osgi-original}. The terms present in this figure are:
 
 \begin{itemize}
-\item Bundles: Bundles are the OSGi components made by developers. Is a normal {\em jar} file including Java classes and interfaces with different MANIFEST.MF and extra files (such as the Service Descriptions).
+\item Bundles: OSGi components made by developers. Is a normal {\em jar} file including Java classes and interfaces with different MANIFEST.MF and extra files (such as the Service Descriptions).
 \item Services: This layer connects bundles in a dynamic way by offering a publish-find-bind model.
 \item Life-Cycle: The API to install, start, stop, update, and uninstall bundles.
 \item Modules: This layer defines how a bundle can import and export code (using the MANIFEST.MF file).
