@@ -618,17 +618,17 @@ p{0.95\textwidth}}
 %-----------------------------
 \myPart{Introduction}\label{part:introduccion}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:dEAs}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:distributedEAs}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
-%\myPart{Método y Materiales}\label{part:metodoYmateriales}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{6}}{\include{Chapters/convLIP}}{\myChapter{Convolución LIP}\label{chap:convLIP}}
+\myPart{Materials and Methods}\label{part:metodoYmateriales}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{7}}{\include{Chapters/criterios_calidad}}{\myChapter{Criterios para la Evaluación de la Calidad de Bordes}\label{chap:criterios}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{8}}{\include{Chapters/cuestionariosBordes}}{\myChapter{Recomendaciones para la Construcción de Cuestionarios de calidad de bordes}\label{chap:recCuestCalidadBordes}}
 %-----------------------------
-%\myPart{Resultados Experimentales}\label{part:resultadosExperimentales}
+\myPart{Experimental Results}\label{part:resultadosExperimentales}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{9}}{\include{Chapters/experimentosConvLIP}}{\myChapter{Aplicaciones Convolución LIP}\label{chap:aplicacionesConvLIP}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{10}}{\include{Chapters/resultadosEncuestas}}{\myChapter{Resultados de los cuestionarios de calidad de bordes}\label{chap:resultadosCuestionarios}}
 %-----------------------------
