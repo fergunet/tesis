@@ -11,7 +11,7 @@ OSGi has been selected for the development of this service oriented architecture
 \item OSGi is faster, because it was designed for
   lightweight devices \cite{LimGateway08}. Therefore, it can be
   used in embedded devices, like Evolutionary Robotics
-  \cite{Garcia2012testing}. Web services were created to integrate complex
+  \cite{Garcia2012testing}. On the contrary, Web services were created to integrate complex
   data interchange among different companies.  
 \item The transmission protocol in web services is SOAP, which implies
   the transmission of an XML ({\em eXtension Markup
@@ -38,7 +38,8 @@ OSGi has been selected for the development of this service oriented architecture
    way, because no specific code is required to combine code from different programs. 
  \item Finally, OSGi includes other features that, although not related to SOA, facilitate the service development: version and package
    control, security and life-cycle management of the used
-   components (as explained by \person{Wagner \etal} \cite{WagnerPlugins07}). These advantages can be used by the EA developers if
+   components, that can be useful in the development of EAs 
+   (as explained by \person{Wagner \etal} \cite{WagnerPlugins07}). These advantages can be used by the EA developers if
    they work in a team collaboration. 
 \end{itemize}
 
@@ -73,7 +74,7 @@ Users have to define three elements to add a new service in OSGiLiath:
   interface is being implemented and which other services needs to be
   activated. 
 \end{itemize}
-
+These concepts were explained in detail in Chapter \ref{chap:soa}.
 The presented implementation includes the interfaces defined in Chapter \ref{chap:soaea}, such as {\em Algorithm}, {\em StopCriterion}, {\em Population} or {\em Recombinator}. These interfaces are grouped with another interfaces that do not need to be a service. For example, the interface of the object {\em Individual}. This interface is used in the {\em Recombinator} interface, which receives a list of {\em Individual} objects to be recombined, and returns another list with the recombined ones.
 Also, several implementations are included, like {\em EvolutionaryAlgorithm} (implementing {\em  Algorithm}) or the rest of  services explained in previous chapters, like the services for NSGA-II.
 
@@ -144,7 +145,9 @@ public void start(){
 \end{SCfigure}
 
 
-This is the code needed by every EA, so it not necessary to modify it. The {\em Service Description} appears when the service interfaces are bound to execute the service implementation. Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:ds}. This file describes that the {\em EvolutionaryAlgorithm} class is an implementation of the {\em Algorithm} interface, and that it needs implementations of the interfaces {\em Population}, {\em Mutator}, {\em ParentSelector}, {\em Replacer}, {\em StopCriterion} and {\em Recombinator} to be activated. It should be noted that this file usually can be modified using a friendly GUI, or from an assistant in Java IDEs, such as NetBeans or Eclipse (so, users do not have to care about its XML structure). The user interface to create this file in Eclipse is shown in Figure \ref{fig:xmlgui}. The interface being implemented is set in the lower part ({\em Algorithm}). The necessary services to activate this implementation are indicated in the upper part (with the cardinality and functions to set and unset the service implementations in the implementation source code).
+This is the code needed by every EA, so it not necessary to modify it (for example, to change from a GA to an ES).  The {\em Service Description} appears when the service interfaces are bound to execute the service implementation. Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:ds}. This file describes that the {\em EvolutionaryAlgorithm} class is an implementation of the {\em Algorithm} interface, and that it needs implementations of the interfaces {\em Population}, {\em Mutator}, {\em ParentSelector}, {\em Replacer}, {\em StopCriterion} and {\em Recombinator} to be activated.
+
+It should be noted that this file usually can be modified using a friendly GUI, or from an assistant in Java IDEs, such as NetBeans or Eclipse (so, users do not have to care about its XML structure). The user interface to create this file in Eclipse is shown in Figure \ref{fig:xmlgui}. The interface being implemented is set in the lower part ({\em Algorithm}). The necessary services to activate this implementation are indicated in the upper part (with the cardinality and functions to set and unset the service implementations in the implementation source code).
 
 \newsavebox{\mintedboxDS}
 \begin{lrbox}{\mintedboxDS}
@@ -227,7 +230,7 @@ None of these options needs to modify the source code of the existing services: 
 
 As previously stated in Section \ref{sec:distribution}, one of the main advantages in SOA-EA is that services can be distributed, so the proposed implementation of the architecture  should also allow  the distribution and load balancing of the EA. In OSGiLiath all services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
 
-OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation \cite{petzold2011dynamic}, and it also supports the largest number of transmission protocols, \textcolor{red}{including both synchronous and asynchronous communication}. ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
+OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, \textcolor{red}{including both synchronous and asynchronous communication}. ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
 
 \newsavebox{\mintedboxServer}
 \begin{lrbox}{\mintedboxServer}
@@ -265,9 +268,9 @@ Previous sections remarked that the SOA-EA benefits are also related to self-ada
 
 \subsection{Increasing interoperability with other systems}
 
-As previously stated, another advantage of SOA is the programming language independence respect to the service interfaces. Although OSGi is a kind of SOA, it does not include  the capability of interoperability with other kind of services by default. However, adaptation services can be added to transform OSGi interfaces into other SOA interfaces, such as Web Services (presented in section \ref{sec:soa}). So, services that are not written in Java, neither OSGi-based, could use services implemented in OSGiLiath (and vice-versa).
+As previously stated, another advantage of SOA is the programming language independence respect to the service interfaces. Although OSGi is a kind of SOA, it does not include  the capability of interoperability with other kind of services by default. However, adaptation services can be added to transform OSGi interfaces into other SOA interfaces, such as Web Services (presented in Chapter \ref{chap:soa}). So, services that are not written in Java, neither OSGi-based, could use services implemented in OSGiLiath (and vice-versa).
 
-For example, using the Axis software inside OSGi all OSGi service interfaces could be transformed into WSDL interfaces automatically. Thus, these services could be used from other systems, that do not need to know the implementation language of the services in OSGiLiath. An example where an OSGi interface is transformed into a WSDL interface is shown in Figure \ref{AXISFIGURE}. The computation node A, based on OSGi, uses the OSGi interface of the computation node C to calculate the fitness. Node B uses the WSDL interface to do the same task. It is not necessary to modify existing services source code to convert an OSGi interface into a WSDL interface. This transformation is bi-directional: given an WSDL interface, it can also be transformed into a service to use inside OSGi. For example, the algorithms in GridUFO framework (presented in Chapter \ref{chap:distributedEAs}) could be used from OSGiLiath.
+For example, using ECF all OSGi service interfaces could be transformed into WSDL interfaces automatically. Thus, these services could be used from other systems, that do not need to know the implementation language of the services in OSGiLiath. An example where an OSGi interface is transformed into a WSDL interface is shown in Figure \ref{AXISFIGURE}. The computation node A, based on OSGi, uses the OSGi interface of the computation node C to calculate the fitness. Node B uses the WSDL interface to do the same task. It is not necessary to modify existing services source code to convert an OSGi interface into a WSDL interface. This transformation is bi-directional: given an WSDL interface, it can also be transformed into a service to use inside OSGi. For example, the algorithms in GridUFO framework (presented in Chapter \ref{chap:distributedEAs}) could be used from OSGiLiath.
 
 
 
@@ -291,7 +294,7 @@ The first experiment of this section is focused on this issue, and will demonstr
 
 
 
-Since the OSGi framework adds features to the implementation of the algorithm that are similar (and even superior) to those offered by several of the frameworks described in Section 2, the same algorithm (with the same operators and parameters) has been coded using several well known frameworks, such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ (Java). Table \ref{tab:times} shows the execution time achieved, average solution, and Lines of Code (LoC) needed to integrate the algorithm for each framework. All the algorithm implementations have been executed on the same computer, an Ubuntu 12.04 Linux Machine with Intel Core2 Quad CPU Q8200 @ 2.33GHz, 4 GB RAM, without any distribution mechanisms. The LoC have been calculated using {\em sloccount} program.
+Since the OSGi framework adds features to the implementation of the algorithm that are similar (and even superior) to those offered by several of the frameworks described in Chapter \ref{chap:distributedEAs}, the same algorithm (with the same operators and parameters) has been coded using several well known frameworks, such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ (Java). Table \ref{tab:times} shows the execution time achieved, average solution, and Lines of Code (LoC) needed to integrate the algorithm for each framework. All the algorithm implementations have been executed on the same computer, an Ubuntu 12.04 Linux Machine with Intel Core2 Quad CPU Q8200 @ 2.33GHz, 4 GB RAM, without any distribution mechanisms. The LoC have been calculated using {\em sloccount} program.
 
 
 
