@@ -191,6 +191,8 @@ Finally, a third classification can be obtained according what evidence is avail
 
 \subsection{Adaptation in heterogeneous hardware}
 
+Adapting algorithm parameters to available computational resources leads to improved performance (see the work of \person{Hamadi and Schoenauer} \cite{AutomaticallyConfiguringStyles12}). An easy way to take advantage of the available resources is the load balancing \cite{Garamendi2006Parallel} to distribute workloads across multiple elements. However, assigning equal tasks  to each node on heterogeneous clusters may result in suboptimal performance (as shown by \person{Bohn and Lamont} \cite{LoadBalancingBohn02}). Parameters of an algorithm could also be adapted to increase the performance of the whole system. For example, the population size in EAs is the key to obtain good performance, because it have effect on the quality of the solution and the time spent during the run \cite{ShrinkageLaredo09}. This parameter has been studied as a fixed \cite{SizingHarik99} or adaptive parameter during runtime \cite{AdaptiveLobo07,SelfRegulatedSizeFernandes06}, but without taking into account the computational power of each machine in a heterogeneous cluster. 
+
 The adaptation of an algorithm can be also used taking into account the different hardware environments.
 For example, one of the problems in parameter adaptation in heterogeneous clusters is 
 the computational load representation. It depends of the algorithm, size of the problem, 

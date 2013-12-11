@@ -1,0 +1,217 @@
+\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}
+\minitoc\mtcskip
+\vfill
+\lettrine{I}{n} this chapter we propose two different parameter adaptation schemes to test if adapting the sub-population sizes of a dEA to the nodes of heterogeneous clusters reduces time. In the field of  Evolutionary Computation (EC) there are two different approaches about the algorithm parameter setting: {\em parameter tuning} and {\em parameter control} \cite{Eiben12Parameters}. The first one consists in establishing a good set of parameters before the run (offline), and do not change them during the execution. The parameter control refers to setting up a number of parameters of the EA  and changing these values in running time (online). For the first approach, a dEA will be executed in the heterogeneous cluster. The obtained results will be used to distribute the number of individual among the nodes (that is, offline). The same sizes set is used in the homogeneous cluster to validate if the changes in performance are dued to the parameters or the adaptation to the nodes. Finally, an online parameter setting that extract relative information of the performance of the nodes will be tested to validate this approach.
+
+
+
+
+\section{Algorithm used}
+\lettrine{T}{he} experimentation is centered in a distributed GA. Figure \ref{fig:EAused} shows the pseudo-code of the used algorithm. 
+The algorithm is steady-state, i.e. every generation the offspring is mixed with the parents and the worst individuals are removed. The used neighborhood topology for migration between islands (nodes) is a ring (see Figure \ref{fig:ring} in Chapter \ref{chap:distributedEAs}). The best individual is sent to the neighbour in the ring, after a fixed number of generations in each island. The algorithm stops when the optimum (the solution to the problem) is found.  
+
+\newsavebox{\algoadaptativebox}
+\begin{lrbox}{\algoadaptativebox}
+\begin{minipage}{10cm}
+\begin{algorithmic}
+\STATE population $\gets$ initializePopulation()
+\WHILE {$stop criterion not met$}
+    \STATE parents $\gets$ selection(population)
+    \STATE offspring $\gets$ recombination(parents)
+    \STATE offspring $\gets$ mutation(offspring)
+    \STATE population $\gets$ population + offspring
+    \IF {time to migrate}
+      \STATE migrants $\gets$ selectMigrants(population)
+      \STATE remoteBuffer.send(migrants)
+    \ENDIF
+    \IF {localBuffer.size $\neq$ zero}
+      \STATE population $\gets$ population + localBuffer.read()
+    \ENDIF
+    \STATE population $\gets$ removeWorst(population)
+\ENDWHILE
+\end{algorithmic}
+\end{minipage}
+\end{lrbox}
+
+\begin{SCfigure}[20][htb]
+\usebox{\algoadaptativebox}
+\caption{Pseudo-code of the used dEA: a distributed Genetic Algorithm (dGA).}
+\label{fig:EAused}
+\end{SCfigure}
+
+
+
+
+\section{Problems}
+%No empieces con "the problems to evaluate". Di que los resultados
+%deberían ser más o menos independientes del problema, pero se han
+%elegido estos por tal y cual. Tienes que justificar que con estos es
+%suficientes, para que no te digan el clásico "Prueba otro algoritmo"
+%- JJ
+
+The problems to evaluate are the Massively Multimodal Deceptive
+Problem (MMDP) \cite{goldberg92massive} and the OneMax problem
+\cite{SchafferOnemax91}. Each one requires different actions/abilities by the GA
+at the level of population sizing, individual selection and
+building-blocks mixing. The MMDP
+
+ is designed to be difficult for an EA, due to
+its multimodality and deceptiveness. Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending of
+the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:mmdpvalues}.  
+
+\begin{SCtable}[][t]
+\resizebox{5cm}{!}{
+\begin{tabular}{cc}
+\hline
+\rowcolor{colorCorporativoSuave}Unitation&Subfunction value\\
+\hline\hline
+\rowcolor{colorCorporativoMasSuave}0 & 1.000000 \\
+\hline
+\rowcolor{colorCorporativoSuave}1 & 0.000000 \\
+\hline
+\rowcolor{colorCorporativoMasSuave}2 & 0.360384 \\
+\hline
+\rowcolor{colorCorporativoSuave}3 & 0.640576\\
+\hline
+\rowcolor{colorCorporativoMasSuave}4 & 0.360384\\
+\hline
+\rowcolor{colorCorporativoSuave}5 & 0.000000\\
+\hline
+\rowcolor{colorCorporativoMasSuave}6 & 1.000000\\
+\hline
+
+\end{tabular}
+}
+\caption{ Basic deceptive bipolar function ($s_i$) for MMDP.}
+\label{table:mmdpvalues}
+
+\end{SCtable}
+%%%%%%%%%%%%%%%%%%
+
+
+
+The fitness value is defined as the sum of the $s_i$ subproblems with an optimum of $k$ (Equation \ref{eq:mmdp}).
+The search space is composed of $2^{6k}$ combinations from which there
+are only $2^k$ global solutions with $22^k$ deceptive
+attractors. Hence, a search method have to find a global solution
+out of $2^{5k}$ additionally to deceptiveness. In this work $k=25$. 
+
+\begin{equation}\label{eq:mmdp}
+f_{MMDP}(\vec s)= \sum_{i=1}^{k} fitness_{s_i}
+\end{equation}
+
+OneMax is a simple linear problem that consists in maximising the number of ones in a binary string. That is, maximize the expression:
+\begin{equation}
+f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
+\end{equation}
+
+\section{Hardware and parameter configurations}
+
+\begin{itemize}
+\item HoSi/HeHa: Homogeneous Size/Heterogeneous Hardware. The same sub-population size in each island on a heterogeneous cluster.
+\item HeSi/HeHa: Heterogeneous Size/Heterogeneous Hardware. Different sub-population sizes in each island on a heterogeneous cluster.
+\item HoSi/HoHa: Homogeneous Size/Homogeneous Hardware. The same sub-population size in each island on a homogeneous cluster.
+\item HeSi/HoHa: Heterogeneous Size/Homogeneous Hardware. Different sub-population sizes (the obtained for HeSi/HeHa) in each island on a homogeneous cluster.
+
+\item AdSi/HeHa: Adaptive Size/Heterogeneous Hardware. Online adaptation of sub-population sizes in each island on a heterogeneous cluster.
+\end{itemize}
+
+Two different computational systems have been used: a {\em heterogeneous cluster} and a {\em homogeneous cluster}. The first one is formed by four different computers of our lab with different processors, operating systems and memory size. The latter is a dedicated scientific cluster formed by homogeneous nodes. Table \ref{tabcomputers} shows the features of each system and the name of the nodes.
+
+\begin{SCtable}[][t]
+\resizebox{11cm}{!}{
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\rowcolor{colorCorporativoSuave}Name     & Processor  & Memory  & Operating System  & Network  \\ \hline \hline
+\multicolumn{5}{|>{\columncolor{colorCorporativoMasSuave}}c|}{Homogeneous cluster} \\ \hline
+\rowcolor{colorCorporativoSuave}HoN[1-4] &  Intel(R) Xeon(R) CPU   E5320  @ 1.86GHz       & 4GB & CentOS 6.7    &   Gigabit Ethernet    \\ \hline
+\hline
+\multicolumn{5}{|>{\columncolor{colorCorporativoMasSuave}}c|}{Heterogeneous cluster} \\ \hline
+\rowcolor{colorCorporativoSuave}HeN1  &  Intel(R) Core(TM)2 Quad CPU    Q6600  @ 2.40GHz    & 4GB   & Ubuntu 11.10 (64 bits)  & Gigabit Ethernet      \\ \hline
+\rowcolor{colorCorporativoMasSuave}HeN2  &  Intel(R) Core(TM)2 Quad CPU    Q6600  @ 2.40GHz    & 4GB   & Ubuntu 11.04 (64 bits)  & Gigabit Ethernet      \\ \hline
+\rowcolor{colorCorporativoSuave}HeN3  &  AMD Phenom(tm) 9950 Quad-Core Processor @ 1.30Ghz    & 3GB   & Ubuntu 10.10 (32 bits)  & 100MB Ethernet      \\ \hline
+\rowcolor{colorCorporativoMasSuave}HeN4  &  Intel (R) Pentium 3 @ 800MHz               & 768 MB  & Ubuntu 10.10 (32 bits)  &   10MB Ethernet     \\ \hline
+\end{tabular}
+\caption{Details of the clusters used: a homogeneous cluster (Ho), and a heterogeneous cluster (He)}
+\label{tabcomputers}
+}
+\end{SCtable}
+
+\subsection{Homogeneous Size configuration}
+
+In this configuration, each node has 256 individuals (so, the total amount is 1024). After executing the algorithm 40 times per problem on the heterogeneous cluster, we have obtained the average number of generations in each node, as it can be seen in Table \ref{table:generations}. Note how the generations attained (and their proportion in every node) to reach the optimum depends on the problem considered (besides the hardware).
+
+
+
+\begin{SCtable}[][t]{
+\begin{tabular}{ccccc} \hline
+\rowcolor{colorCorporativoSuave}Node        & HeN1     & HeN2      & HeN3     & HeN4   \\ \hline \hline
+\multicolumn{5}{>{\columncolor{colorCorporativoMasSuave}}c}{MMDP problem} \\ \hline
+\rowcolor{colorCorporativoSuave}Generations & 10990.25 & 10732.075 &  7721.15 & 717.95 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Proportion  & 36.43    & 35.58    & 25.59    & 2.38    \\ \hline
+\multicolumn{5}{>{\columncolor{colorCorporativoSuave}}c}{OneMax problem} \\ \hline
+\rowcolor{colorCorporativoMasSuave}Generations & 2430.27 & 2353.77 & 1423.77 & 91.5 \\ \hline
+\rowcolor{colorCorporativoSuave}Proportion  & 38.58   & 37.36   & 22.6   & 1.45 \\ \hline
+\end{tabular}
+\caption{Average number of generations in each node needed to find the
+  optimum on the heterogeneous cluster with heterogeneous size.}
+\label{table:generations}
+}
+\end{SCtable}
+
+
+\subsection{Heterogeneous Size configuration}
+
+Our aim consists in validating the following hypothesis: adapting the sub-population size to the computational power of the heterogeneous cluster nodes presents an improvement in execution time. In this work, for a possible offline manner, we have used the average number of generations obtained in the HoSi/HeHa configuration for both problems to determine the computational power of the heterogeneous machines. This comparison takes into account all the evolutionary process in a fair manner (proportional to the memory, processor and network usage), instead a traditional benchmark that usually relies only on the CPU speed. Although this is not obviously the best way, it is a possible way to establish the computational power for the experiments of this work and to determine if changing the sub-population size according the computational power reduces the computing time of the whole approach. It should be considered that the contribution of this work is not the way we have computed these sizes, but compare the algorithm with parameters adapted to their power.
+
+Thus, we have used the obtained average number of generations in the previous sub-section (Table \ref{table:generations}) to set proportionally the sizes in the HeSi/HeHa and HeSi/HoHa configurations, by dividing the total number of individuals (1024). Note that, even having two nodes with the same processors and memory (HeN1 and HeN2), they could have different computational power: this may be produced by different operating systems, virtual machine versions, or number of processes being executed (inside a node).
+
+
+
+\subsection{Adaptive Size configuration}
+
+Finally, in order to validate the hypothesis that adapt the sub-population sizes to computational resources of a heterogeneous cluster leads to decrease of time for obtain the solution, we propose a third configuration. In this experiment, the adaptation of the sub-population size to the computational power of the islands (nodes) is performed during runtime (online).  Each time a node ($N$) receives an individual, it compares its current number of generations ($Gen_{N}$) with the ones of the node who sent the individual (node $N-1$ in the ring). Then, the sub-population size is adapted proportionally to the difference in the number of generations, following the next equation:
+
+\begin{equation}
+size'_{N}=\dfrac{Gen_{N}}{Gen_{N-1}}size_{N}
+\end{equation}
+
+If the new size is larger than the actual size, new individuals are added to the sub-population cloning random existent ones. Otherwise, the sub-population must be reduced and thus, the worst are removed.
+
+With this possible online adaptation scheme, each node only requires to receive information of one of the neighbours and not from the whole system. Thus, each node tends to have a number of individuals proportional to their computational power with respect to the other nodes. Experiments on homogeneous cluster do not alter the sub-population sizes, as the number of current generations are equal in all nodes during runtime.
+
+Table \ref{table:parameters} summarizes all the parameters used in the experiments.
+
+\begin{SCtable}[][t]
+\resizebox{11cm}{!}{
+\begin{tabular}{cc}
+\hline
+\rowcolor{colorCorporativoSuave}Name & Value\\ \hline \hline
+\rowcolor{colorCorporativoMasSuave}Crossover type & Two-points crossover \\ \hline
+\rowcolor{colorCorporativoSuave}Crossover rate & 0.5\\ \hline
+\rowcolor{colorCorporativoMasSuave}Mutation rate & 1/individual size\\ \hline
+\rowcolor{colorCorporativoSuave}Selection & 2-tournament \\ \hline
+\rowcolor{colorCorporativoMasSuave}Replacement & Steady-state\\ \hline
+\rowcolor{colorCorporativoSuave}Generations to migrate & 64 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Number of individuals to migrate & 1 \\ \hline
+\rowcolor{colorCorporativoSuave}Stop criterion & Optimum found \\ \hline
+\rowcolor{colorCorporativoMasSuave}Individual size for MMDP & 150 \\ \hline
+\rowcolor{colorCorporativoSuave}Individual size for OneMax & 5000 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Runs per configuration & 40 \\ \hline
+\hline
+\rowcolor{colorCorporativoSuave}Total individuals in HoSi and HeSi & 1024\\ \hline \hline
+\rowcolor{colorCorporativoMasSuave}Sub-population size in each node in HoSi & 256  \\ \hline
+\rowcolor{colorCorporativoSuave}Sub-population sizes in HeSi for MMDP & 374, 364, 262 and 24 (from N1 to N4)\\ \hline
+\rowcolor{colorCorporativoMasSuave}Sub-population sizes in HeSi for OneMax & 396,  382, 232 and 14 (from N1 to N4)\\ \hline
+\hline
+\rowcolor{colorCorporativoSuave}Maximum island size in AdSi & 1024 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Minimum island size in AdSi & 16 \\ \hline
+\rowcolor{colorCorporativoSuave}Initial island size in AdSi & 256 \\ \hline 
+\end{tabular}
+}
+\caption{Parameters used in all configurations.}
+\label{table:parameters}
+\end{SCtable}
+
+%\section{Implementation in OSGiLiath}
+%In order to deal with the operating system and architecture heterogeneity (different operating systems, processors, compilers, etc.), the OSGiLiath framework \cite{SOASOCO}, based in Java, has been used in this work. This is a service-oriented evolutionary framework that automatically configures the services to be used in a local network. In this case, each node offers a migration buffer to accept foreign individuals. Also, in order to reduce bottlenecks in distributed executions, asynchronous communication has been provided to avoid idle time using reception buffers (that is, the algorithm does not wait until new individuals arrive, but the buffers cannot be used again until the reception is done). This kind of communication offers an excellent performance when working with different nodes and operating systems, as demonstrated in \cite{HETEROGENEOUSHARD,AsynchronousMerelo08}. The transmission mechanism is based on ECF Generic server (over TCP)\footnote{\url{http://www.eclipse.org/ecf/}}.  The source code of the algorithms used in this work is available in \url{http://www.osgiliath.org} under a LGPL V3 License. 
