@@ -3,6 +3,37 @@
 \vfill
 \lettrine{I}{n} Chapter \ref{chap:soaea} we presented the services that conform an Evolutionary Algorithm and the process to design a service oriented EA. Although the previous examples can be developed using any SOA technology, this chapter presents OSGiLiath ({\em OSGi Laboratory for Implementation and Testing of metaHeuristics}), an implementation of SOA-EA based in OSGi. 
 
+\section{Framework description}
+This proposed environment is a  framework for the development of heuristic optimization applications, not centered on a concrete paradigm, and whose main objective is to promote the OSGi and SOA usage and offer to programmers the next features:
+
+\begin{itemize}
+\item Easy interfaces. After a study of the previous frameworks a complete interface hierachy has been developed.
+\item Asynchronous data sending/receiving. Thanks to ECF distributed capabilities, the framework has easy distribution of services, without implementing specific source functions, like MPI or other distribution frameworks. Programmers do not need to write communication code. 
+\item Component Oriented Programming. The framework is plug-in oriented, so new improvements can be added in easy way without modification of existent modules. Adding o modifying implementations of services can be performed without re-compilation of the source code.
+\item Client/Server or Distributed Model. All components of the framework can communicate in a bi-directional way, so a central broker is not necessary if it is not required.
+\item Paradigm independent. The framework is not focused in a type of metaheuristic.
+\item Declarative Services. Bind interfaces to specific implementations can be done without modifying existent source code. Programmers do not need to instantiate implementations of the services.
+\item Remote event handling: Using the OSGi advantages, users can use a powerful tool to synchronize or share data among services.
+\end{itemize}
+
+The source code is available at \url{http://www.osgiliath.org}, under a LGPL license.
+
+\subsection{OSGiLiath organization}
+
+By now, OSGiLiath counts with the next bundles:
+
+\begin{itemize}
+\item osgiliath: This is the core bundle. It includes all the interfaces common to the algorithms such as {\em Algorithm}, {\em AlgorithmParameters} or {\em Problem}. 
+\item Evolutionary Algorithm:  Includes the {\em EvolutionaryAlgorithm} implementation and interfaces to create the rest of the services that form an EA: {\em Recombinator} and {\em Crossover}, {\em Mutator} and {\em Mutation}, {\em StopCriterion} or {\em FitnessCalculator}. It also provides interfaces for the creation of individuals: {\em Individual}, {\em Fitness}, {\em Gene}, and {\em Genome}. 
+\item Basic Evolutionary Components: Includes several implementations (the most common ones) of the previous interfaces: {\em ListPopulation}, {\em ListIndividual}, {\em DoubleFitness}, {\em NGenerationStopCriterion}, {\em BasicOrderRecombinator}, {\em UPXListCrossover} and others.
+\item Binary Problems: Includes implementation of well-known problems, such as OneMax and MMDP: {\em OneMaxFitnessCalculator}, {\em MMDPFitnessCalculator} or {\em BinaryProblemRandomInitializer}.
+\item Function Problems: Multi-dimensional optimization functions, such as Griegwank or Rastrigin are implemented in this bundle, with their associate Initializers or Fitness Calculators.
+\item NSGA2: Interfaces and implementations of services for the NSGA2 algorithm.
+\item OSGiLiART: Service implementation for the creation of Evolutionary Art: {\em ArtisticIndividual} or {\em HistogramFitnessCalculator} are examples.
+\item NoOSGi: Because OSGi allows the separation of source code with the OSGi framework capabilities, this bundle includes Java code to integrate the services without any specific technology (just using basic Object Oriented programming).
+\item IntelligentManager: An example of how the services can be bound/unbound in real-time. By now, in each step the {\em IntelligentRandomManager} selects randomly from the available Crossovers, Mutators and Replacers implementations.
+\end{itemize}
+
 \section{Reasons to use OSGi}
 OSGi has been selected for the development of this service oriented architecture instead Web Services  attending the following reasons:
 
@@ -230,7 +261,10 @@ None of these options needs to modify the source code of the existing services: 
 
 As previously stated in Section \ref{sec:distribution}, one of the main advantages in SOA-EA is that services can be distributed, so the proposed implementation of the architecture  should also allow  the distribution and load balancing of the EA. In OSGiLiath all services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
 
-OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, \textcolor{red}{including both synchronous and asynchronous communication}. ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
+OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, including both synchronous and asynchronous communication. ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
+
+
+
 
 \newsavebox{\mintedboxServer}
 \begin{lrbox}{\mintedboxServer}
@@ -270,6 +304,12 @@ Previous sections remarked that the SOA-EA benefits are also related to self-ada
 
 As previously stated, another advantage of SOA is the programming language independence respect to the service interfaces. Although OSGi is a kind of SOA, it does not include  the capability of interoperability with other kind of services by default. However, adaptation services can be added to transform OSGi interfaces into other SOA interfaces, such as Web Services (presented in Chapter \ref{chap:soa}). So, services that are not written in Java, neither OSGi-based, could use services implemented in OSGiLiath (and vice-versa).
 
+ECF includes a number of protocols for service discovery and service providers:
+\begin{itemize}
+\item Service Discovery API: Includes protocols to announce and discover remote services: Zeroconf, SLP/RFC 2608, Zookeeper, file-based and others \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Discovery_API}}.
+\item Remote Service API: Includes protocols to establish the communication (data streams, formats and others): R-OSGi, ActiveMQ/JMS, REST, SOAP, XMPP, ECF Generic \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Remote_Services_API}}. This allow to communicate to systems that do not use OSGi or Java.
+\end{itemize}
+
 For example, using ECF all OSGi service interfaces could be transformed into WSDL interfaces automatically. Thus, these services could be used from other systems, that do not need to know the implementation language of the services in OSGiLiath. An example where an OSGi interface is transformed into a WSDL interface is shown in Figure \ref{AXISFIGURE}. The computation node A, based on OSGi, uses the OSGi interface of the computation node C to calculate the fitness. Node B uses the WSDL interface to do the same task. It is not necessary to modify existing services source code to convert an OSGi interface into a WSDL interface. This transformation is bi-directional: given an WSDL interface, it can also be transformed into a service to use inside OSGi. For example, the algorithms in GridUFO framework (presented in Chapter \ref{chap:distributedEAs}) could be used from OSGiLiath.
 
 
@@ -277,7 +317,7 @@ For example, using ECF all OSGi service interfaces could be transformed into WSD
 
 
 
-\begin{SCfigure}[20][tb]
+\begin{SCfigure}[20][htb]
 \centering
 \includegraphics[width=10cm]{gfx/osgiliath/axis.png}
 
