@@ -76,21 +76,22 @@
 % ********************************************************************
 % Re-usable information
 % ********************************************************************
-\newcommand{\myTitle}{Extracción Eficiente de la Estructura de Escenas Naturales\xspace}
+\newcommand{\myTitle}{Service Oriented Architecture for Adaptive Evolutionary Algorithms\xspace}
 \newcommand{\myDegree}{Doctor en Informática\xspace}
-\newcommand{\myName}{José Manuel Palomares Muñoz\xspace}
+\newcommand{\myName}{Pablo García Sánchez\xspace}
 \newcommand{\myDegreeManualName}{Tesis Doctoral\xspace}
 \newcommand{\myProf}{myProf\xspace}
 \newcommand{\myOtherProf}{myOtherProf\xspace}
 \newcommand{\myDirectorOne}{Jesús González Peñalver}
-\newcommand{\myDirectorTwo}{Eduardo Ros Vidal}
-\newcommand{\mySupervisor}{Prof. Dr. D. \myDirectorOne\\Prof. Dr. D. \myDirectorTwo}
-\newcommand{\myFaculty}{Escuela Politécnica Superior de Informática y Telecomunicaciones\xspace}
+\newcommand{\myDirectorTwo}{Juan Julián Merelo Guervós}
+\newcommand{\myDirectorThree}{Alberto Prieto Espinosa}
+\newcommand{\mySupervisor}{Prof. Dr. D. \myDirectorOne\\Prof. Dr. D. \myDirectorTwo\\Prof. Dr. D. \myDirectorThree}
+\newcommand{\myFaculty}{Escuela Técnica Superior de Informática y Telecomunicaciones\xspace}
 \newcommand{\myDepartment}{Arquitectura y Tecnología de Computadores\xspace}%(Circuits and Systems for Information Processing)
 \newcommand{\myUni}{\protect{Universidad de Granada}\xspace}
 \newcommand{\myLocation}{Granada\xspace}
 \newcommand{\myDay}{13}
-\newcommand{\myTime}{enero 2011\xspace}
+\newcommand{\myTime}{enero 2014\xspace}
 %*******************************************************
 % Packages with options that might require adjustments
 %*******************************************************
@@ -503,7 +504,7 @@ p{0.95\textwidth}}
 \setboolean{TesisCompleta}{false}
 
 \newboolean{PaginasDeInicio}
-\setboolean{PaginasDeInicio}{false}
+\setboolean{PaginasDeInicio}{true}
 
 \newcounter{IncluyeCapitulo}
 \setcounter{IncluyeCapitulo}{2}
@@ -621,18 +622,18 @@ p{0.95\textwidth}}
 %-----------------------------  PONER LETTRINE EN SECCIONES Y NO INDENT EN SUBSECCIONES!!!
 \myPart{Introduction}\label{part:introduccion}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:distributedEAs}}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:distributedEAs}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
 \myPart{Materials and Methods}\label{part:metodoYmateriales}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{8}}{\include{Chapters/cuestionariosBordes}}{\myChapter{Recomendaciones para la Construcción de Cuestionarios de calidad de bordes}\label{chap:recCuestCalidadBordes}}
 %-----------------------------
 \myPart{Experimental Results}\label{part:resultadosExperimentales}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptiveresults}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptiveresults}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptiveresults}}{\myChapter{Results on parameter adaptation in heterogeneous machines}\label{chap:adaptiveresults}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{10}}{\include{Chapters/resultadosEncuestas}}{\myChapter{Resultados de los cuestionarios de calidad de bordes}\label{chap:resultadosCuestionarios}}
 %-----------------------------
 %\myPart{Discusión y Conclusiones}\label{part:discusionYconclusiones}
