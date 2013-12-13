@@ -76,7 +76,7 @@
 % ********************************************************************
 % Re-usable information
 % ********************************************************************
-\newcommand{\myTitle}{Service Oriented Architecture for Adaptive Evolutionary Algorithms\xspace}
+\newcommand{\myTitle}{Service Oriented Architecture for Adaptive Evolutionary Algorithms: Implementation and Applications\xspace}
 \newcommand{\myDegree}{Doctor en Informática\xspace}
 \newcommand{\myName}{Pablo García Sánchez\xspace}
 \newcommand{\myDegreeManualName}{Tesis Doctoral\xspace}
@@ -628,12 +628,11 @@ p{0.95\textwidth}}
 %-----------------------------
 \myPart{Materials and Methods}\label{part:metodoYmateriales}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{8}}{\include{Chapters/cuestionariosBordes}}{\myChapter{Recomendaciones para la Construcción de Cuestionarios de calidad de bordes}\label{chap:recCuestCalidadBordes}}
 %-----------------------------
 \myPart{Experimental Results}\label{part:resultadosExperimentales}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptiveresults}}{\myChapter{Results on parameter adaptation in heterogeneous machines}\label{chap:adaptiveresults}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{10}}{\include{Chapters/resultadosEncuestas}}{\myChapter{Resultados de los cuestionarios de calidad de bordes}\label{chap:resultadosCuestionarios}}
 %-----------------------------
 %\myPart{Discusión y Conclusiones}\label{part:discusionYconclusiones}

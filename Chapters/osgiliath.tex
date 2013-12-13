@@ -4,19 +4,19 @@
 \lettrine{I}{n} Chapter \ref{chap:soaea} we presented the services that conform an Evolutionary Algorithm and the process to design a service oriented EA. Although the previous examples can be developed using any SOA technology, this chapter presents OSGiLiath ({\em OSGi Laboratory for Implementation and Testing of metaHeuristics}), an implementation of SOA-EA based in OSGi. 
 
 \section{Framework description}
-This proposed environment is a  framework for the development of heuristic optimization applications, not centered on a concrete paradigm, and whose main objective is to promote the OSGi and SOA usage and offer to programmers the next features:
+This proposed environment is a  framework for the development of heuristic optimization applications, not centered on a concrete paradigm, and whose main objective is to promote  SOA benefits and offer these features to programmers:
+
 
 \begin{itemize}
-\item Easy interfaces. After a study of the previous frameworks a complete interface hierachy has been developed.
-\item Asynchronous data sending/receiving. Thanks to ECF distributed capabilities, the framework has easy distribution of services, without implementing specific source functions, like MPI or other distribution frameworks. Programmers do not need to write communication code. 
-\item Component Oriented Programming. The framework is plug-in oriented, so new improvements can be added in easy way without modification of existent modules. Adding o modifying implementations of services can be performed without re-compilation of the source code.
-\item Client/Server or Distributed Model. All components of the framework can communicate in a bi-directional way, so a central broker is not necessary if it is not required.
-\item Paradigm independent. The framework is not focused in a type of metaheuristic.
-\item Declarative Services. Bind interfaces to specific implementations can be done without modifying existent source code. Programmers do not need to instantiate implementations of the services.
-\item Remote event handling: Using the OSGi advantages, users can use a powerful tool to synchronize or share data among services.
+\item Well defined interfaces. As previously stated, service interfaces have been designed to be as abstract as possible.
+\item Asynchronous data sending/receiving. Due to the distribution capabilities offered by OSGi, the presented implementation allows the direct distribution of services, without the need to implement specific functions in the source code, like MPI or other distribution mechanisms. EAs developers can use the existing distribution services or create new ones, if they want.
+\item Service oriented programming. New improvements can be added without modifying the existing modules, that is, adding or modifying only the affected service implementations without modifying the source code of the other services.
+\item Server/client or distributed model. All the components of this implementation can communicate in a bi-directional way, so it is not mandatory to use a central server to manage other nodes.
+\item Paradigm independent. Although the first developments are focused on EAs, this architecture can be extensible to other kind of metaheuristics.
+\item Remote event handling. Users can handle a
+  powerful synchronization tool among distributed services using OSGi features. 
+                               
 \end{itemize}
-
-The source code is available at \url{http://www.osgiliath.org}, under a LGPL license.
 
 \subsection{OSGiLiath organization}
 
@@ -76,19 +76,7 @@ OSGi has been selected for the development of this service oriented architecture
 
 More information about the application of OSGi in other areas, with good practices, benefices and lessons learned are provided by the authors in \cite{GarciaSanchez2013Gateway}.
 
-The objective of this implementation is to promote SOA benefits and offer  these features to programmers:
 
-
-\begin{itemize}
-\item Well defined interfaces. As previously stated, service interfaces must be as abstract as possible.
-\item Asynchronous data sending/receiving. Due to the distribution capabilities offered by OSGi, the presented implementation allows the direct distribution of services, without the need to implement specific functions in the source code, like MPI or other distribution mechanisms. EAs developers can use the existing distribution services or create new ones, if they want.
-\item Service oriented programming. New improvements can be added without modifying the existing modules, that is, adding or modifying only the affected service implementations without modifying the source code of the other services.
-\item Server/client or distributed model. All the components of this implementation can communicate in a bi-directional way, so it is not mandatory to use a central server to manage other nodes.
-\item Paradigm independent. Although the first developments are focused on EAs, this architecture can be extensible to other kind of metaheuristics.
-\item Remote event handling. Users can handle a
-  powerful synchronization tool among distributed services using OSGi features. 
-                               
-\end{itemize}
 
 The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/GPL license. This code is an updated version of the work published in \cite{GarciaSanchezDistributed2010}. 
 
