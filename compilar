@@ -8,11 +8,11 @@ rm *.log
 rm *~
 rm *.dvi
 
-pdflatex tesis.tex 
-pdflatex tesis.tex 
+pdflatex -shell-escape tesis.tex 
+pdflatex -shell-escape tesis.tex 
 bibtex tesis 
-pdflatex tesis.tex
-pdflatex tesis.tex
-pdflatex tesis.tex
+pdflatex -shell-escape tesis.tex
+pdflatex -shell-escape tesis.tex
+pdflatex -shell-escape tesis.tex
 echo "-----------------------------"
 echo "ESTO ACABAO"
