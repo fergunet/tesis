@@ -1,11 +1,30 @@
-\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}
+\myChapter{A Service Oriented Architecture for EAs}\label{chap:soaea}
 \minitoc\mtcskip
 \vfill
-\lettrine{S}{OA} provides a good set of solutions to solve some of the problems in the EA area, such as the lack of integration, standardization and dynamism control. It also allows ease of development in dynamic, distributed and heterogeneous systems. However, several restrictions must be taken into account. In this chapter, we present the existent restrictions in the EA design, according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also, the restrictions in SOA design (such as the unordered execution or distribution transparency) are explained to perform a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed.
+\lettrine{S}{OA}s provide a good set of solutions to solve some of the
+problems in the EA area, such as the lack of integration,
+standardization and dynamism control. It also allows ease of
+development in dynamic, distributed and heterogeneous systems. % ¿quién
+                                % ha dicho que eso es un problema? - JJ
+ However, several restrictions must be taken into account. In this
+ chapter, we present the existent restrictions in the EA design,
+ according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also,
+ the restrictions in SOA design (such as the unordered execution or
+ distribution transparency) are explained to perform % are explained
+                                % to perform? - Jj
+ a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed.
 
-SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establish that the phases of the SOA design are {\em identification}, {\em specification} and {\em realization} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The realization of the designed services will be explained, using an specific technology, in the next chapter. 
+SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establishes that the phases of the SOA design are {\em identification}, {\em specification} and {\em realization} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The realization of the designed services will be explained, using an specific technology, in the next chapter. 
 
-For a better understanding, a complete example of development of an EA is explained. This example is modified to show how to convert an algorithm to another, dynamic operator changing, load balancing and even intelligent aggregation of operators.
+For a better understanding, a complete example of development of an EA
+is explained. This example is modified to show how to convert an
+algorithm to another, dynamic operator changing, load balancing and
+even intelligent aggregation of operators.
+
+% ¿Este capítulo es ciencia? ¿Tecnología? ¿Puro desarrollo? Deja bien
+% clara la aportación de este artículo, aparte de la obvia
+% implementación. ¿Has hecho una abstracción de los algoritmos
+% genéticos? ¿Un survey de técnicas usadas? - JJ
 
 \section{Design of services for Evolutionary Algorithms}
 
@@ -18,7 +37,9 @@ This section shows the restrictions for designing EAs (from the point of view of
 In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs.
 
 \begin{itemize}
-\item Generic Representation: the structure of the individuals must no Therefore, services must accept {\em Individuals} interfaces as inputs, not concrete implementations (such as vectors or lists).
+\item Generic Representation: the structure of the individuals must no
+  Therefore, services must accept {\em Individuals} interfaces as
+  inputs, not concrete implementations (such as vectors or lists). % ¿Por qué las mayúsculas? - JJ
 \item Generic Fitness: In the case of using SOA, the fitness must be a separate service.
 \item Generic Evolutionary Model: An example would be an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps.
 \end{itemize}
@@ -42,15 +63,50 @@ As explained in previous chapter, when developing within a SOA, \person{Papazogl
 \item Reusable: services should be designed to be used by as many applications as possible. 
 \end{itemize}
 
-One of the main restrictions in SOA, apart from focusing in develop abstract services, is the stateless nature of services. Therefore, in SOA the services design must follow several guidelines.
+One of the main restrictions in SOA, % ¿SOA o SOAs? será "a SOA" o
+                                % "SOAs", ¿no? - Jj
+ apart from focusing in the development of abstract services, is the
+ stateless nature of services. Therefore, in SOA the services design
+ must follow several guidelines. % ¿Puede estar esto relacionado con
+                                % programación funcional? Podías mirar
+                                % y citar los papers de Albert al
+                                % respecto - JJ
 
-First, as services are unaware of others, there must not be global variables in any part of the code. Services are listening, and waiting to be executed. For example, a fitness service with a counter that is increased each time is called (to stop the algorithm if a limit is reached, for example). If several (and different) algorithms are working in parallel, and calling this function at the same time the counter would not distinguish between algorithms, giving erroneous results. However, a service that maintains some kind of state is allowed, for example, a statistic service that read events from all the algorithms being executed at the same time, but this should be managed to avoid errors.
+First, as services are unaware of each other, there must not be global
+variables in any part of the code. Services are listening, and waiting
+to be executed. For example, a fitness service with a counter that is
+increased each time is called (to stop the algorithm if a limit is
+reached, for example). If several (and different) algorithms are
+working in parallel, and calling this function at the same time the
+counter would not distinguish between algorithms, giving erroneous
+results. However, a service that maintains some kind of state is
+allowed, for example, a statistic service that read events from all
+the algorithms being executed at the same time, but this should be
+managed to avoid errors. % ¿en qué quedamos entonces? ¿Se permite o no
+                         % se permite? - JJ
 
-Also, a service must not be distinguishable from local or remote running in other node in the network. Every stage in the algorithm should be treated as service to be executed in local or in remote, even the {\em Population} or the {\em Parameters}. Mechanisms to ensure the correct data-sharing should be provided. Also, many implementations of the same service could exist at the same time (different implementations of {\em Crossover}, for example) and it should be correctly managed and used.
+Also, a service must not be distinguishable from local or remote
+running in other node in the network. % es la 5ª vez que dices esto - JJ
+Every stage in the algorithm should be treated as a service to be
+executed in local or in remote, even the {\em Population} or the {\em
+  Parameters}. Mechanisms to ensure the correct data-sharing should be
+provided. Also, many implementations of the same service could exist
+at the same time (different implementations of {\em Crossover}, for
+example) and it should be correctly managed and used. % pero ¿las va a
+                                % haber? ¿Vas a usar estas
+                                % características? - JJ
 
-Moreover, a service is always a request-response function. For example, the fitness calculation must not be a method of the {\em Individual} implementation, but a function that receives a list of individuals and returns a list of the calculated fitness of that individuals. This allow things such as remote fitness calculation and distributed load balancing, impossible to perform if the fitness is a method of the {\em Individual} class.
+Moreover, a service is always a request-response function. For
+example, the fitness calculation must not be a method of the {\em
+  Individual} implementation, but a function that receives a list of
+individuals and returns a list of the calculated fitness of that
+individuals. This allow things such as remote fitness calculation and
+distributed load balancing, impossible to perform if the fitness is a
+method of the {\em Individual} class. % Esto ya se hizo cuando
+                                % diseñamos los Evolving Objects,
+                                % podías citarlo - JJ 
 
-Thinking as abstract as possible requires separate concepts such the order of recombination, and the crossover itself. Usually, after parent selection, individuals are crossed in order. However, if we need a different mechanism for mating (for example, using more than two parents, or parent selected several times) a duplication of effort is needed. That is the reason we should separate the concept {\em recombine} from {\em crossover} (and also, following the top-down design proposed in SOMA). 
+Thinking as abstractly as possible requires separate concepts such the order of recombination, and the crossover itself. Usually, after parent selection, individuals are crossed in order. However, if we need a different mechanism for mating (for example, using more than two parents, or parent selected several times) a duplication of effort is needed. That is the reason we should separate the concept {\em recombine} from {\em crossover} (and also, following the top-down design proposed in SOMA). 
 
 Finally, we must not make assumptions about services previously executed or being executed next. For example, services such {\em Recombinator} or {\em Mutator} should return the individuals with their fitness already calculated. Usually this step is performed in the last stage of the generation, but if we require the individuals for other tasks: for example, a Local Search or a statistics collector to guide the algorithm.
 
