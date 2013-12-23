@@ -1,9 +1,40 @@
 \myChapter{Service Oriented Architecture}\label{chap:soa}
 \minitoc\mtcskip
 \vfill
-\lettrine{P}{revious} chapter has explained some lacks in the development of EAs, mainly related with the integration of different frameworks, distributed programming and heterogeneity of computational environments, among others. This chapter explains the concept \textsc{Service Oriented Architecture} (SOA), with several associated technologies and methodologies, as a possible solution for these issues.
+\lettrine{T}{he} previous chapter has explained some lacks % some
+                                % lacks? algunas faltas? something
+                                % lacking no es lo mismo que some
+                                % lacks y no se debe usar en este
+                                % contexto formal - JJ
+ in the development of EAs, mainly related with the integration of
+ different frameworks, distributed programming and heterogeneity of
+ computational environments, among others. This chapter explains the
+ concept \textsc{Service Oriented Architecture} (SOA), with several
+ associated technologies and methodologies, as a possible solution for
+ these issues. %Tienes que tener siempre mucho cuidado con qué
+               %consideras parte de la tesis o no. Esto NO lo es pero
+               %por la introducción parecía que ibas a introducir una
+               %solución que no existía en el estado del
+               %arte. Recuerda que tienes siempre que tener claro el
+               %mapa mental de dónde encaja cada pieza dentro de la
+               %TESIS y aquí no lo estás dejando. Y ten claro que la
+               %tesis es TU tesis, no un review de SOA - JJ
 
-Research in SOA \citep{Papazoglou2007SOA} is an emerging field, as can be seen in Figure \ref{fig:soapapers}, obtained from the search terms {\em ``service oriented OR service-oriented''} in the Scopus \footnote{\url{http://www.scopus.com}} database. Each year more papers about the area are published. This area seeks to promote services usage and adoption, and to improve the way to use them. For example, solving a problem combining existing services in an automatic way \citep{Moussa2010ServiceComposition}.
+Research in SOA \citep{Papazoglou2007SOA} is an emerging field, % si
+                                % el artículo es de 2007 yo diría que
+                                % ya ha terminado de emerger. - JJ
+as can be seen in Figure \ref{fig:soapapers}, obtained from the search
+terms {\em ``service oriented OR service-oriented''} in the Scopus
+\footnote{\url{http://www.scopus.com}} database. Each year more papers
+about the topic are published. This area seeks to promote services
+usage and adoption, and to improve the way to use them. For example,
+solving a problem combining existing services in an automatic way
+\citep{Moussa2010ServiceComposition}. % Proponer una metodología
+                                % porque se publica mucho equivale a
+                                % decir que la vas a dejar si no se
+                                % publica tanto. Es muy
+                                % tricky. Deberías de pensar en algún
+                                % otro mérito - JJ
 
 
 
@@ -11,15 +42,16 @@ Research in SOA \citep{Papazoglou2007SOA} is an emerging field, as can be seen i
 
 \begin{SCfigure}[20][tb]
 \centering
-\includegraphics[width=26pc]{gfx/soa/papersYear.jpg}
+\includegraphics[width=26pc]{gfx/soa/papersYear.png}
 \caption{Number of published papers (per year) about SOA (obtained from Scopus database).}
 \label{fig:soapapers}
 \end{SCfigure}
 
 
 Service Oriented Architecture (SOA) is a computational
-paradigm where the users interact with each other using the concept of
-{\em service}. A service is a distributed entity (such as node, program or
+paradigm where the users % users o applications? o agents? - JJ
+interact with each other using the concept of
+{\em service}. A service is a distributed entity (such as a node, program or
 function), used to obtain a result, increasing the integration of heterogeneous
 systems (several operating systems, protocols or languages) due to
 this multi-platform nature. The service users do not need to know
@@ -28,30 +60,55 @@ forced to use a specific technology to access that service. For
 example, an evolutionary algorithms researcher could have access to a
 fitness function made publicly available by another researcher at the
 other side of the world without even knowing which programming language
-has been used to implement it.
+has been used to implement it. % podrías decir la relación que tiene
+                               % esto con la ciencia abierta,
+                               % resultados reproducibles y demás - JJ
 
-Also, with the advancement of the Internet, new scientific communities, based on interoperable and distributed platforms are emerging. These communities allow scientist to collaborate on their research, sharing data and remote access to their programs. To achieve this, they use SOA, obtaining the benefits of the standards it offers. Users publish and use flexible, interoperable and configurable services. These services can be created from scratch or by leveraging existing software. 
+Also, with the advancement of the Internet, new scientific
+communities, based on interoperable and distributed platforms are
+emerging. These communities allow scientist to collaborate on their
+research, sharing data and remote access to their programs. To achieve
+this, they use SOA, obtaining the benefits of the standards it
+offers. Users publish and use flexible, interoperable and configurable
+services. These services can be created from scratch or by leveraging
+existing software. % un ejemplo!!! - JJ
 
 \person{Foster} \cite{Foster2005Science} defines the term ``Service Oriented
 Science'' as the pursuit of scientific research using distributed and
 interoperable networks, being the uniformity of
 these interfaces the key to success. Thanks to it, researchers can discover and access
 the services without developing specific access for each data source, or
-program. Therefore, this paradigm has the potential to increase the
-scientific productivity due to these public and distributed services, and also to increase the data analysis automation in computing. There are many examples that attempt to boost this paradigm, like Open Science Grid \citep{Altunay2011OpenScience} and GLOBUS \citep{Foster2005Globus}. These projects are scientific communities and globally distributed infrastructures that support scientific and integrated applications of different domains.
-It is necessary to remark that services implementation technology is not the
-great challenge in SOA, but to increase the effort to migrate the
+program. %ejemplos!! - JJ
+Therefore, this paradigm has the potential to increase the
+scientific productivity due to these public and distributed services,
+and also to increase the data analysis automation in computing. There
+are many examples that attempt to boost this paradigm, like Open
+Science Grid \citep{Altunay2011OpenScience} and GLOBUS
+\citep{Foster2005Globus}.  %citep o cite? - JJ
+These projects include scientific communities and globally distributed infrastructures that support scientific and integrated applications of different domains.
+It is necessary to remark that the technology for implementating services is not the
+key challenge in SOA, but to increase the effort to migrate the
 existing work and to change the mind of researchers and
-practitioners. 
+practitioners. %to what? Esto relaciónalo con la tesis, es un capítulo
+               %de TU TESIS - JJ 
 
 \section{What is a Service?}
 
-\lettrine{A}{} service can be seen as a function call which can be executed locally or remotely, and which is independent of the programming language or running platform. Services have well defined interfaces, which depends on the desired technology to implement SOA. That means that the service users do not need to know the language implementation of the service or the operating system, and they are not forced to use a specific technology to access to that service.
+\lettrine{A}{} service can be seen as a function call which can be
+executed locally or remotely, and which is independent of the
+programming language or running platform. Services have well defined
+interfaces, which depends on the desired technology to implement
+SOA. That means that the service users do not need to know the
+language implementation of the service or the operating system, %esto
+                                %ya lo has dicho - JJ
+ and they are not forced to use a specific technology to access to that service.
 
 \begin{SCfigure}[20][tb]
 \centering
 \includegraphics[width=20pc]{gfx/soa/soaDiagram.jpg}
-\caption{Service interaction schema. The service provider publishes a service description that is used by the consumer to find and use the service.}
+\caption{Service interaction schema. The service provider publishes a
+  service description that is used by the consumer to find and use the
+  service.} % no has definido consumer todavía - JJ
 \label{fig:soadiagram}
 \end{SCfigure}
 
@@ -65,15 +122,27 @@ its interface in the {\em service broker}. The \textsc{service consumer} (or
 interface. Then the request is performed by the \textsc{consumer} (which uses or
 consumes the service).  
 
-According to \person{Channabasavaiah \etal} \cite{Channabasavaiah2003migrating} services must follow the next characteristics:
+According to \person{Channabasavaiah \etal} \cite{Channabasavaiah2003migrating} services must follow these  characteristics:
 
 \begin{itemize}
-\item All functions in SOA are services. This means that every component in SOA must be modelled as a service, or as aggregation of services. 
-\item Services are autonomous. Consumers do not need to know how the service implementation performs their function., as services behave as a ``black box''.
-\item Interfaces are invocable. This means that services must be undistinguishable of being local or remote, being independent of the protocol to stablish the connection.
+\item All functions in SOA are services. This means that every
+  component in SOA must be modelled as a service, or as an aggregation of services. 
+\item Services are autonomous. Consumers do not need to know how the service implementation performs their function as services behave as a ``black box''.
+\item Interfaces are invocable. This means that services must be
+  undistinguishably local or remote, being independent of the protocol
+  to establish the connection. % pasa el spell, tienes faltas de
+                               % ortografía como stablish - JJ
 \end{itemize}
 
-Moreover, several implementations of a specific service  can exist (in one or several machines). The broker can choose which one to use  each time, or offer another if a service is temporarily unavailable. Implementations  may also have a different behaviour, so the researcher can take advantage to create an auto-adaptive algorithm to select different implementations according to some criteria. Figure \ref{fig:servicebasic} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
+Moreover, several implementations of a specific service  can exist (in
+one or several machines). The broker can choose which one to use  each
+time, or offer another if a service is temporarily
+unavailable. Implementations  may also have a different behaviour, so
+the researcher can take advantage to create an auto-adaptive algorithm
+to select different implementations according to some criteria. % esto
+                                % tenías que haberlo hecho para la
+                                % tesis!!! - jj
+Figure \ref{fig:servicebasic} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
 
 
 The service broker in a SOA can be implemented in several ways and have
@@ -82,7 +151,10 @@ defined in a text file (if the services do not change in execution
 time). However, the broker can also assign implementations to
 interfaces in an automatic way, or using several rules, for example, in the context of EAs,
 to distribute a fitness between several machines activated while the
-algorithm is running. 
+algorithm is running. % ¿vas a hacerlo? ¿No? Trata de restringirte a
+                      % lo que vas a hacer en la tesis, porque si no
+                      % te preguntarán que por qué diablos no lo has
+                      % hecho - JJ
 
 
 \begin{SCfigure}[20][tb]
@@ -107,7 +179,14 @@ explained: the main difference between SOA and imperative programming or OOP is 
 
 \subsection{Web Services}
 
-One of most popular services implementations are  \textsc{Web Services} \cite{Papazoglou2007SOA}. A web service is a service that is available over Internet that uses any standardized XML (eXtended Meta Language) \cite{XML} messaging system, and it is not tied to any specific language or operating system \cite{Cerami2002Webservices}.  As SOA proposes, web services should be self-describing (using a standardized grammar) and self-discoverable.
+One of most popular services implementations are  \textsc{Web
+  Services} \cite{Papazoglou2007SOA}. A web service is a service that
+is available over Internet that uses any standardized XML (eXtended
+Meta Language) \cite{XML} messaging system, and it is not tied to any
+specific language or operating system \cite{Cerami2002Webservices}.
+As SOA proposes, web services should be self-describing (using a
+standardized grammar) and self-discoverable. % secciones de un párrafo
+                                % no son secciones - JJ
 
 \subsubsection{Messaging system} There are several alternatives to the messaging system, as SOAP or XML-RPC. SOAP (Simple Object Access Protocol) is a standard protocol proposed by the W3C \cite{SOAP}  which  extends the XML remote procedure call (XML-RPC) standard. 
 It is a complete and mature protocol that allows performing remote method calls to distributed routines (services) based on an XML interface.
@@ -231,7 +310,7 @@ Even as SOA is used extensively in software development area, it is not widely a
 
 \begin{SCfigure}[20][tb]
 \centering
-\includegraphics[width=26pc]{gfx/soa/soagrid.jpg}
+\includegraphics[width=26pc]{gfx/soa/soagrid.png}
 \caption{SOA as abstract paradigm to develop in different EAs areas. Using specific technologies such as Web Services allows grid integration. This figure has been updated from the one presented in \cite{SOALIB}.}
 \label{fig:soagrid}
 \end{SCfigure}
