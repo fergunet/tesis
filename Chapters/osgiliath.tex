@@ -249,8 +249,15 @@ None of these options needs to modify the source code of the existing services: 
 
 As previously stated in Section \ref{sec:distribution}, one of the main advantages in SOA-EA is that services can be distributed, so the proposed implementation of the architecture  should also allow  the distribution and load balancing of the EA. In OSGiLiath all services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
 
-OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, including both synchronous and asynchronous communication. ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
+As explained in Chapter \ref{chap:soa}, OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, including both synchronous and asynchronous communication. It provides a modular implementation of the OSGi 4.2 Remote Services standard\footnote{\url{http://www.osgi.org/Release4/Download}}. This specification uses the OSGi service registry to expose remote services to other machines (being indistinguishable from the local ones).  ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
 
+ 
+
+ECF includes a number of protocols for service discovery and service providers:
+\begin{itemize}
+\item Service Discovery API: Includes protocols to announce and discover remote services: Zeroconf, SLP/RFC 2608, Zookeeper, file-based and others \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Discovery_API}}.
+\item Remote Service API: Includes protocols to establish the communication (data streams, formats and others): R-OSGi, ActiveMQ/JMS, REST, SOAP, XMPP, ECF Generic \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Remote_Services_API}}. This allows communication with systems that do not use OSGi or Java.
+\end{itemize}
 
 
 

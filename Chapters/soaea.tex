@@ -14,27 +14,15 @@ This section shows the restrictions for designing EAs (from the point of view of
 \subsection{Restrictions in EAs design}
 
 %%%PONER LO GENERICITY DE PAPAZOGLOU
-The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six criteria to qualify the genericity of a framework for EAs. 
+
+In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs.
 
 \begin{itemize}
-\item Generic representation: independence of the structure of the individuals. Therefore, services must accept {\em Individuals} interfaces as inputs, not concrete implementations (such as vectors or lists).
-
-\item Generic fitness: Individual fitness should be as independent as possible from the selection operators and individual representation. That means that the fitness evaluation should be outside of the implementation of the individuals (for example, not implementing the fitness in the class that implements the individual). In the case of using SOA, the fitness must be a separate service.
-
-\item Generic operations: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existent ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
-
-\item Generic evolutionary model: As explained in Chapter \ref{chap:distributedEAs}, there exist different ways to model an EA leading to a different algorithm (for example, a steady-state GA versus a generational GA, or a GA versus ES). There should be independence of the operators to be used in the model and be possible to change from a model to another. Therefore we can design an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps.
-
-
-\item Parameter management: parameters, such as the population size, can be modified during runtime. Also, a good framework must accept the addition of new parameters.
-
-\item Configurable output: the output must be configurable. This is due to different statistics could be used depending on the EA: for example, the tree depth in GP. Also, different outputs (console, files) should be managed.
-
-
-
+\item Generic Representation: the structure of the individuals must no Therefore, services must accept {\em Individuals} interfaces as inputs, not concrete implementations (such as vectors or lists).
+\item Generic Fitness: In the case of using SOA, the fitness must be a separate service.
+\item Generic Evolutionary Model: An example would be an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps.
 \end{itemize}
-
-All these characteristics of genericity for frameworks for EAs should be taken into account when designing services for EAs. However, requirements are aligned with the requirements for designing services, as explained next.
+All these characteristics of genericity for the design of an EAs should be taken into account when designing services for EAs. However, requirements are aligned with the requirements for designing services, as explained next.
 
 \subsection{Restrictions in SOA design}
 
