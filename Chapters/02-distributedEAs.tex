@@ -1,12 +1,35 @@
-\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs}
+\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs} %Distributed o solo EAs? Si es distributed, ¡lo es! - JJ
 \minitoc\mtcskip
 \vfill
-\lettrine{E}{volutionary} computation is a wide sub-field of the computational intelligence area, comprising several kinds of algorithms and its variants, techniques and tools \cite{eiben2003chapter1}. This chapter shows a brief revision of the state of the art in this area, showing the most used algorithms, distribution models, and frameworks, to finally explain some of the existent deficiencies to be solved. We also introduce the terminology that will be used in next chapters.  
+\lettrine{E}{volutionary} computation is a wide sub-field of  computational intelligence comprising several kinds of algorithms and its variants, techniques and tools \cite{eiben2003chapter1}. % en esta frase has aportado 0 bits de información. bla bla es un subcampo de bla bla que incluye bla bla - JJ
+This chapter shows a brief revision of the state of the art in this area, showing the most used algorithms, distribution models, and frameworks, to finally explain some of the existent deficiencies to be solved. We also introduce the terminology that will be used in next chapters.  
 
-The term \textsc{Evolutionary Algorithm} is used to describe a computer-based problem solving system that use computational models whose design is inspired by evolution mechanisms. They are based on a \textsc{population} of \textsc{individuals}, where the natural selection, caused by the environmental pressure, leads to an increase of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. This fitness is an evaluation function that describes the quality of the solution of the problem being solved. Individuals within the population are combined and modified by means of \textsc{recombination} and \textsc{mutation} operators, creating new individuals to be added to the population. The general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
+The term \textsc{Evolutionary Algorithm} is used to describe a
+computer-based problem solving method that uses computational models
+whose design is inspired by the mechanisms of natural evolution %aquí
+                                %la obligatoria cita de Darwin - JJ
+ . They are based on a % Di esto mejor: se crea una población de
+                       % soluciones codificadas...
+\textsc{population} of \textsc{individuals}, where the natural
+selection, caused by the environmental pressure, leads to an
+increase % bla bla miles de palabras que no has definido en este
+         % contexto. En serio, puedes hacerlo mejor - JJ
+of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. % no se incrementa el fitness de los individuos, sino de la población. El de un individuo en particular puede disminuir. No incluyas afirmaciones discutibles, y más en campos donde el tribunal sea experto - JJ
+This fitness % define donde uses por primera vez. - JJ
+is an evaluation function that describes the quality of the solution
+of the problem being solved. % sé menos descriptivo y más formas. Una
+                             % función de qué conjunto a qué conjunto?
+Individuals within the population are combined and modified by means
+of \textsc{recombination} and \textsc{mutation} operators, creating
+new individuals to be added to the population. % o sea, ¿la población
+                                % aumenta? Imagínate que no tienes ni
+                                % idea de lo que es un algoritmos
+                                % genético - JJ
+The general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
 
 
-\begin{SaveVerbatim}{BasicEAtext}
+\begin{SaveVerbatim}{BasicEAtext} %hay un entorno algoritmo que hace
+                                %esto mucho más chulo - JJ
 BEGIN
  INITIALISE population with random candidate solutions;
  EVALUATE each candidate;
@@ -18,7 +41,7 @@ BEGIN
    3 SELECT individuals for the next generation;
  OD
 END
-\end{SaveVerbatim}
+\end{SaveVerbatim} %Parece COBOL. Qué vintage - JJ
 
 
 \begin{SCfigure}[][!hb]
@@ -37,19 +60,28 @@ Also, according to \cite{eiben2010whatis} the features of an EA are:
 \item EAs are population based.
 \item EAs mostly uses recombination to generate new individual from the existent ones.
 \item EAs are stochastic.
-\end{itemize}
+\end{itemize} % ¿Esto aporta algo a lo que has dicho antes? ¿A tu
+              % tesis? - JJ
 
 %During the execution of the EAs, two different phases exist:
 %\begin{description}
 %\item[Exploration] Generation of new individuals to expand the search space. This is usually performed in the first iterations of the EA.
 %\item[Explotation] Concentration in the neighbourhood of the best solutions.
 %\end{description}
+% No son fases. Suceden a la vez, solo que en diferentes
+% proporciones. - JJ
 
 This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify their common elements. Also, the most extended models to parallelize EAs are presented, to understand all their possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
 
 \section{Types of Evolutionary Algorithms}
 
-\lettrine{A}{lthough}  EAs follow the scheme showed in Figure \ref{fig:basicscheme}, they have differences depending on the representation of the solutions, the problems to solve, and other features. This section explains the traditional variants, according to the book of \person{Eiben and Smith} \cite{eiben2003introduction}.
+\lettrine{A}{lthough} EAs follow the scheme shown in Figure
+\ref{fig:basicscheme}, they have differences depending on the
+representation of the solutions, the problems to solve, and other
+features. This section explains the traditional variants, according to
+the book of \person{Eiben and Smith} \cite{eiben2003introduction}.
+% libro que tiene 10 años y que, hoy en día, no sé si es
+% vigente. Además, ¿es relevante para tu tesis? - JJ
 
 \begin{description}
 \item [Genetic Algorithms] These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome} (and sometimes \textsc{genome}). The individuals are selected proportionally to their fitness, and then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatorial optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{Garcia2013RGB}, among others. 
@@ -58,11 +90,38 @@ This chapter introduces a general overview of the most used types of Evolutionar
 
 \item[Evolutionary Programming] In Evolutionary Programming (EP), the representation of the solution depends on the nature of the problem being solved, for example, neuronal networks \cite{Castillo1999gprop} or Radial Basis Functions (RBFs) \cite{Gonzalez2003multiobjective} have been used as individuals.
 
-\item[Genetic Programming] The objective of this technique is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve \definicion{LISP}{LISt Processing} programs \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet Language Transformations} scripts \cite{Garcia2008XSLT}, among others.
+\item[Genetic Programming] The objective of this technique is to
+  create functions or programs to solve determined
+  problems. Individual representation is usually in form of a tree,
+  formed by operators (or {\em primitives}) and variables ({\em
+    terminals}). These sets are usually fixed and known. The genome
+  size is, therefore, variable, but the maximum size of the
+  individuals is usually fixed, to avoid high evaluation costs. GP has
+  been used to evolve \definicion{LISP}{LISt Processing} programs
+  \cite{Koza1990Tools}, or \definicion{XSLT}{eXtensible Stylesheet
+    Language Transformations} scripts \cite{Garcia2008XSLT}, among
+  others.
+
+%Desde el trabajo de Michalewicz y, más todavía, las EO, se trata
+%simplemente de usar diferentes estructuras de datos y operadores. No
+%merece la pena que hagas esa distinción y menos hoy en día (y menos
+%en tu tesis) - JJ
 
 \end{description}
 
-Other EAs have been proposed, such as \textsc{Differential Evolution} (DE) \cite{storn1997differential}, \textsc{Estimation of Distribution Algorithms} (EDAs) \cite{larranaga2002estimation} or \textsc{Bayesian Optimization Algorithms} \cite{pelikan2005bayesian}. %SEGURO QUE SON EAS?
+Other EAs have been proposed, such as \textsc{Differential Evolution}
+(DE) \cite{storn1997differential}, \textsc{Estimation of Distribution
+  Algorithms} (EDAs) \cite{larranaga2002estimation} or
+\textsc{Bayesian Optimization Algorithms}
+\cite{pelikan2005bayesian}. %SEGURO QUE SON EAS? 
+% Por supuesto que lo son y no encajan dentro de la rígida
+% clasificación anterior. Por no mencionar EAs basados en pool u otro
+% tipo de algoritmos genéticos. Esto tienes que reescribirlo
+% totalmente, suena a rancio, rancio... Además, tienes algoritmos
+% evolutivos celulares, coevolutivos, meméticos y miles de cosas más
+% que no encajan en una definición. No es tu tesis, pero intenta
+% sintetizar las tendencias en EAs para justificar la creación de
+% nuevos marcos de implementación como los de tu tesis. - JJ
 
 
 %\subsection{Differential Evolution}
@@ -91,21 +150,48 @@ Other EAs have been proposed, such as \textsc{Differential Evolution} (DE) \cite
 
 
 
-Combining elements of previous algorithms with other heuristics are the base of \textsc{Memetic Algorithms} (MAs). These algorithms are based on the concept of \textsc{meme} proposed by \person{Dawkins} \cite{dawkins2006selfish}. A meme is domain specific knowledge coded by a computational representation to the effective solving of a problem. %It is a cultural know-how building-block transmittable and replicable.
+Combining elements of previous algorithms with other heuristics are
+the base of \textsc{Memetic Algorithms} (MAs). These algorithms are
+based on the concept of \textsc{meme} % ¿por qué small caps y no
+                                % italica? - JJ
+proposed by \person{Dawkins}
+\cite{dawkins2006selfish}. In this context, a meme is domain specific knowledge coded by a computational representation to the effective solving of a problem. %It is a cultural know-how building-block transmittable and replicable.
 
 This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridization was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing (SA) \cite{Rodriguez2012Hybrid}. The local search can be performed before, during, or after the evaluation. New trends, such as adaptative MAs \cite{ong2006classification} lead to the usage of several memes for searching and deciding dynamically which meme to apply to each individual. For example, \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose the meme to be applied depending on the time and the region of the search space (or, in a brief, heuristic to choose memes).  Other examples are the work of \person{Krasnogor \etal} \cite{krasnogor2002multimeme}, where the 
-inclusion of the memetic codification inside the individual chromosome (\textsc{Multimemes}) to select which meme to use is applied;  or codify a set of rules, as proposed by \person{Smit} \cite{smith2002co} (\textsc{Co-evolving MAs}). 
+inclusion of the memetic codification inside the individual chromosome
+(\textsc{Multimemes}) to select which meme to use is applied;  or
+codify a set of rules, as proposed by \person{Smit} \cite{smith2002co}
+(\textsc{Co-evolving MAs}). % y esto es interesante para tu tesis
+                            % porque... (no me vale porque tengo que
+                            % rellenar el capítulo de estado del arte)
+                            % - JJ
 
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
 
-\lettrine{E}{volutionary} Algorithms are inherently parallelizable. Fitness evaluation can be distributed into several slave machines, or the population can be distributed among different nodes to be evolved at the same time. In 2002, two main types of parallelization models for EAs were classified by \person{Alba and Tomassini} in \cite{alba2002parallelism}: \textsc{Global parallel EAs} and \textsc{Spatially structured EAs}. However, with the aim of new technologies and architectures, such as P2P, new ways to parallelize EAs have been proposed.
+\lettrine{E}{volutionary} Algorithms are inherently parallelizable. % ¿Inherentemente por qué? ¿No querrás decir trivialmente? Además, no es tan trivial porque una vez que metes esquemas de inmigración la cosa no es tan fácil: quien emigra, cuando lo hace, como se incorpora en la población... - JJ
+Fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ
+or the population can be distributed among different nodes to be
+evolved at the same time. In 2002, two main types of parallelization
+models for EAs were classified by \person{Alba and Tomassini} in
+\cite{alba2002parallelism}: \textsc{Global parallel EAs} and
+\textsc{Spatially structured EAs}. However, with the aim of new
+technologies and architectures, such as P2P, new ways to parallelize
+EAs have been proposed. % ¿Y a quién le importa lo que pasó en 2002?
+                        % Haz un esfuerzo y haz tú una clasificación
+                        % en 2014 - JJ
 
 \subsection{Traditional parallelization classification}
 
-In this classification, issues such as fault-tolerance, churn, massive scalability or decentralization are not taked into account. The number of computational nodes are fixed during the whole execution and both the network and the nodes are reliable and trustworthy.
+In this classification, issues such as fault-tolerance, churn, massive
+scalability or decentralization are not taked into account.  % di
+                                % desde el principio que esto es lo
+                                % que vas a hacer - JJ
+The number of computational nodes are fixed during the whole execution and both the network and the nodes are reliable and trustworthy.
 
-\subsubsection{Global parallel evolutionary algorithms}
+\subsubsection{Global parallel evolutionary algorithms} % No sé si
+                                % debería ser una subsección o
+                                % simplemente un párrafo - JJ
 In this model, also called \textsc{Farming model}, \textsc{Master-Slave} or \textsc{Centralized EA}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.%An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
 
 \begin{SCfigure}[20][tb]
@@ -138,12 +224,49 @@ The parallelism is performed at population level, that is, dividing the populati
 
 \end{description}
 
-\subsection{Non-conventional approaches}
-Aside from the previous classification, with the advent of new technologies, such as \textsc{cloud computing}, \definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous hardware, new approaches have been proposed. Distributed EAs can be executed in other computing elements different than the classic computers. For example, in mobile devices \cite{Garcia2009Mobile}, ``smart dust'' \cite{Rollings2008smartdust} or inside robots, who on-line learn from the environment \cite{Garcia2012testing}. But with the advancement of the Internet, where hundreds of nodes can co-operate, and whose behaviour is not totally controlled or predicted, is when new distributed approaches have become more evident. 
+\subsection{Non-conventional approaches} % ¿Por qué no convencionales?
+                                % - JJ
+Aside from the previous classification, with the advent of new
+technologies, such as \textsc{cloud computing},
+\definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous
+hardware, new approaches have been proposed. Distributed EAs can be
+executed in other computing elements different than the classic
+computers. For example, in mobile devices \cite{Garcia2009Mobile},
+``smart dust'' \cite{Rollings2008smartdust} or inside robots, who
+learn on-line from the environment \cite{Garcia2012testing}. But with
+the advancement of the Internet, where millions of nodes can
+co-operate, and whose behaviour is not totally controlled or
+predicted, is when new distributed approaches have become more
+evident.  
 
+% ¿Esto es una clasificación? ¿A qué nivel estás clasificando? ¿Cómo
+% encaja esto dentro de lo que has escrito en los primeros párrafos?
+% ¿Y de TU TESIS? - JJ
 \subsubsection{P2P evolutionary algorithms}
 
-P2P systems are parallel infrastructures composed by a large number of resources, without any central server \cite{steinmetz2005peer}. The resources in these networks can appear or disappear dynamically. These platforms can be used to execute large instances of problems, taking advantage of the massive scalability that these systems offer. \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA that uses a decentralized population, where each peer has a single individual, and new individuals are created combining the ones in their current neighbours. The population structure is maintained using the \textsc{newcast} protocol \cite{jelasity2003newscast}: each node has a cache of neighbours that can be interchanged and combined. Figure \ref{fig:evag} shows this algorithm and its population structure. Results show that this algorithm outperforms tuned GAs, using less links that a panmictic (i.e. fully connected) population. 
+P2P systems are parallel infrastructures composed by a large number of
+resources, % eso no define los sistemas P2P, sino sus
+           % conexiones. Pueden tener 3 recursos. Además, ¿qué diablos
+           % significa recurso en este contexto? - JJ
+without any central server \cite{steinmetz2005peer}. In practice, the
+resources in these networks can appear or disappear dynamically. These
+platforms can be used to execute large instances of problems, taking
+advantage of the massive scalability that these systems potentially
+offer. %La escalabilidad no la da el sistema, sino el algoritmo. Algo
+       %tan fácil como una búsqueda puede colapsar la red si el
+       %algoritmo no es el correcto. Mira esto: Loo, Boon Thau, et al. "Measurement and Analysis of Ultrapeer-based P2P Search Networks." (2003).
+ \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA
+ that uses a decentralized population, where each peer has a single
+ individual, and new individuals are created combining the ones in
+ their current neighbours. % hala, non-sequitur. ¿Un ejemplo? ¿El más
+                           % guay? ¿El más actual? ¿Soluciona qué
+                           % problemas y como? - JJ
+The population structure is maintained using the \textsc{newcast}
+protocol \cite{jelasity2003newscast}: each node has a cache of
+neighbours that can be interchanged and combined. Figure
+\ref{fig:evag} shows this algorithm and its population
+structure. Results show that this algorithm outperforms tuned GAs,
+using less links that a panmictic (i.e. fully connected) population. % resolviendo el problema de conectividad fija (con DHT) o la introducción de nodos destacados (ultrapeers). Esto es un protocolo tipo gossip que podrías mencionar y en todo caso el primer sistema P2P de EAs no fue este, sino DREAM, de donde desciende - JJ
 
 \begin{SCfigure}[20][tb]
 \centering
@@ -153,18 +276,84 @@ P2P systems are parallel infrastructures composed by a large number of resources
 \end{SCfigure}
 
 \subsubsection{Pool-based algorithms}
-Other technologies lead to \textsc{Pool-based EAs}, where the computational nodes exchange individuals using a shared pool. This allows massive scalability with a heterogeneous underlying structure. This pool can be used as the global population, and the nodes asynchronously read and evaluate the individuals. Another possibility is that each node behaves as an island and uses the pool to share individuals. This can lead to automatic load-balancing and synchronization, allowing the addition and removal of computers. Different technologies can be used. For example, in the work of \person{Meri \etal},  the pool used is based on the Dropbox\texttrademark\, or SugarSync\texttrademark\, file storage services. Other authors propose the use of non-relational databases, such as the work of \person{Merelo \etal} \cite{merelo2010fluid}, using FluidDB\texttrademark. In \cite{merelo2012pool} the same authors improve the design, proposing an asynchronous, fault-tolerant, and scalable dEA, based on the object store CouchDB\texttrademark. The results show that adding clients could not scale, but increase the fault tolerance. Also, their experimentation shows a good methodology for designing EAs in heterogeneous distributed systems, which have the impossibility of analytic performance prediction.
+Other technologies % ¿cuáles? ¿Por dónde? ¿Cómo?
+lead to \textsc{Pool-based EAs}, where the computational nodes
+exchange individuals using a shared pool. % si son individuos para
+                                % evaluar, se trata simplemente de
+                                % "farming". Lo interesante es el
+                                % flujo de datos de estos
+                                % individuos. ¡Y cita nuestros papers
+                                % y otros, como el de Gagné! - JJ
+This allows massive scalability with a heterogeneous underlying
+structure. This pool can be used as the global population, and the
+nodes asynchronously read and evaluate the individuals. Another
+possibility is that each node behaves as an island and uses the pool
+to share individuals. % una posibilidad... y otra
+                      % posibilidad... clasificación de tipo
+                      % Borges. ¡Hay que ser exhaustivo y describir de
+                      % qué se trata este tipo de algoritmo! - JJ
+This can lead to automatic load-balancing and synchronization,
+allowing the addition and removal of computers. % sé
+                                % consistente. "computer" "node"
+                                % "individual". ¿No ibas a establecer
+                                % la terminología en este capítulo? - JJ
+Different technologies can be used. For example, in the work of
+\person{Meri \etal},  the pool used is based on the
+Dropbox\texttrademark\, or SugarSync\texttrademark\ file storage
+services. Other authors propose the use of non-relational databases,
+such as the work of \person{Merelo \etal} \cite{merelo2010fluid},
+using FluidDB\texttrademark. In \cite{merelo2012pool} the same authors
+improve the design, proposing an asynchronous, fault-tolerant, and
+scalable dEA, based on the object store CouchDB\texttrademark. The
+results show that adding clients could not scale, but increase the
+fault tolerance. Also, their experimentation shows a good methodology
+for designing EAs in heterogeneous distributed systems, which have the
+impossibility of analytic performance prediction. 
 
-\subsubsection{Grid and volunteer computing}
-Grids are distributed computing systems that allow sharing not geographically centred resources to solve large scale problems. There exist several works that describe EAs being executed in these systems \citep{grid8,grid4,grid10}. \textsc{Volunteer computing} \cite{anderson2005high} proposes the creation of infrastructures to allow people donate CPU cycles for a combined computational effort. Its main difference with grid computing is the presence of un-trusted resources: for example, some nodes could return intentionally wrong results, so it requires possibility of replication. Also, the control of the participating nodes is not maintained by the experiment launcher. EAs have been used in these systems, using different techniques, such as virtualization \cite{Fernandez2013BOINC} or ``parasite'' computing \cite{Merelo2007browser}.
+\subsubsection{Grid and volunteer computing} %Clasificación tipo
+                                %Borges. la computación voluntaria
+                                %puede ser "clásica", "basada en pool"
+                                %o incluso P2P (dependiendo del
+                                %cliente). 
+Grids are distributed computing systems that allow sharing
+geographically distributed resources to solve large scale
+problems. % grid es el predecesor de la computación nube. Tampoco
+          % tiene mucho que ver con la computación voluntaria, salvo
+          % que se le llama "desktop grid". Sepáralos (y justifica
+          % bien la clasicación real). - JJ
+There exist several works that describe EAs being executed
+% no uses "There exist" como en el chiste de Gila "Hay alguien que ha
+% hecho algo malo..." - JJ
+in these systems \citep{grid8,grid4,grid10}. \textsc{Volunteer
+  computing} \cite{anderson2005high} proposes the creation of
+infrastructures to allow people donate CPU cycles for a combined
+computational effort. Its main difference with grid computing is the
+presence of un-trusted resources: for example, some nodes could return
+intentionally wrong results, so it requires possibility of
+replication. % ¿posibilidad de replicación? - JJ
+Also, the control of the participating nodes is not
+maintained by the experiment launcher. EAs have been used in these
+systems, using different techniques, such as virtualization
+\cite{Fernandez2013BOINC} or ``parasite'' computing
+\cite{Merelo2007browser}. % Esta no es parásita, los participantes
+                          % estaban avisados - JJ
 
 
 \section{Parameter adaptation in Evolutionary Algorithms}
 
-\lettrine{O}{ne} of the greater challenges of the EC field is to find the appropriate values for EAs parameters \cite{Eiben12Parameters}. Usually, these parameters are established by convection or after several test runs, for example. However, practitioners need to put effort on finding these values in order to attain significant performance in its EAs, even taking into account other variables, such as the computational power of the machines used.
+% y esto viene a cuento porque... - JJ
+
+\lettrine{O}{ne} of the greater challenges of the EC field is to find
+the appropriate values for EAs parameters
+\cite{Eiben12Parameters}. Usually, these parameters are established by
+convection or after several test runs, for example. However,
+practitioners need to put effort on finding these values in order to
+attain significant performance in its EAs, even taking into account
+other variables, such as the computational power of the machines
+used. 
 
 \subsection{Parameter Control and Parameter Tuning}
-Two different approaches about the algorithm parameter setting exist in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters of the Evolutionary Algorithm (EA) and changing these parameters in running time. The parameter tuning consist in establishing a good set of parameters {\em before} the run (and do not change these parameters during runtime).
+There are two different approaches for algorithm parameter setting  in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters for the Evolutionary Algorithm (EA) and changing these parameters in running time. The parameter tuning consist in establishing a good set of parameters {\em before} the run (and do not change these parameters during runtime).
 
 Eiben, in \cite{ParameterControlEiben07} proposes the next taxonomy for the parameter control, according {\em how} are changes made:
 \begin{itemize}
@@ -189,23 +378,42 @@ Finally, a third classification can be obtained according to what evidence is av
 \item Relative evidence: Parameters are compared with the fitness of their produced offspring and the best values are rewarded. It is not deterministic.
 \end{itemize}
 
+% Vale, llego aquí y todavía no sé qué diablos tiene que ver con los
+% SOA y el OSGi y OSGILIATH - JJ
+
 \subsection{Adaptation in heterogeneous hardware}
 
-Adapting algorithm parameters to available computational resources leads to improved performance (see the work of \person{Hamadi and Schoenauer} \cite{AutomaticallyConfiguringStyles12}). An easy way to take advantage of the available resources is the load balancing \cite{Garamendi2006Parallel} to distribute workloads across multiple elements. However, assigning equal tasks  to each node on heterogeneous clusters may result in suboptimal performance (as shown by \person{Bohn and Lamont} \cite{LoadBalancingBohn02}). Parameters of an algorithm could also be adapted to increase the performance of the whole system. For example, the population size in EAs is the key to obtain good performance, because it have effect on the quality of the solution and the time spent during the run \cite{ShrinkageLaredo09}. This parameter has been studied as a fixed \cite{SizingHarik99} or adaptive parameter during runtime \cite{AdaptiveLobo07,SelfRegulatedSizeFernandes06}, but without taking into account the computational power of each machine in a heterogeneous cluster. 
+Adapting algorithm parameters to available computational resources
+leads to improved performance (see the work of \person{Hamadi and
+  Schoenauer} \cite{AutomaticallyConfiguringStyles12}). An easy way to
+take advantage of the available resources is  balancing the workload
+\cite{Garamendi2006Parallel} to distribute it across multiple
+elements. % ¿elements, computers, individuals, nodes? - JJ
+However, assigning the same tasks to each node on heterogeneous
+clusters may result in suboptimal performance (as shown by
+\person{Bohn and Lamont} \cite{LoadBalancingBohn02}). Parameters of an
+algorithm could also be adapted to increase the performance of the
+whole system. For example, the population size in EAs is the key to
+obtain good performance, because it has % ¡Gramática! - JJ
+ effect on the quality of the solution and the time spent during the run \cite{ShrinkageLaredo09}. This parameter has been studied as a fixed \cite{SizingHarik99} or adaptive parameter during runtime \cite{AdaptiveLobo07,SelfRegulatedSizeFernandes06}, but without taking into account the computational power of each machine in a heterogeneous cluster. 
 
-The adaptation of an algorithm can be useful to take advantage different hardware environments.
+The adaptation of an algorithm can be useful to leverage different hardware environments.
 One of the problems in parameter adaptation in heterogeneous clusters is 
-the computational load representation. It depends on the algorithm, size of the problem, programming 
+the representation of the computational load. It depends on the algorithm, size of the problem, programming 
 language, compiler or hardware characteristics, and the results obtained from artificial 
 benchmarks (such as  Linpack \cite{LinpackEndo10}) should not be extolled as identificative 
 of the system performance \cite{LinpackDongarra03}. For example, in the work of \person{Garamendi 
 \etal} \cite{Garamendi2006Parallel},  a small benchmark was executed in all nodes at the beginning
-of the algorithm in order to distribute individuals of an Evolutionary Strategy, following a master-slave model. The computational load by artificial benchmarks may not accurately 
+of the algorithm in order to distribute individuals of an Evolutionary
+Strategy, following a master-slave model. % but... - JJ
+The computational load by artificial benchmarks may not accurately 
  represent the correct load of the algorithm, so, information 
- about the algorithm itself should be used for calibration.
+ about the algorithm itself should be used for calibration. % sez who?
+                                % ¿Esto es tu tesis? - JJ
 
-In other works, there are not direct relation with the algorithm parameters and 
-computational resources of the nodes. For example, \person{Dom\'inguez \etal} \cite{Dominguez13HydroCM} 
+In other works, there is no direct relation between the algorithm parameters and 
+computational resources of the nodes. % sez who again? - JJ
+For example, \person{Dom\'inguez \etal} \cite{Dominguez13HydroCM} 
 divided the available devices in ``faster'' and ``slower'' nodes to create a distributed hybrid 
 meta-heuristic that combines two different EAs: Genetic Algorithms and Simulated
 Annealing. Their system executes the heavy (in computational
@@ -226,7 +434,9 @@ The heterogeneous computational performance of nodes or network speed can affect
  machines. However, the parameter setting was the same in both
  clusters and they did not adapt the parameters to the machines used.
 
- Adapting algorithm parameters to computational nodes derives in heterogeneous parameter sets. These sets can improve the results in homogeneous hardware, for example, setting a random set of parameters in each homogeneous node can also increase the
+ Adapting algorithm parameters to computational nodes % ahora
+                                % computational nodes - JJ
+derives in heterogeneous parameter sets. These sets can improve the results in homogeneous hardware, for example, setting a random set of parameters in each homogeneous node can also increase the
 performance of a distributed Genetic Algorithm, as explained by \person{Gong
 and Fukunaga} in \cite{Gong2011HeterogeneousParameters}. That model
 outperformed a tuned canonical dGA with the same parameter values in
@@ -234,16 +444,36 @@ all islands. Also, adapting the migration rate produced better
 results than homogeneous periods, as explained by \person{Salto and Alba} in
 \cite{Salto2012HeterogeneousMigration}. This indicates that heterogeneous parameters
  may lead to an increase of performance, so it is necessary to validate if the 
- performance is due to the parameter set or to the heterogeneous devices combination.
+ performance is due to the parameter set or to the heterogeneous
+ devices combination. % que es lo que vamos a hacer en esta tesis. O
+                      % así. - JJ
 
 
 \section{Frameworks for Evolutionary Algorithms}
-\lettrine{T}{here} exist a large number of frameworks for Evolutionary Algorithms freely available for download. Practically every programming language has its own implementation of the basic elements that form an EA. This implies a large effort made in each one, giving that these elements are not compatible among them. It is also difficult to migrate the code from a framework to another, mainly due to design choices, such as the existence of hidden global variables or language specific features (such as functional programming \cite{Cruz2013Erlang}). 
+\lettrine{T}{here} exist % cada vez que dices There exist, $deity mata
+                         % a un gatito - JJ
+a large number of frameworks for Evolutionary
+Algorithms freely available for download. 
+% Y esto viene a cuento porque... la "narrativa" de este capítulo
+% tienes que hacerla al principio del mismo, integrarlo todo en TU
+% TESIS a la vez que estableces el estado del arte - JJ
+Practically every
+programming language has its own implementation of the basic elements
+that form an EA. This implies a large effort made in each one, giving
+that these elements are not compatible among them. It is also
+difficult to migrate the code from a framework to another, mainly duehttp://code.google.com/p/deap/
+to design choices, such as the existence of hidden global variables or
+language specific features (such as functional programming
+\cite{Cruz2013Erlang}).  % Y migrar código es importante porque... - JJ
 
+% di lo que es importante: genericidad, comunicación,
+% prestaciones... Y evalúa cada framework con respecto a esto para
+% finalmente decir que tu framework va a ser mejor, pero recuerda que
+% tu tesis no es tu framework - JJ
  
 
 \subsection{Object Oriented Frameworks}
-There exist many
+There exist many % se está quedando sin gatitos - JJ
 Object Oriented frameworks, such as Al\-go\-rithm::Evo\-lu\-tionary \cite{PERL}, \definicion{METCO}{Metaheuristic-based Extensible Tool for Collaborative Optimization} \cite{Leon2009metco},
 \definicion{JCLEC}{Java Class Library for Evolutionary Computation} \cite{JCLEC} or jMetal \cite{JMETAL}. 
  Users implement specific interfaces of these frameworks ({\em
@@ -254,14 +484,21 @@ Object Oriented frameworks, such as Al\-go\-rithm::Evo\-lu\-tionary \cite{PERL},
  (despite both are programmed in Java). %Also, they can not control the
  %services (operators) outside the source code.
 
-\subsection{Parallel frameworks} 
+\subsection{Parallel frameworks} % y Borges sin
+                                % animales. Algorithm::Evolutionary
+                                % puede ser paralelo los paralelos
+                                % orientados a objetos - JJ
 Parallelism and distribution are possible in other frameworks, such as
-MALLBA \citep{MALLBA}, \definicion{DREAM}{Distributed Resource Evolutionary Algorithm Machine} \citep{DREAM} or \definicion{ECJ}{Evolutionary Computation in Java} \citep{ECJ}, but
+MALLBA \citep{MALLBA}, \definicion{DREAM}{Distributed Resource
+  Evolutionary Algorithm Machine} \citep{DREAM} or
+\definicion{ECJ}{Evolutionary Computation in Java} \citep{ECJ}, but 
 using external libraries (such as \definicion{MPI}{Message Passing Interface} or \definicion{DRM}{Distributed Resource Machine}), so the code that uses these
 libraries is mixed with the algorithm's code.
 
 
- Even being distributed, these frameworks can not communicate with each other. HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but just to distribute the load, after consulting a central database of available jobs. Finally, %the only service oriented optimization framework is
+ Even being distributed, these frameworks can not communicate with
+ each other. %lo que es un problema por... - JJ
+ HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but only to distribute the load, after consulting a central database of available jobs. Finally, %the only service oriented optimization framework is
  gridUFO is a service oriented framework \citep{gridUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tab:frameworks} shows a summary of the previous frameworks.
 
 
@@ -288,6 +525,8 @@ libraries is mixed with the algorithm's code.
 \caption{Comparison of EA frameworks. OO=Object-Oriented, SO=Service Oriented, PO=Plug-in Oriented}
 \label{tab:frameworks}
 \end{SCtable}
+% qué pasa con DEAP? - JJ http://code.google.com/p/deap/ ¿Seguro que
+% no hay más?
 
 In brief, although these frameworks follow the six criteria for genericity 
 proposed by \person{Gagn{\'e} and Parizeau} in \cite{GENERICITY05}, they present some shortcomings when it is needed to develop
@@ -308,13 +547,15 @@ Previous systems have the possibility of task distribution among the nodes, foll
 The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six criteria to qualify the genericity of a framework for EAs. 
 
 \begin{itemize}
+% resalta algo, hombre - JJ
 \item Generic representation: independence of the structure of the individuals. 
 
 \item Generic fitness: Individual fitness should be as independent as possible from the selection operators and individual representation. That means that the fitness evaluation should be outside of the implementation of the individuals (for example, not implementing the fitness in the class that implements the individual). 
 
 \item Generic operations: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existent ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
 
-\item Generic evolutionary model: As explained before, there exist different ways to model an EA leading to different algorithms (for example, a steady-state GA versus a generational GA, or a GA versus ES). Operators should be independent of the evolutionary model, being possible the change from a model to another. 
+\item Generic evolutionary model: As explained before, % ¿dónde? - JJ
+there exist different ways to model an EA leading to different algorithms (for example, a steady-state GA versus a generational GA, or a GA versus ES). Operators should be independent of the evolutionary model, being possible the change from a model to another. 
 
 \item Parameter management: parameters, such as the population size, may be modified during runtime. Also, a good framework must accept the addition of new parameters.
 
@@ -324,14 +565,25 @@ The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six cr
 
 \end{itemize}
 
+% ¿Y ahí se queda? Una tesis no puede ser "te cuento todo esto a
+% cascoporro y ya más adelante si eso te contaré por qué te lo he
+% contado". Una tesis es "te voy a contar esto, te estoy contando esto
+% porque te voy a contar lo otro, te estoy contando lo otro porque te
+% he contado esto, y te he contado esto y lo otro". -JJ
 
 \section {Conclusions}
 \lettrine{E}{volutionary} Algorithms, and their subtypes (GAs, ES or GP, among others) follow a number of common steps: initialization, evaluation, selection, recombination, mutation, replacement and stop criterion. There exist many variations of these steps, and the different combinations can specify one algorithm or another. Memetic Algorithms also include extra elements that can be applied, and different heuristics can be combined during the algorithm's run.
 
-Distributed EAs can improve the algorithmic and computational performance. Classic parallelization approaches, such as the master-slave or island-based models, have been updated with the usage of new trends such as P2P or pool-based EAs. These new approaches manage with computational nodes entering and exiting during the experiment runtime and heterogeneous architectures.
+Distributed EAs can improve the algorithmic and computational
+performance. % over what? - JJ
+ Classic parallelization approaches, such as the master-slave or island-based models, have been updated with the usage of new trends such as P2P or pool-based EAs. These new approaches manage with computational nodes entering and exiting during the experiment runtime and heterogeneous architectures.
 
 Other research lines, such as the parameter adaptation can imply the existence of some kind of dynamism involving the parts that compose an algorithm: for example, different recombinators or mutators working at the same time. Moreover, there exist several lines of parameter adaptation in dynamic and heterogeneous environments, where different computational elements are working at the same time.
 
 Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out. Moreover, it is difficult to access, in a public way, to available public systems to execute existent EAs to validate experiments and save time, encouraging open science.
 
-Next chapter will explain a possible technological solution to address previous issues.
+% y todo esto es interesante para mi tesis porque... ¡No la has
+% mencionado ni una vez! - JJ
+
+Next chapter will explain a possible technological solution to address
+previous issues. % which ones? Which ones are your thesis? - JJ
