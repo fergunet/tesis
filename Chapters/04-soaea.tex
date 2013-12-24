@@ -107,33 +107,98 @@ method of the {\em Individual} class. % Esto ya se hizo cuando
                                 % diseñamos los Evolving Objects,
                                 % podías citarlo - JJ 
 
-Thinking as abstractly as possible requires separate concepts such the order of recombination, and the crossover itself. Usually, after parent selection, individuals are crossed in order. However, if we need a different mechanism for mating (for example, using more than two parents, or parent selected several times) a duplication of effort is needed. That is the reason we should separate the concept {\em recombine} from {\em crossover} (and also, following the top-down design proposed in SOMA). 
+Thinking as abstractly as possible requires to separate concepts such
+the order of recombination, and the crossover itself. Usually, after
+parent selection, individuals are crossed in order. However, if we
+need a different mechanism for mating (for example, using more than
+two parents, or parent selected several times) a duplication of effort
+is needed. That is the reason we should separate the concept {\em
+  recombine} from {\em crossover} (and also, following the top-down
+design proposed in SOMA).  % ¿Esto es lo único que estás usando del
+                           % SOMA? - JJ
 
-Finally, we must not make assumptions about services previously executed or being executed next. For example, services such {\em Recombinator} or {\em Mutator} should return the individuals with their fitness already calculated. Usually this step is performed in the last stage of the generation, but if we require the individuals for other tasks: for example, a Local Search or a statistics collector to guide the algorithm.
+Finally, we must not make assumptions about services previously
+executed or being executed next. For example, services such {\em
+  Recombinator} or {\em Mutator} should return the individuals with
+their fitness already calculated. % ¿Por qué? ¿Eso no implica que el
+                                % mutador tiene que saber que existe
+                                % otro servicio que calcula el
+                                % fitness? Además, en la práctica el
+                                % mutador no necesita el fitness (casi
+                                % nunca)- JJ
+Usually this step is performed in
+the last stage of the generation, but if we require the individuals
+for other tasks: for example, a Local Search or a statistics collector
+to guide the algorithm. % if we require, ¿qué? - JJ
 
 \subsection{Other technological restrictions}
 
 In previous chapter we also presented the advantages of using SOA in Evolutionary Algorithms area: firstly, SOA fits with the genericity advantages in the development of software for EAs \cite{GENERICITY05} and adds new features, like language independence and  distribution mechanisms. It also allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). This issue increases the interoperability between different software elements. Moreover, this allows easy code distribution: SOA does not require the use of a concrete implementation or library.
 
-The services developed must match with the next technological restrictions:
+The services developed must match with the following technological
+restrictions: % ¿por qué? ¡Justifícalo todo! - JJ
 \begin{itemize}
-\item These services can dynamically bound to change the needed EA aspects. 
-\item The source code of  the basic EA services must not been re-written or re-compiled to achieve this task. 
+\item These services can dynamically bound %bind o be bound - JJ
+ to change the needed EA aspects. 
+\item The source code of  the basic EA services must not been % seriously? must not been? - JJ
+re-written or re-compiled to achieve this task. 
 \item New services can be added in execution time. 
-\item No specific source code for a distribution must added, neither the existing source code of the services should be modified for this purpose (that is, changing distribution libraries must not add extra code in existing services).
+\item No specific source code for a distribution must added, neither
+  the existing source code of the services should be modified for this
+  purpose (that is, changing distribution libraries must not add extra
+  code in existing services). 
 \end{itemize}
 
 \subsection{Designing the services}
 
 Taking into account the previous restrictions a possible way for designing services for EAs is shown: 
+% ¿Esto es algo de tu tesis? Haz más énfasis y di cómo has llegado a esa forma "posible". ¿Es la única forma? ¿Es la mejor? ¿Qué otras has probado¿ -JJ
 
 \begin{itemize}
 \item Individual representation. Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to operate properly.
-\item Fitness evaluation. Each problem should implement an interface of the fitness service that receives the individual, allowing the distribution of this service (instead of being a method in the {\em individual} class, for example). However, to be more flexible, the {\em fitness service} must receive a list of at least one individual, to facilitate the parallelism.
-\item Definition or addition of every type of operator. Thanks to the loose coupling of services, several crossover or mutation implementations can be created. Moreover, new operators can be added in execution time, without re-compiling the existing ones, or combining them according to several parameters, for example.
-\item Adaptation of the evolutionary model. The user can manually select the services to be combined to create a Genetic Algorithm or an Evolution Strategy, for example.
-\item Dynamic adaptation of the parameters. Parameters can also be a service, thus the EA developer obtains two advantages: it is not mandatory to distribute the parameters among all services, and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation \cite{eiben2005shared}.
-\item Flexible output mechanisms. The developers do not need skills in GUIs (Graphical User Interfaces) or logs programming, because as this kind of services are not coupled to the operators, they can access their information without any modification in the operators.
+\item Fitness evaluation. Each problem should implement an interface
+  of the fitness service that receives the individual, allowing the
+  distribution of this service (instead of being a method in the {\em
+    individual} class, for example). However, to be more flexible, the
+  {\em fitness service} must receive a list of at least one
+  individual, to facilitate the parallelism. % ¿Seguro que hace falta
+                                % esto? ¿No hará falta un simple
+                                % servicio de selección? Tienes que
+                                % justificarlo todo sobre todo si es
+                                % parte de TU TESIS - JJ
+\item Definition or addition of every type of operator. % ¿definition
+                                % or addition? - JJ
+Thanks to the loose coupling of services, several crossover or
+mutation implementations can be created. % esto no haces más que
+                                % repetirlo. Pero ¿lo has hecho? Si
+                                % usas servicios web por esto, tienes
+                                % que usarlo en la tesis (y además te
+                                % lo llevo diciendo casi desde que
+                                % empezaste con este tema) - JJ
+Moreover, new operators can be added in execution time, without
+re-compiling the existing ones, or combining them according to several
+parameters, for example. % pero ¿esto lo vas a hacer? Recuerda el
+                         % principio de espada del samurai: si la
+                         % desenvainas, tiene que hacer sangre; si
+                         % hablas de esto, tienes que usarlo (aunque
+                         % sea como prueba de concepto)- JJ
+\item Adaptation of the evolutionary model. The user can manually
+  select the services to be combined to create a Genetic Algorithm or
+  an Evolution Strategy, for example. % See above
+\item Dynamic adaptation of the parameters. Parameters can also be a
+  service, % _returning_ parameters or getting the value of
+           % parameters. Los parámetros son valores, no pueden ser un
+           % servicio. Usa el lenguaje con propiedad - JJ
+ thus the EA developer obtains two advantages: % ¿sobre qué? - JJ
+it is not mandatory to distribute the parameters among all services,
+% ¿ein? - JJ
+ and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation \cite{eiben2005shared}.
+\item Flexible output mechanisms. The developers do not need skills in
+  GUIs (Graphical User Interfaces) or logs programming, because as
+  this kind of services are not coupled to the operators, they can
+  access their information without any modification in the
+  operators. % Esto no lo veo nada claro... Programar un log no es tan
+             % complicado - JJ
 \end{itemize}
 
 
@@ -141,7 +206,8 @@ Taking into account the previous restrictions a possible way for designing servi
 
 
 
-As previously stated, the 
+As previously stated, % ¿dónde? ¿Para qué están los hiperenlaces? - JJ
+ the 
 fitness should not be calculated within a method of an {\em Individual} class. To be less
 coupled, it should be implemented an an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible. Also the parameters should be
 a service for the same reason, allowing the possibility of performing
