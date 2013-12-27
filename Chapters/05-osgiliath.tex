@@ -1,26 +1,70 @@
+%Para empezar, léete lo que he dicho de los otros capítulos - JJ
 \myChapter{Implementation of SOA-EA}\label{chap:osgiliath}
+% Dedicar un capítulo a la implementación es arriesgado, porque una
+% implementación no es parte de una tesis, es, bueno,
+% implementación. Salvo que justifiques que realmente lo es,
+% justifiques las elecciones hechas, deduzcas conclusiones generales,
+% presentes una metodología (lo del SOMA ese), en principio, es dudoso
+% que necesite un capítulo o incluso que vaya fuera de un apéndice - JJ
 \minitoc\mtcskip
 \vfill
-\lettrine{I}{n} Chapter \ref{chap:soaea} we presented the services that conform an Evolutionary Algorithm and the process to design a service oriented EA. Although the previous examples can be developed using any SOA technology, this chapter presents OSGiLiath ({\em OSGi Laboratory for Implementation and Testing of metaHeuristics}), an implementation of SOA-EA based in OSGi. 
+\lettrine{I}{n} Chapter \ref{chap:soaea} we presented the services
+that conform an Evolutionary Algorithm  % ¿así, en general? ¿En qué
+                                % contexto? - JJ
+and the process to design a service oriented EA. Although the previous
+examples can be developed using any SOA technology, this chapter
+presents OSGiLiath ({\em OSGi Laboratory for Implementation and
+  Testing of metaHeuristics}), an implementation of SOA-EA based in
+OSGi. % lo que hacemos porque... - JJ
 
 \section{Framework description}
-This proposed environment is a  framework for the development of heuristic optimization applications, not centered on a concrete paradigm, and whose main objective is to promote  SOA benefits and offer these features to programmers:
+% no label? - JJ
+This proposed environment is a  framework for the development of
+heuristic optimization applications, not focused on a concrete
+paradigm, and whose main objective is to promote SOA benefits % ¿dónde? - JJ
+ and offer these features to programmers: % ¿Por qué? - JJ
 
 
 \begin{itemize}
-\item Well defined interfaces. As previously stated, service interfaces have been designed to be as abstract as possible.
-\item Asynchronous data sending/receiving. Due to the distribution capabilities offered by OSGi, the presented implementation allows the direct distribution of services, without the need to implement specific functions in the source code, like MPI or other distribution mechanisms. EAs developers can use the existing distribution services or create new ones, if they want.
-\item Service oriented programming. New improvements can be added without modifying the existing modules, that is, adding or modifying only the affected service implementations without modifying the source code of the other services.
-\item Server/client or distributed model. All the components of this implementation can communicate in a bi-directional way, so it is not mandatory to use a central server to manage other nodes.
-\item Paradigm independent. Although the first developments are focused on EAs, this architecture can be extensible to other kind of metaheuristics.
+\item Well defined interfaces. As previously stated, service
+  interfaces have been designed to be as abstract as possible. %¿have
+                                %been o will be? ¿Es parte de la tesis
+                                %o no? ¿Lo has hecho ya en otro
+                                %capítulo? - JJ
+\item Asynchronous data sending/receiving. Due to the distribution
+  capabilities offered by OSGi, the presented implementation allows
+  the direct distribution of services, without the need to implement
+  specific functions in the source code, like MPI or other
+  distribution mechanisms. EAs developers can use the existing
+  distribution services or create new ones, if they want. % En
+                                % general, deja claro si esto lo has
+                                % deducido tú, es necesario, es una
+                                % decisión entre muchas, qué diablos
+                                % es y como encaja con TU TESIS - JJ
+\item Service oriented programming. New improvements can be added
+  without modifying the existing modules, that is, adding or modifying
+  only the affected service implementations without modifying the
+  source code of the other services. %¿Esto no lo tiene OSGi de por
+                                %sí? - JJ
+\item Server/client or distributed model. All the components of this
+  implementation can communicate in a bi-directional way, so it is not
+  mandatory to use a central server to manage other nodes. % ver
+                                % arriba - JJ
+\item Paradigm independent. Although the first developments are focused on EAs, this architecture can be extensible to other kinds of metaheuristics.
 \item Remote event handling. Users can handle a
-  powerful synchronization tool among distributed services using OSGi features. 
+  powerful synchronization tool among distributed services using OSGi
+  features.  % ein? - JJ
                                
 \end{itemize}
 
 \subsection{OSGiLiath organization}
 
-By now, OSGiLiath counts with the next bundles:
+By now, OSGiLiath counts with the next bundles: %No es un manual. Es
+                                %una tesis. Cuenta por qué tiene esos
+                                %bundles, qué te ha llevado a
+                                %hacerlas, etc etc. ¡Una tesis es una
+                                %tesis! - JJ
+
 
 \begin{itemize}
 \item osgiliath: This is the core bundle. It includes all the interfaces common to the algorithms such as {\em Algorithm}, {\em AlgorithmParameters} or {\em Problem}. 
@@ -34,16 +78,26 @@ By now, OSGiLiath counts with the next bundles:
 \item IntelligentManager: An example of how the services can be bound/unbound in real-time. By now, in each step the {\em IntelligentRandomManager} selects randomly from the available Crossovers, Mutators and Replacers implementations.
 \end{itemize}
 
+% ¿Todo esto es interesante para entender tu tesis? 99% de
+% probabilidad de que la respuesta sea NO. Así que bórralo
+% (posiblemente, como dije al principio, el capítulo entero) - JJ
+
 \section{Reasons to use OSGi}
 OSGi has been selected for the development of this service oriented architecture instead Web Services  attending the following reasons:
 
+% Primero: esto debería ir al principio, incluso en la intro. Segundo
+% ¡no uses items! Cuéntalo, nárralo, úsalo como argumento - JJ
 \begin{itemize}
 
-\item OSGi is faster, because it was designed for
+\item OSGi is faster, because it was designed for % ¿Faster que qué? - JJ
   lightweight devices \cite{LimGateway08}. Therefore, it can be
   used in embedded devices, like Evolutionary Robotics
-  \cite{Garcia2012testing}. On the contrary, Web services were created to integrate complex
-  data interchange among different companies.  
+  \cite{Garcia2012testing}. % si no lo vas a usar en tu tesis, eso no
+                            % importa nada. No añadas ruido ni razones
+                            % espúreas - JJ
+On the contrary, Web services were created to integrate complex
+  data interchange among different companies. % ¿OSGi no es un
+                                % servicio web?  - JJ
 \item The transmission protocol in web services is SOAP, which implies
   the transmission of an XML ({\em eXtension Markup
     Language}) file \cite{XML}. This file is usually too large (for example, a
@@ -55,13 +109,26 @@ OSGi has been selected for the development of this service oriented architecture
   transmission, allowing more flexibility depending on the execution environment of
   the algorithms (for example, in a machine, in a local
   network, over the Internet, or even in more lightweight devices). 
-
+% Esto tienes que probarlo. No te cuesta trabajo hacer un mínimo
+% servicio web para probar qué es mejor; también está el paper de
+% Pedro - JJ
  \item Unlike web services, OSGi includes a blackboard event-manager,
    that is, services inform what they are doing without indicating 
+% ¿Seguro que no hay nada parecido en los servicios web? - JJ
  any receiver. Other services can filter this information and actuate
  accordingly, so the synchronization is easier. For example, it is not
  mandatory to create a variable to count the number of times that the
- {\em Fitness Calculator} service is executed: an external service can track this number. 
+ {\em Fitness Calculator} service is executed: an external service can
+ track this number. 
+
+% esto tendrías que haberlo presentado, en vez de como hechos
+% consumados, como una historia. "A la hora de implementar,
+% consideramos dos paradigmas diferentes (o tres). Lo que
+% necesitábamos, como se dijo bla y bla, era bla y bla. Ergo elegimos
+% esto porque tenía bla y bla y el otro sólo tenía bla
+% No justifiques
+% nada a posteriori, sino a priori, la tesis tienes que construirla,
+% no justificarla - JJ
  \item Due to the separation between OSGi and the source code of the
    services, the code of OSGi-based applications can be used in other
    Java-based applications without OSGi. For the same reason,
@@ -71,20 +138,28 @@ OSGi has been selected for the development of this service oriented architecture
    control, security and life-cycle management of the used
    components, that can be useful in the development of EAs 
    (as explained by \person{Wagner \etal} \cite{WagnerPlugins07}). These advantages can be used by the EA developers if
-   they work in a team collaboration. 
+   they work in a team collaboration. % Pero ¿lo son? - JJ
 \end{itemize}
 
-More information about the application of OSGi in other areas, with good practices, benefices and lessons learned are provided by the authors in \cite{GarciaSanchez2013Gateway}.
+More information about the application of OSGi in other areas, with
+good practices, benefits and lessons learned is provided by the
+authors in \cite{GarciaSanchez2013Gateway}. 
 
 
 
-The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/GPL license. This code is an updated version of the work published in \cite{GarciaSanchezDistributed2010}. 
+The source code of OSGiLiath is available in
+\url{http://www.osgiliath.org} under a GNU/GPL license. This code is
+an updated version of the work published in
+\cite{GarciaSanchezDistributed2010}.  % Esto deberías justificarlo
+                                % también - JJ
 
  
 \section{Service development in OSGiLiath}
 
 Users have to define three elements to add a new service in OSGiLiath:
-
+% NO ES UN MANUAL. "To easen the development of new evolutionary
+% algorithms with OSGILIATH, the application interface has been
+% designed so that... " - JJ
 
 \begin{itemize}
 \item {\em Service interface}. It is a Java interface. The user just needs to specify the operations that the service will perform.
@@ -93,15 +168,30 @@ Users have to define three elements to add a new service in OSGiLiath:
   interface is being implemented and which other services needs to be
   activated. 
 \end{itemize}
-These concepts were explained in detail in Chapter \ref{chap:soa}.
-The presented implementation includes the interfaces defined in Chapter \ref{chap:soaea}, such as {\em Algorithm}, {\em StopCriterion}, {\em Population} or {\em Recombinator}. These interfaces are grouped with another interfaces that do not need to be a service. For example, the interface of the object {\em Individual}. This interface is used in the {\em Recombinator} interface, which receives a list of {\em Individual} objects to be recombined, and returns another list with the recombined ones.
-Also, several implementations are included, like {\em EvolutionaryAlgorithm} (implementing {\em  Algorithm}) or the rest of  services explained in previous chapters, like the services for NSGA-II.
+These concepts were explained in detail in Chapter \ref{chap:soa}. % ¿Dónde? Etiqueta secciones para poder referirte a ellas - JJ 
+The presented implementation includes the interfaces defined in
+Chapter \ref{chap:soaea}, such as {\em Algorithm}, {\em
+  StopCriterion}, {\em Population} or {\em Recombinator}. These
+interfaces are grouped along other interfaces that do not need to be a
+service. For example, the interface of the object {\em
+  Individual}. This interface is used in the {\em Recombinator}
+interface, which receives a list of {\em Individual} objects to be
+recombined, and returns another list with the recombined ones. 
+Also, several implementations are included, like {\em
+  EvolutionaryAlgorithm} (implementing {\em  Algorithm}) or the rest
+of  services explained in previous chapters, like the services for
+NSGA-II. % Para que... ¡no describas, justifica! ¡¡¡¡Es una tesis!!! - JJ
 
 
-The source code of the method that executes the algorithm in the class {\em EvolutionaryAlgorithm} (implementation) is shown in Figure \ref{fig:javaevo}. It also includes methods to bind the six references to the service implementations that are needed: Population ({\em pop} in the code), StopCriterion, ParentSelector, Recombinator, Mutator, and Replacer. 
+The source code of the method that executes the algorithm in the class
+{\em EvolutionaryAlgorithm} (implementation) is shown in Figure
+\ref{fig:javaevo}. It also includes methods to bind the six references
+to the service implementations that are needed: Population ({\em pop}
+in the code), StopCriterion, ParentSelector, Recombinator, Mutator,
+and Replacer.  % Usa \sc o algún tipo especial para código - JJ 
 
 
-\newsavebox{\mintedbox}
+\newsavebox{\mintedbox} %¿No hay nada para código? ¿Con colorines y demás? - JJ
 \begin{lrbox}{\mintedbox}
 \begin{minipage}{10cm}
 \begin{minted}[mathescape,
@@ -155,7 +245,17 @@ public void start(){
 \end{minted}
 \end{minipage}
 \end{lrbox}
-
+% Hay que tener mucho cuidado con poner código en una tesis porque hay
+% gente que puede leérselo. Yo lo quitaría, pero si está, asegúrate
+% que sigue todas las buenas prácticas. Por ejemplo, en vez de
+% hasFinished debería llamarse "isMet" o
+% "isTrue". initializePopulation es repetitivo: debería ser initialize
+% simplemente. 
+% Es más, estas críticas tendrían toda la razón de ser porque estás
+% incluyendo el diseño del framework como parte de la tesis, así que
+% deberías seguir todas las buenas prácticas que haya sobre el
+% tema. Además, no está el código completo, ¿no? El this de la
+% función ¿a qué se refiere? - JJ
 
 \begin{SCfigure}[20][htb]
 \usebox{\mintedbox}
@@ -164,7 +264,20 @@ public void start(){
 \end{SCfigure}
 
 
-This is the code needed by every EA, so it not necessary to modify it (for example, to change from a GA to an ES).  The {\em Service Description} appears when the service interfaces are bound to execute the service implementation. Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:ds}. This file describes that the {\em EvolutionaryAlgorithm} class is an implementation of the {\em Algorithm} interface, and that it needs implementations of the interfaces {\em Population}, {\em Mutator}, {\em ParentSelector}, {\em Replacer}, {\em StopCriterion} and {\em Recombinator} to be activated.
+This is the code needed by every EA, so it not necessary to modify it
+(for example, to change from a GA to an ES).  % eso es muy
+                                % arriesgado. es un GA canónico, con
+                                % un solo operador de mutación y de
+                                % crossover, que lo hace exactamente
+                                % en ese orden, no usa
+                                % elitismo... Decir que no es
+                                % necesario modificarlo es discutible
+                                % y además no sé qué tiene que ver con
+                                % TU TESIS - JJ
+ The {\em Service Description} appears when the service interfaces are
+ bound to execute the service implementation. % ¿Eso qué tiene que ver
+                                % con el código de antes? - JJ
+Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:ds}. This file describes that the {\em EvolutionaryAlgorithm} class is an implementation of the {\em Algorithm} interface, and that it needs implementations of the interfaces {\em Population}, {\em Mutator}, {\em ParentSelector}, {\em Replacer}, {\em StopCriterion} and {\em Recombinator} to be activated.
 
 It should be noted that this file usually can be modified using a friendly GUI, or from an assistant in Java IDEs, such as NetBeans or Eclipse (so, users do not have to care about its XML structure). The user interface to create this file in Eclipse is shown in Figure \ref{fig:xmlgui}. The interface being implemented is set in the lower part ({\em Algorithm}). The necessary services to activate this implementation are indicated in the upper part (with the cardinality and functions to set and unset the service implementations in the implementation source code).
 
@@ -206,7 +319,7 @@ name="Recombinator" policy="static" unbind="unsetRecombinator"/>
 </scr:component>
 \end{minted}
 \end{minipage}
-\end{lrbox}
+\end{lrbox} % ¿En serio que merece la pena meter estos tochos? JJ
 
 \begin{SCfigure}[20][htb]
 \usebox{\mintedboxDS}
@@ -222,19 +335,45 @@ name="Recombinator" policy="static" unbind="unsetRecombinator"/>
 \label{fig:xmlgui}
 \end{SCfigure}
 
-This XML file is read by the OSGi execution environment, which is the responsible to bind the available services to this implementation. For example, if a {\em ParentSelector} is activated, automatically is bound to the variable {\em parentSelector} through the function {\em setParentSelector}. The {\em cardinality} is also set in the file, in this case, only one implementation is necessary (not multiple). This file can be modified in execution time, so it is not required to re-compile the Java code to use and set new services.
+This XML file is read by the OSGi execution environment, which is the
+responsible to bind the available services to this implementation. For
+example, if a {\em ParentSelector} is activated, automatically is
+bound to the variable {\em parentSelector} through the function {\em
+  setParentSelector}. The {\em cardinality} is also set in the file,
+in this case, only one implementation is necessary (not
+multiple). This file can be modified in execution time, so it is not
+required to re-compile the Java code to use and set new services. % zzzzzzzzz interés para la tesis: 0 - Jj
 
 In brief, each implementation of a service (\textit{$<$im\-ple\-men\-ta\-tion$>$}) indicates the interface to being implemented (\textit{$<$pro\-vi\-de in\-ter\-fa\-ce$>$}), and the other services this implementation needs (\textit{$<$re\-fe\-ren\-ce$>$}). 
 
-Moreover, each service can provide properties to be used by other services to obtain more information and filtering. For example, in this case only the {\em Replacers} whose property {\em replacerName=nsga2} are used.
+Moreover, each service can provide properties to be used by other
+services to obtain more information and filtering. For example, in
+this case only the {\em Replacers} whose property {\em
+  replacerName=nsga2} are used. 
 
 
 \subsection{Managing services: implementing the NSGA-II from the canonical GA}
 
-Following the development example showed in Section \ref{sec:nsga2}, some extra services have been developed to convert the basic GA into a NSGA-II (and have also been added to OSGiLiath to be available for users).
+Following the development example showed in Section \ref{sec:nsga2},
+some extra services have been developed to convert the basic GA into a
+NSGA-II (and have also been added to OSGiLiath to be available for
+users). % ¿Lo ves como lo de arriba no incluía todos los GAs? - JJ
 
-There exist many options for the EA to pick up the appropriate service. The first of them is modifying the source code of the implementations. Obviously this is not recommended, because the service would not be loose coupled due to the specific OSGi code, and this is not a good SOA practice. The following ways makes the service usage not code-dependent:
+There exist many options for the EA to pick up the appropriate
+service. % ¿El EA elige las opciones? - JJ
+ The first of them is modifying the source code of the
+ implementations. Obviously this is not recommended, because the
+ service would not be loosely coupled due to the specific OSGi code,
+ and this is not a good SOA practice. The following ways makes the
+ service usage not code-dependent: 
 
+% No describas el ejemplo. Crea una metodología para implementar
+% algoritmos y aplícala a casos particulares. Esto debería ser un
+% ejemplo de una metodología más general. En la tesis no se cuenta lo
+% que uno ha hecho, se cuenta la metodología que ha desarrollado uno
+% para que otros puedan usarlo también. Supón guq te llega alguien y
+% te dice "¿Cómo implemento un EDA?" ¿Le cuentas como se implementa
+% NSGAII y que se apañe? - JJ
 
 \begin{itemize}
 \item De-activating the implementation {\em Binary Tournament} from the OSGi administration console, and activating the implementation {\em Crowding Distance Selector} (that is, manually). This technique is not recommended, because all services are then managed by hand, and this is very difficult with a large number of services. However, the OSGi console allows modifying services in execution time, so it can be used in some cases (for example, to stop the service in a machine while another big task is being executed, and activate it again when this task is over).
@@ -243,13 +382,42 @@ There exist many options for the EA to pick up the appropriate service. The firs
 \end{itemize}
 
 
-None of these options needs to modify the source code of the existing services: they just indicates which services uses each time.
+None of these options needs to modify the source code of the existing
+services: they just indicates which services uses each time.
+% ¿Y no será más fácil tener varias implementaciones de referencia, una
+% de ellas multiobjetivo como NSGAII? - JJ
 
-\subsection{Adding distributed capabilities}
+\subsection{Making it distributed}
+% ¿Por qué no pones etiquetas de sección ? - JJ
 
-As previously stated in Section \ref{sec:distribution}, one of the main advantages in SOA-EA is that services can be distributed, so the proposed implementation of the architecture  should also allow  the distribution and load balancing of the EA. In OSGiLiath all services can be distributed using the OSGi features. In this case, the distribution is performed using the service descriptor to set which service is distributable and which is the distribution technology that provides service discovering and data transmission.
+As previously stated in Section \ref{sec:distribution}, one of the
+main advantages in SOA-EA is that services can be distributed, so the
+proposed implementation of the architecture  should also allow  the
+distribution and load balancing of the EA. In OSGiLiath all services
+can be distributed using the OSGi features. In this case, the
+distribution is performed using the service descriptor to set which
+service is distributable and which is the distribution technology that
+provides service discovering and data transmission. 
 
-As explained in Chapter \ref{chap:soa}, OSGi allows several implementations for the service distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has been chosen because it is the most mature and accepted implementation (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), and it also supports the largest number of transmission protocols, including both synchronous and asynchronous communication. It provides a modular implementation of the OSGi 4.2 Remote Services standard\footnote{\url{http://www.osgi.org/Release4/Download}}. This specification uses the OSGi service registry to expose remote services to other machines (being indistinguishable from the local ones).  ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
+As explained in Chapter \ref{chap:soa}, %¿qué sección? - JJ
+ OSGi allows several implementations for the service
+ distribution. ECF\footnote{\url{http://www.eclipse.org/ecf/}} has
+ been chosen because it is the most mature and accepted implementation
+ (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), % o
+                                % sea, que no lo has probado - JJ
+and it also supports the largest number of transmission protocols,
+including both synchronous and asynchronous communication. It provides
+a modular implementation of the OSGi 4.2 Remote Services
+standard\footnote{\url{http://www.osgi.org/Release4/Download}}. % Una
+                                % vez más, NUNCA JUSTIFIQUES A
+                                % POSTERIORI. Una tesis es una
+                                % descripción de un camino. Quería tal
+                                % cosa y tal otra cosa porque eran
+                                % importantes para tal y tal
+                                % cosa. Estaban tal y tal, pero cólo
+                                % cual o pascual tenía lo que yo
+                                % buscaba- JJ
+ This specification uses the OSGi service registry to expose remote services to other machines (being indistinguishable from the local ones).  ECF also separates the source code from the discovery and transmission mechanism, allowing users to apply the most adequate technology to their needs, and providing the integration with existing applications. For example, the lines of Figure \ref{fig:remote} have been added to the service descriptor of {\em MOP2 Fitness Calculator} to distribute it in the local network.
 
  
 
@@ -258,6 +426,7 @@ ECF includes a number of protocols for service discovery and service providers:
 \item Service Discovery API: Includes protocols to announce and discover remote services: Zeroconf, SLP/RFC 2608, Zookeeper, file-based and others \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Discovery_API}}.
 \item Remote Service API: Includes protocols to establish the communication (data streams, formats and others): R-OSGi, ActiveMQ/JMS, REST, SOAP, XMPP, ECF Generic \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Remote_Services_API}}. This allows communication with systems that do not use OSGi or Java.
 \end{itemize}
+% Vale. ¿y? ¿Lo vas a usar luego? - JJ
 
 
 
@@ -281,12 +450,32 @@ value="ecftcp://localhost:3787/server"/>
 \begin{SCfigure}[20][htb]
 \usebox{\mintedboxServer}
 \caption{Lines added to the service descriptor of Figure \ref{fig:ds} to be discovered by other services in a network  (this can also be done in the GUI)} 
-\label{fig:remote} 
+\label{fig:remote} % Conque digas que sólo hay que añadir cuatro
+                   % líneas es suficiente, no hace falta que pongas el
+                   % XML - JJ
 \end{SCfigure}
 
-In this case, it is only necessary to set the properties that ECF uses to identify the services being distributed in the network, indicating that all implemented interfaces are distributable (\texttt{ser\-vi\-ce\-.ex\-por\-ted\-.in\-ter\-fa\-ces}). Also, the communication technology to be used is established (\texttt{ecf\-.ge\-ne\-ric\-.ser\-ver}, although another kind of protocol could be used), and finally, the service URL (\texttt{ ecf\-.ex\-por\-ted\-.con\-tai\-ner\-fac\-to\-ry\-args}). As previously stated, the service properties can be modified from other services, so this properties can be added outside the XML. It should be noted that the source code of the services has not been modified to distribute them (as would happen if MPI had been used to perform the distribution, for example).
+In this case, it is only necessary to set the properties that ECF uses
+to identify the services being distributed in the network, indicating
+that all implemented interfaces are distributable
+(\texttt{ser\-vi\-ce\-.ex\-por\-ted\-.in\-ter\-fa\-ces}). Also, the
+communication technology to be used is established
+(\texttt{ecf\-.ge\-ne\-ric\-.ser\-ver}, although another kind of
+protocol could be used), and finally, the service URL (\texttt{
+  ecf\-.ex\-por\-ted\-.con\-tai\-ner\-fac\-to\-ry\-args}). As
+previously stated, the service properties can be modified from other
+services, so these properties  % THESE properties!!! - JJ
+can be added outside the XML. It should be noted that the source code
+of the services has not been modified to distribute them (as would
+happen if MPI had been used to perform the distribution, for
+example). % Pues pon como requisito desde el principio que eso es lo
+          % que buscas y por eso has elegido ECF en vez de MPI o lo
+          % que sea - JJ
 
-\subsection{Example of programming an island model}
+\subsection{Example of programming an island model} %Sin leerlo ya te
+                                %digo que lo elimines. ¿Qué quieres
+                                %probar aquí? ¿Qué información añade a
+                                %la tesis? 
 \label{subsec:migrator}
 In this case, the {\em Migration} service is used. This service has two operations: {\em send} and {\em read}. The first one is used to send the individuals to the migrator, and the other is used to read the individuals of that migrator. Usually, each node (island) has one migrator to receive individuals, and references to the other nodes' migrators. In our case, the implementation of {\em Replacer} binds the local {\em Migrator} to write in it the individual(s) to sent. One example of Migrator implementation is the {\em MigratorRingBuffer}: this class implements that interface and automatically binds all the Migrators available in the environment (in a vector of references) thanks to the bind/unbind methods of declarative services and ECF. So, the migrators can be added during runtime, and no stop the algorithm if one node fails.  The {\em MigratorRingBuffer} sends the individuals to the remote Migrator whose id is inmediatelly higher than the local id (or the smaller, if it not exist) following a ring topology. Figure \ref{MIGRATOR} shows this configuration. The {\em Replacer} implementation, a reference to the local {\em Migrator} interface just send and read the individuasl. The {\em MigratorRingBuffer} implementation binds an unbinds other migrators in other nodes, keeping a reference to these remote service interfaces. Several properties can added to the service allows to ECF automatically announce the implementation to all nodes in the network and no specific code is required to change from one distribution mechanism to another. 
 
@@ -299,23 +488,87 @@ In this case, the {\em Migration} service is used. This service has two operatio
 \label{AXISFIGURE}
 \end{SCfigure}
 
-\subsection{Converting a basic algorithm into a self-adaptive one}
+\subsection{Converting a basic algorithm into a self-adaptive one} % ¿Una subsección? ¿Seriously? ¿Y con un párrafo? - JJ
 
-Previous sections remarked that the SOA-EA benefits are also related to self-adaptation. A simple example is presented here to demonstrate how easy is to convert a basic evolutionary algorithm into a self-adaptive one in OSGiliath. In this example, an intelligent service manages all the available operators. In this case, the service {\em IntelligentRandomManager} implements the interfaces {\em Parent Selector, Recombinator, Mutator} and {\em Replacer}. All operator implementations previously presented are added to the Manager in execution time (see Figure \ref{INTELLIGENTALGORITHM}) when they become activated in the system. Every time the EA calls an operator, this simple manager chooses randomly one of the available implementations it controls. To create this manager no code has to be modified. The manager also does not need specific code to acquire all operators in execution time: it is done automatically thanks to OSGi. As the rest of services, these operators can be activated in execution time and added to the manager. 
+Previous sections remarked that the SOA-EA benefits are also related
+to self-adaptation. A simple example is presented here to demonstrate
+how easy is to convert a basic evolutionary algorithm into a
+self-adaptive one in OSGiliath. In this example, an intelligent
+service manages all the available operators. In this case, the service
+{\em IntelligentRandomManager} implements the interfaces {\em Parent
+  Selector, Recombinator, Mutator} and {\em Replacer}. All operator
+implementations previously presented are added to the Manager during  runtime (see Figure \ref{INTELLIGENTALGORITHM}) when they
+become activated in the system. Every time the EA calls an operator,
+this simple manager chooses randomly one of the available
+implementations it controls. % ¿Eso es auto-adaptativo? Es más, para
+                             % lo que haces, ¿no hay forma de hacerlo
+                             % a otro nivel sin necesidad de crear un
+                             % nuevo Intelligent Manager? - JJ
+To create this manager no code has to be
+modified. The manager also does not need specific code to acquire all
+operators in execution time: it is done automatically thanks to
+OSGi. In the same way as the rest of services, these operators can be activated in
+execution time and added to the manager.  
+% Me he quedado igual. ¿Ha servido esto de algo? ¿Dónde está el
+% ejemplo? ¿Funciona el algoritmo mejor? - JJ
 
+%Aquí, más perdido que el barco del arroz. Todo esto parece como el
+%algoritmo del tirador bizco: tiro a todos lados y acabo dando. En vez
+%de hablar de implementación, tienes que hablar 
+% 1. El camino que te ha llevado a usar este tipo de implementación y
+% no otra y por qué has desechado los otros, incluyendo experimentos y
+% referencias a "implmentation matters".
+% 2. Si alguien quiere desarrollar algo nuevo, qué es lo que tiene que
+% hacer. ¿Crear nuevos intelligent manager? ¿Nada? ¿Tocar las
+% descripciones de servicio? 
+% 3. Desarrollar, paso por paso, una implementación de algo (si puede
+% ser algo que no hayas publicado todavía) y mostrar lo fácil que es,
+% el poco esfuerzo necesario y las pocas líneas de código que hacen
+% falta. 
+% Y todo esto te lo he dicho desde el día 1. Que conste - JJ
 
 
 \subsection{Increasing interoperability with other systems}
 
-As previously stated, another advantage of SOA is the programming language independence respect to the service interfaces. Although OSGi is a kind of SOA, it does not include  the capability of interoperability with other kind of services by default. However, adaptation services can be added to transform OSGi interfaces into other SOA interfaces, such as Web Services (presented in Chapter \ref{chap:soa}). So, services that are not written in Java, neither OSGi-based, could use services implemented in OSGiLiath (and vice-versa).
+As previously stated, another advantage of SOA is the programming
+language independence respect to the service interfaces. Although OSGi
+is a kind of SOA, it does not include  the capability of
+interoperability with other kind of services by default. However,
+adaptation services can be added to transform OSGi interfaces into
+other SOA interfaces, such as Web Services (presented in Chapter
+\ref{chap:soa}). So, services that are not written in Java, neither
+OSGi-based, could use services implemented in OSGiLiath (and
+vice-versa). 
 
 ECF includes a number of protocols for service discovery and service providers:
 \begin{itemize}
 \item Service Discovery API: Includes protocols to announce and discover remote services: Zeroconf, SLP/RFC 2608, Zookeeper, file-based and others \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Discovery_API}}.
 \item Remote Service API: Includes protocols to establish the communication (data streams, formats and others): R-OSGi, ActiveMQ/JMS, REST, SOAP, XMPP, ECF Generic \footnote{\url{http://wiki.eclipse.org/ECF_API_Docs\#Remote_Services_API}}. This allow to communicate to systems that do not use OSGi or Java.
-\end{itemize}
+\end{itemize} % ¡ya lo has dicho antes!
 
-For example, using ECF all OSGi service interfaces could be transformed into WSDL interfaces automatically. Thus, these services could be used from other systems, that do not need to know the implementation language of the services in OSGiLiath. An example where an OSGi interface is transformed into a WSDL interface is shown in Figure \ref{AXISFIGURE}. The computation node A, based on OSGi, uses the OSGi interface of the computation node C to calculate the fitness. Node B uses the WSDL interface to do the same task. It is not necessary to modify existing services source code to convert an OSGi interface into a WSDL interface. This transformation is bi-directional: given an WSDL interface, it can also be transformed into a service to use inside OSGi. For example, the algorithms in GridUFO framework (presented in Chapter \ref{chap:distributedEAs}) could be used from OSGiLiath.
+For example, using ECF all OSGi service interfaces could be
+transformed into WSDL interfaces automatically. % ¿Qué es wsdl? ¿Por
+                                % qué es importante? ¿Lo usas? Si no,
+                                % ¿por qué diablos lo dices?  JJ
+Thus, these services could be used from other systems, that do not
+need to know the implementation language of the services in
+OSGiLiath. An example where an OSGi interface is transformed into a
+WSDL interface is shown in Figure \ref{AXISFIGURE}. % ¿Es tuya? ¿Por
+                                % qué la pones en la tesis? - JJ
+The computation
+node A, based on OSGi, uses the OSGi interface of the computation node
+C to calculate the fitness. Node B uses the WSDL interface to do the
+same task. It is not necessary to modify existing services source code
+to convert an OSGi interface into a WSDL interface. This
+transformation is bi-directional: given an WSDL interface, it can also
+be transformed into a service to use inside OSGi. For example, the
+algorithms in GridUFO framework (presented in Chapter
+\ref{chap:distributedEAs}) could be used from OSGiLiath. % Cada vez
+                                % que dices "could be" y no "will be
+                                % used and presented in Chapter A"
+                                % $deity mata a un cachorro de especie
+                                % en peligro de extinción de pelo
+                                % sodoso y grandes ojos. - JJ
 
 
 
@@ -331,15 +584,59 @@ For example, using ECF all OSGi service interfaces could be transformed into WSD
 \label{AXISFIGURE}
 \end{SCfigure}
 
-\section{Experiments}
-One may think that working with services usually implies an overhead. This is true when communication protocols like SOAP are used, because the transmitted XML must be generated and parsed. However, as SOA is independent of the implementations, services also can behave as normal method calls in the same machine.
+\section{Experiments} %¿Implementation o experiments? ¿Estamos a setas
+% o estamos a Rolex? - JJ
+One may think that working with services usually implies an
+overhead. This is true when communication protocols like SOAP are
+used, because the transmitted XML must be generated and
+parsed. However, as SOA is independent of the implementations,
+services also can behave as normal method calls in the same machine. 
 
 
-The first experiment of this section is focused on this issue, and will demonstrate that the use of a SOA oriented implementation of an EA doesn't have to affect the execution time of the algorithm. To carry out this experiment, the Java source code of OSGiLiath has been run outside of the OSGi framework, and a normal Java class has been used to integrate the interfaces and implementations ``as is''. The population has been set to 64 individuals, parents have been selected using Binary Tournament, and the mutation rate has been fixed to 0.1. Worst individuals (parents and off-spring combined) are replaced, and the stop criterion has been set to 200 generations. Each experiment has been launched 30 times to solve the OneMax problem \cite{SchafferOnemax91}.
+The first experiment of this section is focused on this issue, % ¿Qué
+                                % issue? No has dicho ni qué quieres
+                                % probar. Ni por qué es importante
+                                % para la tesis. Ni nada. Si se trata
+                                % de que OSGi no es más lento que una
+                                % implementación local, tendría que
+                                % haber ido al principio (y el
+                                % capítulo llamarse OSGi
+                                % implementation of evolutionary
+                                % algorithms and its applications) - JJ
+and will demonstrate that the use of a SOA oriented % ¿a service
+                                % oriented aplication oriented
+                                % implmentation? - JJ
+implementation of an EA does not %nunca uses apóstrofos en lenguaje
+                                %formal!!!!! - JJ
+ have to affect the execution time of the algorithm. To carry out this
+ experiment, the Java source code of OSGiLiath has been run outside of
+ the OSGi framework, and a normal Java class has been used to
+ integrate the interfaces and implementations ``as is''. The
+ population has been set to 64 individuals, parents have been selected
+ using Binary Tournament, and the mutation rate has been fixed to
+ 0.1. % ¿Esto influye en el resultado? Si influye, ¿has probado varios
+      % settings? Si no, ¿para qué lo mencionas? - JJ
+Worst individuals (parents and off-spring combined) are replaced, and
+the stop criterion has been set to 200 generations. Each experiment
+has been launched 30 times to solve the OneMax problem
+\cite{SchafferOnemax91}. 
 
 
 
-Since the OSGi framework adds features to the implementation of the algorithm that are similar (and even superior) to those offered by several of the frameworks described in Chapter \ref{chap:distributedEAs}, the same algorithm (with the same operators and parameters) has been coded using several well known frameworks, such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ (Java). Table \ref{tab:times} shows the execution time achieved, average solution, and Lines of Code (LoC) needed to integrate the algorithm for each framework. All the algorithm implementations have been executed on the same computer, an Ubuntu 12.04 Linux Machine with Intel Core2 Quad CPU Q8200 @ 2.33GHz, 4 GB RAM, without any distribution mechanisms. The LoC have been calculated using {\em sloccount} program.
+Since the OSGi framework adds features to the implementation of the
+algorithm that are similar (and even superior) to those offered by
+several of the frameworks described in Chapter
+\ref{chap:distributedEAs}, the same algorithm (with the same operators
+and parameters) has been coded using several well known frameworks, % ¿Estás comparando tu framework con el resto? Pero esto no tiene que ver con OSGi, sino con la implementación en sí. - JJ
+such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ
+(Java). % Agh. Además, ¡¡diferentes lenguajes de programación!! - JJ
+Table \ref{tab:times} shows the execution time achieved, average
+solution, and Lines of Code (LoC) needed to integrate the algorithm
+for each framework. All the algorithm implementations have been
+executed on the same computer, an Ubuntu 12.04 Linux machine with
+Intel Core2 Quad CPU Q8200 @ 2.33GHz, 4 GB RAM, without any
+distribution mechanisms. The LoC have been calculated using {\em
+  sloccount} program. 
 
 
 
@@ -357,6 +654,7 @@ Since the OSGi framework adds features to the implementation of the algorithm th
 \rowcolor{colorCorporativoMasSuave}MALLBA                  &   578.76 $\pm$ 7.48  & 0.16 $\pm$ 0.0003 &  2073\\
 \rowcolor{colorCorporativoSuave}ECJ                     &   602.76 $\pm$ 6.08   & 1.40 $\pm$ 0.03 &  5\\
 \rowcolor{colorCorporativoMasSuave}Algorithm::Evolutionary &   617.60 $\pm$ 12.92  & 7.78 $\pm$ 0.29 &  41\\
+% venga ya, 41 líneas Algorithm::Evolutionary... - JJ 
 \hline
 \end{tabular}
 }
@@ -364,15 +662,63 @@ Since the OSGi framework adds features to the implementation of the algorithm th
 \label{tab:times}
 \end{SCtable}
 
-Results show that time of services of OSGiLiath is not affected by the OSGi framework: times are almost identical to the integration with Java code. Note that, although are services developed under SOA, and bound in runtime, they are not distributed. Algorithmically, all frameworks behaves the same, and results are not quite different. The differences among frameworks are produced because the different implementations of random generators, operators or logs, for example. In the work of \person{Merelo \etal} \cite{PERL}, these different behaviours are also justified.
+Results show that time of services of OSGiLiath is not affected by the
+OSGi framework: times are almost identical to the integration with
+Java code. Note that, although are services developed under SOA, and
+bound in runtime, they are not distributed. Algorithmically, all
+frameworks behaves the same, and results are not quite different. The
+differences among frameworks are produced because the different
+implementations of random generators, operators or logs, for
+example. In the work of \person{Merelo \etal} \cite{PERL}, these
+different behaviours are also justified. % Aquí estás comparando miles
+                                % de cosas: lenguaje, máquina virtual
+                                % de la misma, implementación del
+                                % algoritmo, de los operadores,
+                                % representación, miles de
+                                % cosas. Además, es sólo 1
+                                % comparación. Para ser justo,
+                                % deberías comparar tamaños diferentes
+                                % de cromosoma, tamaños diferentes de
+                                % población y diferentes
+                                % parametrizaciones. En todo caso, en
+                                % una tesis con un sólo experimento no
+                                % vas a ningún lado - JJ 
 
 
 
-Regarding LoCs, MALLBA has the higher number: this is because every algorithm is created as a ``skeleton'' and a duplication of code exist for each algorithm and problem to execute. This is produced because many operations affect global variables: for example the method {\em select\_offsprings()} affects the global variables {\em parents} or {\em aux}. Using this method as an external service would require a whole change in many parts of the code. Thanks the loose-coupling of Perl, many lines of code are saved using Algorithm::Evolutionary, mainly because many parameters and operators are defined by default.
+Regarding LoCs, MALLBA has the higher number: this is because every
+% Tienes que mostrar el código y acceso a los resultados
+% "crudos". Estas comparaciones de tiempo siempre son complicadas. En
+% todo caso, querría ver el de A::E - JJ
+algorithm is created as a ``skeleton'' and a duplication of code exist
+for each algorithm and problem to execute. This is produced because
+many operations affect global variables: for example the method {\em
+  select\_offsprings()} affects the global variables {\em parents} or
+{\em aux}. Using this method as an external service would require a
+whole change in many parts of the code. Thanks the loose-coupling of
+Perl, many lines of code are saved using Algorithm::Evolutionary,
+mainly because many parameters and operators are defined by default. 
 
 
 
-ECJ and OSGiLiath do not require code to combine different operators, only modify configuration files without re-compilation. The difference is in ECJ the available operators must be known prior to execution (the interfaces are linked in the source code), while in OSGiLiath, all interfaces are bound in configuration files, or even without them (for example, appearing in the same network/machine). But there also exist limitations, because ECJ only provides a fixed ways of distribution mechanisms, and only certain parts of the framework can be accessed remotely, while in OSGiLiath all operators have the chance to be distributed if desired, modifying the configuration files.
+ECJ and OSGiLiath do not require code to combine different operators,
+only to modify configuration files without re-compilation. % ¿Estas
+                                % líneas las has incluido? - JJ
+The difference is in ECJ the available operators must be known prior
+to execution (the interfaces are linked in the source code), while in
+OSGiLiath, all interfaces are bound in configuration files, or even
+without them (for example, appearing in the same network/machine). But
+there also exist limitations, because ECJ only provides a fixed ways
+of distribution mechanisms, and only certain parts of the framework
+can be accessed remotely, while in OSGiLiath all operators have the
+chance to be distributed if desired, modifying the configuration
+files. 
 
 
-It must be remarked that OSGiLiath does not try to compete with the other frameworks (they are widely accepted, completed and tested), it is only an example of how to develop EAs under the SOA paradigm.
+It must be remarked that OSGiLiath does not try to compete with the
+other frameworks (they are widely accepted, completed and tested), it
+is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la conclusión? ¿Del capítulo?
+
+% Tienes que alcanzar alguna conclusión fuerte: la implementación
+% refleja el modelo y lo valida. ¿Es el modelo válido? ¿Cómo lo has
+% probado? ¿Es la implementación válida? ¿Cómo lo has probado? - JJ
