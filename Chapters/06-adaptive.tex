@@ -18,25 +18,44 @@ As explained in Chapter \ref{chap:distributedEAs}, Distributed Evolutionary
 Algorithms have been tested successfully in this
 type of systems \cite{Alba2002Heterogeneous} and they have become very popular because their implementation is
 not complex. % Cita del asynchronous EAs del PPSN de Dortmund - JJ
- Also, in that chapter, we presented the work of \person{Alba \etal}
+ Also, in that chapter, % where? - JJ
+ we presented the work of \person{Alba \etal}
  \cite{Alba2002Heterogeneous}, where dEAs with the same parameter
  configuration are even % cita el capítulo, no el trabajo!!! - JJ
 more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with
-homogeneous devices. This can be explained by different reasons, such
-as different memory access times, cache sizes, or even implementation
-languages or compilers in each machine, leading to a different exploitation/exploration rate of the search space. 
+homogeneous devices. % ¿en qué condiciones? ¿Siempre? Así, en general, no puede ser cierto. Un cluster de Xeons no va a ser más rápido que un Xeon y dos i5s - JJ 
+This can be explained by different reasons, such
+as different memory access times, cache sizes, or even
+implementation % ¿son más rápidos porque los tiempos de acceso a
+               % memoria son diferentes? Hay que ser preciso, no vago
+               % Además, ¿por qué cuentas eso? ¿Si ya se sabe, para
+               % qué quieres repetirlo? ¿Estás confirmando un
+               % resultado? ¿Mejorándolo? - JJ
+languages or compilers in each machine, leading to a different
+exploitation/exploration rate of the search space.  % ¿Una tasa
+                                % diferentes de
+                                % exploración/explotación es buena?
+                                % ¿Por qué? ¡Mira mi artículo del PPSN
+                                % en 2008! - JJ
 Heterogeneous parameter configuration  has also been shown to be more  efficient time-wise than a fixed
 set of parameters for different problems, as shown by \person{Gong and Fukunaga} \cite{Gong2011HeterogeneousParameters}.   
-These facts have motivated us to study a combination of both ideas:
+These facts have motivated us to study a combination of both ideas: % esos hechos no pueden haberte motivado a estudiar nada. Tiene que haberlo hecho LA TESIS. ¿Qué tiene que ver con todo esto? - JJ
 dEAs on a heterogeneous set of nodes with different parameter values
-adapted to each node. In this study, the parameter to adapt to the
+adapted to each node. % ¿Por qué? ¿Porque es nuevo, y por tanto mejor?
+                      % ¿Porque es diferente y por tanto publicable? ¿Qué te dice que vaya a
+                      % ser mejor? Y, lo más importante, ¿cómo
+                      % contribuye a LA TESIS? - JJ
+In this study, the parameter to adapt to the
 computational power of each node has been the sub-population size of
 each island. % ¿Por qué? ¿Cómo? ¿Cómo se relaciona esto con LA TESIS?
              % Los capítulos deben probar LA TESIS, no decir qué se ha
              % hecho como un hecho consumado. - JJ
 
 
-In this chapter, OSGiliath has been used to create a heterogeneous distributed system to give an insight to the following questions:
+In this chapter, OSGiliath has been used % ¿Se podía haber usado otra
+                                % cosa? ¿Esto es exclusivo de
+                                % Osgiliath? - JJ
+ to create a heterogeneous distributed system to give an insight to the following questions:
 \begin{itemize}
  \item Can a distributed EA be adapted to leverage the capability of a
    heterogeneous cluster?  % ¿Esa son las preguntas de la TESIS?
@@ -48,6 +67,12 @@ In this chapter, OSGiliath has been used to create a heterogeneous distributed s
  \item How is each stage of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
    configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ
 \end{itemize}
+
+% Cada algoritmo debe ser como un paper. No te puedes ir a
+% Experimental results para saber qué diablos quieres probar y cómo
+% quieres hacerlo. Además, tienes que introducir el resto del capítulo
+% y exponer la línea argumental del mismo y como contribuye a la
+% tesis. Perdón, LA TESIS - JJ
 
 \section{Algorithm used}
 \lettrine{T}{he} experimentation is centered in a distributed GA. Figure \ref{fig:EAused} shows the pseudo-code of the used algorithm. 
@@ -79,7 +104,9 @@ mixed with the parents and the worst individuals are removed. % 1: los
     \STATE population $\gets$ population + offspring
     \IF {time to migrate}
       \STATE migrants $\gets$ selectMigrants(population)
-      \STATE remoteBuffer.send(migrants)
+      \STATE remoteBuffer.send(migrants) % si haces esto, hazlo
+                                % bien. ¿Dónde se declaran las
+                                % variables? - JJ
     \ENDIF
     \IF {localBuffer.size $\neq$ zero}
       \STATE population $\gets$ population + localBuffer.read()
@@ -159,8 +186,8 @@ the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:
 The fitness value is defined as the sum of the $s_i$ subproblems with an optimum of $k$ (Equation \ref{eq:mmdp}).
 The search space is composed of $2^{6k}$ combinations from which there
 are only $2^k$ global solutions with $22^k$ deceptive
-attractors. Hence, a search method have to find a global solution
-out of $2^{5k}$ additionally to deceptiveness. In this work $k=25$. 
+attractors. Hence, a search method has to find a global solution
+out of $2^{5k}$ additionally to deceptiveness. In this work $k=25$. % ¿Porque yo lo valgo? - JJ
 
 \begin{equation}\label{eq:mmdp}
 f_{MMDP}(\vec s)= \sum_{i=1}^{k} fitness_{s_i}
@@ -180,15 +207,19 @@ f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
 
 \begin{itemize}
 \item HoSi/HeHa: Homogeneous Size/Heterogeneous Hardware. The same sub-population size in each island on a heterogeneous cluster.
-\item HeSi/HeHa: Heterogeneous Size/Heterogeneous Hardware. Different sub-population sizes in each island on a heterogeneous cluster.
-\item HoSi/HoHa: Homogeneous Size/Homogeneous Hardware. The same sub-population size in each island on a homogeneous cluster.
+\item HeSi/HeHa: Heterogeneous Size/Heterogeneous Hardware. Different
+  sub-population sizes in each island on a heterogeneous cluster. % ¿different como? - JJ
+\item HoSi/HoHa: Homogeneous Size/Homogeneous Hardware. The same
+  sub-population size in each island on a homogeneous cluster. % hardware y software, ¿no? Deberías decir algo como "system" - JJ
 \item HeSi/HoHa: Heterogeneous Size/Homogeneous Hardware. Different sub-population sizes (the obtained for HeSi/HeHa) in each island on a homogeneous cluster.
 
 \item AdSi/HeHa: Adaptive Size/Heterogeneous Hardware. Online adaptation of sub-population sizes in each island on a heterogeneous cluster.
 \end{itemize} % ¿No falta AdSi HoHa? ¿Por qué no lo has puesto? - JJ
 
 Two different computational systems have been used: a {\em
-  heterogeneous cluster} and a {\em homogeneous cluster}. The first
+  heterogeneous cluster} % no es un cluster, simplemente un grupillo
+                         % de ordenadores - JJ
+and a {\em homogeneous cluster}. The first
 one is formed by four different computers of our lab with different
 processors, operating systems and memory size. The latter is a
 dedicated scientific cluster formed by homogeneous nodes. Table
@@ -326,20 +357,35 @@ of the sub-population size to the computational power of the islands
 size'_{N}=\dfrac{Gen_{N}}{Gen_{N-1}}size_{N}
 \end{equation}
 
-If the new size is larger than the actual size, new individuals are added to the sub-population cloning random existent ones. Otherwise, the sub-population must be reduced and thus, the worst are removed.
+If the new size is larger than the actual size, new individuals are
+added to the sub-population cloning random existent ones. % ¿Por qué?
+                                % No lo escribas todo como si pasaras
+                                % por aquí, ¡es una tesis! - JJ
+Otherwise, the sub-population must be reduced and thus, the worst are removed.
 
-With this possible online adaptation scheme, each node only requires to receive information of one of the neighbours and not from the whole system. Thus, each node tends to have a number of individuals proportional to their computational power with respect to the other nodes. Experiments on homogeneous cluster do not alter the sub-population sizes, as the number of current generations are equal in all nodes during runtime.
+With this possible online adaptation scheme, each node only requires
+to receive information from one of the neighbours and not from the
+whole system. % ¿Por qué? - JJ
+Thus, each node tends to have a number of individuals proportional to
+their computational power with respect to the other nodes. Experiments
+on homogeneous cluster do not alter the sub-population sizes, since
+the number of current generations are equal in all nodes during
+runtime. % cuidado con el inglés, dos correcciones aquí - JJ
 
-Table \ref{table:parameters} summarizes all the parameters used in the experiments.
+Table \ref{table:parameters} summarizes all the parameters used in the
+experiments. % ¿Explicación? ¿Has probado otros?  - JJ
 
 \begin{SCtable}[][t]
 \resizebox{11cm}{!}{
 \begin{tabular}{cc}
 \hline
 \rowcolor{colorCorporativoSuave}Name & Value\\ \hline \hline
-\rowcolor{colorCorporativoMasSuave}Crossover type & Two-points crossover \\ \hline
-\rowcolor{colorCorporativoSuave}Crossover rate & 0.5\\ \hline
-\rowcolor{colorCorporativoMasSuave}Mutation rate & 1/individual size\\ \hline
+\rowcolor{colorCorporativoMasSuave}Crossover type & Two-point crossover \\ \hline
+\rowcolor{colorCorporativoSuave}Crossover rate & 0.5\\ \hline % muy
+                                % bajo probablemente.
+\rowcolor{colorCorporativoMasSuave}Mutation rate & 1/individual size\\
+\hline % esa no es una tasa de mutación, es determinista. ¿Todos
+       % mutan? - JJ
 \rowcolor{colorCorporativoSuave}Selection & 2-tournament \\ \hline
 \rowcolor{colorCorporativoMasSuave}Replacement & Steady-state\\ \hline
 \rowcolor{colorCorporativoSuave}Generations to migrate & 64 \\ \hline
@@ -351,7 +397,9 @@ Table \ref{table:parameters} summarizes all the parameters used in the experimen
 \hline
 \rowcolor{colorCorporativoSuave}Total individuals in HoSi and HeSi & 1024\\ \hline \hline
 \rowcolor{colorCorporativoMasSuave}Sub-population size in each node in HoSi & 256  \\ \hline
-\rowcolor{colorCorporativoSuave}Sub-population sizes in HeSi for MMDP & 374, 364, 262 and 24 (from N1 to N4)\\ \hline
+\rowcolor{colorCorporativoSuave}Sub-population sizes in HeSi for MMDP
+& 374, 364, 262 and 24 (from N1 to N4)\\ \hline % ¿REsultado? ¿Cómo se
+                                % ha obtenido? - JJ
 \rowcolor{colorCorporativoMasSuave}Sub-population sizes in HeSi for OneMax & 396,  382, 232 and 14 (from N1 to N4)\\ \hline
 \hline
 \rowcolor{colorCorporativoSuave}Maximum island size in AdSi & 1024 \\ \hline
@@ -364,23 +412,83 @@ Table \ref{table:parameters} summarizes all the parameters used in the experimen
 \end{SCtable}
 
 %\section{Implementation in OSGiLiath}
-%In order to deal with the operating system and architecture heterogeneity (different operating systems, processors, compilers, etc.), the OSGiLiath framework \cite{SOASOCO}, based in Java, has been used in this work. This is a service-oriented evolutionary framework that automatically configures the services to be used in a local network. In this case, each node offers a migration buffer to accept foreign individuals. Also, in order to reduce bottlenecks in distributed executions, asynchronous communication has been provided to avoid idle time using reception buffers (that is, the algorithm does not wait until new individuals arrive, but the buffers cannot be used again until the reception is done). This kind of communication offers an excellent performance when working with different nodes and operating systems, as demonstrated in \cite{HETEROGENEOUSHARD,AsynchronousMerelo08}. The transmission mechanism is based on ECF Generic server (over TCP)\footnote{\url{http://www.eclipse.org/ecf/}}.  The source code of the algorithms used in this work is available in \url{http://www.osgiliath.org} under a LGPL V3 License. 
+%In order to deal with the operating system and architecture
+%heterogeneity (different operating systems, processors, compilers,
+%etc.), the OSGiLiath framework \cite{SOASOCO}, based in Java, has
+%been used in this work. This is a service-oriented evolutionary
+%framework that automatically configures the services to be used in a
+%local network. In this case, each node offers a migration buffer to
+%accept foreign individuals. Also, in order to reduce bottlenecks in
+%distributed executions, asynchronous communication has been provided
+%to avoid idle time using reception buffers (that is, the algorithm
+%does not wait until new individuals arrive, but the buffers cannot be
+%used again until the reception is done). This kind of communication
+%offers an excellent performance when working with different nodes and
+%operating systems, as demonstrated in
+%\cite{HETEROGENEOUSHARD,AsynchronousMerelo08}. The transmission
+%mechanism is based on ECF Generic server (over
+%TCP)\footnote{\url{http://www.eclipse.org/ecf/}}.  The source code of
+%the algorithms used in this work is available in
+%\url{http://www.osgiliath.org} under a LGPL V3 License. 
+
+% Hombre, para una cosa que nombra Osgiliath, lo quitas - JJ 
 
 \section{Experimental results}
-The three main objectives of parallel programming are to tackle large computational problems, increase the performance of algorithms in a finite time, or reduce computational time to solve the problem (reaching the optimum). In this chapter, we focus in the last objective.
-As claimed by \person{Alba and Luque} in \cite{Alba06evaluationParallel}, assessing the performance of a parallel EA by the number of fitness function evaluations required to attain a solution may be misleading. In our case, for example, the evaluation time is different in each node of the heterogeneous cluster, so the real algorithm speed could not be reflected correctly. However, the number of evaluations has been included in this chapter to better understand the results. The total number of generations carried out by all nodes, and the maximum number of generations required by the faster node in each configuration are also shown. It is difficult to compare the performance of HoHa and HeHa for the same reason: the evaluation time is different in each system (and even in each node). Thus, one of the objectives in this thesis is not making the heterogeneous cluster comparable or better in time than the homogeneous one (because they are, obviously, different), but showing that the same parameter configuration can improve performance in time on heterogeneous clusters and could not have an effect on homogeneous ones.
+The three main objectives of parallel programming are to tackle large
+computational problems, increase the performance of algorithms in a
+finite time, or reduce computational time to solve the problem
+(reaching the optimum). In this chapter, we focus in the last
+objective. % Y a los otros dos, que les den - JJ
+As claimed by \person{Alba and Luque} in
+\cite{Alba06evaluationParallel}, assessing the performance of a
+parallel EA by the number of fitness function evaluations required to
+attain a solution may be misleading. In our case, for example, the
+evaluation time is different in each node of the heterogeneous
+cluster, so the real algorithm speed could not be reflected
+correctly. %¿Cuál es la velocidad "real"? - JJ
+ However, the number of evaluations has been included in
+this chapter to better understanding the results. % ¿Better que qué? - JJ
+The total number of
+generations carried out by all nodes, and the maximum number of
+generations required by the faster node in each configuration are also
+shown. It is difficult to compare the performance of HoHa and HeHa for
+the same reason: the evaluation time is different in each system (and
+even in each node). Thus, one of the objectives in this thesis is not
+making the heterogeneous cluster comparable or better in time than the
+homogeneous one (because they are, obviously, different), but showing
+that the same parameter configuration can improve performance in time
+on heterogeneous clusters and could not have an effect on homogeneous
+ones. 
+% es que, al final, estás comparando cosas que no son comparables. Si
+% el cluster homogéneo es más rápido, tendrá mejores
+% resultados. Tendrías que haber hecho un montaje experimental un poco
+% mejor: sustituir un ordenador del cluster por uno más potente, por
+% uno menos potente, dos del cluster por esos dos, luego tres, y lo
+% que sea. Como parte de la tesis, deberías diseñar una metodología
+% para hacer este tipo de experimentos - JJ
 
 
 \subsection{MMDP results}
 
-Table \ref{tab:resultsMMDP} shows the results for the MMDP problem. These results are also shown in the boxplots of Figure \ref{fig:timeMMDP} (time) and Figure \ref{fig:evalsMMDP} (evaluations). Table \ref{tab:significanceMMDP} shows the statistical significance of the results. First, a Kolmogorov-Smirnov test is performed to assess the normality of the distributions. As all distributions are not normal, we use non-parametric tests. To compare between two methods (HoSi and HeSi in the homogeneous cluster) a Wilcoxon test has been applied. For a three methods comparison (HoSi, HeSi and AdSi on heterogeneous cluster) a Kruskal-Wallis test has been used. 
+Table \ref{tab:resultsMMDP} shows the results for the MMDP
+problem. These results are also shown in the boxplots of Figure
+\ref{fig:timeMMDP} (time) and Figure \ref{fig:evalsMMDP}
+(evaluations). Table \ref{tab:significanceMMDP} shows the statistical
+significance of the results. First, a Kolmogorov-Smirnov test is
+performed to assess the normality of the distributions. As all
+distributions are not normal, we use non-parametric tests. To compare
+between two methods (HoSi and HeSi in the homogeneous cluster) a
+Wilcoxon test has been applied. For a three methods comparison (HoSi,
+HeSi and AdSi on heterogeneous cluster) a Kruskal-Wallis test has been
+used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 
- In the HeHa system, adapting offline the sub-population to the computational
+ In the HeHa system,  offline adaption of  the sub-population to the computational
  power of each node makes the algorithm finish significantly earlier,
  and also, needing a lower number of evaluations to reach the solution. On the other hand, in the HoHa system,
  setting the same sub-population sizes makes no difference in time and
  evaluations, that is, changing this parameter has no influence in the
- algorithm's performance (p-value=0.52 for time and 0.08 for evaluations).
+ algorithm's performance (p-value=0.52 for time and 0.08 for
+ evaluations). % esto es interesante porque... - JJ
 
 
 \begin{SCtable}[][t]
@@ -437,7 +545,19 @@ Table \ref{tab:resultsMMDP} shows the results for the MMDP problem. These result
 
 
 
-To see the differences on how the evolution is being performed, the average fitness in each node of HeHa is shown in Figures \ref{fig:hosiheha} and \ref{fig:hesiheha}. As it can be seen, with the HeSi (Figure \ref{fig:hesiheha}), the local optima are overtaken in less time than HoSi (Figure \ref{fig:hosiheha}).  This can be explained because in HeSi, the migration from HeN4 to HeN1 is performed faster, adding more heterogeneity to the whole system. Gaps in the figures correspond to the time spent in the nodes for sending the migrant individual to other nodes (not while they are receiving them). In the HoHa configurations, the evolution of sub-population is performed at the same time, being the average fitness similar in all nodes during all run. 
+To see the differences on how the evolution is being performed, the
+average fitness in each node of HeHa is shown in Figures
+\ref{fig:hosiheha} and \ref{fig:hesiheha}. As it can be seen, with the
+HeSi (Figure \ref{fig:hesiheha}), the local optima are overtaken in
+less time than HoSi (Figure \ref{fig:hosiheha}).  This can be
+explained because in HeSi, the migration from HeN4 to HeN1 is
+performed faster, adding more heterogeneity to the whole system. Gaps
+in the figures correspond to the time spent in the nodes for sending
+the migrant individual to other nodes (not while they are receiving
+them). %no se entiende - JJ
+ In the HoHa configurations, the evolution of sub-population is
+ performed at the same time, being the average fitness similar for all
+ nodes during all runs.  
 
 
 \begin{SCfigure}[htb]
@@ -454,7 +574,8 @@ To see the differences on how the evolution is being performed, the average fitn
 \label{fig:hesiheha}
 \end{SCfigure}
 
-Regarding to AdSi/HeHa, results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, better than HoSi/HeHa), but this time no previous tuning has been required.  Average sub-population sizes in each node are shown in Table \ref{table:sizesMMDP}. The proportions of size are similar to the proportions in Table \ref{table:generations}. Figure \ref{fig:sizesMMDP} plots all the possible sizes in each node during all the runs. This figure shows that the variation of the sub-population sizes lies proportionally to the computational power of each node. The outliers in boxplots are produced during the size changing, as it can be seen in Figure \ref{fig:sizesMMDP1ejec}. As N4 is the slower node with difference it keeps its size always close to the minimum (16 individuals).
+Regarding to AdSi/HeHa, %agh, regarding to. ¡Amoragismos no! - JJ
+results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, better than HoSi/HeHa), but this time no previous tuning has been required.  Average sub-population sizes in each node are shown in Table \ref{table:sizesMMDP}. The proportions of size are similar to the proportions in Table \ref{table:generations}. Figure \ref{fig:sizesMMDP} plots all the possible sizes in each node during all the runs. This figure shows that the variation of the sub-population sizes lies proportionally to the computational power of each node. The outliers in boxplots are produced during the size changing, as it can be seen in Figure \ref{fig:sizesMMDP1ejec}. As N4 is the slower node with difference it keeps its size always close to the minimum (16 individuals).
 
 \begin{SCfigure}[htb]
 \centering
@@ -487,13 +608,21 @@ Regarding to AdSi/HeHa, results are significantly  equal (p-value 0.139) to HeSi
 
 
 
-Summarizing, adapting the sub-population sizes to the computational power of each machine (offline and online) has reduced the time to obtain the optimum. The same heterogeneous fixed sizes in the homogeneous cluster does not produces a significant decrease of running time, so the improvement is produced by the heterogeneity and not due to the different island sizes. Moreover, the AdSi proposal is not applicable in HoHa because there are not differences of generations during runtime.
+Summarizing, adapting the sub-population sizes to the computational
+power of each machine (offline and online) has reduced the time to
+obtain the optimum. The same heterogeneous fixed sizes in the
+homogeneous cluster does not produce a significant decrease of running
+time, so the improvement is produced by the heterogeneity and not due
+to the different island sizes. Moreover, the AdSi proposal is not
+applicable in HoHa because there are not differences of generations
+during runtime. % y esto es interesante porque... - JJ
 
 \subsection{OneMax results}
 
 Results for this problem are shown in Table \ref{tab:onemaxresults} and Figures  \ref{fig:timeOneMax} and \ref{fig:evalsOneMax}. In this case, adapting offline the sub-population sizes significantly decreases  the running time for solving it in the heterogeneous cluster, but this time, the number of evaluations is increased (see statistical significance in Table \ref{tab:significanceONEMAX}). In the homogeneous system, the effect of changing the sub-population sizes is clearer, and this time the number of evaluations (and therefore, the time) are reduced (both significantly). 
 
 The efficiency on OneMax problem depends mainly on the ability to mix
+% ¿onemax es el que es eficiente? ¿resolverlo lo es? - JJ
 the building-blocks, and less on the genetic diversity and size of the
 population (as with MMDP). No genetic diversity is particularly
 required. When properly tuned, a simple Genetic Algorithm is able to
@@ -503,18 +632,20 @@ on hard functions fail on easier ones. As it can be seen in Figure
 \ref{fig:gensonemaxhomosize}, the average fitness of all sub-populations
 are increasing in linear way in the HoSi/HeHa configuration. However,
 the slower node evaluates extremely fewer times.  On the other
-
 side, in Figure \ref{fig:gensonemaxheterosize}, smaller sub-population
-sizes make that slower nodes increase the number of evaluations,
+sizes make that slower nodes increase the number of evaluations, % make that? increase the? Los nodos lo hacen? ¡Gramática! - JJ
 but the average fitness is also maintained in linear way (and in
 smaller increase rate) between migrations. Nevertheless, the other
 nodes still perform a higher number of evaluations. That is the
 reason why the number of evaluations is higher in HeHa, and lower in
 HoHa. Computational time is more efficiently spent in faster nodes,
-having a higher chance to cross the individuals. In addition, due to
+having a higher chance to cross the individuals. %¿so es consecuencia
+                                %o causa de lo primero? - JJ
+ In addition, due to
 the larger size of  individuals in the OneMax problem (5000 bits
 vs. 150 of the MMDP), the transmission time is larger, (white gaps in the
-figures). It also implies that HeN4 sends its best individual to
+figures). % ¿hite gaps qué? - JJ
+It also implies that HeN4 sends its best individual to
 HeN1 in an extremely large amount of time when using HoSi (every 64
 generations). 
 
@@ -671,15 +802,21 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 \end{SCtable}
 
 
+% OMG páginas y páginas de tablas y gráficos - JJ
 
 \subsection{Running time analysis}
 
-This sub-section analyses the time spent by each node of the clusters in every stage of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-population size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
+This sub-section analyses the time spent by each node of the clusters
+in every %¿lo haces tú o la subsección? - JJ
+ stage of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-population size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
 
 Results also show how the stages of the algorithms depends on the node
 of execution. For example, recombination needs more time than mutation
 in both problems only in the node HeN4. The reason might be the
 creation of new objects (memory allocation), which in Java and in
+% en una tesis no se puede decir "might be". Diseñas un experimento
+% para probar si esto es cierto o no. Y "diseñas un experimento"
+% quiere decir que lo hagas y lo añadas al capítulo - JJ
 limited memory (and swapping) requires more time than the iteration of
 elements previously created (for example, in the mutation). Adapting
 the sub-population size makes the slower node of HeHa behave in similar
@@ -774,3 +911,7 @@ how the diversity and search guidance is maintained in the whole system.
 \caption{Times of the stages of the algorithm for the OneMax problem (in ms).}
 \label{tab:onemaxtimes}
 \end{SCtable}
+
+%AGH! No hay conclusión. ¿Cómo avanza esto la tesis? ¿Qué relación
+%tiene con el capítulo siguiente? Todos los capítulos deben tener una
+%introducción, una línea argumental y una conclusión - JJ
