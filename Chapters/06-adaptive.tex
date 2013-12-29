@@ -2,43 +2,75 @@
 \minitoc\mtcskip
 \vfill
 \lettrine{N}{ew} trends in distributed computing presented in previous chapters, such as Cloud Computing \cite{meri2013cloud}, GRID
-\cite{Altunay2011OpenScience} or Service Oriented Science \cite{Foster2005Science} are
+\cite{Altunay2011OpenScience} or Service Oriented Science
+\cite{Foster2005Science} are % si se han presentado en los capítulos
+                             % previos, tendrás que hacer referencia a
+                             % los mismos - JJ
 leading to heterogeneous computational devices, including for instance, laptops,
 tablets or desktop PCs, working in the same
 environment. Thus, many laboratories, which do not count with classic
 clusters but the usual workstations used by scientists, can leverage
-this motley set as a heterogeneous cluster. 
+this motley set as a heterogeneous cluster. % frase guay, pero tienes
+                                % que enganchar todo esto con LA TESIS
+                                % - JJ
 
 As explained in Chapter \ref{chap:distributedEAs}, Distributed Evolutionary
 Algorithms have been tested successfully in this
 type of systems \cite{Alba2002Heterogeneous} and they have become very popular because their implementation is
-not complex.  Also, in that chapter, we presented the work of \person{Alba \etal} \cite{Alba2002Heterogeneous}, where dEAs with the same parameter configuration are even
+not complex. % Cita del asynchronous EAs del PPSN de Dortmund - JJ
+ Also, in that chapter, we presented the work of \person{Alba \etal}
+ \cite{Alba2002Heterogeneous}, where dEAs with the same parameter
+ configuration are even % cita el capítulo, no el trabajo!!! - JJ
 more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with
 homogeneous devices. This can be explained by different reasons, such
 as different memory access times, cache sizes, or even implementation
 languages or compilers in each machine, leading to a different exploitation/exploration rate of the search space. 
 Heterogeneous parameter configuration  has also been shown to be more  efficient time-wise than a fixed
 set of parameters for different problems, as shown by \person{Gong and Fukunaga} \cite{Gong2011HeterogeneousParameters}.   
-These facts have motivated us to study a combination of both ideas: dEAs on a heterogeneous set of nodes with different parameter values adapted to each node. In this study, the parameter to adapt to the computational power of each node has been the sub-population size of each island.
+These facts have motivated us to study a combination of both ideas:
+dEAs on a heterogeneous set of nodes with different parameter values
+adapted to each node. In this study, the parameter to adapt to the
+computational power of each node has been the sub-population size of
+each island. % ¿Por qué? ¿Cómo? ¿Cómo se relaciona esto con LA TESIS?
+             % Los capítulos deben probar LA TESIS, no decir qué se ha
+             % hecho como un hecho consumado. - JJ
 
 
 In this chapter, OSGiliath has been used to create a heterogeneous distributed system to give an insight to the following questions:
 \begin{itemize}
- \item Can a distributed EA be adapted to leverage the capability of a heterogeneous cluster? 
- \item How the adaptation of the sub-population size to the computational power affects the execution time and number of evaluations? 
+ \item Can a distributed EA be adapted to leverage the capability of a
+   heterogeneous cluster?  % ¿Esa son las preguntas de la TESIS?
+                           % ¿Dónde lo has dicho? - JJ
+ \item How the adaptation of the sub-population size to the
+   computational power affects the execution time and number of
+   evaluations?  % Y esta pregunta es interesante porque... - JJ
  \item Is there any difference between using the same sub-population sizes in a homogeneous and a heterogeneous cluster?
  \item How is each stage of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
-   configurations? 
+   configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ
 \end{itemize}
 
 \section{Algorithm used}
 \lettrine{T}{he} experimentation is centered in a distributed GA. Figure \ref{fig:EAused} shows the pseudo-code of the used algorithm. 
-The algorithm is steady-state, i.e. every generation the offspring is mixed with the parents and the worst individuals are removed. The used neighborhood topology for migration between islands (nodes) is a ring (see Figure \ref{fig:ring} in Chapter \ref{chap:distributedEAs}). The best individual is sent to the neighbour in the ring, after a fixed number of generations in each island. The algorithm stops when the optimum (the solution to the problem) is found.  
+The algorithm is steady-state, i.e. every generation the offspring is
+mixed with the parents and the worst individuals are removed. % 1: los
+                                % detalles de los EAs tendrías que
+                                % haberlos dichos en su capítulo. 2:
+                                % ¿Por qué SS? ¿Si no lo fuera, sería
+                                % cierto? - JJ
+ The used neighborhood topology for migration between islands (nodes)
+ is a ring (see Figure \ref{fig:ring} in Chapter
+ \ref{chap:distributedEAs}). The best individual is sent to the
+ neighbour in the ring, after a fixed number of generations in each
+ island. The algorithm stops when the optimum (the solution to the
+ problem) is found.   % ¿Pogqué? ¿Pogqué? No puedes soltar un montón
+                      % de decisiones de sopetón sin justificarlas (y
+                      % sin relacionarlas con LA TESIS) - JJ
 
 \newsavebox{\algoadaptativebox}
 \begin{lrbox}{\algoadaptativebox}
 \begin{minipage}{10cm}
-\begin{algorithmic}
+\begin{algorithmic} %Esto podías haberlo usado también en otros
+                    %capítulos - JJ
 \STATE population $\gets$ initializePopulation()
 \WHILE {$stop criterion not met$}
     \STATE parents $\gets$ selection(population)
@@ -60,7 +92,9 @@ The algorithm is steady-state, i.e. every generation the offspring is mixed with
 
 \begin{SCfigure}[20][htb]
 \usebox{\algoadaptativebox}
-\caption{Pseudo-code of the used dEA: a distributed Genetic Algorithm (dGA).}
+\caption{Pseudo-code of the used dEA: a distributed Genetic Algorithm
+  (dGA).} % ¿Esto es tuyo? ¿Genérico? Si es genérico a) debería ir a
+          % su capítulo b) deberías citar dónde se ha publicado - JJ
 \label{fig:EAused}
 \end{SCfigure}
 
@@ -74,12 +108,21 @@ The algorithm is steady-state, i.e. every generation the offspring is mixed with
 %suficientes, para que no te digan el clásico "Prueba otro algoritmo"
 %- JJ
 
-The results should be independent of the problem used, but we have selected the next ones because they cover different characteristics and computational demands. The problems to evaluate are the Massively Multimodal Deceptive
+The results should be independent of the problem used, but we have
+selected the next ones because they cover different characteristics
+and computational demands. %coñe, no lo digas
+                           %literlamente. ¡Justifícalo todo! ¿Qué
+                           %características cubren? ¿Qué demandas
+                           %computacionales? - JJ
+ The problems to evaluate are the Massively Multimodal Deceptive
 Problem (MMDP) \cite{goldberg92massive} and the OneMax problem
 \cite{SchafferOnemax91}. Each one requires different actions/abilities by the GA
 at the level of population sizing, individual selection and
-building-blocks mixing. The MMDP is designed to be difficult for an EA, due to
-its multimodality and deceptiveness. Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending of
+building-blocks mixing. % Podías citar los trabajos de Juanlu en esto
+                        % y/o Lobo y/o Carlos Fernandes - JJ
+The MMDP is designed to be difficult for an EA, due to
+its multimodality and deceptiveness. % sez who? - JJ
+Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending of
 the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:mmdpvalues}.  
 
 \begin{SCtable}[][t]
@@ -106,7 +149,7 @@ the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:
 \end{tabular}
 }
 \caption{ Basic deceptive bipolar function ($s_i$) for MMDP.}
-\label{table:mmdpvalues}
+\label{table:mmdpvalues} %Un grafiquito queda más mono - JJ
 
 \end{SCtable}
 %%%%%%%%%%%%%%%%%%
@@ -123,12 +166,17 @@ out of $2^{5k}$ additionally to deceptiveness. In this work $k=25$.
 f_{MMDP}(\vec s)= \sum_{i=1}^{k} fitness_{s_i}
 \end{equation}
 
-OneMax is a simple linear problem that consists in maximising the number of ones in a binary string. That is, maximize the expression:
+OneMax is a simple linear problem  % ¿Y eso cubre un rango amplio de
+                                % dificultad y no sé qué? - JJ 
+that consists in maximising the number of ones in a binary string. That is, maximize the expression:
 \begin{equation}
 f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
 \end{equation}
 
 \section{Hardware and parameter configurations}
+
+% Hala, un itemize a pelo, sin jugueteo previo ni ná de ná... ¿Por qué
+% estas cuatro configuraciones? ¿Qué dificultad a priori tienen? - JJ
 
 \begin{itemize}
 \item HoSi/HeHa: Homogeneous Size/Heterogeneous Hardware. The same sub-population size in each island on a heterogeneous cluster.
@@ -137,9 +185,18 @@ f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
 \item HeSi/HoHa: Heterogeneous Size/Homogeneous Hardware. Different sub-population sizes (the obtained for HeSi/HeHa) in each island on a homogeneous cluster.
 
 \item AdSi/HeHa: Adaptive Size/Heterogeneous Hardware. Online adaptation of sub-population sizes in each island on a heterogeneous cluster.
-\end{itemize}
+\end{itemize} % ¿No falta AdSi HoHa? ¿Por qué no lo has puesto? - JJ
 
-Two different computational systems have been used: a {\em heterogeneous cluster} and a {\em homogeneous cluster}. The first one is formed by four different computers of our lab with different processors, operating systems and memory size. The latter is a dedicated scientific cluster formed by homogeneous nodes. Table \ref{tabcomputers} shows the features of each system and the name of the nodes.
+Two different computational systems have been used: a {\em
+  heterogeneous cluster} and a {\em homogeneous cluster}. The first
+one is formed by four different computers of our lab with different
+processors, operating systems and memory size. The latter is a
+dedicated scientific cluster formed by homogeneous nodes. Table
+\ref{tabcomputers} shows the features of each system and the name of
+the nodes. % El espacio HeHa es muy amplio. Podrías haber probado
+           % diferentes configuraciones de este: más diferencia, menos
+           % diferencia... de hecho, deberías hacerlo para esta tesis
+           % (y trabajos posteriores) - JJ
 
 \begin{SCtable}[][t]
 \resizebox{11cm}{!}{
@@ -162,7 +219,16 @@ Two different computational systems have been used: a {\em heterogeneous cluster
 
 \subsection{Homogeneous Size configuration}
 
-In this configuration, each node has 256 individuals (so, the total amount is 1024). After executing the algorithm 40 times per problem on the heterogeneous cluster, we have obtained the average number of generations in each node, as it can be seen in Table \ref{table:generations}. Note how the generations attained (and their proportion in every node) to reach the optimum depends on the problem considered (besides the hardware).
+In this configuration, each node has 256 individuals (so, the total
+amount is 1024).  % ¿Por qué? - JJ
+After executing the algorithm 40 times per problem on the
+heterogeneous cluster, % ¿Por qué? - JJ
+we have obtained the average number of generations in each node, as it
+can be seen in Table \ref{table:generations}. Note how the generations
+attained (and their proportion in every node) to reach the optimum
+depends on the problem considered (besides the hardware). % Jolines,
+                                % cómo no va a depender en el problema
+                                % - JJ
 
 
 
@@ -182,18 +248,79 @@ In this configuration, each node has 256 individuals (so, the total amount is 10
 }
 \end{SCtable}
 
+% ¿Ya está? ¿Nada de laxitud pos-tabla? Ahí está, y apáñatelas, ¿no? - JJ
+
 
 \subsection{Heterogeneous Size configuration}
 
-Our aim consists in validating the following hypothesis: adapting the sub-population size to the computational power of the heterogeneous cluster nodes presents an improvement in execution time. In this work, for a possible offline manner, we have used the average number of generations obtained in the HoSi/HeHa configuration for both problems to determine the computational power of the heterogeneous machines. This comparison takes into account all the evolutionary process in a fair manner (proportional to the memory, processor and network usage), instead a traditional benchmark that usually relies only on the CPU speed. Although this is not obviously the best way, it is a possible way to establish the computational power for the experiments of this work and to determine if changing the sub-population size according the computational power reduces the computing time of the whole approach. It should be considered that the contribution of this work is not the way we have computed these sizes, but compare the algorithm with parameters adapted to their power.
+Our aim consists in validating the following hypothesis: adapting the
+sub-population size to the computational power of the heterogeneous
+cluster nodes presents an improvement in execution time. % Hombre, ya
+                                % era hora de que supiéramos la
+                                % hipótesis. ¿No queríamos responder a
+                                % unas preguntas? ¿Qué ha pasado con
+                                % eso? ¿Cómo engancha eso con LA
+                                % TESIS? - JJ
+In this work, for a possible offline manner, % ein? - JJ
+we have used the average number of generations obtained in the
+HoSi/HeHa configuration for both problems to determine the
+computational power of the heterogeneous machines. This comparison
+takes into account all the evolutionary process in a fair manner
+(proportional to the memory, processor and network usage), instead of a
+traditional benchmark that usually relies only on the CPU
+speed. %Hay benchmarks de todo tipo. No se puede hablar de benchmarks
+       %"tradicionales" a no ser que tengas pruebas de dónde se
+       %utilizan y lo cites - JJ
+ Although this is not obviously the best way, %¿Cuál es la mejor
+                                %manera? ¿Por qué no la usas? - JJ
+ it is a possible
+way to establish the computational power for the experiments of this
+work and to determine if changing the sub-population size according
+the computational power reduces the computing time of the whole
+approach. It should be considered that the contribution of this work
+is not the way we have computed these sizes, but compare the algorithm
+with parameters adapted to their power. % está mal escrito y aunque
+                                % estuviera bien no se entiende y/o
+                                % suena a excusa - JJ
 
-Thus, we have used the obtained average number of generations in the previous sub-section (Table \ref{table:generations}) to set proportionally the sizes in the HeSi/HeHa and HeSi/HoHa configurations, by dividing the total number of individuals (1024). Note that, even having two nodes with the same processors and memory (HeN1 and HeN2), they could have different computational power: this may be produced by different operating systems, virtual machine versions, or number of processes being executed (inside a node).
+Thus, we have used the obtained average number of generations in the
+previous sub-section (Table \ref{table:generations}) to set
+proportionally the sizes in the HeSi/HeHa and HeSi/HoHa
+configurations, by dividing the total number of individuals
+(1024). Note that, even having two nodes with the same processors and
+memory (HeN1 and HeN2), they could have different computational power:
+this may be produced by different operating systems, virtual machine
+versions, or number of processes being executed (inside a node). % ¿Y
+                                % qué conclusiones sacas? ¿Estás
+                                % probando la hipótesis? ¿No? - JJ
 
 
 
 \subsection{Adaptive Size configuration}
 
-Finally, in order to validate the hypothesis that adapt the sub-population sizes to computational resources of a heterogeneous cluster leads to decrease of time for obtain the solution, we propose a third configuration. In this experiment, the adaptation of the sub-population size to the computational power of the islands (nodes) is performed during runtime (online).  Each time a node ($N$) receives an individual, it compares its current number of generations ($Gen_{N}$) with the ones of the node who sent the individual (node $N-1$ in the ring). Then, the sub-population size is adapted proportionally to the difference in the number of generations, following the next equation:
+Finally, in order to validate the hypothesis that adapting the
+sub-population sizes to computational resources of a heterogeneous
+cluster leads to an improvement of the time needed to obtain the
+solution,  % el inglés de este capítulo es desastroso. Por favor,
+           % revisalo bien - JJ
+we propose a third configuration. In this experiment, the adaptation
+of the sub-population size to the computational power of the islands
+(nodes) is performed during runtime (online). % tienes que cualificar
+                                % la hipótesis, porque la situación es
+                                % diferente. O precisar qué significa
+                                % adaptación; si auto-adaptación o
+                                % cambios de parámetros. - JJ
+  Each time a node ($N$) receives an individual, it compares its
+  current number of generations ($Gen_{N}$) with the ones of the node
+  who sent the individual (node $N-1$ in the ring). Then, the
+  sub-population size is adapted proportionally to the difference in
+  the number of generations, following the next equation: % ¿todo esto
+                                % te lo has sacado de la manga? ¿Qué
+                                % quieres hacer? ¿Cómo has llegado a
+                                % esta conclusión? No cuentes nunca en
+                                % una tesis lo que has hecho, cuenta
+                                % el proceso por el que has llegado a
+                                % esa conclusión - JJ
 
 \begin{equation}
 size'_{N}=\dfrac{Gen_{N}}{Gen_{N-1}}size_{N}
