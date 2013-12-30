@@ -1,13 +1,59 @@
 \myChapter{Tree depth influence in RTS games}\label{chap:rts}
 \minitoc\mtcskip
 \vfill
-\lettrine{R}{eal} Time Strategy (RTS) games are a type of videogame where the play takes action in real time (that is, there are not turns, as in chess). Well-known games of this genre are Age of Empires\texttrademark~ or Warcraft\texttrademark. In this kind of game the players have units, structures and resources and they have to confront with other players to win battles. Artificial Intelligence (AI) in these games are usually very complex, because they are dealing with a lot of actions and strategies at the same time.
+\lettrine{R}{eal} Time Strategy (RTS) games are a type of videogame
+where the play takes action in real time (that is, there are not
+turns, as in chess). Well-known games of this genre are Age of
+Empires\texttrademark~ or Warcraft\texttrademark. In this kind of game
+the players have units, structures and resources and they have to
+confront with other players to win battles. Artificial Intelligence
+(AI) in these games is usually very complex, because they are dealing
+with a lot of actions and strategies at the same time. % y esto es
+                                % importante para la tesis
+                                % porque... todo capítulo debe tener
+                                % una introducción que lo relacione
+                                % con la metodología y los algoritmos
+                                % que constituyen LA TESIS. Hasta
+                                % ahora, parece "Blancanieves y los
+                                % siete enanitos" o bien "Osgiliath y
+                                % todo lo que se me ha ocurrido hacer
+                                % con él" - JJ
 
 The {\em Planet Wars} game, presented under the Google AI Challenge 2010\footnote{\url{http://planetwars.aichallenge.org/}} has been used by several authors for the study of computational intelligence in RTS games
-\cite{Lara2013mapgenerator,Mora2012Genebot,FernandezAres2012adaptive}. This is because it is a simplification of the elements that are present in the complex games previously mentioned (only one type of resource and one type of unit).
+\cite{Lara2013mapgenerator,Mora2012Genebot,FernandezAres2012adaptive}. This
+is because it is a simplification of the elements that are present in
+the complex games previously mentioned (only one type of resource and
+one type of unit). % Todo problema debe ser acompañado por una
+                   % caracterización del mismo y una metodología par
+                   % aaplicar LA TESIS a ese tipo de problema. la
+                   % conclusión debe generalizar lo hallado en el
+                   % capítulo. Y no sé si seguírmelo leyendo, porque
+                   % si no haces esto una opción es simplemente
+                   % eliminar el capítulo si no contribuye a LA
+                   % TESIS. - JJ
 
 
- Although this game has been described in previous works \cite{Lara2013mapgenerator,Mora2012Genebot,FernandezAres2012adaptive}, we summarize saying that the objective of the player is to conquer enemy and neutral planets in a space-like simulator. Each player has planets (resources) that produce ships (units) depending of a growth-rate. The player must send these ships to other planets (literally, crashing towards the planet) to conquer them. A player win if he is the owner of all the planets. As requirements, only one second is the limit to calculate next actions (this time windows is called {\em turn}\footnote{Although in this work we are using this term, note that the game is always performed in real time.}), and no memory about the previous turns must be used.  Figure \ref{fig:naves} shows a screen capture of the game. 
+ Although this game has been described in previous works
+ \cite{Lara2013mapgenerator,Mora2012Genebot,FernandezAres2012adaptive},
+ % pero no en esta tesis, así que resúmelo (si al final vas a meter
+ % esto) - JJ
+we summarize saying that the objective of the player is to conquer
+enemy and neutral planets in a space-like simulator. Each player has
+planets (resources) that produce ships (units) depending of a
+growth-rate. The player must send these ships to other planets
+(literally, crashing towards the planet) to conquer them. A player win
+if he is the owner of all the planets. As requirements, only one
+second is the limit to calculate next actions (this time windows is
+called {\em turn}\footnote{Although in this work we are using this
+  term, note that the game is always performed in real time.}), and no
+memory about the previous turns must be used.  Figure \ref{fig:naves}
+shows a screen capture of the game. % Hay que caracterizar el
+                                % problema, situarlo en contexto. ¿Es
+                                % fácil o difícil? ¿A qué otro
+                                % problema se parece? ¿Cuál es el
+                                % estado del arte? No puedes
+                                % copy/pastear simplemente lo que
+                                % hayas escrito en el paper - JJ
 
 \begin{SCfigure}
 %\includegraphics[scale=0.8]{gfx/rts/naves.bmp}
@@ -18,7 +64,9 @@ The {\em Planet Wars} game, presented under the Google AI Challenge 2010\footnot
 
 
 In this chapter we use Genetic Programming (GP) to obtain agents that play
-Planet Wars game. The objective of GP is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size (depth) of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
+Planet Wars game. % hala, así, sin vaselina ni nada. ¿Por qué GP? ¿Por
+                  % qué no ES? ¿O cualquier otra cosa? 
+The objective of GP is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size (depth) of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
 
 
 We try to solve the next questions: 
@@ -206,7 +254,12 @@ Maps used in each evaluation & map76.txt map69.txt map7.txt map11.txt map26.txt 
 
 After all the executions we have evaluated the obtained best individuals in all runs confronting to the bots in a larger set of maps (the 100 maps provided by Google) to study the behaviour of the algorithm and how good are the obtained bots in maps that have not been used for training.
 
-%The used framework is OSGiLiath, a service-oriented evolutionary framework. The generated tree is compiled in real-time and injected in the agent's code using Javassist library. All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
+%The used framework is OSGiLiath, a service-oriented evolutionary
+%framework. The generated tree is compiled in real-time and injected
+%in the agent's code using Javassist library. All the source code used
+%in this work is available under a LGPL V3 License in
+%\url{http://www.osgiliath.org}. 
+%Anda que ya te vale, cuando lo mencionas y resulta que lo borras - JJ
 
 \section{Results}
 
@@ -317,6 +370,27 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 \section{Conclusions}
 \label{sec:conclusion}
 
-This work presents a Genetic Programming algorithm that generates agents for playing Planet Wars game. A number of possible actions to perform and decision variables have been presented. We have used two competitive bots available in the literature (Genebot and Exp-Genebot) to calculate the fitness of the generated individuals. These two bots were the best obtained from several runs and the behaviour to optimize was extracted from human expertise. Three different maximum depth for the trees have been used: 3, 7 and unlimited. Results show that best individuals outperforms these agents during the evolution in all configurations. These individuals have been tested against a larger set of maps not previously used during the evolution, obtaining equivalent or better results than Genebot and Exp-Genebot.
+This work presents a Genetic Programming algorithm that generates
+agents for playing Planet Wars game. A number of possible actions to
+perform and decision variables have been presented. We have used two
+competitive bots available in the literature (Genebot and Exp-Genebot)
+to calculate the fitness of the generated individuals. These two bots
+were the best obtained from several runs and the behaviour to optimize
+was extracted from human expertise. Three different maximum depth for
+the trees have been used: 3, 7 and unlimited. Results show that best
+individuals outperforms these agents during the evolution in all
+configurations. These individuals have been tested against a larger
+set of maps not previously used during the evolution, obtaining
+equivalent or better results than Genebot and Exp-Genebot. 
+% Las conclusiones del trabajo explícito no sirven. Debes de sacar
+% conclusiones de la aplicación de una metodología a un problema
+% específico y generalizar para problemas de esa clase. También tienes
+% que mostrar como TU TESIS ha contribuido, de forma decisiva, a la
+% solución de ese problema. - JJ
 
-In future work, other rules will be added to our algorithm (for example, the ones that analyse the map, as the Exp-Genebot does) and different enemies will be used. Other games used in the area of computational intelligence in videogames, such as Unreal\texttrademark~ or Super Mario\texttrademark~ will be tested.
+In future work, other rules will be added to our algorithm (for
+example, the ones that analyse the map, as the Exp-Genebot does) and
+different enemies will be used. Other games used in the area of
+computational intelligence in videogames, such as
+Unreal\texttrademark~ or Super Mario\texttrademark~ will be tested.
+% Borra future work en la tesis.
