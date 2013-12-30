@@ -53,7 +53,7 @@ methods that can make applicable aesthetics decisions in a similar
 fashion as humans can'' \cite{COMPAESTH}. In the field of
 computational aesthetics, evolutionary systems can play an important
 role, by enabling the evolution of aesthetically pleasing or
-innovative structures \cite{dipaola2009incorporating}. Evolutionary
+innovative structures \cite{dipaola2009incorporating}. Evolutionary % y te interesa meterlo como parte de la tesis porque... - JJ
 art is characterized by the use of evolutionary principles and natural
 selection as a generative process. One of the earliest applications of
 evolutionary systems to generate art is the proposal of \person{Sims}
@@ -247,7 +247,8 @@ Processing is composed by several modules: %En general, cualquier
 \item Math: Functions for dealing with all mathematical functionality.
 \end{itemize}
 
-Processing can be integrated with Java just by adding a {\em jar} (a
+Processing % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ
+can be integrated with Java just by adding a {\em jar} (a
 Java library) to existing software. In this chapter, Processing has
 been integrated to OSGiLiath. A new module called OSGiLiART has been
 added to the publicly-available source code of OSGiLiath.  % URL - JJ
@@ -259,7 +260,8 @@ the images, which represent the frequency of occurrence of each color
 intensities present in the image, by accounting for such sharing
 pixels color intensity values. % ¿ein? ¿Google translator? - JJ
 
-The histogram is composed of different ranges or bins that represent a value or set of values of color intensity. The color space is defined as a model representation with respect to color intensity values. Two color models are used in this chapter: RGB (Red, Green, Blue) and HSV (Hue, Saturation and Value). The RGB model is an additive color model in which red, green and blue are added together in different proportions to reproduce a wide range of colors, while the HSV is based on hue or tone, saturation and brightness. While the RGB model is the closest to the way color is processed in some machines, the HSV representation provides a more accurate way to model how humans perceive colors, and also provides more information in image retrieval \cite{COLORDIFFERENCES}.
+The histogram is composed of different ranges or bins that represent a value or set of values of color intensity. % si esto es parte o traslación literal del trabajo, deberías reescribirlo (vas a tener que hacerlo de todas formas para integrarlo con la tesis) - JJ
+ The color space is defined as a model representation with respect to color intensity values. Two color models are used in this chapter: RGB (Red, Green, Blue) and HSV (Hue, Saturation and Value). The RGB model is an additive color model in which red, green and blue are added together in different proportions to reproduce a wide range of colors, while the HSV is based on hue or tone, saturation and brightness. While the RGB model is the closest to the way color is processed in some machines, the HSV representation provides a more accurate way to model how humans perceive colors, and also provides more information in image retrieval \cite{COLORDIFFERENCES}.
 Figure \ref{fig:histogram} shows the RGB histogram of the image in Figure \ref{fig:flevopark} (photo taken by the first author).
 
 \begin{SCfigure}[20][htb]
@@ -281,14 +283,15 @@ Figure \ref{fig:histogram} shows the RGB histogram of the image in Figure \ref{f
 
 \noindent This section shows how Processing has been used in the EA,
 the individual representation, the fitness functions, and the
-parameters of the experiments. 
+parameters of the experiments. % Una tesis debe ser también una metodología. ¿Esta metodología coincide con la del resto de los capítulos? - JJ
 
 
 
 \subsection{Individual Representation}
 
 To perform the experiments, the genome of the individual is a list of
-circles. Each circle has a position, radium and color. This list can
+circles. % ¿El genoma es una lista para llevar a cabo los experimentos? ¿En serio? - JJ
+Each circle has a position, radium and color. This list can
 be recombined or mutated (changing the color, position or radium of a
 circle of the list). % hala, una subsección con una sola frase. ¿Por qué se
                      % usa esto? ¿Cómo lo enlazas con la literatura?
