@@ -1,4 +1,4 @@
-\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs} %Distributed o solo EAs? Si es distributed, ¡lo es! - JJ
+\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs} %Distributed o solo EAs? Si es distributed, ¡lo es! - JJ %FERGU: Tienes toda la razón
 \minitoc\mtcskip
 \vfill
 \lettrine{E}{volutionary} computation is a wide sub-field of  computational intelligence comprising several kinds of algorithms and its variants, techniques and tools \cite{eiben2003chapter1}. % en esta frase has aportado 0 bits de información. bla bla es un subcampo de bla bla que incluye bla bla - JJ
@@ -6,9 +6,9 @@ This chapter shows a brief revision of the state of the art in this area, showin
 
 The term \textsc{Evolutionary Algorithm} is used to describe a
 computer-based problem solving method that uses computational models
-whose design is inspired by the mechanisms of natural evolution %aquí
-                                %la obligatoria cita de Darwin - JJ
- . They are based on a % Di esto mejor: se crea una población de
+whose design is inspired by the mechanisms of natural evolution \cite{darwin1859}. %aquí
+                                %la obligatoria cita de Darwin - JJ FERGU: Done
+They are based on a % Di esto mejor: se crea una población de
                        % soluciones codificadas...
 \textsc{population} of \textsc{individuals}, where the natural
 selection, caused by the environmental pressure, leads to an
@@ -27,9 +27,11 @@ new individuals to be added to the population. % o sea, ¿la población
                                 % genético - JJ
 The general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
 
-
-\begin{SaveVerbatim}{BasicEAtext} %hay un entorno algoritmo que hace
+%hay un entorno algoritmo que hace
                                 %esto mucho más chulo - JJ
+                                %FERGU: sí, y lo uso en posteriores capítulos. Esto lo he copiado tal cual del libro de Eiben.
+
+\begin{SaveVerbatim}{BasicEAtext} 
 BEGIN
  INITIALISE population with random candidate solutions;
  EVALUATE each candidate;
@@ -41,8 +43,8 @@ BEGIN
    3 SELECT individuals for the next generation;
  OD
 END
-\end{SaveVerbatim} %Parece COBOL. Qué vintage - JJ
-
+\end{SaveVerbatim} 
+%Parece COBOL. Qué vintage - JJ FERGU: Ya xD ¿Lo cambio? Ya te digo, es como viene en el libro.
 
 \begin{SCfigure}[][!hb]
 \begin{tabular}{|A|}
@@ -55,13 +57,7 @@ END
 \label{fig:basicscheme}
 \end{SCfigure}
 
-Also, according to \cite{eiben2010whatis} the features of an EA are:
-\begin{itemize}
-\item EAs are population based.
-\item EAs mostly uses recombination to generate new individual from the existent ones.
-\item EAs are stochastic.
-\end{itemize} % ¿Esto aporta algo a lo que has dicho antes? ¿A tu
-              % tesis? - JJ
+
 
 %During the execution of the EAs, two different phases exist:
 %\begin{description}
@@ -69,19 +65,41 @@ Also, according to \cite{eiben2010whatis} the features of an EA are:
 %\item[Explotation] Concentration in the neighbourhood of the best solutions.
 %\end{description}
 % No son fases. Suceden a la vez, solo que en diferentes
-% proporciones. - JJ
+% proporciones. - JJ FERGU: Estaba comentado, no saldrá en la tesis.
 
 This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify their common elements. Also, the most extended models to parallelize EAs are presented, to understand all their possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
+
+%FERGU: TODO Terminar la intro del capítulo.
 
 \section{Types of Evolutionary Algorithms}
 
 \lettrine{A}{lthough} EAs follow the scheme shown in Figure
 \ref{fig:basicscheme}, they have differences depending on the
 representation of the solutions, the problems to solve, and other
-features. This section explains the traditional variants, according to
-the book of \person{Eiben and Smith} \cite{eiben2003introduction}.
+features. A possible classification is presented in this chapter, 
+taking into account the new approaches that cannot fit in traditional 
+taxonomy. This classification would help to clarify the elements that 
+distinguish an algorithm from another (for example, the operators), 
+and the existent similarities and differences, in order to stablish 
+a good starting point for designing.
+
+\subsection{Classic classification of EAs}
+This subsection explains the traditional variants, according to
+the book of \person{Eiben and Smith} \cite{eiben2003introduction}. 
 % libro que tiene 10 años y que, hoy en día, no sé si es
 % vigente. Además, ¿es relevante para tu tesis? - JJ
+% FERGU: La última edición es de 2010 y se sigue vendiendo.
+% Es relevante para entender cómo diseñar los servicios, así que 
+% he añadido un párrafo arriba y he movido las features abajo.
+
+Also, according to \cite{eiben2010whatis} the features of an EA are:
+\begin{itemize}
+\item EAs are population based.
+\item EAs mostly uses recombination to generate new individual from the existent ones.
+\item EAs are stochastic.
+\end{itemize} % ¿Esto aporta algo a lo que has dicho antes? ¿A tu
+              % tesis? - JJ FERGU: explicado a continuación
+These are the elements that distinguish the EAs from another metaheuristics (such as the Local Search \cite{aarts1997local}, for example).
 
 \begin{description}
 \item [Genetic Algorithms] These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome} (and sometimes \textsc{genome}). The individuals are selected proportionally to their fitness, and then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatorial optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{Garcia2013RGB}, among others. 
@@ -108,6 +126,8 @@ the book of \person{Eiben and Smith} \cite{eiben2003introduction}.
 %en tu tesis) - JJ
 
 \end{description}
+
+\subsection{Other models} %FERGU: TODO cambiar este nombre?
 
 Other EAs have been proposed, such as \textsc{Differential Evolution}
 (DE) \cite{storn1997differential}, \textsc{Estimation of Distribution
@@ -152,20 +172,22 @@ Other EAs have been proposed, such as \textsc{Differential Evolution}
 
 Combining elements of previous algorithms with other heuristics are
 the base of \textsc{Memetic Algorithms} (MAs). These algorithms are
-based on the concept of \textsc{meme} % ¿por qué small caps y no
-                                % italica? - JJ
+based on the concept of {\em meme} % ¿por qué small caps y no
+                                % italica? - JJ %FERGU: Tengo también que homogeneizar el formato. Usaré SC para definir nuevos conceptos, he actualizado el issue.
 proposed by \person{Dawkins}
-\cite{dawkins2006selfish}. In this context, a meme is domain specific knowledge coded by a computational representation to the effective solving of a problem. %It is a cultural know-how building-block transmittable and replicable.
+\cite{dawkins2006selfish}. In this context, a meme is domain specific knowledge coded by a computational representation to the effective solving of a problem.
 
 This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridization was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing (SA) \cite{Rodriguez2012Hybrid}. The local search can be performed before, during, or after the evaluation. New trends, such as adaptative MAs \cite{ong2006classification} lead to the usage of several memes for searching and deciding dynamically which meme to apply to each individual. For example, \person{Cowling \etal} proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose the meme to be applied depending on the time and the region of the search space (or, in a brief, heuristic to choose memes).  Other examples are the work of \person{Krasnogor \etal} \cite{krasnogor2002multimeme}, where the 
 inclusion of the memetic codification inside the individual chromosome
 (\textsc{Multimemes}) to select which meme to use is applied;  or
 codify a set of rules, as proposed by \person{Smit} \cite{smith2002co}
-(\textsc{Co-evolving MAs}). % y esto es interesante para tu tesis
+(\textsc{Co-evolving MAs}).
+
+ % y esto es interesante para tu tesis
                             % porque... (no me vale porque tengo que
                             % rellenar el capítulo de estado del arte)
-                            % - JJ
-
+                            % - JJ FERGU: Esto lo explicaba en la sección conclusiones, pero lo pongo aquí a continuación.
+As can be seen, these kind of algorithms are composed of several existent ones. The integration of algorithms should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the algorithms, but also how to dynamically select among these available algorithms. %FERGU: TODO terminar esto y dejalo más claro aún
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
 
@@ -192,7 +214,7 @@ The number of computational nodes are fixed during the whole execution and both 
 \subsubsection{Global parallel evolutionary algorithms} % No sé si
                                 % debería ser una subsección o
                                 % simplemente un párrafo - JJ
-In this model, also called \textsc{Farming model}, \textsc{Master-Slave} or \textsc{Centralized EA}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.%An example can be seen in \cite{NUCLEAR}, where slave nodes evaluates fitness function for simullation of nuclear devices.
+In this model, also called \textsc{Farming model}, \textsc{Master-Slave} or \textsc{Centralized EA}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.
 
 \begin{SCfigure}[20][tb]
 \centering
@@ -461,7 +483,7 @@ Practically every
 programming language has its own implementation of the basic elements
 that form an EA. This implies a large effort made in each one, giving
 that these elements are not compatible among them. It is also
-difficult to migrate the code from a framework to another, mainly duehttp://code.google.com/p/deap/
+difficult to migrate the code from a framework to another, mainly due % http://code.google.com/p/deap/
 to design choices, such as the existence of hidden global variables or
 language specific features (such as functional programming
 \cite{Cruz2013Erlang}).  % Y migrar código es importante porque... - JJ
