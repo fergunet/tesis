@@ -73,7 +73,7 @@ This chapter introduces a general overview of the most used types of Evolutionar
 
 \section{Types of Evolutionary Algorithms}
 
-\lettrine{A}{lthough} EAs follow the scheme shown in Figure
+\lettrine{A}{lthough} most of the EAs follow the scheme shown in Figure
 \ref{fig:basicscheme}, they have differences depending on the
 representation of the solutions, the problems to solve, and other
 features. A possible classification is presented in this chapter, 
@@ -85,14 +85,7 @@ a good starting point for designing.
 
 \subsection{Classic classification of EAs}
 This subsection explains the traditional variants, according to
-the book of \person{Eiben and Smith} \cite{eiben2003introduction}. 
-% libro que tiene 10 años y que, hoy en día, no sé si es
-% vigente. Además, ¿es relevante para tu tesis? - JJ
-% FERGU: La última edición es de 2010 y se sigue vendiendo.
-% Es relevante para entender cómo diseñar los servicios, así que 
-% he añadido un párrafo arriba y he movido las features abajo.
-
-Also, according to \cite{eiben2010whatis} the features of an EA are:
+the book of \person{Eiben and Smith} \cite{eiben2003introduction}. These authors clarify that the features of an EA are:
 \begin{itemize}
 \item EAs are population based.
 \item EAs mostly uses recombination to generate new individual from the existent ones.
@@ -100,6 +93,12 @@ Also, according to \cite{eiben2010whatis} the features of an EA are:
 \end{itemize} % ¿Esto aporta algo a lo que has dicho antes? ¿A tu
               % tesis? - JJ FERGU: explicado a continuación
 These are the elements that distinguish the EAs from another metaheuristics (such as the Local Search \cite{aarts1997local}, for example).
+
+% libro que tiene 10 años y que, hoy en día, no sé si es
+% vigente. Además, ¿es relevante para tu tesis? - JJ
+% FERGU: La última edición es de 2010 y se sigue vendiendo y citando.
+% Es relevante para entender cómo diseñar los servicios, así que 
+% he añadido un párrafo arriba, he dicho que es "most of the EAs" y añado las features.
 
 \begin{description}
 \item [Genetic Algorithms] These kind of algorithms were proposed by \person{Holland} \citep{holland1975adaptation}, and also studied by \person{Goldberg} \cite{goldberg1988genetic} and \person{Michalewicz} \cite{michalewicz1996genetic}. In this kind of EA, the representation of the solution is a string of numbers (usually binary), called \textsc{chromosome} (and sometimes \textsc{genome}). The individuals are selected proportionally to their fitness, and then \textsc{recombination} and/or \textsc{mutation} are applied to generate new individuals that will be introduced in the population. These algorithms have been used in different areas, such as function optimization \cite{michalewicz1996genetic}, combinatorial optimization \cite{Esparcia2009EVITA}, artificial intelligence in videogames \cite{Fernandez20111optimizing}, or generative art \cite{Garcia2013RGB}, among others. 
@@ -213,7 +212,7 @@ The number of computational nodes are fixed during the whole execution and both 
 
 \subsubsection{Global parallel evolutionary algorithms} % No sé si
                                 % debería ser una subsección o
-                                % simplemente un párrafo - JJ
+                                % simplemente un párrafo - JJ FERGUSON: no se ve el número de subsección, no sale en los índices, y al compilar se ve bonito
 In this model, also called \textsc{Farming model}, \textsc{Master-Slave} or \textsc{Centralized EA}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.
 
 \begin{SCfigure}[20][tb]
