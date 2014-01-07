@@ -1,30 +1,38 @@
 \myChapter{Evolutionary Algorithms}\label{chap:distributedEAs} %Distributed o solo EAs? Si es distributed, ¡lo es! - JJ %FERGU: Tienes toda la razón
 \minitoc\mtcskip
 \vfill
-\lettrine{E}{volutionary} computation is a wide sub-field of  computational intelligence comprising several kinds of algorithms and its variants, techniques and tools \cite{eiben2003chapter1}. % en esta frase has aportado 0 bits de información. bla bla es un subcampo de bla bla que incluye bla bla - JJ
-This chapter shows a brief revision of the state of the art in this area, showing the most used algorithms, distribution models, and frameworks, to finally explain some of the existent deficiencies to be solved. We also introduce the terminology that will be used in next chapters.  
+%\lettrine{E}{volutionary} computation is a wide sub-field of  computational intelligence comprising several kinds of algorithms and its variants, techniques and tools \cite{eiben2003chapter1}. % en esta frase has aportado 0 bits de información. bla bla es un subcampo de bla bla que incluye bla bla - JJ
 
-The term \textsc{Evolutionary Algorithm} is used to describe a
-computer-based problem solving method that uses computational models
-whose design is inspired by the mechanisms of natural evolution \cite{darwin1859}. %aquí
+
+%The term \textsc{Evolutionary Algorithm} is used to describe a
+%computer-based problem solving method that uses computational models
+%whose design is inspired by the mechanisms of natural evolution \cite{darwin1859}. %aquí
                                 %la obligatoria cita de Darwin - JJ FERGU: Done
-They are based on a % Di esto mejor: se crea una población de
+
+%In this algorithms a \textsc{population} of codified solutions (called \textsc{individuals})
+%They are based on a % Di esto mejor: se crea una población de
                        % soluciones codificadas...
-\textsc{population} of \textsc{individuals}, where the natural
-selection, caused by the environmental pressure, leads to an
-increase % bla bla miles de palabras que no has definido en este
+%\textsc{population} of \textsc{individuals}, where the natural
+%selection, caused by the environmental pressure, leads to an
+%increase % bla bla miles de palabras que no has definido en este
          % contexto. En serio, puedes hacerlo mejor - JJ
-of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. % no se incrementa el fitness de los individuos, sino de la población. El de un individuo en particular puede disminuir. No incluyas afirmaciones discutibles, y más en campos donde el tribunal sea experto - JJ
-This fitness % define donde uses por primera vez. - JJ
-is an evaluation function that describes the quality of the solution
-of the problem being solved. % sé menos descriptivo y más formas. Una
+%of the \textsc{fitness} of the individuals \cite{eiben2010whatis}. % no se incrementa el fitness de los individuos, sino de la población. El de un individuo en particular puede disminuir. No incluyas afirmaciones discutibles, y más en campos donde el tribunal sea experto - JJ
+%This fitness % define donde uses por primera vez. - JJ
+%is an evaluation function that describes the quality of the solution
+%of the problem being solved. % sé menos descriptivo y más formas. Una
                              % función de qué conjunto a qué conjunto?
-Individuals within the population are combined and modified by means
-of \textsc{recombination} and \textsc{mutation} operators, creating
-new individuals to be added to the population. % o sea, ¿la población
+%Individuals within the population are combined and modified by means
+%of \textsc{recombination} and \textsc{mutation} operators, creating
+%new individuals to be added to the population. % o sea, ¿la población
                                 % aumenta? Imagínate que no tienes ni
                                 % idea de lo que es un algoritmos
                                 % genético - JJ
+
+
+%FERGU: He reescrito TODO lo de arriba en lo que hay aquí:
+\lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based in the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
+
+
 The general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
 
 %hay un entorno algoritmo que hace
@@ -69,7 +77,7 @@ END
 
 This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify their common elements. Also, the most extended models to parallelize EAs are presented, to understand all their possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
 
-%FERGU: TODO Terminar la intro del capítulo.
+
 
 \section{Types of Evolutionary Algorithms}
 
@@ -212,7 +220,7 @@ The number of computational nodes are fixed during the whole execution and both 
 
 \subsubsection{Global parallel evolutionary algorithms} % No sé si
                                 % debería ser una subsección o
-                                % simplemente un párrafo - JJ FERGUSON: no se ve el número de subsección, no sale en los índices, y al compilar se ve bonito
+                                % simplemente un párrafo - JJ FERGUSON: es una sub-subsección, no se ve el número de subsección, no sale en los índices, y al compilar se ve bonito
 In this model, also called \textsc{Farming model}, \textsc{Master-Slave} or \textsc{Centralized EA}, the parallelism is applied at evaluation level, where a central node coordinate several slave nodes. The central node executes the EA in a sequential way, but distributes the individuals of the population to the slaves just for being evaluated. Figure \ref{fig:masterslave} depicts this situation.
 
 \begin{SCfigure}[20][tb]
@@ -276,13 +284,14 @@ advantage of the massive scalability that these systems potentially
 offer. %La escalabilidad no la da el sistema, sino el algoritmo. Algo
        %tan fácil como una búsqueda puede colapsar la red si el
        %algoritmo no es el correcto. Mira esto: Loo, Boon Thau, et al. "Measurement and Analysis of Ultrapeer-based P2P Search Networks." (2003).
- \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag} is an EA
- that uses a decentralized population, where each peer has a single
+ An example of EA that has been designed to take advantage of these systems, is
+  \definicion{EvAg}{Evolvable Agent} \cite{laredo2010evag}. This algorithm
+  uses a decentralized population, where each peer has a single
  individual, and new individuals are created combining the ones in
  their current neighbours. % hala, non-sequitur. ¿Un ejemplo? ¿El más
                            % guay? ¿El más actual? ¿Soluciona qué
-                           % problemas y como? - JJ
-The population structure is maintained using the \textsc{newcast}
+                           % problemas y como? - JJ FERGU: un ejemplo, y el problema que resuelve, añadido
+To solve the problem of the dynamic topology, the population structure is maintained using the \textsc{newcast}
 protocol \cite{jelasity2003newscast}: each node has a cache of
 neighbours that can be interchanged and combined. Figure
 \ref{fig:evag} shows this algorithm and its population
