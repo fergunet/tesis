@@ -31,9 +31,31 @@
 
 %FERGU: He reescrito TODO lo de arriba en lo que hay aquí:
 \lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based in the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
+%FERGU: También he movido la figura del EA y pongo lo que viene a continuación:
+
+Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, different ways to parallelize these algorithms were also proposed, with new classifications and operations. Nowadays, there exist new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) . These trends require a new way to develop EAs BECAUSE.
+
+In this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for designing new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed. Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
 
 
-The general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
+
+
+
+%During the execution of the EAs, two different phases exist:
+%\begin{description}
+%\item[Exploration] Generation of new individuals to expand the search space. This is usually performed in the first iterations of the EA.
+%\item[Explotation] Concentration in the neighbourhood of the best solutions.
+%\end{description}
+% No son fases. Suceden a la vez, solo que en diferentes
+% proporciones. - JJ FERGU: Estaba comentado, no saldrá en la tesis.
+
+%This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify their common elements. Also, the most extended models to parallelize EAs are presented, to understand all their possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
+
+
+
+\section{Types of Evolutionary Algorithms}
+
+\lettrine{T}{he} general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
 
 %hay un entorno algoritmo que hace
                                 %esto mucho más chulo - JJ
@@ -66,22 +88,7 @@ END
 \end{SCfigure}
 
 
-
-%During the execution of the EAs, two different phases exist:
-%\begin{description}
-%\item[Exploration] Generation of new individuals to expand the search space. This is usually performed in the first iterations of the EA.
-%\item[Explotation] Concentration in the neighbourhood of the best solutions.
-%\end{description}
-% No son fases. Suceden a la vez, solo que en diferentes
-% proporciones. - JJ FERGU: Estaba comentado, no saldrá en la tesis.
-
-This chapter introduces a general overview of the most used types of Evolutionary Algorithms to clarify their common elements. Also, the most extended models to parallelize EAs are presented, to understand all their possible architectural possibilities. Finally, some of the most used frameworks to develop EAs are listed and analysed, to summarize their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
-
-
-
-\section{Types of Evolutionary Algorithms}
-
-\lettrine{A}{lthough} most of the EAs follow the scheme shown in Figure
+Although most of the EAs follow the scheme shown in Figure
 \ref{fig:basicscheme}, they have differences depending on the
 representation of the solutions, the problems to solve, and other
 features. A possible classification is presented in this chapter, 
@@ -136,13 +143,13 @@ These are the elements that distinguish the EAs from another metaheuristics (suc
 
 \subsection{Other models} %FERGU: TODO cambiar este nombre?
 
-Other EAs have been proposed, such as \textsc{Differential Evolution}
+Other EAs, that does not match in the previous classification  have been proposed. For example \textsc{Differential Evolution}
 (DE) \cite{storn1997differential}, \textsc{Estimation of Distribution
   Algorithms} (EDAs) \cite{larranaga2002estimation} or
-\textsc{Bayesian Optimization Algorithms}
-\cite{pelikan2005bayesian}. %SEGURO QUE SON EAS? 
+\textsc{Bayesian Optimization Algorithms} \cite{pelikan2005bayesian}. 
+%SEGURO QUE SON EAS? 
 % Por supuesto que lo son y no encajan dentro de la rígida
-% clasificación anterior. Por no mencionar EAs basados en pool u otro
+% clasificación anterior. Por no mencionar EAs basados en pool u otro %FERGU: añadido que no encajan
 % tipo de algoritmos genéticos. Esto tienes que reescribirlo
 % totalmente, suena a rancio, rancio... Además, tienes algoritmos
 % evolutivos celulares, coevolutivos, meméticos y miles de cosas más
@@ -253,8 +260,8 @@ The parallelism is performed at population level, that is, dividing the populati
 
 \end{description}
 
-\subsection{Non-conventional approaches} % ¿Por qué no convencionales?
-                                % - JJ
+\subsection{New trends on parallel EAs} % ¿Por qué no convencionales?
+                                % - JJ FERGU: Cambiado a new trends
 Aside from the previous classification, with the advent of new
 technologies, such as \textsc{cloud computing},
 \definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous
