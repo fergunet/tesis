@@ -29,13 +29,15 @@
                                 % genético - JJ
 
 
-%FERGU: He reescrito TODO lo de arriba en lo que hay aquí:
+%FERGU: He comentado TODO lo de arriba por lo que viene aquí.
+
+
 \lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based in the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
 %FERGU: También he movido la figura del EA y pongo lo que viene a continuación:
 
-Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, different ways to parallelize these algorithms were also proposed, with new classifications and operations. Nowadays, there exist new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) . These trends require a new way to develop EAs BECAUSE.
+Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, different ways to parallelize these algorithms were also proposed, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some lacks, such as integration of heterogeneous elements or dynamic resources.
 
-In this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for designing new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed. Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and lacks. This way, in following chapters, the design of services for EAs will have a solid base to start.
+In this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for designing new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed. Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies. This way, in following chapters, the design of services for EAs will have a solid base to start.
 
 
 
@@ -201,12 +203,16 @@ codify a set of rules, as proposed by \person{Smit} \cite{smith2002co}
                             % porque... (no me vale porque tengo que
                             % rellenar el capítulo de estado del arte)
                             % - JJ FERGU: Esto lo explicaba en la sección conclusiones, pero lo pongo aquí a continuación.
-As can be seen, these kind of algorithms are composed of several existent ones. The integration of algorithms should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the algorithms, but also how to dynamically select among these available algorithms. %FERGU: TODO terminar esto y dejalo más claro aún
+As can be seen, these kind of algorithms can be seen as a composition of other algorithms. The integration of algorithms should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the algorithms, but also how to dynamically select among these available algorithms. %FERGU: TODO terminar esto y dejalo más claro aún
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
 
-\lettrine{E}{volutionary} Algorithms are inherently parallelizable. % ¿Inherentemente por qué? ¿No querrás decir trivialmente? Además, no es tan trivial porque una vez que metes esquemas de inmigración la cosa no es tan fácil: quien emigra, cuando lo hace, como se incorpora en la población... - JJ
-Fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ
+\lettrine{E}{volutionary} Algorithms are inherently parallelizable, since each individual is an independent unit \cite{Alba13parallel}.
+
+% ¿Inherentemente por qué? ¿No querrás decir trivialmente? Además, no es tan trivial porque una vez que metes esquemas de inmigración la cosa no es tan fácil: quien emigra, cuando lo hace, como se incorpora en la población... - JJ FERGU: Añaddida cita a paper que lo dice
+
+
+For example, fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ FERGU: Digo entonces que son ejemplos
 or the population can be distributed among different nodes to be
 evolved at the same time. In 2002, two main types of parallelization
 models for EAs were classified by \person{Alba and Tomassini} in
@@ -358,10 +364,10 @@ problems. % grid es el predecesor de la computación nube. Tampoco
           % tiene mucho que ver con la computación voluntaria, salvo
           % que se le llama "desktop grid". Sepáralos (y justifica
           % bien la clasicación real). - JJ
-There exist several works that describe EAs being executed
+Several works that describe EAs being executed
 % no uses "There exist" como en el chiste de Gila "Hay alguien que ha
-% hecho algo malo..." - JJ
-in these systems \citep{grid8,grid4,grid10}. \textsc{Volunteer
+% hecho algo malo..." - JJ FERGU: Cambiado 
+in these systems have been presented \citep{grid8,grid4,grid10}. \textsc{Volunteer
   computing} \cite{anderson2005high} proposes the creation of
 infrastructures to allow people donate CPU cycles for a combined
 computational effort. Its main difference with grid computing is the
@@ -487,10 +493,10 @@ results than homogeneous periods, as explained by \person{Salto and Alba} in
 
 
 \section{Frameworks for Evolutionary Algorithms}
-\lettrine{T}{here} exist % cada vez que dices There exist, $deity mata
-                         % a un gatito - JJ
-a large number of frameworks for Evolutionary
-Algorithms freely available for download. 
+\lettrine{A}{} large % cada vez que dices There exist, $deity mata
+                         % a un gatito - JJ FERGU: Okis, los quito todos
+ number of frameworks for Evolutionary
+Algorithms is freely available for download. 
 % Y esto viene a cuento porque... la "narrativa" de este capítulo
 % tienes que hacerla al principio del mismo, integrarlo todo en TU
 % TESIS a la vez que estableces el estado del arte - JJ
@@ -574,7 +580,6 @@ dynamic control of operators, or an user interface).
 
 \subsection{Volunteer computing frameworks}
 
-%As previously said, there exist authors describing EAs being executed in grids \citep{grid8,grid4,grid10} and a frea
 
 \definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and the creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients ask the server for works, download information, compute data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this architecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without installing any other software.
 
