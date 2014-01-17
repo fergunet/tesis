@@ -38,7 +38,7 @@
 Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, several ways to parallelize these algorithms were also presented, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some lacks, such as integration of heterogeneous elements or dynamic resources and to deal with fault-tolerance, churn, massive
 scalability or decentralization.
 
-As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs, taking into account the previous requirements. Therefore, in this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the developing of new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed (such as dynamism of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of standardization and integration). This way, in following chapters, the design and development of interoperable and standarized services for EAs will have a solid base to start.
+As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs, taking into account the previous requirements. Therefore, in this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the developing of new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed (such as dynamism of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of standardization and integration). This way, in following chapters, the design and development of interoperable, standardized and dynamic services for EAs will have a solid base to start.
 
 
 
@@ -98,7 +98,7 @@ features. A possible classification is presented in this chapter,
 taking into account the new approaches that cannot fit in traditional 
 taxonomy. This classification would help to clarify the elements that 
 distinguish an algorithm from another (for example, the operators), 
-and the existent similarities and differences, in order to stablish 
+and the existent similarities and differences, in order to establish  
 a good starting point for designing.
 
 \subsection{Classic classification of EAs}
@@ -188,7 +188,7 @@ Other EAs that do not match in the previous classification  have been proposed. 
 
 
 
-Combining elements of previous algorithms with other heuristics is
+Combining elements of all the previous algorithms with other heuristics is
 the base of \textsc{Memetic Algorithms} (MAs). These algorithms are
 based on the concept of {\em meme} % ¿por qué small caps y no
                                 % italica? - JJ %FERGU: Tengo también que homogeneizar el formato. Usaré SC para definir nuevos conceptos, he actualizado el issue.
@@ -208,13 +208,8 @@ codify a set of rules, as proposed by \person{Smith} \cite{smith2002co}
 In brief, the memetic algorithms can be seen as a composition of other algorithms. The integration should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the algorithms that conform the memetic one, but also how to dynamically select among these available memes. %FERGU: TODO terminar esto y dejalo más claro aún
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
-
-\lettrine{E}{volutionary} Algorithms are inherently parallelizable, since each individual is an independent unit \cite{Alba13parallel}.
-
 % ¿Inherentemente por qué? ¿No querrás decir trivialmente? Además, no es tan trivial porque una vez que metes esquemas de inmigración la cosa no es tan fácil: quien emigra, cuando lo hace, como se incorpora en la población... - JJ FERGU: Añadida cita a paper que lo dice
-
-
-For example, fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ FERGU: Digo entonces que son ejemplos
+\lettrine{E}{volutionary} Algorithms are inherently parallelizable, since each individual is an independent unit \cite{Alba13parallel}. For example, fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ FERGU: Digo entonces que son ejemplos
 or the population can be distributed among different nodes to be
 evolved at the same time. In 2002, two main types of parallelization
 models for EAs were classified by \person{Alba and Tomassini} in
@@ -271,7 +266,7 @@ The parallelism is performed at population level, that is, dividing the populati
 \subsection{New trends on parallel EAs} % ¿Por qué no convencionales?
                                 % - JJ FERGU: Cambiado a new trends
 Aside from the previous classification, with the advent of new
-technologies, such as \textsc{cloud computing},
+technologies, such as cloud computing,
 \definicion{P2P}{Peer-to-peer} networks, or the usage of heterogeneous
 hardware, new approaches have been proposed. Distributed EAs can be
 executed in other computing elements different than the classic
@@ -384,6 +379,25 @@ systems, using several techniques, such as virtualization
 \cite{Fernandez2013BOINC} or ``parasite'' computing
 \cite{Merelo2007browser}. % Esta no es parásita, los participantes
                           % estaban avisados - JJ
+
+Summarizing, with these new trends in parallel EAs researchers must deal 
+with heterogeneous hardware and different communication protocols, but also
+ with dynamic, non-centralized or uncontrolled environments. %FERGU: ...enlazando con la tesis...
+
+Furthermore, when developing distributed and parallel EAs (or any distributed system in general), 
+we should to deal with the {\em Fallacies of Distributed Computing}, proposed by \person{Peter Deutsch}
+and explained after by \person{Rotem-Gal-Oz} in \cite{rotem2006fallacies}.
+
+\begin{enumerate}
+\item The network is reliable.
+\item Latency is zero.
+\item Bandwidth is infinite.
+\item The network is secure. 
+\item Topology doesn't change. 
+\item There is one administrator. 
+\item Transport cost is zero. 
+\item The network is homogeneous.
+\end{enumerate}
 
 
 \section{Parameter adaptation in Evolutionary Algorithms}
@@ -567,7 +581,7 @@ Object Oriented programming is used in several frameworks, such as Al\-go\-rithm
    individual} or {\em crossover}, for example) and they group them in the source
  code. For example, creating an operator object that groups several
  operators. However, these frameworks are not compatible among them.
- For example, the operators created in JCLEC can not be used in jMetal
+ For example, the operators created in JCLEC can not be used directly in jMetal
  (despite both are programmed in Java). %Also, they can not control the
  %services (operators) outside the source code.
 
