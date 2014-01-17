@@ -285,8 +285,8 @@ evident.
 
 % ¿Esto es una clasificación? ¿A qué nivel estás clasificando? ¿Cómo
 % encaja esto dentro de lo que has escrito en los primeros párrafos?
-% ¿Y de TU TESIS? - JJ
-\subsubsection{P2P evolutionary algorithms}
+% ¿Y de TU TESIS? - JJ FERGU: quitada la clasificación
+%\subsubsection{P2P evolutionary algorithms}
 
 P2P systems are parallel infrastructures composed by a large number of
 resources, % eso no define los sistemas P2P, sino sus
@@ -320,7 +320,7 @@ using less links that a panmictic (i.e. fully connected) population. % resolvien
 \label{fig:evag}
 \end{SCfigure}
 
-\subsubsection{Pool-based algorithms}
+%\subsubsection{Pool-based algorithms}
 Technologies such as non-relational databases % ¿cuáles? ¿Por dónde? ¿Cómo? FERGU: están explicadas después
 lead to \textsc{Pool-based EAs} \cite{merelo2010fluid}, where the computational nodes
 exchange individuals using a shared pool. 
@@ -357,11 +357,11 @@ fault tolerance. Also, their experimentation shows a good methodology
 for designing EAs in heterogeneous distributed systems, which have the
 impossibility of analytic performance prediction. 
 
-\subsubsection{Grid and volunteer computing} %Clasificación tipo
+%\subsubsection{Grid and volunteer computing} %Clasificación tipo
                                 %Borges. la computación voluntaria
                                 %puede ser "clásica", "basada en pool"
                                 %o incluso P2P (dependiendo del
-                                %cliente). 
+                                %cliente). FERGU: quitada clasificación
 Grids are distributed computing systems that allow sharing
 geographically distributed resources to solve large scale
 problems. % grid es el predecesor de la computación nube. Tampoco
@@ -397,7 +397,7 @@ convection or after several test runs, for example. However,
 practitioners need to put effort on finding these values in order to
 attain significant performance in their EAs, even taking into account
 other variables, such as the computational power of the machines
-used. 
+used.
 
 \subsection{Parameter Control and Parameter Tuning}
 There are two different approaches for algorithm parameter setting  in EC: {\em parameter control} and {\em parameter tuning} \cite{ParameterControlEiben99}. The first one refers to setting up a number of parameters for the Evolutionary Algorithm (EA) and changing them in running time. The parameter tuning consists in establishing a good set of parameters {\em before} the run (and not changing these parameters during runtime).
@@ -425,8 +425,13 @@ Finally, a third classification can be obtained according to what evidence is av
 \item Relative evidence: Parameters are compared with the fitness of their produced offspring and the best values are rewarded. It is not deterministic.
 \end{itemize}
 
+This classifications can be used to establish a way to manage or update the parameters 
+in the development of algorithms. For example, it should be necessary to allow a direct
+ access to each parameter and sources of information of the EA, independently of the actual 
+ state of the algorithm. A possible solution to manage 
+the dynamic parameters, and the information of the elements that conform the EA, is proposed in next chapters.
 % Vale, llego aquí y todavía no sé qué diablos tiene que ver con los
-% SOA y el OSGi y OSGILIATH - JJ FERGU: estoy cambiando este capítulo para indicar los problemas en desarrollo, integración, estandarización y dinamismoen EAs. Luego diré "necesitamos una solución para esto!"
+% SOA y el OSGi y OSGILIATH - JJ FERGU: estoy cambiando este capítulo para indicar los problemas en desarrollo, integración, estandarización y dinamismo en EAs. Luego diré "necesitamos una solución para esto!" (y añadido el párrafo de arriba)
 
 \subsection{Adaptation in heterogeneous hardware}
 
@@ -481,8 +486,8 @@ The heterogeneous computational performance of nodes or network speed can affect
  machines. However, the parameter setting was the same in both
  clusters and they did not adapt the parameters to the machines used.
 
- Adapting algorithm parameters to computational nodes % ahora
-                                % computational nodes - JJ FERGU: todo va a ser nodes ahora
+ Adapting algorithm parameters to different nodes % ahora
+                                % computational nodes - JJ FERGU: todo va a ser nodes ahora (cambiado a different)
 derives in heterogeneous parameter sets. These sets can improve the results in homogeneous hardware, for example, setting a random set of parameters in each homogeneous node can also increase the
 performance of a distributed Genetic Algorithm, as explained by \person{Gong
 and Fukunaga} in \cite{Gong2011HeterogeneousParameters}. That model
@@ -492,30 +497,37 @@ results than homogeneous periods, as explained by \person{Salto and Alba} in
 \cite{Salto2012HeterogeneousMigration}. This indicates that heterogeneous parameters
  may lead to an increase of performance, so it is necessary to validate if the 
  performance is due to the parameter set or to the heterogeneous
- devices combination. One of the applications of this thesis will try to
- explain this issue. 
+ devices combination. The way to access to the elements that conform 
+ an EA (including their parameters) proposed in this thesis will be used 
+ in next chapters to address this issue.
+
 
  % que es lo que vamos a hacer en esta tesis. O
                       % así. - JJ FERGU: puesto ¿está bien?
 
 
 \section{Development of Evolutionary Algorithms} %FERGU: Cambiado título de la sección
-\lettrine{O}{ne} of the aims of this thesis is to facilitate the standarization, 
+\lettrine{O}{ne} of the aims of this thesis is to facilitate the standardization, 
 integration and development of EAs.
 % Y esto viene a cuento porque... la "narrativa" de este capítulo
 % tienes que hacerla al principio del mismo, integrarlo todo en TU
 % TESIS a la vez que estableces el estado del arte - JJ FERGU: añadido arriba
+
+ % cada vez que dices There exist, $deity mata a un gatito - JJ FERGU: Okis, los quito todos
 This is due to the existent large number of frameworks for Evolutionary
-Algorithms.  % cada vez que dices There exist, $deity mata a un gatito - JJ FERGU: Okis, los quito todos
-Practically every
-programming language has its own implementation of the basic elements
+Algorithms. 
+Practically every programming language has its own implementation of the basic elements
 that form an EA. This implies a large effort made in each one, giving
 that these elements are not compatible among them. It is also
 difficult to migrate the code from a framework to another, mainly due
 to design choices, such as the existence of hidden global variables or
 language specific features (such as functional programming
-\cite{Cruz2013Erlang}). This is important for example, to integrate 
-the elements of the framework in another systems (such as enterprise servers, for example). %FERGU: TODO
+\cite{Cruz2013Erlang}). This is important for example, to integrate and reuse 
+the elements of the frameworks in another systems (such as enterprise servers, for example). 
+However, is in the field of Open Science where the integration and standardization of
+the elements that conform an EA can take advantage, facilitating the re-use and access 
+to existent software, systems, data, and results.
+%FERGU: DONE
  % Y migrar código es importante porque... - JJ
 
 % di lo que es importante: genericidad, comunicación,
