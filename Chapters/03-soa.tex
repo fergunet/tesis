@@ -1,16 +1,21 @@
-\myChapter{Service Oriented Architecture}\label{chap:soa} %cuidado con
+\myChapter{Service Oriented Architecture: technologies and restrictions for designing services for EAs}\label{chap:soa} %cuidado con
                                 %los títulos. Si estás hablando de
                                 %algoritmos evolutivos también, tienes
                                 %que mencionarlo en el título, porque
                                 %si quien lo lea ya sabe de SOA se lo
-                                %salta - JJ
+                                %salta - JJ %FERGU: Mejor este título? (para distinguirlo del siguiente)
+
+%PREGUNTAS PARA JJ:
+% ¿Está bien el título de este capítulo?
+% Mencionar metodologías? (SOMA y todas esas)
+
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} previous chapter has explained some lacks % some
+\lettrine{T}{he} previous chapter has explained some shortcomings % some
                                 % lacks? algunas faltas? something
                                 % lacking no es lo mismo que some
                                 % lacks y no se debe usar en este
-                                % contexto formal - JJ
+                                % contexto formal - JJ FERGU: cambiado a shortcomings en este y otros capis
  in the development of EAs, mainly related with the integration of
  different frameworks, distributed programming and heterogeneity of
  computational environments, among others. This chapter explains the
@@ -25,24 +30,26 @@
                %TESIS y aquí no lo estás dejando. Y ten claro que la
                %tesis es TU tesis, no un review de SOA - JJ
 
-Research in SOA \citep{Papazoglou2007SOA} is an emerging field, % si
+Research in SOA \cite{Papazoglou2007SOA} is a growing field, % si
                                 % el artículo es de 2007 yo diría que
-                                % ya ha terminado de emerger. - JJ
+                                % ya ha terminado de emerger. - JJ FERGU: cambiado a growing (sigue creciendo, pero no emerge)
 as can be seen in Figure \ref{fig:soapapers}, obtained from the search
 terms {\em ``service oriented OR service-oriented''} in the Scopus
 \footnote{\url{http://www.scopus.com}} database. Each year more papers
 about the topic are published. This area seeks to promote services
 usage and adoption, and to improve the way to use them. For example,
 solving a problem combining existing services in an automatic way
-\citep{Moussa2010ServiceComposition}. % Proponer una metodología
+\cite{Moussa2010ServiceComposition}. % Proponer una metodología
                                 % porque se publica mucho equivale a
                                 % decir que la vas a dejar si no se
                                 % publica tanto. Es muy
                                 % tricky. Deberías de pensar en algún
-                                % otro mérito - JJ
+                                % otro mérito - JJ FERGU: puesto a continuación que se usa mucho también en la empresa. Ya, ya, no es el mundo académico, pero podemos decir que así están más unidos.
+Not only in the academic world, but also in the industry, with more than an 
+seventy percent of adoption and satisfaction \cite{Heffner10strong}, adding significant value to the enterprises \cite{Heffner13soa}.
 
+% En la conclusión del capítulo anterior has dicho que este capítulo iba a resolver diferentes asuntos. ¿Qué asuntos está resolviendo? ¿Qué propones, en general y en particular, para resolverlos? - JJ FERGU: Escrito al final de la introducción para resumir lo que vamos a resolver
 
-% En la conclusión del capítulo anterior has dicho que este capítulo iba a resolver diferentes asuntos. ¿Qué asuntos está resolviendo? ¿Qué propones, en general y en particular, para resolverlos? - JJ 
 
 
 \begin{SCfigure}[20][tb]
@@ -54,7 +61,7 @@ solving a problem combining existing services in an automatic way
 
 
 Service Oriented Architecture (SOA) is a computational
-paradigm where the users % users o applications? o agents? - JJ
+paradigm where agents % users o applications? o agents? - JJ FERGU: cambiado a agents, que es lo más genérico
 interact with each other using the concept of
 {\em service}. A service is a distributed entity (such as a node, program or
 function), used to obtain a result, increasing the integration of heterogeneous
@@ -67,7 +74,7 @@ fitness function made publicly available by another researcher at the
 other side of the world without even knowing which programming language
 has been used to implement it. % podrías decir la relación que tiene
                                % esto con la ciencia abierta,
-                               % resultados reproducibles y demás - JJ
+                               % resultados reproducibles y demás - JJ - FERGU: lo explico adelante
 
 Also, with the advancement of the Internet, new scientific
 communities, based on interoperable and distributed platforms are
@@ -76,46 +83,47 @@ research, sharing data and remote access to their programs. To achieve
 this, they use SOA, obtaining the benefits of the standards it
 offers. Users publish and use flexible, interoperable and configurable
 services. These services can be created from scratch or by leveraging
-existing software. % un ejemplo!!! - JJ
+existing software. % un ejemplo!!! - JJ FERGU: esta frase es tuya del paper de la SoCo xD TODO poner ejemplo
 
 \person{Foster} \cite{Foster2005Science} defines the term ``Service Oriented
 Science'' as the pursuit of scientific research using distributed and
 interoperable networks, being the uniformity of
 these interfaces the key to success. Thanks to it, researchers can discover and access
 the services without developing specific access for each data source, or
-program. %ejemplos!! - JJ
+program. %ejemplos!! - JJ FERGU: abajo
 Therefore, this paradigm has the potential to increase the
 scientific productivity due to these public and distributed services,
 and also to increase the data analysis automation in computing. There
 are many examples that attempt to boost this paradigm, like Open
-Science Grid \citep{Altunay2011OpenScience} and GLOBUS
-\citep{Foster2005Globus}.  %citep o cite? - JJ
+Science Grid \cite{Altunay2011OpenScience} and GLOBUS
+\cite{Foster2005Globus}.  %citep o cite? - JJ FERGU: era de un paper mío, cambiado
 These projects include scientific communities and globally distributed infrastructures that support scientific and integrated applications of different domains.
-It is necessary to remark that the technology for implementating services is not the
+
+It is necessary to remark that the technology for implementing services is not the
 key challenge in SOA, but to increase the effort to migrate the
 existing work and to change the mind of researchers and
-practitioners. %to what? Esto relaciónalo con la tesis, es un capítulo
-               %de TU TESIS - JJ 
+practitioners. This is, therefore, one of the aims of this thesis: to  
+present to EA researchers the benefits of adopting this paradigm, describing the SOA concepts,
+restrictions and methodologies, but also to present the most
+used technologies to chose the most adequate one.
+%to what? Esto relaciónalo con la tesis, es un capítulo
+               %de TU TESIS - JJ FERGU: añadido "one of the aims of this thesis..." y también lo de abajo
+
+In this chapter the usage of SOA is proposed to facilitate the shortcomings in the EAs presented in the previous chapter: development, integration, standardization and dynamism. %FERGU: TODO termina
+
 
 \section{What is a Service?}
-
+\label{sec:soa:whatis}
 \lettrine{A}{} service can be seen as a function call which can be
 executed locally or remotely, and which is independent of the
-programming language or running platform. Services have well defined
+programming language or running platform. As previously said, services have well defined
 interfaces, which depends on the desired technology to implement
 SOA. That means that the service users do not need to know the
 language implementation of the service or the operating system, %esto
-                                %ya lo has dicho - JJ
+                                %ya lo has dicho - JJ FERGU: pongo el "as previously said" lo pongo, pero para que quede claro y se le meta al lector en la cabeza
  and they are not forced to use a specific technology to access to that service.
 
-\begin{SCfigure}[20][tb]
-\centering
-\includegraphics[width=20pc]{gfx/soa/soaDiagram.jpg}
-\caption{Service interaction schema. The service provider publishes a
-  service description that is used by the consumer to find and use the
-  service.} % no has definido consumer todavía - JJ
-\label{fig:soadiagram}
-\end{SCfigure}
+
 
 
 
@@ -127,16 +135,27 @@ its interface in the {\em service broker}. The \textsc{service consumer} (or
 interface. Then the request is performed by the \textsc{consumer} (which uses or
 consumes the service).  
 
+\begin{SCfigure}[20][tb]
+\centering
+\includegraphics[width=20pc]{gfx/soa/soaDiagram.jpg}
+\caption{Service interaction schema. The service provider publishes a
+  service description that is used by the consumer to find and use the
+  service.} % no has definido consumer todavía - JJ FERGU: movida la imagen de sitio para definirlo antes
+\label{fig:soadiagram}
+\end{SCfigure}
+
 According to \person{Channabasavaiah \etal} \cite{Channabasavaiah2003migrating} services must follow these  characteristics:
 
 \begin{itemize}
 \item All functions in SOA are services. This means that every
-  component in SOA must be modelled as a service, or as an aggregation of services. 
+  component in SOA must be modelled as a service, or as an aggregation of services. Services are, therefore, {\em encapsulated}: only the interface should be used to consume a service.
+\item The services are well-defined: the interface of the service must be fixed, and it can not change in time, because the consumers or implementations of this interface should be modified with it. Also, the interfaces are invocable. This means that services must be
+  indistinguishably local or remote, being independent of the protocol
+  to establish the connection. And finally, they are discoverable. % pasa el spell, tienes faltas de
+                               % ortografía como stablish - JJ FERGU: y el indistinguishably también estaba mal
 \item Services are autonomous. Consumers do not need to know how the service implementation performs their function as services behave as a ``black box''.
-\item Interfaces are invocable. This means that services must be
-  undistinguishably local or remote, being independent of the protocol
-  to establish the connection. % pasa el spell, tienes faltas de
-                               % ortografía como stablish - JJ
+\item Services should be designed to be used by as many applications as possible, that is, to be {\em reusable}. 
+
 \end{itemize}
 
 Moreover, several implementations of a specific service  can exist (in
@@ -146,12 +165,12 @@ unavailable. Implementations  may also have a different behaviour, so
 the researcher can take advantage to create an auto-adaptive algorithm
 to select different implementations according to some criteria. % esto
                                 % tenías que haberlo hecho para la
-                                % tesis!!! - jj
+                                % tesis!!! - jj FERGU: TODO hacer este experimento
 Figure \ref{fig:servicebasic} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
 
 
 The service broker in a SOA can be implemented in several ways and have
-different behaviors: for example, the implementations of the services to be used can be
+different behaviours: for example, the implementations of the services to be used can be
 defined in a text file (if the services do not change in execution
 time). However, the broker can also assign implementations to
 interfaces in an automatic way, or using several rules, for example, in the context of EAs,
@@ -159,7 +178,7 @@ to distribute a fitness between several machines activated while the
 algorithm is running. % ¿vas a hacerlo? ¿No? Trata de restringirte a
                       % lo que vas a hacer en la tesis, porque si no
                       % te preguntarán que por qué diablos no lo has
-                      % hecho - JJ
+                      % hecho - JJ FERGU: TODO hacer este experimento
 
 
 \begin{SCfigure}[20][tb]
@@ -174,7 +193,7 @@ algorithm is running. % ¿vas a hacerlo? ¿No? Trata de restringirte a
 
 An important SOA capability is that it is not focused on a specific
 implementation, but offers a set of guidelines to help the
-developers. In \citep{Arsanjani2008SOMA} these guidelines and good practices, and also the differences between SOA and Object Oriented
+developers. In \cite{Arsanjani2008SOMA} these guidelines and good practices, and also the differences between SOA and Object Oriented
 Programming (OOP) are
 explained: the main difference between SOA and imperative programming or OOP is the order of service execution. This order is not necessarily static, because the services are designed to be used in a non-established and configurable order. Furthermore, another important difference is that services can be dynamically discovered and used (while in OOP a function/method must be previously known and can not change during execution), being also one of the most important capabilities the (optional) distribution in a network. Finally, in OOP the programming language must be the same for each method call.
 
@@ -191,13 +210,13 @@ Meta Language) \cite{XML} messaging system, and it is not tied to any
 specific language or operating system \cite{Cerami2002Webservices}.
 As SOA proposes, web services should be self-describing (using a
 standardized grammar) and self-discoverable. % secciones de un párrafo
-                                % no son secciones - JJ
+                                % no son secciones - JJ FERGU: No, lo de abajo es sub-sub-section, no tiene numeración, pero el resaltado queda bien.
 
 \subsubsection{Messaging system} There are several alternatives to the messaging system, as SOAP or XML-RPC. SOAP (Simple Object Access Protocol) is a standard protocol proposed by the W3C \cite{SOAP}  which  extends the XML remote procedure call (XML-RPC) standard. 
 It is a complete and mature protocol that allows performing remote
 method calls to distributed routines (services) based on an XML
 interface. % SOAP se usa cada vez menos me parece a mi. Podías
-           % indicarlo. - JJ
+           % indicarlo. - JJ FERGU: Cierto, SOAP se está usando menos en web, pero en la empresa. Lo pongo al hablar de REST 
 
 SOAP clients can access objects and methods that are residing in
 remote servers, using a standard mechanism that makes  the details of
@@ -217,7 +236,7 @@ Unlike other remote procedure call methods, such as RMI (\emph{remote method inv
 web services % nunca coma entre sujeto y predicado - JJ
  is that the application stack is growing with the WS-Extensions. That is, the basic specifications of Web Services (such as SOAP) can be extended with transactions, security or messaging, for example. The most used are \cite{Papazoglou2007SOA}:
 \begin{itemize}
-  \item WS-Adressing  (authentication)
+  \item WS-Addressing  (authentication)
   \item WS-Security , WS-SecureConversation  and WS-Trust  (authorization and secure messaging)
   \item WS-Policy and WS-Metadata Exchange (policy mechanisms for interactions)
   \item WS-Reliable Messaging  and WS-Transaction (add-on mechanisms for the communication channel)
@@ -232,7 +251,7 @@ Several studies about e-science taking advantage of web services can be found in
 
 \subsection{REST}
 \textsc{Representational State Transfer} (REST)\footnote{\url{http://en.wikipedia.org/wiki/Representational_state_transfer}} is an alternative method to build web services.
-This technology % no es una tecnología, es una convención!!! - JJ
+This architectural style % no es una tecnología, es una convención!!! - JJ FERGU: cambiado a architectural style
 was proposed and defined by \person{Fielding} in \cite{Fielding2002}.
 
 In a REST-style architecture, a client sends requests to the server, who processes them and returns responses to the client.
@@ -251,7 +270,7 @@ is needed), their message format is readable by humans, they are easy
 to build, and finally, developments achieve a high performance
 \cite{Daigneau2011}. % podías citar el trabajo de Pedro SOAP vs. REST
                      % - JJ
-The main differentiating factor is that Web Services using SOAP tend to be operation-based, while REST services are resource-based.
+The main differentiating factor is that Web Services using SOAP tend to be operation-based, while REST services are resource-based. This is one of the reasons REST is replacing SOAP on the web \cite{Mason11REST}. %FERGU: puesto lo de que se usa menos en la web
 
 \subsection{ebXML}
 ebXML defines a set of standards that allows the enterprises negotiate their products through the Internet. It is based on a well-defined documents interchange using a contract-based approach \cite{Patil03ebxmlVsWS}, providing a specification for messaging, registry/repositories and business processes description, and unlike other approaches, it is an horizontal standard (it is not oriented towards a specific industry sector). On the contrary, Web Services expose any kind of applications to the Web, so anyone can call them (service approach). Another significant difference between Web Services and ebXML is that the former is based on BPEL, which can only describe the scenario inside a company, due to it has not all the information about the services being orchestrated, while the latter can be used to model a global choreography among several companies. Due to this, and because it is mainly focused to commercial and business processes we are not going to delve into this technology in this thesis.
@@ -273,12 +292,13 @@ among modules. Moreover, the
 OSGi Alliance has developed several standard component interfaces for
 common usage patterns, like HTTP servers, configuration, logs, security,
 management or XML management among others, whose implementations can
-be obtained by third-parties. Nowadays there are some challenges
+be obtained by third-parties. %Nowadays there are some challenges
 % nowadays y citas un trabajo del 2008? - JJ
-in the OSGi development \cite{Kriens2008OsgiChallenges}, but they only
-affect the creation of very complex applications. % y, como dicen en
+%in the OSGi development \cite{Kriens2008OsgiChallenges}, but they only
+%affect the creation of very complex applications. % y, como dicen en
                                 % mi pueblo, los algoritmos evolutivos
                                 % son más simples que paja de habas? - JJ
+                                %FERGU: meh, lo comento todo, tampoco era muy interesante
 
 These advantages are not so
                                costly as can be thought: on one hand the OSGi
@@ -305,18 +325,15 @@ These advantages are not so
 
 
 
-\subsubsection{Distribution}
-As stated above, all services should be seamlessly accessed locally or
+%\subsubsection{Distribution}
+As stated in Section \ref{sec:soa:whatis}, all services should be seamlessly accessed locally or
 from a remote  node. Services can be distributed using the OSGi
-features, in which case the distribution is performed using the
-service descriptor to set which service is distributable and which is
+features, simply setting which service is distributable and which is
 the distribution technology that provides service discovering and data
-transmission. % ¿Esto es relevante? - JJ
-
-OSGi allows several implementations for the service distribution.  % so what? - JJ
+transmission. OSGi allows several implementations for the service distribution.  % so what? - JJ % ¿Esto es relevante? - JJ FERGU: TODO sí, esto es MUY relevante, lo uso en la tesis, pero antes es que era una sección más grande. Pregunta: menciono aquí que lo voy a usar en mi tesis o en el capítulo Osgiliath?
 
 \section{Methodologies for developing SOA}
-Regardless of the chosen SOA framework, the business processes % business? no estamos hablando de algoritmos - JJ
+Regardless of the chosen SOA framework, the processes % business? no estamos hablando de algoritmos - JJ FERGU: sí, es que a veces se les llama así, pero lo quito para no liar
  of the platform must be analysed and modelled. So it is necessary to use a consistent and well-defined methodology to design a model based on a machine-readable description \cite{Garcia09UMM}. {\em Business-Centric Methodology (BCM) for Enterprise Agility and Interoperability} \cite{Oasis03BCM} is a roadmap for the development and implementation of procedures to create effective, efficient, and sustainable interoperability mechanisms. It has been developed by OASIS, the same consortium that created BPEL or UDDI, among others, and it is complementary to other existent architectures and technologies designed to build business oriented services, like ebXML or Web Services. BCM is formed by a set of model layers with a step-guide process, and an information pyramid to align the semantic information of partners. This allows the participation of business experts and the creation of a very large documentation repository. Nevertheless, this methodology has some disadvantages: it has a very large learning curve and it is not very extended yet. 
 
 {\em SOMA} (Service Oriented Modelling and Architecture)
@@ -346,6 +363,12 @@ development, acceptance and maturity of UML \cite{Garcia09UMM}. In
 fact, a survey of B2B modelling languages show that UMM is the most
 complete approach \cite{Folmer08b2b}. 
 
+
+
+
+
+
+%%%%%%%%%%%%%%BENEFICIOS DE USAR SOA EN EAs
 \section{Benefits of using SOA in Evolutionary Algorithms Area}
 
 \lettrine{S}{OA} has been previously used in the EA area. For example,
@@ -353,19 +376,19 @@ web services have been used in the grid area for optimization
 problems, as can be seen in the works of
 \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL
 interfaces and other transmission mechanisms (such as Remote Procedure
-Call \citep{grid6,grid7}). Although EAs are executed in grids
-\citep{grid8,grid4,grid10}) no information about how to design these
+Call \cite{grid6,grid7}). Although EAs are executed in grids
+\cite{grid8,grid4,grid10}) no information about how to design these
 services for EAs has been provided in previous works.  % estás
                                 % diciendo que no hay una metodología
                                 % para diseñar estos servicios y eso
                                 % es gordo, porque entonces tienes que
                                 % hacerlo tú - JJ
 
-In the previous chapter we described several lacks % y dale - JJ
+In the previous chapter we described several shortcomings % y dale - JJ FERGU: cambiado a shortcomings
  in the Evolutionary Algorithms area, such as the new trends of
  distributed programming where nodes enter and exit in runtime, or the
  incompatibility between frameworks, for example. All these facts
- motivates the creation of a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions, allowing the next issues:  
+ motivate the creation of a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions, allowing the next issues:  
 
 \begin{itemize}
 \item Services can be combined in different ways to create the different types of EAs. The services must be designed taking into account the elements that form an EA. 
@@ -373,12 +396,28 @@ In the previous chapter we described several lacks % y dale - JJ
   communication protocol. For example, a fitness service can be
   distributed or local. % no te repitas. Eso ya lo has dicho
                         % antes. Suena a que estás metiendo morralla
-                        % por rellenar - JJ
+                        % por rellenar - JJ FERGU: en realidad estoy diciendo como los servicios resuelven los problemas esos de los EAs, pero lo complemento más
 \item Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where nodes control is not centralized. 
 \item Existent EA frameworks could also be adapted to be accessed as services.
 \item SOA is the key to develop Open Science
-  \cite{Foster2005Science}.% vaya, aquí lo dices, pero antes no - JJ
+  \cite{Foster2005Science}.% vaya, aquí lo dices, pero antes no - JJ FERGU: sí, está dicho arriba (y citado)
 \end{itemize}
+ 
+To allow the benefits that SOA offers in integration, standardization and dynamism, the services for EAs should match with the next technological
+restrictions: % ¿por qué? ¡Justifícalo todo! - JJ FERGU: Cambiada la primera frase para justificar lo siguiente
+\begin{itemize}
+\item The services can be dynamically bound %bind o be bound - JJ FERGU: arreglado
+ to change the needed EA aspects. 
+\item The source code of  the basic EA services should not be % seriously? must not been? - JJ FERGU: arreglao
+re-written or re-compiled to achieve this task. That means that the design must be  
+\item New services can be added in execution time. 
+\item No specific source code for a distribution must added, neither
+  the existing source code of the services should be modified for this
+  purpose (that is, changing distribution libraries must not add extra
+  code in existing services). 
+\end{itemize}
+
+
 
 Even as SOA is used extensively in software development area, it is
 not widely accepted in the main EA software. % pruébalo - JJ
@@ -396,7 +435,7 @@ order to facilitate the communication and integration among them. % ¿y
  (dynamism, visibility, loose-coupling and heterogeneity). Finally,
  cloud computing can be seen as a combination that extends SOA adding
  the scalability of the grid, ad suggested by \person{Jamil}
- \citep{SOALIB}. % y esto es interesante porque.. - JJ
+ \cite{SOALIB}. % y esto es interesante porque.. - JJ
 
 
 \begin{SCfigure}[20][tb]
@@ -415,3 +454,96 @@ purposes. Next chapter will explain the design principles of SOA for
 developing services for EAs. Then, a specific SOA technology will be
 used to develop an implementation of a service oriented architecture
 for EAs.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%RESTRICCIONES EN SOA PARA DISEÑAR EAs
+\section{Restrictions in SOA design for EAs}
+
+
+
+%In previous chapter we also presented the advantages of using SOA in Evolutionary Algorithms area: firstly, SOA fits with the genericity advantages in the development of software for EAs \cite{GENERICITY05} and adds new features, like language independence and  distribution mechanisms. It also allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). This issue increases the interoperability between different software elements. Moreover, this allows easy code distribution: SOA does not require the use of a concrete implementation or library.
+%FERGU: comentado este párrafo, que me repito (antes estaba en otro capítulo)
+
+
+
+SOA follows the lines of genericity in software for EAs presented in Section \ref{sec:distributed:design}, but can also extend them:
+\begin{itemize}
+\item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces should be abstract enough to avoid their modification.
+\item Loose-coupling: %FERGU: TEEEEERMINAAAA
+\item Programming language independence: for example, services implemented in Java may use services implemented in C++ and vice-versa.
+\item Distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators.
+\item Flexibility: there should be easy to add and remove elements to use the self-adaptation or other mechanisms.
+\end{itemize}
+
+
+
+One of the main restrictions in SOA, % ¿SOA o SOAs? será "a SOA" o
+                                % "SOAs", ¿no? - Jj FERGU: no, SOA es una metodología de diseño también
+ apart from focusing on the development of abstract services, is the
+ stateless nature of services. Therefore, in SOA the services design
+ must follow several guidelines. % ¿Puede estar esto relacionado con
+                                % programación funcional? Podías mirar
+                                % y citar los papers de Albert al
+                                % respecto - JJ FERGU: no, no está relacionado (pero ya cito los papers de Albert antes)
+
+First, as services are unaware of each other, there should not be global
+variables in any part of the code. Services are listening, and waiting
+to be executed. For example, a fitness service with a counter that is
+increased each time is called (to stop the algorithm if a limit is
+reached, for example). If several (and different) algorithms were
+working in parallel, and calling this function concurrently, the
+counter could not distinguish between algorithms, giving erroneous
+results. However, a service that maintains some kind of state is
+allowed, for example, a statistics service that reads events from all
+the algorithms being executed at the same time, but this should be
+managed to avoid errors. % ¿en qué quedamos entonces? ¿Se permite o no
+                         % se permite? - JJ
+
+Also, a service should not be distinguishable from local or remote
+running in other node in the network. % es la 5ª vez que dices esto - JJ FERGU: sí, pero ahora lo enlazo con los EAs
+Every stage in the algorithm should be treated as a service to be
+executed in local or in remote, even the {\em Population} or the {\em
+  Parameters}. Mechanisms to ensure the correct data-sharing should be
+provided. Also, many implementations of the same service could exist
+at the same time (different implementations of {\em Crossover}, for
+example) and it should be correctly managed and used. % pero ¿las va a
+                                % haber? ¿Vas a usar estas
+                                % características? - JJ FERGU: sí, las va a haber y lo voy a poner en el experimento (aunque estaba descrito en siguientes capítulos)
+
+Moreover, a service is always a request-response function. For
+example, the fitness calculation should not be a method of the {\em
+  Individual} implementation, but a function that receives a list of
+individuals and returns a list of the calculated fitness of that
+individuals. This allow, for example, remote fitness calculation and
+distributed load balancing, impossible to perform if the fitness is a
+method of the {\em Individual} class. % Esto ya se hizo cuando
+                                % diseñamos los Evolving Objects,
+                                % podías citarlo - JJ FERGU: 
+
+Thinking as abstractly as possible requires to separate concepts such as
+the order of recombination, and the crossover itself. Usually, after
+parent selection, individuals are crossed in order. However, if we
+need a different mechanism for mating (for example, using more than
+two parents, or parent selected several times) a duplication of effort
+is needed. That is the reason to separate the concept {\em
+  recombine} from {\em crossover} (and also, following the top-down
+design proposed in SOMA).  % ¿Esto es lo único que estás usando del
+                           % SOMA? - JJ
+
+Finally, no assumptions should be taken about services previously
+executed or being executed next. For example, services such as {\em
+  Recombinator} or {\em Mutator} should return the individuals with
+their fitness already calculated. % ¿Por qué? ¿Eso no implica que el
+                                % mutador tiene que saber que existe
+                                % otro servicio que calcula el
+                                % fitness? Además, en la práctica el
+                                % mutador no necesita el fitness (casi
+                                % nunca)- JJ
+Usually this step is performed in
+the last stage of the generation, but if we require the individuals
+for other tasks: for example, a Local Search or a statistics collector
+to guide the algorithm. % if we require, ¿qué? - JJ
+
+

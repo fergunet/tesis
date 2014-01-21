@@ -5,7 +5,7 @@
 problems in the EA area, such as the lack of integration,
 standardization and dynamism control. It also allows ease of
 development in dynamic, distributed and heterogeneous systems. % ¿quién
-                                % ha dicho que eso es un problema? - JJ
+                                % ha dicho que eso es un problema? - JJ FERGU: TODO buscar referencia (survey parejo)
  However, several restrictions must be taken into account. In this
  chapter, we present the existent restrictions in the EA design,
  according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also,
@@ -26,11 +26,9 @@ even intelligent aggregation of operators.
 % implementación. ¿Has hecho una abstracción de los algoritmos
 % genéticos? ¿Un survey de técnicas usadas? - JJ
 
-\section{Design of services for Evolutionary Algorithms}
 
-This section shows the restrictions for designing EAs (from the point of view of a EA practitioner) and services (from the SOA area expertise).
-
-\subsection{Restrictions in EAs design}
+%FERGU: he movido la sección que había aquí al capítulo anterior
+\section{Designing services for EAs}
 
 %%%PONER LO GENERICITY DE PAPAZOGLOU
 
@@ -46,110 +44,7 @@ In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and
 \end{itemize}
 All these characteristics of genericity for the design of an EAs should be taken into account when designing services for EAs. However, requirements are aligned with the requirements for designing services, as explained next.
 
-\subsection{Restrictions in SOA design}
 
-SOA follows these lines of genericity presented in previous sub-section, and can also extend them:
-\begin{itemize}
-\item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces must be abstract enough to avoid their modification.
-\item Programming language independence: for example, services implemented in Java can use services implemented in C++ and vice-versa.
-\item Distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators.
-\item Flexibility: easy to add and remove elements to use the self-adaptation or other mechanisms.
-\end{itemize}
-
-As explained in previous chapter, when developing within a SOA, \person{Papazoglou \etal} \cite{Papazoglou2007SOA} established that the services must be: 
-\begin{itemize}
-\item Abstract: many different implementations can use the same interface.
-\item Well-defined: the interface of the service must be fixed, and it can not change in time, because the consumers or implementations of this interface should be modified with it.
-\item Encapsulated: services can use other services, but only the interface should be used to consume a service.
-\item Reusable: services should be designed to be used by as many applications as possible. 
-\end{itemize}
-
-One of the main restrictions in SOA, % ¿SOA o SOAs? será "a SOA" o
-                                % "SOAs", ¿no? - Jj
- apart from focusing in the development of abstract services, is the
- stateless nature of services. Therefore, in SOA the services design
- must follow several guidelines. % ¿Puede estar esto relacionado con
-                                % programación funcional? Podías mirar
-                                % y citar los papers de Albert al
-                                % respecto - JJ
-
-First, as services are unaware of each other, there must not be global
-variables in any part of the code. Services are listening, and waiting
-to be executed. For example, a fitness service with a counter that is
-increased each time is called (to stop the algorithm if a limit is
-reached, for example). If several (and different) algorithms are
-working in parallel, and calling this function at the same time the
-counter would not distinguish between algorithms, giving erroneous
-results. However, a service that maintains some kind of state is
-allowed, for example, a statistic service that read events from all
-the algorithms being executed at the same time, but this should be
-managed to avoid errors. % ¿en qué quedamos entonces? ¿Se permite o no
-                         % se permite? - JJ
-
-Also, a service must not be distinguishable from local or remote
-running in other node in the network. % es la 5ª vez que dices esto - JJ
-Every stage in the algorithm should be treated as a service to be
-executed in local or in remote, even the {\em Population} or the {\em
-  Parameters}. Mechanisms to ensure the correct data-sharing should be
-provided. Also, many implementations of the same service could exist
-at the same time (different implementations of {\em Crossover}, for
-example) and it should be correctly managed and used. % pero ¿las va a
-                                % haber? ¿Vas a usar estas
-                                % características? - JJ
-
-Moreover, a service is always a request-response function. For
-example, the fitness calculation must not be a method of the {\em
-  Individual} implementation, but a function that receives a list of
-individuals and returns a list of the calculated fitness of that
-individuals. This allow things such as remote fitness calculation and
-distributed load balancing, impossible to perform if the fitness is a
-method of the {\em Individual} class. % Esto ya se hizo cuando
-                                % diseñamos los Evolving Objects,
-                                % podías citarlo - JJ 
-
-Thinking as abstractly as possible requires to separate concepts such
-the order of recombination, and the crossover itself. Usually, after
-parent selection, individuals are crossed in order. However, if we
-need a different mechanism for mating (for example, using more than
-two parents, or parent selected several times) a duplication of effort
-is needed. That is the reason we should separate the concept {\em
-  recombine} from {\em crossover} (and also, following the top-down
-design proposed in SOMA).  % ¿Esto es lo único que estás usando del
-                           % SOMA? - JJ
-
-Finally, we must not make assumptions about services previously
-executed or being executed next. For example, services such {\em
-  Recombinator} or {\em Mutator} should return the individuals with
-their fitness already calculated. % ¿Por qué? ¿Eso no implica que el
-                                % mutador tiene que saber que existe
-                                % otro servicio que calcula el
-                                % fitness? Además, en la práctica el
-                                % mutador no necesita el fitness (casi
-                                % nunca)- JJ
-Usually this step is performed in
-the last stage of the generation, but if we require the individuals
-for other tasks: for example, a Local Search or a statistics collector
-to guide the algorithm. % if we require, ¿qué? - JJ
-
-\subsection{Other technological restrictions}
-
-In previous chapter we also presented the advantages of using SOA in Evolutionary Algorithms area: firstly, SOA fits with the genericity advantages in the development of software for EAs \cite{GENERICITY05} and adds new features, like language independence and  distribution mechanisms. It also allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). This issue increases the interoperability between different software elements. Moreover, this allows easy code distribution: SOA does not require the use of a concrete implementation or library.
-
-The services developed must match with the following technological
-restrictions: % ¿por qué? ¡Justifícalo todo! - JJ
-\begin{itemize}
-\item These services can dynamically bound %bind o be bound - JJ
- to change the needed EA aspects. 
-\item The source code of  the basic EA services must not been % seriously? must not been? - JJ
-re-written or re-compiled to achieve this task. 
-\item New services can be added in execution time. 
-\item No specific source code for a distribution must added, neither
-  the existing source code of the services should be modified for this
-  purpose (that is, changing distribution libraries must not add extra
-  code in existing services). 
-\end{itemize}
-
-\subsection{Designing the services}
 
 Taking into account the previous restrictions a possible way for designing services for EAs is shown: 
 % ¿Esto es algo de tu tesis? Haz más énfasis y di cómo has llegado a esa forma "posible". ¿Es la única forma? ¿Es la mejor? ¿Qué otras has probado¿ -JJ

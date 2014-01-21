@@ -29,16 +29,16 @@
                                 % genético - JJ
 
 
-%FERGU: He comentado TODO lo de arriba por lo que viene aquí.
+%FERGU: He comentado TODO lo de arriba por lo que viene aquí a continuación.
 
 
 \lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based in the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
 %FERGU: También he movido la figura del EA y pongo lo que viene a continuación:
 
-Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, several ways to parallelize these algorithms were also presented, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some lacks, such as integration of heterogeneous elements or dynamic resources and to deal with fault-tolerance, churn, massive
+Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, several ways to parallelize these algorithms were also presented, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some shortcomings, such as integration of heterogeneous elements or dynamic resources and to deal with fault-tolerance, churn, massive
 scalability or decentralization.
 
-As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs, taking into account the previous requirements. Therefore, in this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the developing of new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their lacks and problems that should be addressed (such as dynamism of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of standardization and integration). This way, in following chapters, the design and development of interoperable, standardized and dynamic services for EAs will have a solid base to start.
+As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs, taking into account the previous requirements. Therefore, in this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the developing of new algorithms, establishing their similarities. Then, the new trends in EAs are also presented to summarize their benefits, but also their deficiences and problems that should be addressed (such as dynamism of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of standardization and integration). This way, in following chapters, the design and development of interoperable, standardized and dynamic services for EAs will have a solid base to start.
 
 
 
@@ -550,6 +550,7 @@ to existent software, systems, data, and results.
 % tu tesis no es tu framework - JJ
 
 \subsection{Design of EAs}
+\label{sec:distributed:design}
 The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six criteria to qualify the genericity of a framework for EAs. 
 
 \begin{itemize}
@@ -572,7 +573,7 @@ there exist different ways to model an EA leading to different algorithms (for e
  This criteria should be accomplished to develop new algorithms or operators, independent of the programming language used. However, as will be explained in next chapters, new models of design and development can extend the previous criteria.
 
 \subsection{Frameworks for EAs}
-Over the large number of available frameworks (see \cite{SURVEYMOFS} for a complete survey) a representation of them has been selected to explain their lacks, that will be addressed in this thesis.
+Over the large number of available frameworks (see \cite{SURVEYMOFS} for a complete survey) a representation of them has been selected to explain their shortcomings, that will be addressed in this thesis.
 
  % se está quedando sin gatitos - JJ FERGU: Quitado el There exist
 Object Oriented programming is used in several frameworks, such as Al\-go\-rithm::Evo\-lu\-tionary \cite{PERL}, \definicion{METCO}{Metaheuristic-based Extensible Tool for Collaborative Optimization} \cite{Leon2009metco},
