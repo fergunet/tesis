@@ -326,11 +326,10 @@ These advantages are not so
 
 
 %\subsubsection{Distribution}
-As stated in Section \ref{sec:soa:whatis}, all services should be seamlessly accessed locally or
-from a remote  node. Services can be distributed using the OSGi
+In OSGi all services can be distributed using the OSGi
 features, simply setting which service is distributable and which is
 the distribution technology that provides service discovering and data
-transmission. OSGi allows several implementations for the service distribution.  % so what? - JJ % ¿Esto es relevante? - JJ FERGU: TODO sí, esto es MUY relevante, lo uso en la tesis, pero antes es que era una sección más grande. Pregunta: menciono aquí que lo voy a usar en mi tesis o en el capítulo Osgiliath?
+transmission.   % so what? - JJ % ¿Esto es relevante? - JJ FERGU: TODO sí, esto es MUY relevante, lo uso en la tesis, pero antes es que era una sección más grande. Pregunta: menciono aquí que  voy a usar OSGi en mi tesis o en el capítulo Osgiliath? (ahora está en ese capítulo)
 
 \section{Methodologies for developing SOA}
 Regardless of the chosen SOA framework, the processes % business? no estamos hablando de algoritmos - JJ FERGU: sí, es que a veces se les llama así, pero lo quito para no liar
@@ -388,72 +387,24 @@ In the previous chapter we described several shortcomings % y dale - JJ FERGU: c
  in the Evolutionary Algorithms area, such as the new trends of
  distributed programming where nodes enter and exit in runtime, or the
  incompatibility between frameworks, for example. All these facts
- motivate the creation of a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions, allowing the next issues:  
+ motivate the creation of a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions. Also, SOA solve the problems previously addressed: 
 
 \begin{itemize}
-\item Services can be combined in different ways to create the different types of EAs. The services must be designed taking into account the elements that form an EA. 
-\item Services are independent of the used technology or the
-  communication protocol. For example, a fitness service can be
-  distributed or local. % no te repitas. Eso ya lo has dicho
+\item {\em Development}: there exist several methodologies to model and design services. Also, as services are re-usable, they can be combined in different ways to create the different types of EAs. Moreover, existent technologies, such as OSGi, also facilitate the development, using techniques such as versioning, packaging or life-cycle control.
+\item {\em Integration}: Services are independent of the programming language. For example, services implemented in Java may use services implemented in C++ and vice-versa. Also, services allows distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators. Existent EA frameworks could also be adapted to be accessed as services, providing their interfaces. 
+\item {\em Standardization}: Interfaces of services use public standards (such as WSDL or OSGi). The service interfaces for EAs should be abstract enough to avoid their modification. Furthermore, as \person{Foster} claims \cite{Foster2005Science}, SOA is the key to develop Open Science.
+\item {\em Dynamism}: Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where the control of the nodes is not centralized. For example, new operators in different nodes can be used during an algorithm's run. Also, there should be easy to add and remove elements to use the self-adaptation or other mechanisms.
+\end{itemize} 
+
+
+% no te repitas. Eso ya lo has dicho
                         % antes. Suena a que estás metiendo morralla
-                        % por rellenar - JJ FERGU: en realidad estoy diciendo como los servicios resuelven los problemas esos de los EAs, pero lo complemento más
-\item Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where nodes control is not centralized. 
-\item Existent EA frameworks could also be adapted to be accessed as services.
-\item SOA is the key to develop Open Science
-  \cite{Foster2005Science}.% vaya, aquí lo dices, pero antes no - JJ FERGU: sí, está dicho arriba (y citado)
-\end{itemize}
- 
-To allow the benefits that SOA offers in integration, standardization and dynamism, the services for EAs should match with the next technological
-restrictions: % ¿por qué? ¡Justifícalo todo! - JJ FERGU: Cambiada la primera frase para justificar lo siguiente
-\begin{itemize}
-\item The services can be dynamically bound %bind o be bound - JJ FERGU: arreglado
- to change the needed EA aspects. 
-\item The source code of  the basic EA services should not be % seriously? must not been? - JJ FERGU: arreglao
-re-written or re-compiled to achieve this task. That means that the design must be  
-\item New services can be added in execution time. 
-\item No specific source code for a distribution must added, neither
-  the existing source code of the services should be modified for this
-  purpose (that is, changing distribution libraries must not add extra
-  code in existing services). 
-\end{itemize}
+                        % por rellenar - JJ FERGU: Borrado ENTERO y reescrito arriba. Tambíen borrado abajo otros párrafos que me repetía mucho
+
+% vaya, aquí lo dices, pero antes no - JJ FERGU: (era lo de open science) sí, está dicho arriba (y citado)
 
 
 
-Even as SOA is used extensively in software development area, it is
-not widely accepted in the main EA software. % pruébalo - JJ
-The authors should improve their frameworks adding SOA technologies in
-order to facilitate the communication and integration among them. % ¿y
-                                % qué se conseguiría con eso? - JJ
- Although all the approaches described in previous chapter are focused
- on the implementation of distributed EAs, the abstraction level of
- each alternative can be quite different, as shown in Figure
- \ref{fig:soagrid}.  As SOA is a methodology and not a technology,
- areas such as Evolutionary Robotics, or EA classic frameworks can use
- SOA to be designed and developed. Implementation technologies, such
- as Web Services fill the gap between SOA (abstract) and grid
- (infrastructure) where interfaces are designed using SOA principles
- (dynamism, visibility, loose-coupling and heterogeneity). Finally,
- cloud computing can be seen as a combination that extends SOA adding
- the scalability of the grid, ad suggested by \person{Jamil}
- \cite{SOALIB}. % y esto es interesante porque.. - JJ
-
-
-\begin{SCfigure}[20][tb]
-\centering
-\includegraphics[width=26pc]{gfx/soa/soagrid.png}
-\caption{SOA as abstract paradigm to develop in different EAs
-  areas. %¿to develop qué? ¿o to be developed? - JJ
- Using specific technologies such as Web Services allows grid integration. This figure has been updated from the one presented in \cite{SOALIB}.}
-\label{fig:soagrid}
-\end{SCfigure}
-We are going to use SOMA guidelines (identification, specification and
-realization of the services, flows and components) because is the
-% Esto tienes que decirlo donde estés hablando de SOMA. - JJ
-methodology more flexible and less focused on commercial
-purposes. Next chapter will explain the design principles of SOA for
-developing services for EAs. Then, a specific SOA technology will be
-used to develop an implementation of a service oriented architecture
-for EAs.
 
 
 
@@ -461,6 +412,15 @@ for EAs.
 %%%%%%%%%%%%%%%%%%%%%%RESTRICCIONES EN SOA PARA DISEÑAR EAs
 \section{Restrictions in SOA design for EAs}
 
+To allow these benefits the services for EAs should match with the next technological
+restrictions: % ¿por qué? ¡Justifícalo todo! - JJ FERGU: Cambiada la primera frase para justificar lo siguiente
+
+\begin{itemize}
+\item The services can be dynamically bound to change the needed EA aspects. %bind o be bound - JJ FERGU: arreglado
+\item The source code of  the basic EA services should not be  re-written or re-compiled to achieve this task. That means that the design must be as abstract as possible. % seriously? must not been? - JJ FERGU: arreglao
+\item New services can be added in execution time. 
+\item No specific source code for a distribution must added, neither  the existing source code of the services should be modified for this purpose (that is, changing distribution libraries must not add extra code in existing services). 
+\end{itemize}
 
 
 %In previous chapter we also presented the advantages of using SOA in Evolutionary Algorithms area: firstly, SOA fits with the genericity advantages in the development of software for EAs \cite{GENERICITY05} and adds new features, like language independence and  distribution mechanisms. It also allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). This issue increases the interoperability between different software elements. Moreover, this allows easy code distribution: SOA does not require the use of a concrete implementation or library.
@@ -468,14 +428,6 @@ for EAs.
 
 
 
-SOA follows the lines of genericity in software for EAs presented in Section \ref{sec:distributed:design}, but can also extend them:
-\begin{itemize}
-\item Genericity in the service interfaces: service interfaces are established to create new implementations. Furthermore, these interfaces should be abstract enough to avoid their modification.
-\item Loose-coupling: %FERGU: TEEEEERMINAAAA
-\item Programming language independence: for example, services implemented in Java may use services implemented in C++ and vice-versa.
-\item Distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators.
-\item Flexibility: there should be easy to add and remove elements to use the self-adaptation or other mechanisms.
-\end{itemize}
 
 
 
@@ -546,4 +498,40 @@ the last stage of the generation, but if we require the individuals
 for other tasks: for example, a Local Search or a statistics collector
 to guide the algorithm. % if we require, ¿qué? - JJ
 
+\section{Conclusions}
 
+Even as SOA is used extensively in software development area, it is
+not widely accepted in the main EA software. % pruébalo - JJ
+The authors should improve their frameworks adding SOA technologies in
+order to facilitate the communication and integration among them. % ¿y
+                                % qué se conseguiría con eso? - JJ
+ Although all the approaches described Section \ref{sec:distributed:parallel} are focused
+ on the implementation of distributed EAs, the abstraction level of
+ each alternative can be quite different, as shown in Figure
+ \ref{fig:soagrid}.  As SOA is a methodology and not a technology,
+ areas such as Evolutionary Robotics, or EA classic frameworks can use
+ SOA to be designed and developed. Implementation technologies, such
+ as Web Services fill the gap between SOA (abstract) and grid
+ (infrastructure) where interfaces are designed using SOA principles
+ (dynamism, visibility, loose-coupling and heterogeneity). Finally,
+ cloud computing can be seen as a combination that extends SOA adding
+ the scalability of the grid, ad suggested by \person{Jamil}
+ \cite{SOALIB}. % y esto es interesante porque.. - JJ
+
+
+\begin{SCfigure}[20][tb]
+\centering
+\includegraphics[width=26pc]{gfx/soa/soagrid.png}
+\caption{SOA as abstract paradigm to develop EAs in different
+  areas. %¿to develop qué? ¿o to be developed? - JJ FERGU: arreglado
+ Using specific technologies such as Web Services allows grid integration. This figure has been updated from the one presented in \cite{SOALIB}.}
+\label{fig:soagrid}
+\end{SCfigure}
+We are going to use SOMA guidelines (identification, specification and
+realization of the services, flows and components) because is the
+% Esto tienes que decirlo donde estés hablando de SOMA. - JJ
+methodology more flexible and less focused on commercial
+purposes. Next chapter will explain the design principles of SOA for
+developing services for EAs. Then, a specific SOA technology will be
+used to develop an implementation of a service oriented architecture
+for EAs.

@@ -208,6 +208,7 @@ codify a set of rules, as proposed by \person{Smith} \cite{smith2002co}
 In brief, the memetic algorithms can be seen as a composition of other algorithms. The integration should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the algorithms that conform the memetic one, but also how to dynamically select among these available memes. %FERGU: TODO terminar esto y dejalo más claro aún
 
 \section{Parallel and Distributed Evolutionary Algorithms models}
+\label{sec:distributed:parallel}
 % ¿Inherentemente por qué? ¿No querrás decir trivialmente? Además, no es tan trivial porque una vez que metes esquemas de inmigración la cosa no es tan fácil: quien emigra, cuando lo hace, como se incorpora en la población... - JJ FERGU: Añadida cita a paper que lo dice
 \lettrine{E}{volutionary} Algorithms are inherently parallelizable, since each individual is an independent unit \cite{Alba13parallel}. For example, fitness evaluation can be distributed into several slave machines, % lo que sólo funciona si el trasiego es más rápido que la evaluación local, y sólo para aquellos algoritmos en los que la evaluación de un individuo sólo dependa del mismo: hay esquemas de escalado del fitness o algoritmos coevolutivos en los que esto no tiene por qué funcionar - JJ FERGU: Digo entonces que son ejemplos
 or the population can be distributed among different nodes to be
