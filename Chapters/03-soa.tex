@@ -144,19 +144,19 @@ consumes the service).
 \label{fig:soadiagram}
 \end{SCfigure}
 
-According to \person{Channabasavaiah \etal} \cite{Channabasavaiah2003migrating} services must follow these  characteristics:
+According to \person{Valipour \etal} \cite{Valipour09surveysoa} services must follow these characteristics:
 
 \begin{itemize}
-\item All functions in SOA are services. This means that every
-  component in SOA must be modelled as a service, or as an aggregation of services. Services are, therefore, {\em encapsulated}: only the interface should be used to consume a service.
-\item The services are well-defined: the interface of the service must be fixed, and it can not change in time, because the consumers or implementations of this interface should be modified with it. Also, the interfaces are invocable. This means that services must be
-  indistinguishably local or remote, being independent of the protocol
-  to establish the connection. And finally, they are discoverable. % pasa el spell, tienes faltas de
-                               % ortografía como stablish - JJ FERGU: y el indistinguishably también estaba mal
-\item Services are autonomous. Consumers do not need to know how the service implementation performs their function as services behave as a ``black box''.
-\item Services should be designed to be used by as many applications as possible, that is, to be {\em reusable}. 
-
+\item {\em Discoverable and Dynamically Bound}: Services must be discoverable. Thanks to the service registry, a service consumer can discover a service to use at runtime.
+\item {\em Self-Contained and Modular}: All functions in SOA are services. This means that every
+  component in SOA must be modelled as a service, or as an aggregation of services. The services are well-defined: the interface of the service must be fixed, and it can not change in time, because the consumers or implementations of this interface should be modified with it. Services are, therefore, {\em encapsulated}: only the interface should be used to consume a service.
+\item {\em Interoperability}: Consumers do not need to know how the service implementation performs their function, as services behave as a ``black box''. This is, elements such as the programming language or distribution protocol are independent.
+\item {\em Loose Coupling}: Services should be designed to need only a few number of well-known dependencies.
+\item {\em Location Transparency}: Services must be indistinguishably local or remote, being independent of the protocol to establish the connection.
+\item {\em Composability}: Developing applications in SOA means to aggregate different existent services. Services are designed to be {\em re-usable}.
 \end{itemize}
+
+
 
 Moreover, several implementations of a specific service  can exist (in
 one or several machines). The broker can choose which one to use  each
@@ -393,7 +393,7 @@ In the previous chapter we described several shortcomings % y dale - JJ FERGU: c
 \item {\em Development}: there exist several methodologies to model and design services. Also, as services are re-usable, they can be combined in different ways to create the different types of EAs. Moreover, existent technologies, such as OSGi, also facilitate the development, using techniques such as versioning, packaging or life-cycle control.
 \item {\em Integration}: Services are independent of the programming language. For example, services implemented in Java may use services implemented in C++ and vice-versa. Also, services allows distribution transparency: it is not mandatory to use a specific library for the distribution, or modify the code to adapt the existing operators. Existent EA frameworks could also be adapted to be accessed as services, providing their interfaces. 
 \item {\em Standardization}: Interfaces of services use public standards (such as WSDL or OSGi). The service interfaces for EAs should be abstract enough to avoid their modification. Furthermore, as \person{Foster} claims \cite{Foster2005Science}, SOA is the key to develop Open Science.
-\item {\em Dynamism}: Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where the control of the nodes is not centralized. For example, new operators in different nodes can be used during an algorithm's run. Also, there should be easy to add and remove elements to use the self-adaptation or other mechanisms.
+\item {\em Dynamism}: Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where the control of the nodes is not centralized. For example, new operators in different nodes can be bound and used during an algorithm's run. Also, there should be easy to add and remove elements to use the self-adaptation or other mechanisms.
 \end{itemize} 
 
 
