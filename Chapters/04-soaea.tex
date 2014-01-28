@@ -1,4 +1,4 @@
-\myChapter{A Service Oriented Architecture for EAs}\label{chap:soaea}
+\myChapter{A methodology to develop services for EAs}\label{chap:soaea}
 \minitoc\mtcskip
 \vfill
 \lettrine{S}{OA}s provide a good set of solutions to solve some of the
@@ -6,15 +6,15 @@ problems in the EA area, such as the lack of integration,
 standardization and dynamism control. It also allows ease of
 development in dynamic, distributed and heterogeneous systems. % ¿quién
                                 % ha dicho que eso es un problema? - JJ FERGU: TODO buscar referencia (survey parejo)
- However, several restrictions must be taken into account. In this
- chapter, we present the existent restrictions in the EA design,
- according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also,
- the restrictions in SOA design (such as the unordered execution or
- distribution transparency) are explained to perform % are explained
+ %However, several restrictions must be taken into account. In this
+ %chapter, we present the existent restrictions in the EA design,
+ %according to \person{Gagn\'e and Parizeau} \cite{GENERICITY05}. Also,
+ %the restrictions in SOA design (such as the unordered execution or
+ %distribution transparency) are explained to perform % are explained
                                 % to perform? - Jj
- a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed. % cita el capítulo anterior - JJ
+ %a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed. % cita el capítulo anterior - JJ
 
-SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establishes that the phases of the SOA design are {\em identification}, {\em specification} and {\em realization} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The realization of the designed services will be explained, using an specific technology, in the next chapter. 
+SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establishes that the phases of the SOA design are {\em identification}, {\em specification}, {\em implementation} and {\em deployment} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The implementation and deployment of the designed services will be explained, using an specific technology, in the next chapter. 
 
 For a better understanding, a complete example of development of an EA
 is explained. This example is modified to show how to convert an
@@ -24,15 +24,53 @@ even intelligent aggregation of operators.
 % ¿Este capítulo es ciencia? ¿Tecnología? ¿Puro desarrollo? Deja bien
 % clara la aportación de este artículo, aparte de la obvia
 % implementación. ¿Has hecho una abstracción de los algoritmos
-% genéticos? ¿Un survey de técnicas usadas? - JJ
+% genéticos? ¿Un survey de técnicas usadas? - JJ FERGU: Reescribiendo entero
 
 
 %FERGU: he movido la sección que había aquí al capítulo anterior
+
+%FERGU: TODO poner el problema a resolver
+
+
 \section{Designing services for EAs}
 
 %%%PONER LO GENERICITY DE PAPAZOGLOU
 
 In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs.
+
+\subsection{Identification}
+This phase pertains the identification of the three constructs of SOA: services, components and flows.
+
+\subsubsection{Operators} The main operators in EAs are crossovers and mutators. As a first idea, only a service for crossover and another for mutation should be designed. However, as SOA requires to think as abstract as possible, SO ...
+
+\subsubsection{Fitness} The fitness function is a clear EA element that can be designed as a service. Each problem should implement an interface
+  of the fitness service that receives the individual, allowing the
+  distribution of this service (instead of being a method in the {\em
+    individual} class, for example). 
+
+
+\subsubsection{Population} 
+
+\subsubsection{Parameters}  
+
+\subsection{Specification}
+This task of the methodology establish the inputs and outputs of the services.
+
+
+Individual representation. Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to operate properly.
+
+To be more flexible, the
+  {\em fitness service} must receive a list of at least one
+  individual, to facilitate the parallelism. % ¿Seguro que hace falta
+                                % esto? ¿No hará falta un simple
+                                % servicio de selección? Tienes que
+                                % justificarlo todo sobre todo si es
+                                % parte de TU TESIS - JJ
+
+
+
+
+
 
 %hala, repitiendo lo que dices en el capítulo anterior. Pa matarte. - JJ
 \begin{itemize}
@@ -50,17 +88,8 @@ Taking into account the previous restrictions a possible way for designing servi
 % ¿Esto es algo de tu tesis? Haz más énfasis y di cómo has llegado a esa forma "posible". ¿Es la única forma? ¿Es la mejor? ¿Qué otras has probado¿ -JJ
 
 \begin{itemize}
-\item Individual representation. Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to operate properly.
-\item Fitness evaluation. Each problem should implement an interface
-  of the fitness service that receives the individual, allowing the
-  distribution of this service (instead of being a method in the {\em
-    individual} class, for example). However, to be more flexible, the
-  {\em fitness service} must receive a list of at least one
-  individual, to facilitate the parallelism. % ¿Seguro que hace falta
-                                % esto? ¿No hará falta un simple
-                                % servicio de selección? Tienes que
-                                % justificarlo todo sobre todo si es
-                                % parte de TU TESIS - JJ
+\item 
+\item 
 \item Definition or addition of every type of operator. % ¿definition
                                 % or addition? - JJ
 Thanks to the loose coupling of services, several crossover or
