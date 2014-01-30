@@ -14,7 +14,9 @@ development in dynamic, distributed and heterogeneous systems. % ¿quién
                                 % to perform? - Jj
  %a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed. % cita el capítulo anterior - JJ
 
-SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establishes that the phases of the SOA design are {\em identification}, {\em specification}, {\em implementation} and {\em deployment} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The implementation and deployment of the designed services will be explained, using an specific technology, in the next chapter. SOA-EA is an
+SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter, establishes that the phases of the SOA design are {\em identification}, {\em specification}, {\em implementation} and {\em deployment} of the services and flows. In this chapter, we identify the services that compose an EA and specify some of their possible behaviours. The implementation and deployment of the designed services will be explained, using an specific technology, in the next chapter. Because SOMA is more focused in business environments.
+
+SOA-EA is an
 abstract methodology to develop service oriented EAs, independently
 of the technology to be used. 
 
@@ -36,22 +38,21 @@ even intelligent aggregation of operators.
 
 \section{Designing services for EAs}
 
-In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs.
+In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs. As in SOMA, the phases are not linear, but they are iterative and incremental.
 
 \subsection{Identification}
-This phase pertains the identification of the three constructs of SOA: services, components and flows.
+This phase pertains the identification of the three constructs of SOA: services, components and flows. HABLAR DE LOS DOMINIOS:
 
-\subsubsection{Operators} The main operators in EAs are crossovers and mutators. As a first idea, only a service for crossover and another for mutation should be designed. However, as SOA requires to think as abstract as possible, SO ...
+Three different domains are:
+\begin{itemize}
+\item Algorithm domain: services in this domain are the ones that conform the EA. For example, crossovers or populations.
+\item Problem domain: services to address the elements of the problem. An example is...
+\item Infrastructure domain: services in this domains are the ones that deals with the specific infrastructure that will be used. For example, services for user control, load balancing or logging. The design of this services is out of the scope of the EAs, so...
+\end{itemize}
 
-\subsubsection{Fitness} The fitness function is a clear EA element that can be designed as a service. Each problem should implement an interface
-  of the fitness service that receives the individual, allowing the
-  distribution of this service (instead of being a method in the {\em
-    individual} class, for example). 
+\subsubsection{Algorithm domain} The main operators in EAs are crossovers and mutators. As a first idea, only a service for crossover and another for mutation should be designed. However, as SOA requires to think as abstract as possible, SO ... Population...
 
-
-\subsubsection{Population} 
-
-\subsubsection{Parameters}  Dynamic adaptation of the parameters. Getting the values of the parameters can also be a
+Dynamic adaptation of the parameters. Getting the values of the parameters can also be a
   service, % _returning_ parameters or getting the value of
            % parameters. Los parámetros son valores, no pueden ser un
            % servicio. Usa el lenguaje con propiedad - JJ FERGU: cierto
@@ -60,12 +61,19 @@ it is not mandatory to distribute the parameters among all services,
 % ¿ein? - JJ
  and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation \cite{eiben2005shared}.
 
-\subsection{Service flow} 
+\subsubsection{Problem domain} The fitness function is a clear EA element that can be designed as a service. Each problem should implement an interface
+  of the fitness service that receives the individual, allowing the
+  distribution of this service (instead of being a method in the {\em
+    individual} class, for example). 
+
+ 
+
+An EA can be seen as a service flow. Flows should be designed to reducing the impact of potential future changes.
 
 \subsection{Specification}
 
 %HAY QUE DEFINIR TAMBIÉN LAS OPERACIONES DE CADA SERVICIO!!!!! (ej, las de Population)
-Once the services have been identified, the next step of the methodology establish the inputs and outputs of the services. All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design} should be taken into account when designing services for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}).
+Once the services have been identified, the next step of the methodology establish the inputs and outputs of the services. All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design}, should be taken into account when designing elements for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}).
 
 Definition or addition of every type of operator. % ¿definition
                                 % or addition? - JJ
