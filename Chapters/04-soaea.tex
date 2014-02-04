@@ -37,6 +37,7 @@ even intelligent aggregation of operators.
  As in SOMA, the phases are not linear, but they are iterative and incremental. In Chapter \ref{chap:distributedEAs} the restrictions that \person{Gagn{\'e} and Parizeau} proposed to qualify a framework for EAs were presented. This criteria should be used to design the services for EAs.
 
 \subsection{Identification}
+\label{subsec:soaea:identification}
 This phase pertains the identification of the three constructs of SOA: services, components and flows. So, at the end of this step, the developers have a complete list of services to be designed.
 
 First, the developers should ask themselves the following questions to facilitate the identification:
@@ -85,6 +86,8 @@ Once the services have been identified, the next step of the methodology establi
 
 \begin{itemize}
 \item Which are the inputs of the services?
+\item Which are the operations of each service?
+\item How the services are going to be used?
 \item Which is the order of execution of the services?
 \item Only one type of service is required?
 \end{itemize}
@@ -96,6 +99,7 @@ Once the services have been identified, the next step of the methodology establi
 %Definition or addition of every type of operator. % ¿definition
                                 % or addition? - JJ FERGU: BORRADO
 
+\subsubsection{Specifying the operators}
 When specifying services such as 
 {\em recombinator} or {\em mutator} they have to be modelled to not receive one or two
 individuals, since not all EAs have the same behaviour. They should receive a
@@ -125,32 +129,36 @@ Almost all services in an EA (like mutation or selection) will accept individual
                          % sea como prueba de concepto)- JJ FERGU: sí, lo hago
 
 
+\subsubsection{Specifying the fitness}
 
 
 
 
-
-As previously stated, % ¿dónde? ¿Para qué están los hiperenlaces? - JJ
+As previously stated in Section \ref{sec:soa:restrictions}, % ¿dónde? ¿Para qué están los hiperenlaces? - JJ FERGU: Añadido
  the 
 fitness should not be calculated within a method of an {\em Individual} class. To be less
-coupled, it should be implemented an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible.
-To be more flexible, the
+coupled, it should be implemented an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible. However, to be more flexible, the
   {\em fitness service} must receive a list of at least one
-  individual, to facilitate the parallelism (generic fitness). % ¿Seguro que hace falta
+  individual, to facilitate the parallelism (and also to accomplish the generic fitness restrictions in design for EAs). % ¿Seguro que hace falta
                                 % esto? ¿No hará falta un simple
                                 % servicio de selección? Tienes que
                                 % justificarlo todo sobre todo si es
                                 % parte de TU TESIS - JJ
 
+\subsubsection{Specifying the parameters}
 Also the parameters should be
 a service for the same reason, allowing the possibility of performing
 experiments related to  parameter control or tuning \cite{ParameterControlEiben07} in an efficient way
-(being separated from the code of the existing operators).
+(being separated from the code of the existing operators). 
 
+\subsubsection{Specifying the flow of the services}
 An example of service flow would be an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps (generic evolutionary model). This allow the adaptation of the evolutionary model. The user can manually
   select the services to be combined to create a Genetic Algorithm or
-  an Evolution Strategy, for example.
+  an Evolution Strategy, for example.  
 
+  Furthermore, to accomplish with the genericity presented in the previous section, the parameters and operators should be added dynamically. This is done with the SOA service binding. Users can specify the operators they need in several ways, for example, in a configuration file, or in an intelligent manner (an algorithm). It is important to remark that these ``pieces'' do not need to be modified and compiled again, because the loose coupling and the dynamic binding of SOA. Without SOA this behaviour is very difficult to achieve or maintain.
+
+\subsubsection{Specifying the infrastructure services}
 The infrastructure services should be designed as flexible output mechanisms. The developers do not need skills in
   GUIs (Graphical User Interfaces) or logs programming, because as
   this kind of services are not coupled to the operators, they can
@@ -160,17 +168,26 @@ The infrastructure services should be designed as flexible output mechanisms. Th
 %hala, repitiendo lo que dices en el capítulo anterior. Pa matarte. - JJ FERGU: borrado el párrafo entero
 
 
-
+It is important to remark that in the future these services could be extended, so...
 
 \subsection{Implementation and deployment}
 
-Once the services have been identified and specified a SOA technology should be used for implementing.
+Once the services have been identified and specified a SOA technology should be used for implementing the services and publish them to be accessed.
 
-Select the technology to expose the interface.
+The questions to solve in this step are:
+\begin{itemize}
+\item Services are going to be used locally or remotely?
+\item How the interfaces are going to be exposed?
+\item How must be the payload? %FERGU: TODO payload?
+\item Which are the advantages of the chosen technology?
+\item Which are the considerations about security, persistence, benchmarking and monitoring?
+\end{itemize} 
 
-Select the communication mechanism.
+\subsubsection{Select the technology to expose the interface} 
 
-Deploy in the system. Diferenciar entre WAN y LAN, por ejemplo.
+\subsubsection{Select the communication mechanism}
+
+\subsubsection{Deploy in the system} 
 
 
 
@@ -185,14 +202,40 @@ Deploy in the system. Diferenciar entre WAN y LAN, por ejemplo.
 
 
 \section{Example of creating a service oriented evolutionary algorithm}
-This section justifies the use of SOA-EA and the steps to create services within it.
 
-\subsection{Designing a basic Genetic Algorithm}
+This section justifies the use of SOA-EA and the steps to create services within it. Solving the questions in each step leads to... 
 
-As  stated above, a basic EA is formed by several steps. These steps are common to every EA, so this part must be fixed  to allow the creation of services as abstract as possible. The differences between two EAs are in the operators, selectors or individual representation (as suggested by \person{Eiben and Smit} \cite{ParameterTuningEiben2011}).
-%HABLAR DE LA IDENTIFICACIÓN
- Therefore, to accomplish with the genericity presented in the previous section, the parameters and operators should be added dynamically. This is done with the SOA service binding. Users can specify the operators they need in several ways, for example, in a configuration file, or in an intelligent manner (an algorithm). It is important to remark that these ``pieces'' do not need to be modified and compiled again, because the loose coupling and the dynamic binding of SOA. Without SOA this behaviour is very difficult to achieve or maintain.
+The example is to designing a basic Genetic Algorithm. This example can be extended in future, so a NSGA-II ...
 
+\subsubsection{Identification}
+As  stated in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. These steps are common to every EA, so this part should be fixed  to allow the creation of services as abstract as possible. The differences between two EAs are in the operators, selectors or individual representation (as suggested by \person{Eiben and Smit} \cite{ParameterTuningEiben2011}).
+
+Solving the questions in Section \ref{subsec:soaea:identification} and the considerations in \ref{} about AAAA and \ref{} taking into consideration... the next services have been identified.
+
+\begin{itemize}
+\item Algorithm
+\item Population
+\item Initializer
+\item Parent Selector
+\item Recombinator
+\item Crossover
+\item Mutator
+\item Mutation
+\item Replacer
+\item Stop Criterion
+\item Fitness Calculator
+\item Parameters
+\end{itemize}
+
+\subsubsection{Specification}
+
+This step requires...
+
+\begin{itemize}
+\item Basic Order
+\item Random Mutation
+\item NWorst individual replacer
+\end{itemize}
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -207,12 +250,14 @@ As  stated above, a basic EA is formed by several steps. These steps are common 
 
 Figure \ref{BASICGAEXAMPLE} shows a complete service oriented genetic algorithm, taking into account the proposed ideas. In this figure (and in the following ones) white blocks are the service interfaces. Orange blocks are specific implementations of these interfaces (that is, the source-code of the service), and  arrows indicate how a service implementation can make use of other services via their interface. For example, almost all implementations access to the {\em Parameters} service using its interface. Service implementations (orange blocks) can be selected in a configuration file or be automatically bound when they are available (among other options).
 
+
+
  The change from a problem instance to another is quite simple. It is only necessary to notify the algorithm a change in the implementation of the service {\em Fitness Calculator} and the implementation of {\em Parameters} (because these can vary from a problem to another). Because some algorithms need to calculate the fitness every time an individual is modified (and not only at the end of a generation) the Figure \ref{BASICGAEXAMPLE} shows how the service {\em Fitness Calculator} may be used inside the implementations that modify individuals ({\em Initializer}, {\em Mutator} or {\em Recombinator}). Moreover, each service can be in the local machine or distributed on the Internet, having the same behaviour.
 
-\subsection{Implementing a service oriented NSGA-II}
-\label{sec:nsga2}
+%\subsection{Implementing a service oriented NSGA-II}
+%\label{sec:nsga2}
 
-The difference between the previous version of a GA and the well known NSGA-II \cite{NSGA2} lies in the selection operator. Therefore, to change from the basic GA to NSGA-II, the mutator and crossover are kept and new selection operators are added. Figure \ref{fig:nsga2} shows the service oriented version of NSGA-II algorithm, where the new implementations are marked with a thick border. The problem has also been set to the multi-objective function MOP2 \cite{ReviewMultiobj06}. New auxiliary services have been added, like {\em Crowding Distance Assignator} or {\em Pareto Assignator}. As these services may be used in other algorithms in the future, they should be designed as abstract as possible. These new services are called from the implementation (code) of the services {\em NSGA-II Replacer} or {\em Binary Crowding Distance Selector} (black arrows indicate an interface call). 
+As this is a iterative and incremental approach, other services can be discovered and designed in this step. For example, the difference between the previous version of a GA and the well known NSGA-II \cite{NSGA2} lies in the selection operator. Therefore, to change from the basic GA to NSGA-II, the mutator and crossover are kept and new selection operators are added. Figure \ref{fig:nsga2} shows the service oriented version of NSGA-II algorithm, where the new implementations are marked with a thick border. The problem has also been set to the multi-objective function MOP2 \cite{ReviewMultiobj06}. New auxiliary services have been added, like {\em Crowding Distance Assignator} or {\em Pareto Assignator}. As these services may be used in other algorithms in the future, they should be designed as abstract as possible. These new services are called from the implementation (code) of the services {\em NSGA-II Replacer} or {\em Binary Crowding Distance Selector} (black arrows indicate an interface call). 
 
 
 
