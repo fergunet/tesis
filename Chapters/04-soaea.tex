@@ -93,7 +93,7 @@ Once the services have been identified, the next step of the methodology establi
 \end{itemize}
 
 
-%HAY QUE DEFINIR TAMBIÉN LAS OPERACIONES DE CADA SERVICIO!!!!! (ej, las de Population)
+%HAY QUE DEFINIR TAMBIÉN LAS OPERACIONES DE CADA SERVICIO!!!!! (ej, las de Population) Y DECIR QUE SON LAS OPERACIONES!
  All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design}, should be taken into account when designing elements for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}).
 
 %Definition or addition of every type of operator. % ¿definition
@@ -231,6 +231,8 @@ Solving the questions in Section \ref{subsec:soaea:identification} and the consi
 
 This step requires...
 
+REMARCAR QUE LOS SERVICIOS TIENEN QUE PENSARSE PARA SER LLAMADOS
+
 \begin{itemize}
 \item Basic Order
 \item Random Mutation
@@ -252,7 +254,7 @@ Figure \ref{BASICGAEXAMPLE} shows a complete service oriented genetic algorithm,
 
 
 
- The change from a problem instance to another is quite simple. It is only necessary to notify the algorithm a change in the implementation of the service {\em Fitness Calculator} and the implementation of {\em Parameters} (because these can vary from a problem to another). Because some algorithms need to calculate the fitness every time an individual is modified (and not only at the end of a generation) the Figure \ref{BASICGAEXAMPLE} shows how the service {\em Fitness Calculator} may be used inside the implementations that modify individuals ({\em Initializer}, {\em Mutator} or {\em Recombinator}). Moreover, each service can be in the local machine or distributed on the Internet, having the same behaviour.
+ The change from a problem instance to another is quite simple. It is only necessary to notify the algorithm a change in the implementation of the service {\em Fitness Calculator} and the implementation of {\em Parameters} (because these can vary from a problem to another). Because some algorithms need to calculate the fitness every time an individual is modified (and not only at the end of a generation) the Figure \ref{BASICGAEXAMPLE} shows how the service {\em Fitness Calculator} may be used inside the implementations that modify individuals ({\em Initializer}, {\em Mutator} or {\em Recombinator}). Moreover, each service can be in the local machine or distributed on the Internet, having the same behaviour. %FERGU: TODO Decir que el fitness se usa solo si hace falta!
 
 %\subsection{Implementing a service oriented NSGA-II}
 %\label{sec:nsga2}
