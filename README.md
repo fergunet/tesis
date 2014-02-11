@@ -8,3 +8,5 @@ Requisitos para compilar el pdf:
 - Ejecutar ./compilar
 
 Más información en http://www.osgiliath.org
+
+Esta obra está licenciada bajo la Licencia Creative Commons Atribución 4.0 Internacional. Para ver una copia de esta licencia, visita http://creativecommons.org/licenses/by/4.0/deed.es.
