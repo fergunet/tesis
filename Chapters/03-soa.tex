@@ -198,6 +198,7 @@ Programming (OOP) are
 explained: the main difference between SOA and imperative programming or OOP is the order of service execution. This order is not necessarily static, because the services are designed to be used in a non-established and configurable order. Furthermore, another important difference is that services can be dynamically discovered and used (while in OOP a function/method must be previously known and can not change during execution), being also one of the most important capabilities the (optional) distribution in a network. Finally, in OOP the programming language must be the same for each method call.
 
 \section{Implementation technologies}
+\label{chap:soa:implementations}
 
 \lettrine{D}{espite} the fact that the concept of service is independent of the technology used, there exist several ways to use and implement services, being Web Services, \definicion{ebXML}{Electronic Business XML} and \definicion{OSGi}{Open Service Gateway Initiative} the most extended.
 
@@ -332,6 +333,7 @@ the distribution technology that provides service discovering and data
 transmission.   % so what? - JJ % ¿Esto es relevante? - JJ FERGU: TODO sí, esto es MUY relevante, lo uso en la tesis, pero antes es que era una sección más grande. Pregunta: menciono aquí que  voy a usar OSGi en mi tesis o en el capítulo Osgiliath? (ahora está en ese capítulo)
 
 \section{Methodologies for developing SOA}
+\label{chap:soa:methodologies}
 Regardless of the chosen SOA framework, the processes % business? no estamos hablando de algoritmos - JJ FERGU: sí, es que a veces se les llama así, pero lo quito para no liar
  of the platform must be analysed and modelled. So it is necessary to use a consistent and well-defined methodology to design a model based on a machine-readable description \cite{Garcia09UMM}. {\em Business-Centric Methodology (BCM) for Enterprise Agility and Interoperability} \cite{Oasis03BCM} is a roadmap for the development and implementation of procedures to create effective, efficient, and sustainable interoperability mechanisms. It has been developed by OASIS, the same consortium that created BPEL or UDDI, among others, and it is complementary to other existent architectures and technologies designed to build business oriented services, like ebXML or Web Services. BCM is formed by a set of model layers with a step-guide process, and an information pyramid to align the semantic information of partners. This allows the participation of business experts and the creation of a very large documentation repository. Nevertheless, this methodology has some disadvantages: it has a very large learning curve and it is not very extended yet. 
 
@@ -342,7 +344,7 @@ and implementation of services inside the SOA paradigm. To achieve
 this tasks, it proposes a top-down modelling oriented to
 intra-enterprise services (service-oriented instead of
 business-oriented). %Pero ¿esto lo vas a usar? ¿Le interesa lo más
-                    %mínimo al revisor y/o tribunal? - JJ
+                    %mínimo al revisor y/o tribunal? - JJ FERGU: si, cambiado el capitulo siguiente
 
 {\em \definicion{UN/CEFACTs}{United Nations Center for Trade
     Facilitation and Electronic Business} Modelling Methodology (UMM)}
@@ -482,7 +484,7 @@ two parents, or parent selected several times) a duplication of effort
 is needed. That is the reason to separate the concept {\em
   recombine} from {\em crossover} (and also, following the top-down
 design proposed in SOMA).  % ¿Esto es lo único que estás usando del
-                           % SOMA? - JJ
+                           % SOMA? - JJ FERGU: no he cambiado el capítulo siguiente a saco
 
 Finally, no assumptions should be taken about services previously
 executed or being executed next. For example, services such as {\em
