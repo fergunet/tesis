@@ -68,6 +68,20 @@ In this chapter, OSGiliath has been used % ¿Se podía haber usado otra
    configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ
 \end{itemize}
 
+
+\section{Designing the services with SOA-EA}
+
+In this case, the {\em Migration} service is used. This service has two operations: {\em send} and {\em read}. The first one is used to send the individuals to the migrator, and the other is used to read the individuals of that migrator. Usually, each node (island) has one migrator to receive individuals, and references to the other nodes' migrators. In our case, the implementation of {\em Replacer} binds the local {\em Migrator} to write in it the individual(s) to sent. One example of Migrator implementation is the {\em MigratorRingBuffer}: this class implements that interface and automatically binds all the Migrators available in the environment (in a vector of references) thanks to the bind/unbind methods of declarative services and ECF. So, the migrators can be added during runtime, and no stop the algorithm if one node fails.  The {\em MigratorRingBuffer} sends the individuals to the remote Migrator whose id is inmediatelly higher than the local id (or the smaller, if it not exist) following a ring topology. Figure \ref{MIGRATOR} shows this configuration. The {\em Replacer} implementation, a reference to the local {\em Migrator} interface just send and read the individuasl. The {\em MigratorRingBuffer} implementation binds an unbinds other migrators in other nodes, keeping a reference to these remote service interfaces. Several properties can added to the service allows to ECF automatically announce the implementation to all nodes in the network and no specific code is required to change from one distribution mechanism to another. 
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/osgiliath/migrator.png}
+
+
+\caption{Using the Migrator service to create a distributed island EA with a ring topology (white boxes are service interfaces and orange boxes are implementations.}
+\label{MIGRATOR}
+\end{SCfigure}
+
 % Cada algoritmo debe ser como un paper. No te puedes ir a
 % Experimental results para saber qué diablos quieres probar y cómo
 % quieres hacerlo. Además, tienes que introducir el resto del capítulo

@@ -42,7 +42,7 @@ This section presents all the steps to design and implement services for Evoluti
 \centering
 \includegraphics[width=5cm]{gfx/soaea/methodology.jpg}
 \caption{Methodology to develop services for Evolutionary Algorithms.}
-\label{BASICGAEXAMPLE}
+\label{fig:distributed:methodology}
 \end{SCfigure}
 
 \subsection{Identification}
@@ -167,7 +167,7 @@ The infrastructure services should be designed as flexible output mechanisms. Fo
 It is important to remark that in the future these services could be extended, so they should be designed taking into account this possibility.
 
 \subsection{Implementation and deployment}
-
+\label{subsec:soaea:implementation}
 Once the services have been identified and specified, a SOA technology should be used for implementing the services and publish them to be accessed. This two steps of the methodology are explained together because the decisions about the technological solution to be used is bound to both phases.
 
 The questions to solve in this steps are:
@@ -175,6 +175,7 @@ The questions to solve in this steps are:
 \item Services are going to be used locally or remotely?
 \item How the interfaces are going to be exposed?
 \item Are the services public?
+\item How the changes in service dynamism are going to be managed?
 \item How must be the overload of the messages? %FERGU: TODO payload?
 \item Which are the advantages of the chosen technology?
 \item Which are the considerations about security, persistence, benchmarking and monitoring?
@@ -207,7 +208,7 @@ This section justifies the use of SOA-EA and the steps to create services within
 In this example a basic Genetic Algorithm is designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA, a NSGA-II algorithm is also designed using the existent services and adding new ones. Finally, new services for 
 
 \subsection{Creating a basic GA}
-
+\label{sec:soaea:creating}
 \subsubsection{Identification}
 As  stated in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. These steps are common to every EA, so this part should be fixed  to allow the creation of services as abstract as possible. The differences between two EAs are in the operators, selectors or individual representation (as suggested by \person{Eiben and Smit} \cite{ParameterTuningEiben2011}).
 
@@ -323,7 +324,7 @@ Finally, another important usage of EAs is its hybridization with other metaheur
 
 \section{Conclusions}
 %In this chapter we have presented the requirements in the EA design: generic representation, generic fitness, generic operations, generic evolutionary model, parameter management and configurable output. On the other hand, the requirements in SOA have been also shown: genericity in the service interfaces, programming language independence, distribution transparency and flexibility. 
-In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output), with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism) have been taken into account to propose a methodology to model the services that compose an EA, and several guidelines about the design of these services have been explained. We have presented the steps to create a service-oriented evolutionary algorithm that takes advantages of the SOA capabilities. It has been explained how to modify the services to change from a model to another, adding transparent distribution and load-balancing or dynamic adaptation of the parameters.
+In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism), explained in Section \ref{sec:soa:restrictions} have been taken into account to propose a methodology to model the services that compose an EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions to answer in each phase to help in the development has been proposed. This methodology has been used to create a service-oriented evolutionary algorithm that takes advantages of the SOA capabilities. It has been explained how to modify the services to change from a model to another, adding transparent distribution and load-balancing or dynamic adaptation of the parameters.
 
 Table \ref{tab:reasons} shows the advantages to design the elements of the EA as services.
 
