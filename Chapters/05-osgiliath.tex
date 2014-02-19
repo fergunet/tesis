@@ -9,6 +9,8 @@
 
 %FERGUSON: REESCRITO casi entero para seguir la metodología y borradas un porrón de cosas
 
+%TODO:
+% Quitar los "Could be"
 \minitoc\mtcskip
 \vfill
 \lettrine{I}{n} Chapter \ref{chap:soaea} %we presented the services
@@ -532,57 +534,7 @@ example). % Pues pon como requisito desde el principio que eso es lo
 % FERGU: reescrito todo para que cumpla los puntos
 
 
-\subsection{Increasing interoperability with other systems}
 
-As previously stated, another advantage of SOA is the programming
-language independence respect to the service interfaces. Although OSGi
-is a kind of SOA, it does not include  the capability of
-interoperability with other kind of services by default. However,
-adaptation services can be added to transform OSGi interfaces into
-other SOA interfaces, such as Web Services (presented in Chapter
-\ref{chap:soa}). So, services that are not written in Java, neither
-OSGi-based, could use services implemented in OSGiLiath (and
-vice-versa). 
-
-
-
-For example, using ECF all OSGi service interfaces could be
-transformed into WSDL interfaces automatically. % ¿Qué es wsdl? ¿Por
-                                % qué es importante? ¿Lo usas? Si no,
-                                % ¿por qué diablos lo dices?  JJ
-Thus, these services could be used from other systems, that do not
-need to know the implementation language of the services in
-OSGiLiath. An example where an OSGi interface is transformed into a
-WSDL interface is shown in Figure \ref{AXISFIGURE}. % ¿Es tuya? ¿Por
-                                % qué la pones en la tesis? - JJ
-The computation
-node A, based on OSGi, uses the OSGi interface of the computation node
-C to calculate the fitness. Node B uses the WSDL interface to do the
-same task. It is not necessary to modify existing services source code
-to convert an OSGi interface into a WSDL interface. This
-transformation is bi-directional: given an WSDL interface, it can also
-be transformed into a service to use inside OSGi. For example, the
-algorithms in GridUFO framework (presented in Chapter
-\ref{chap:distributedEAs}) could be used from OSGiLiath. % Cada vez
-                                % que dices "could be" y no "will be
-                                % used and presented in Chapter A"
-                                % $deity mata a un cachorro de especie
-                                % en peligro de extinción de pelo
-                                % sodoso y grandes ojos. - JJ
-
-
-
-
-
-
-\begin{SCfigure}[20][htb]
-\centering
-\includegraphics[width=10cm]{gfx/osgiliath/axis.png}
-
-
-\caption{Communication with other kind of services. ECF service automatically creates WSDL interfaces for the OSGi interfaces to be used from other environments}
-\label{AXISFIGURE}
-\end{SCfigure}
 
 \section{Experiments} %¿Implementation o experiments? ¿Estamos a setas
 % o estamos a Rolex? - JJ FERGU: Puesta frase. TERMINA
@@ -746,6 +698,57 @@ It must be remarked that OSGiLiath does not try to compete with the
 other frameworks (they are widely accepted, completed and tested), it
 is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la conclusión? ¿Del capítulo?
 
+\subsection{Increasing interoperability with other systems}
+
+As previously stated, another advantage of SOA is the programming
+language independence respect to the service interfaces. Although OSGi
+is a kind of SOA, it does not include  the capability of
+interoperability with other kind of services by default. However,
+adaptation services can be added to transform OSGi interfaces into
+other SOA interfaces, such as Web Services (presented in Chapter
+\ref{chap:soa}). So, services that are not written in Java, neither
+OSGi-based, could use services implemented in OSGiLiath (and
+vice-versa). 
+
+
+
+For example, using ECF all OSGi service interfaces are
+transformed into WSDL  interfaces (explained in Section \ref{subsec:soa:ws}) automatically. % ¿Qué es wsdl? ¿Por
+                                % qué es importante? ¿Lo usas? Si no,
+                                % ¿por qué diablos lo dices?  JJ FERGU: referenciado, y lo uso
+Thus, these services could be used from other systems, that do not
+need to know the implementation language of the services in
+OSGiLiath. An example where an OSGi interface is transformed into a
+WSDL interface is shown in Figure \ref{AXISFIGURE}. % ¿Es tuya? ¿Por
+                                % qué la pones en la tesis? - JJ
+The computation
+node A, based on OSGi, uses the OSGi interface of the computation node
+C to calculate the fitness. Node B uses the WSDL interface to do the
+same task. It is not necessary to modify existing services source code
+to convert an OSGi interface into a WSDL interface. This
+transformation is bi-directional: given an WSDL interface, it can also
+be transformed into a service to use inside OSGi. For example, the
+algorithms in GridUFO framework (presented in Chapter
+\ref{chap:distributedEAs}) could be used from OSGiLiath. % Cada vez
+                                % que dices "could be" y no "will be
+                                % used and presented in Chapter A"
+                                % $deity mata a un cachorro de especie
+                                % en peligro de extinción de pelo
+                                % sodoso y grandes ojos. - JJ
+
+
+
+
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/osgiliath/axis.png}
+
+
+\caption{Communication with other kind of services. ECF service automatically creates WSDL interfaces for the OSGi interfaces to be used from other environments}
+\label{AXISFIGURE}
+\end{SCfigure}
 
 \section{Conclusions}
 % Tienes que alcanzar alguna conclusión fuerte: la implementación

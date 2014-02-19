@@ -36,6 +36,18 @@ packaging management is specified in detail. The OSGi framework provides
 APIs for the management of services that are exposed or used by the
 bundles.
 
+A {\em bundle} is a file containing compiled and packaged classes and a configuration file. This file indicates which classes are importe or exported by the bundle. Being SOA, the most important concept in OSGi is the {\em service}. Services allow {\em bundles} to be dinamically connected, offering a publication-search-connection model. That is, a {\em bundle} exposes a service by a Java interface (service interface in Figure \ref{fig:soadiagram}), and another bundle (or itself) implements that interface. A third {\em bundle} can access this service using the exposed interface without having any knowledge of how it is implemented, using the {\em service registry} (equivalent to service broker of Figure \ref{fig:soadiagram}). Figure \ref{OSGIDIAGRAM} shows an example of the OSGi architecture.
+
+
+\begin{SCfigure}[20][tb]
+\centering
+\includegraphics[width=26pc]{gfx/soa/bundles.jpg}
+\caption{In OSGi, a service can be implemented by several bundles. Other bundles may chose among this implementations using the service registry. In this figure, Bundles C and D implement a service, and A uses the service registry to use one of them.}
+\label{OSGIDIAGRAM}
+\end{SCfigure}
+
+
+
 Java programmers are familiar with the {\em jar} concept. The first difference among a {\em bundle} and a {\em jar} is that the first one has a MANIFEST.MF file adapted to be used in OSGi. This file indicates which classes imports or exports the {\em bundle}. An example can be seen in Figure \ref{fig:manifest}. This file shows the name of the bundle and its version (this is useful to select specific services), and the execution environment (that is, the Java Virtual Machine required). Also, this file specifies the XML files of the declarative services (in section {\em Service-Component}). However, this {\em bundle} can be used as a normal {\em jar} outside OSGi.
 
 \begin{SCfigure}[20][tb]
