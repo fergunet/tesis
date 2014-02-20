@@ -202,7 +202,7 @@ authors in \cite{GarciaSanchez2013Gateway}.
 
  
 \section{Implementing the services}
-
+\label{sec:osgiliath:implementing}
 %Users have to define three elements to add a new service in OSGiLiath:
 % NO ES UN MANUAL. "To easen the development of new evolutionary
 % algorithms with OSGILIATH, the application interface has been
@@ -538,33 +538,9 @@ example). % Pues pon como requisito desde el principio que eso es lo
 
 \section{Experiments} %¿Implementation o experiments? ¿Estamos a setas
 % o estamos a Rolex? - JJ FERGU: Puesta frase. TERMINA
-In this section, several experiments to confirm some of the ... are proposed.
+In this section, several experiments to confirm some of the advantages of using SOA and OSGi, explained in previous sections, are proposed. First, a comparison of time of using OSGi and the services as normal classes is presented to demonstrate that OSGi does not adds extra overhead (as explained in Section \ref{subsec:soa:osgi}). Experiments to demonstrate the automatic adding of new operators during runtime, and integration with other systems without modification of the existent source code are shown. Finally, a comparison of Lines of Code (LoCs) with other existent frameworks for EAs (presented in Section \ref{subsec:soaea:fworks}) is performed.
 
-\subsection{Converting a basic algorithm into a self-adaptive one} % ¿Una subsección? ¿Seriously? ¿Y con un párrafo? - JJ FERGU: reescrito
-
-Previous sections remarked that using  benefits are also related
-to self-adaptation. A simple example is presented here to demonstrate
-how easy is to convert a basic evolutionary algorithm into a
-self-adaptive one in OSGiliath. In this example, an intelligent
-service manages all the available operators. In this case, the service
-{\em IntelligentRandomManager} implements the interfaces {\em Parent
-  Selector, Recombinator, Mutator} and {\em Replacer}. All operator
-implementations previously presented are added to the Manager during  runtime (see Figure \ref{INTELLIGENTALGORITHM}) when they
-become activated in the system. Every time the EA calls an operator,
-this simple manager chooses randomly one of the available
-implementations it controls. % ¿Eso es auto-adaptativo? Es más, para
-                             % lo que haces, ¿no hay forma de hacerlo
-                             % a otro nivel sin necesidad de crear un
-                             % nuevo Intelligent Manager? - JJ
-To create this manager no code has to be
-modified. The manager also does not need specific code to acquire all
-operators in execution time: it is done automatically thanks to
-OSGi. In the same way as the rest of services, these operators can be activated in
-execution time and added to the manager.  
-% Me he quedado igual. ¿Ha servido esto de algo? ¿Dónde está el
-% ejemplo? ¿Funciona el algoritmo mejor? - JJ
-
-\subsection{}
+\subsection{Comparing overhead of using services}
 One may think that working with services usually implies an
 overhead. This is true when communication protocols like SOAP are
 used, because the transmitted XML must be generated and
@@ -587,18 +563,49 @@ services also can behave as normal method calls in the same machine.
                                 % implmentation? - JJ
 %implementation of an EA does not %nunca uses apóstrofos en lenguaje
                                 %formal!!!!! - JJ
- have to affect the execution time of the algorithm. To carry out this
- experiment, the Java source code of OSGiLiath has been run outside of
+ The basic GA implemented in Section \ref{sec:osgiliath:implementing} is also executed outside of
  the OSGi framework, and a normal Java class has been used to
  integrate the interfaces and implementations ``as is''. The
  population has been set to 64 individuals, parents have been selected
  using Binary Tournament, and the mutation rate has been fixed to
  0.1. % ¿Esto influye en el resultado? Si influye, ¿has probado varios
-      % settings? Si no, ¿para qué lo mencionas? - JJ
+      % settings? Si no, ¿para qué lo mencionas? - JJ FERGU: bueno, es por reproducibilidad de resultados
 Worst individuals (parents and off-spring combined) are replaced, and
 the stop criterion has been set to 200 generations. Each experiment
 has been launched 30 times to solve the OneMax problem
 \cite{SchafferOnemax91}. 
+
+\subsection{Adding operators in runtime for self-adaptation} % ¿Una subsección? ¿Seriously? ¿Y con un párrafo? - JJ FERGU: cambiado el nombre, reescrito y movido de sitio todo lo que había
+
+Previous sections remarked that using SOA benefits are also related
+to self-adaptation. A simple example is presented here to demonstrate
+how easy is to convert a basic evolutionary algorithm into a
+self-adaptive one in OSGiliath. 
+%In this example, an intelligent service manages all the available operators. In this case, the service {\em IntelligentRandomManager} implements the interfaces {\em Parent  Selector, Recombinator, Mutator} and {\em Replacer}. All operator implementations previously presented are added to the Manager during  runtime (see Figure \ref{INTELLIGENTALGORITHM}) when they become activated in the system. Every time the EA calls an operator, this simple manager chooses randomly one of the available implementations it controls. % ¿Eso es auto-adaptativo? Es más, para
+                             % lo que haces, ¿no hay forma de hacerlo
+                             % a otro nivel sin necesidad de crear un
+                             % nuevo Intelligent Manager? - JJ FERGU: Borrado y puesto un experimento nuevo
+
+                             % Me he quedado igual. ¿Ha servido esto de algo? ¿Dónde está el
+% ejemplo? ¿Funciona el algoritmo mejor? - JJ FERGU: Añadido el experimento abajo, reescrito
+
+
+To demonstrate that services can be managed and deployed during runtime a simple experiment is proposed. A external service to the algorithm runs in parallel consulting the population from time to time. If the best individual has not been improved in a number of times this service automatically enables another implementation of Parent Selector. This new implementation is automatically bound by the the {\em Selector Gatherer} service and start to use it. Figure \ref{fig:osgiliath:enabler} shows this configuration.
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/osgiliath/enabler.jpg}
+\caption{Service that enable automatically an operator to be used during runtime.}
+\label{fig:osgiliath:enabler}
+\end{SCfigure}
+
+This enabler does not affect the code of the existent services (such as Population or Evolutionary Algorithm). The gatherer also does not need specific code to acquire all
+operators in execution time: it is done automatically thanks to
+OSGi. In the same way as the rest of services, these operators can be activated in
+execution time and added to the manager.  
+
+
+
 
 
 \subsection{Comparing with other Frameworks}
@@ -757,4 +764,4 @@ algorithms in GridUFO framework (presented in Chapter
 
 In this chapter, the steps of implementation and deployment of services have been used to create a framework that...
 
-The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/GPL license.
+The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/LGPL license.
