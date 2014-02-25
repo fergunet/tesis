@@ -165,7 +165,7 @@ unavailable. Implementations  may also have a different behaviour, so
 the researcher can take advantage to create an auto-adaptive algorithm
 to select different implementations according to some criteria. % esto
                                 % tenías que haberlo hecho para la
-                                % tesis!!! - jj FERGU: TODO hacer este experimento
+                                % tesis!!! - jj FERGU: Experimento realizado y puesto en capítulos siguintes
 Figure \ref{fig:servicebasic} shows this special interaction, where two different implementations of an operator interface exist (even using different languages) and the broker has chosen one of them.
 
 
@@ -234,7 +234,7 @@ Unlike other remote procedure call methods, such as RMI (\emph{remote method inv
 
 
 \subsubsection{Other standardizations} One of the advantages of using
-web services % nunca coma entre sujeto y predicado - JJ
+web services % nunca coma entre sujeto y predicado - JJ FERGU: OK
  is that the application stack is growing with the WS-Extensions. That is, the basic specifications of Web Services (such as SOAP) can be extended with transactions, security or messaging, for example. The most used are \cite{Papazoglou2007SOA}:
 \begin{itemize}
   \item WS-Addressing  (authentication)
@@ -284,9 +284,9 @@ deployment of services in heterogeneous network of devices, mainly
 oriented to domotics \cite{GarciaSanchez2013Gateway}. Nowadays it defines a
 specification for a SOA for virtual
 machines (VMs). It provides very desirable features, like
-packet abstraction, life-cycle management, packaging or versioning, % qué significa todo esto? - JJ
+packet abstraction, life-cycle management, packaging or versioning, % qué significa todo esto? - JJ FERGU: Añado ref
 allowing a significant reduction of the building, support and deployment
-complexity of the applications. 
+complexity of the applications. These features can be useful in the field of EAs, as suggested by \person{Wagner \etal} \cite{WagnerPlugins07}.
 
 OSGi technology allows dynamic discovery of new components, to increase the collaboration and to minimize and manage the coupling
 among modules. Moreover, the
@@ -371,6 +371,7 @@ complete approach \cite{Folmer08b2b}.
 
 %%%%%%%%%%%%%%BENEFICIOS DE USAR SOA EN EAs
 \section{Benefits of using SOA in Evolutionary Algorithms Area}
+\label{sec:soa:benefitsofsoa}
 
 \lettrine{S}{OA} has been previously used in the EA area. For example,
 web services have been used in the grid area for optimization
@@ -383,7 +384,7 @@ services for EAs has been provided in previous works.  % estás
                                 % diciendo que no hay una metodología
                                 % para diseñar estos servicios y eso
                                 % es gordo, porque entonces tienes que
-                                % hacerlo tú - JJ
+                                % hacerlo tú - JJ FERGU: Hecha la metodología en el capítulo siguiente :)
 
 In the previous chapter we described several shortcomings % y dale - JJ FERGU: cambiado a shortcomings
  in the Evolutionary Algorithms area, such as the new trends of
@@ -503,10 +504,13 @@ to guide the algorithm. % if we require, ¿qué? - JJ
 \section{Conclusions}
 
 Even as SOA is used extensively in software development area, it is
-not widely accepted in the main EA software. % pruébalo - JJ
+not widely accepted in the main EA software, as the survey of \person{Parejo et al.}, presented in Section \ref{chap:distributed:conclusiones} claim. % pruébalo - JJ FERGU: Probado con la referencia al survey
 The authors should improve their frameworks adding SOA technologies in
-order to facilitate the communication and integration among them. % ¿y
-                                % qué se conseguiría con eso? - JJ
+order to facilitate the communication and integration among them, without
+ duplication of effort to re-program all the EA elements, and therefore, saving time. 
+ Also, the benefits of using SOA in development, integration, standardization 
+ and dynamism (presented in Section \ref{sec:soa:benefitsofsoa}) could be applied.
+  % ¿y qué se conseguiría con eso? - JJ FERGU: reescrito y añadidas cosas
  Although all the approaches described Section \ref{sec:distributed:parallel} are focused
  on the implementation of distributed EAs, the abstraction level of
  each alternative can be quite different, as shown in Figure
