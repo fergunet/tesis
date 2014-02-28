@@ -613,10 +613,10 @@ Since the OSGi framework adds features to the implementation of the
 algorithm that are similar (and even superior) to those offered by
 several of the frameworks described in Chapter
 \ref{chap:distributedEAs}, the same algorithm (with the same operators
-and parameters) has been coded using several well known frameworks, % ¿Estás comparando tu framework con el resto? Pero esto no tiene que ver con OSGi, sino con la implementación en sí. - JJ
-such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ
-(Java). % Agh. Además, ¡¡diferentes lenguajes de programación!! - JJ FERGU: afu, fue lo que me dijeron los reviewers del paper de la SoCo!
+and parameters) has been coded using several well known frameworks, % ¿Estás comparando tu framework con el resto? Pero esto no tiene que ver con OSGi, sino con la implementación en sí. - JJ % Agh. Además, ¡¡diferentes lenguajes de programación!! - JJ FERGU: afu, fue lo que me dijeron los reviewers del paper de la SoCo, si quieres lo quito
 Table \ref{tab:times} shows the execution time achieved, average
+such as Mallba (C++), Algorithm::Evolutionary (Perl), and ECJ
+(Java). 
 solution, and Lines of Code (LoC) needed to integrate the algorithm
 for each framework. All the algorithm implementations have been
 executed on the same computer, an Ubuntu 12.04 Linux machine with
@@ -703,7 +703,7 @@ files.
 
 It must be remarked that OSGiLiath does not try to compete with the
 other frameworks (they are widely accepted, completed and tested), it
-is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la conclusión? ¿Del capítulo?
+is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la conclusión? ¿Del capítulo? FERGU: añadida sección conclusiones
 
 \subsection{Increasing interoperability with other systems}
 
@@ -727,7 +727,7 @@ Thus, these services could be used from other systems, that do not
 need to know the implementation language of the services in
 OSGiLiath. An example where an OSGi interface is transformed into a
 WSDL interface is shown in Figure \ref{AXISFIGURE}. % ¿Es tuya? ¿Por
-                                % qué la pones en la tesis? - JJ
+                                % qué la pones en la tesis? - JJ FERGU: claro que es mía. La pongo porque la uso.
 The computation
 node A, based on OSGi, uses the OSGi interface of the computation node
 C to calculate the fitness. Node B uses the WSDL interface to do the
