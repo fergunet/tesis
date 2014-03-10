@@ -589,6 +589,7 @@ self-adaptive one in OSGiliath.
                              % Me he quedado igual. ¿Ha servido esto de algo? ¿Dónde está el
 % ejemplo? ¿Funciona el algoritmo mejor? - JJ FERGU: Añadido el experimento abajo, reescrito
 
+Infrastructure services to deal with control of the population and to enable other operators are also implemented (Asynchronous Enabler Imp). Figure \ref{fig:enabler} shows this designed configuration.
 
 To demonstrate that services can be managed and deployed during runtime a simple experiment is proposed. A external service to the algorithm runs in parallel consulting the population from time to time. If the best individual has not been improved in a number of times this service automatically enables another implementation of Parent Selector. This new implementation is automatically bound by the the {\em Selector Gatherer} service and start to use it. Figure \ref{fig:osgiliath:enabler} shows this configuration.
 
@@ -604,6 +605,34 @@ operators in execution time: it is done automatically thanks to
 OSGi. In the same way as the rest of services, these operators can be activated in
 execution time and added to the manager.  
 
+This section shows the comparative results obtained using the automatic enabling of operators. Two versions have been compared: a non-adaptive version that only uses a Binary Tournament for Selection, and an adaptive one, which automatically enables a Roulette Selection when a local optimum is found. The parameters used in this comparison (accessed from the Parameters service) are a population of 64 individuals, selector rate of 0.5, TPX crossover, bit flip mutation, and individual length of 60 genes. The Roulette selector is enabled when the best individual of the population has not changed in 10 seconds (checked every 2 seconds).
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/osgiliath/datos.jpg}
+\caption{Boxplot of the number of evaluations in each configuration.}
+\label{fig:osgiliath:boxplot}
+\end{SCfigure}
+
+\begin{SCtable}[][t]
+\resizebox{9cm}{!}{
+               \begin{tabular}{|c|c|c|}
+\hline
+
+      & Non-adaptive & Adaptive \\ \hline \hline
+Generations & 219403,10 $\pm$ 141692,16     & 167166,66 $\pm$ 93594,37 \\ \hline
+Evaluations & 14041926,40 $\pm$ 9068298,82  & 10698794,66 $\pm$ 5990039,68 \\ \hline
+Time    & 68766,40 $\pm$ 45073,04     & 51710,40 $\pm$ 29329,21 \\ \hline \hline
+\end{tabular}
+    }    
+\caption{Results obtained using the Asynchronous Enabler.}
+\label{tab:osgiliath:resultsenabler}
+\end{SCtable}
+
+
+
+Table \ref{tab:osgiliath:resultsenabler} shows the results obtained of the 30 executions of the two configurations tested. As it can be seen, automatic and adaptive enabling of selection operators has allowed an increase of performance, reducing time and evaluations (both significantly with a p-value$<$0.05 of a Wilcoxon test). It must be remarked that the aim of this work is not the numerical results obtained. This example has been used to demonstrate that applying a methodology to develop loose coupled services that can be dynamically bound, without modification of the existing services, can be used to achieve better results.
 
 
 

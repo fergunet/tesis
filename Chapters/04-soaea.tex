@@ -15,7 +15,7 @@ development in dynamic, distributed and heterogeneous systems, like the ones pre
                                 % to perform? - Jj FERGU: BORRADO
  %a good design of services for EAs. All these requirements are used to explain how the different elements of an EA must be designed. % cita el capítulo anterior - JJ FERGU: Done
 
-SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter (Section \ref{chap:soa:methodologies}), establishes that the phases of the SOA design are {\em identification}, {\em specification}, {\em implementation} and {\em deployment} of the services and flows. Although SOMA is more focused in business environments (therefore other phases exist), the ideas that offer are used to develop a methodology for the design of services for EAs, called SOA-EA. SOA-EA is an abstract methodology to develop service oriented EAs, independently of the technology to be used. In this chapter, we propose several phases to identify the services that compose an EA and specify some of their possible behaviours. The implementation and deployment of the designed services will be explained, using an specific technology, in the next chapter.
+SOMA methodology \cite{Arsanjani2008SOMA}, explained in previous chapter (Section \ref{chap:soa:methodologies}), establishes that the phases of the SOA design are {\em identification}, {\em specification}, {\em implementation} and {\em deployment} of the services and flows. Although SOMA is more focused in business environments (therefore other phases exist), the ideas that offer are used to develop a methodology for the design of services for EAs, called SOA-EA. SOA-EA is an abstract methodology to develop service oriented EAs (SOEAs), that is, evolutionary algorithms whose elements are services, independently of the technology to be used. In this chapter, we propose several phases to identify the services that compose an EA and specify some of their possible behaviours. The implementation and deployment of the designed services will be explained, using an specific technology, in the next chapter.
 
 For a better understanding, a complete example of development of an EA
 is explained. This example is modified to show how to convert an
@@ -47,72 +47,96 @@ This section presents all the steps to design and implement services for Evoluti
 
 \subsection{Identification}
 \label{subsec:soaea:identification}
-This phase pertains the identification of the three constructs of SOA: services, components and flows. So, at the end of this step, the developers have a complete list of services to be designed.
+
+This phase is focused on the identification of the three constructs of SOA: services, components and flows. So, at the end of this step, the developers have a complete list of the services to be designed.
 
 First, the developers should ask themselves the following questions to facilitate the identification:
 \begin{itemize}
-\item Which problem I need to solve?
-\item What elements need my EA?
+\item Which problem do I need to solve?
+\item What elements are needed my EA?
 \item Has somebody else programmed this before?
-\item Which operators I need?
+\item Which operators do I need?
 \item Is my algorithm going to be extended in the future?
-\item How to parametrize my algorithm?
+\item How can I parametrize my algorithm?
 \end{itemize}
 
-Solving the previous questions is the first step to identify the services. The next step is to classify the services in one of the three different domains are proposed. Three different domains are the \textsc{Algorithm domain}, the \textsc{Problem Domain} and the \textsc{Infrastructure Domain}. 
+Solving the previous questions is the first step to identify the services. The next step is to classify the services in one of the three different domains that are proposed: {\em Algorithm domain}, the {\em Problem Domain} and the {\em Infrastructure Domain}. 
 
-\subsubsection{Algorithm domain} Services in this domain are the ones that conform the EA. For example, crossovers or populations.The main operators in EAs are crossovers and mutators. As a first idea, only a service for crossover and another for mutation should be designed. However, as SOA requires to think as abstract as possible, SO ... Population... However, crossovers or mutators could be dependant of the problem...
-
-Dynamic adaptation of the parameters. Getting the values of the parameters can also be a
-  service, % _returning_ parameters or getting the value of
-           % parameters. Los parámetros son valores, no pueden ser un
-           % servicio. Usa el lenguaje con propiedad - JJ FERGU: cierto
- thus the EA developer obtains two advantages over using the parameter only as variables: % ¿sobre qué? - JJ FERGU: as variables
-it is not mandatory to distribute the parameters among all services,
-% ¿ein? - JJ
- and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation \cite{eiben2005shared}.
+\subsubsection{Algorithm domain} Services in this domain are those that conform the EA. For example, operators of individuals, stop criterion, or populations.
+ Getting the values of the parameters can also be a
+  service,  thus the EA developer obtains two advantages over using parameters only as variables: 
+it is not mandatory to distribute the parameters among all services, and also they can be dynamically modified in execution time from an external service, facilitating self-adaptation.
 
 \subsubsection{Problem domain} Services to address the elements of the problem. An example is the fitness function. The fitness function is a clear EA element that can be designed as a service. Each problem should implement an interface
   of the fitness service that receives the individual, allowing the
-  distribution of this service (instead of being a method in the {\em
-    individual} class, for example).
+  distribution of this service (instead of being a method in the {\em individual} class, for example). There are also other services that depend on the problem, such as an initializer of individuals.
 
-\subsubsection{Infrastructure domain} Services in this domains are the ones that deals with the specific infrastructure that will be used. For example, services for user control, load balancing or logging. The design of many of these services is out of the scope of the EAs, but all them have to interact with the previous domains in some way. Depending of the environment where the EA is going to be developed other services needs to be modelled. For example, user control in Cloud Environments, different mechanisms for Logging (in console, GUI...) or interconnection with other systems (such as external databases).
+\subsubsection{Infrastructure domain} Services in this domain are the ones that deal with the specific infrastructure that will be used to execute the algorithm. For example, services for user control, load balancing or logging. The design of many of these services is out of the scope of the EAs, but all them have to interact with the previous domains in some way. Depending on the environment where the EA is going to be developed, other services need to be modelled. For example, user control in cloud environments, different mechanisms for logging (in console, GUI...) or interconnection with other systems (such as external databases).
 
  
 
 \subsection{Specification}
 
-Once the services have been identified, the next step of the methodology establish the inputs and outputs of the services. The questions to solve as a prior step to this phase are:
+Once the services have been identified, the next step of the methodology establishes the inputs and outputs of the services. The questions to solve prior to this phase are:
 
 \begin{itemize}
 \item Which are the inputs of the services?
 \item Which are the operations of each service?
-\item How the services are going to be used?
+\item How are the services going to be used?
 \item Which is the order of execution of the services?
-\item Only one type of service is required?
+\item Is only one type of service required?
 \end{itemize}
 
+All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design}, should be taken into account when designing elements for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}).
 
-%HAY QUE DEFINIR TAMBIÉN LAS OPERACIONES DE CADA SERVICIO!!!!! (ej, las de Population) Y DECIR QUE SON LAS OPERACIONES!
- All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design}, should be taken into account when designing elements for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}).
-
-%Definition or addition of every type of operator. % ¿definition
-                                % or addition? - JJ FERGU: BORRADO
 
 \subsubsection{Specifying the operators}
 When specifying services such as 
-{\em recombinator} or {\em mutator} they have to be modelled to not receive one or two
+{\em recombinator} or {\em mutator} they do not have to be modelled to receive one or two
 individuals, since not all EAs have the same behaviour. They should receive a
-list of individuals to be crossed or mutated each generation. On the other way,
-{\em population} should not be a list of individuals: it should be a service
+list of individuals to be crossed or mutated each generation. Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to work properly. Therefore, services must accept interfaces of individuals as inputs, not concrete implementations, such as vectors or lists (generic representation). 
+
+\subsubsection{Specifying the population} The population should not be a list of individuals: it should be a service
 to access the individuals and allow the variation of its structure (for example, a change
 from an unique list population to a cellular model) without
 affecting  the rest of the pieces of the algorithm. So, other services
 external to the EA could consult the {\em population} state and act
 accordingly to some rules. 
 
-Almost all services in an EA (like mutation or selection) will accept individuals as input data and produce/modify these individuals. Due to many kind of individuals may exist, the operators should be as abstract as possible to operate properly. Therefore, services must accept {\em Individuals} interfaces as inputs, not concrete implementations, such as vectors or lists (generic representation). 
+\subsubsection{Specifying the fitness}
+As previously stated in Section \ref{sec:soa:restrictions}, % ¿dónde? ¿Para qué están los hiperenlaces? - JJ FERGU: Añadido As in the operators, 
+ the fitness should not be calculated within a method of an {\em Individual} class. To be less
+coupled, it should be implemented as an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible. 
+%However, to be more flexible, the {\em fitness service} must receive a list of at least one individual, to facilitate the parallelism (and also to accomplish the generic fitness restrictions in design for EAs). % ¿Seguro que hace falta
+                                % esto? ¿No hará falta un simple
+                                % servicio de selección? Tienes que
+                                % justificarlo todo sobre todo si es
+                                % parte de TU TESIS - JJ FERGU: Comentado eso, que se me ha escapado
+
+\subsubsection{Specifying the parameters}
+Also the set parameters should be a service for the same reason, allowing the possibility of performing
+experiments related to  parameter control or tuning \cite{ParameterControlEiben07} in an efficient way
+(being separated from the code of the existing operators). 
+
+\subsubsection{Specifying the flow of the services}
+
+A SOEA can be seen as a service flow. Flows should be designed to reduce the impact of potential future changes. An example of service flow would be an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps (generic evolutionary model). This allow the adaptation of the evolutionary model. The user can manually
+  select the services to be combined to create a Genetic Algorithm or
+  an Evolution Strategy, for example.  
+
+  Furthermore, to accomplish with the genericity presented in Section \ref{sec:distributed:design}, the parameters and operators should be added dynamically. This is done with the SOA service binding. Users can specify the operators they need in several ways, for example, in a configuration file, or in an intelligent manner (an algorithm). It is important to remark that these ``pieces'' do not need to be modified and compiled again, because the loose coupling and the dynamic binding of SOA. Without SOA this behaviour is very difficult to achieve or maintain, as will be explained in next section.
+
+\subsubsection{Specifying the infrastructure services}
+The infrastructure services should be designed as flexible output mechanisms. For example, a GUI or logging should be independent of the services. 
+
+
+
+
+
+%Definition or addition of every type of operator. % ¿definition
+                                % or addition? - JJ FERGU: BORRADO
+
+
 
 %Thanks to the loose coupling of services, several crossover or
 %mutation implementations can be created. % esto no haces más que
@@ -130,36 +154,7 @@ Almost all services in an EA (like mutation or selection) will accept individual
                          % sea como prueba de concepto)- JJ FERGU: sí, lo hago
 
 
-\subsubsection{Specifying the fitness}
 
-
-
-
-As previously stated in Section \ref{sec:soa:restrictions}, % ¿dónde? ¿Para qué están los hiperenlaces? - JJ FERGU: Añadido
- the 
-fitness should not be calculated within a method of an {\em Individual} class. To be less
-coupled, it should be implemented an external service that receives a list of individuals (facilitating the load balancing). That way, the service is as abstract as possible. %However, to be more flexible, the {\em fitness service} must receive a list of at least one individual, to facilitate the parallelism (and also to accomplish the generic fitness restrictions in design for EAs). % ¿Seguro que hace falta
-                                % esto? ¿No hará falta un simple
-                                % servicio de selección? Tienes que
-                                % justificarlo todo sobre todo si es
-                                % parte de TU TESIS - JJ FERGU: Comentado eso, que se me ha escapado
-
-\subsubsection{Specifying the parameters}
-Also the parameters should be
-a service for the same reason, allowing the possibility of performing
-experiments related to  parameter control or tuning \cite{ParameterControlEiben07} in an efficient way
-(being separated from the code of the existing operators). 
-
-\subsubsection{Specifying the flow of the services}
-
-An EA can be seen as a service flow. Flows should be designed to reducing the impact of potential future changes. An example of service flow would be an implementation called {\em Evolutionary Algorithm} with all the steps common to all EAs and with independence of the implementations of these steps (generic evolutionary model). This allow the adaptation of the evolutionary model. The user can manually
-  select the services to be combined to create a Genetic Algorithm or
-  an Evolution Strategy, for example.  
-
-  Furthermore, to accomplish with the genericity presented in the Section \ref{sec:distributed:design}, the parameters and operators should be added dynamically. This is done with the SOA service binding. Users can specify the operators they need in several ways, for example, in a configuration file, or in an intelligent manner (an algorithm). It is important to remark that these ``pieces'' do not need to be modified and compiled again, because the loose coupling and the dynamic binding of SOA. Without SOA this behaviour is very difficult to achieve or maintain.
-
-\subsubsection{Specifying the infrastructure services}
-The infrastructure services should be designed as flexible output mechanisms. For example, a GUI (Graphical User Interfaces) or logging should be independent of the services,  %FERGU: reescribe
 
 %hala, repitiendo lo que dices en el capítulo anterior. Pa matarte. - JJ FERGU: borrado el párrafo entero
 
@@ -168,27 +163,28 @@ It is important to remark that in the future these services could be extended, s
 
 \subsection{Implementation and deployment}
 \label{subsec:soaea:implementation}
-Once the services have been identified and specified, a SOA technology should be used for implementing the services and publish them to be accessed. This two steps of the methodology are explained together because the decisions about the technological solution to be used is bound to both phases.
+Once the services have been identified and specified, a SOA technology should be used to implement and publish them. These two steps of the methodology are explained together because the decisions about the technological solution to be used is bound to both phases.
 
-The questions to solve in this steps are:
+The questions to solve in these steps are:
 \begin{itemize}
-\item Services are going to be used locally or remotely?
+\item Are services going to be used locally or remotely?
 \item How the interfaces are going to be exposed?
 \item Are the services public?
-\item How the changes in service dynamism are going to be managed?
-\item How must be the overload of the messages? %FERGU: TODO payload?
+\item How are going the changes in service dynamism to be managed?
+\item How must be the overload of the messages? 
 \item Which are the advantages of the chosen technology?
 \item Which are the considerations about security, persistence, benchmarking and monitoring?
 \end{itemize} 
 
 \subsubsection{Select the technology to expose the interface}
-As presented in Section \ref{chap:soa:implementations} there exist several technologies for implementing services. Depending of the use of the services, one technology should be chosen over other. For example, a service that is going to be used remotely and publicly from any programming language should export the interface with WSDL publicly available with an URL, to allow users automatically generate the client for that service. On the other side, interfaces are previously known, and it is not necessary to export them to the public. This is the case of OSGi, where the interface is exposed only to the OSGi service registry. Other mechanisms could be used to publish and share the interfaces of the services (for example, using a {\em newcast} protocol).
+As presented in Section \ref{chap:soa:implementations}, there exist several technologies to implement services. Depending on the use of the services, one technology should be chosen over other. For example, a service that is going to be used remotely and publicly from any programming language should export its interface with WSDL publicly available with an URL, to allow users to automatically generate the client for that service. On the other side, interfaces could be previously known, and it is not necessary to export them to the public. This is the case of OSGi, where the interface is exposed only to the OSGi service registry. Other mechanisms could be used to publish and share the interfaces of the services (for example, using a {\em newcast} protocol).
 
 \subsubsection{Select the communication mechanism}
-Services are also independent of the transmission mechanism, so this issue must be considered depending of the system to deploy the services. In the case of EAs, where the performance is important, usually the most efficient transmission mechanism should be preferred. However, sometimes other transmission mechanism can be used. For example, SOAP (explained in Section \ref{chap:soa:implementations}) includes extra information in headers, producing more network overload. However, this information is more easy to manage for other systems, or easier to configure to be used remotely (as it uses standard HTTP port).
+Services are also independent of the transmission mechanism, so this issue must be considered depending on the system to deploy the services. In the case of EAs, where the performance is important, usually the most efficient transmission mechanism should be preferred. However, sometimes other transmission mechanism can be used. For example, SOAP (explained in Section \ref{chap:soa:implementations}), includes extra information in headers \cite{Castillo13SOAP}, producing more network overload. However, this information is easier to manage for other systems, or easier to configure to be used remotely (as it uses a standard HTTP port).
 
 \subsubsection{Deploy in the system} 
 Once the services have been implemented they have to be deployed in the desired system. In this step, issues related with testing, user control, security and persistence should be taken into account.
+
 
 
 
@@ -210,9 +206,9 @@ In this example a basic Genetic Algorithm is designed. Then, to illustrate the i
 \subsection{Creating a basic GA}
 \label{sec:soaea:creating}
 \subsubsection{Identification}
-As  stated in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. These steps are common to every EA, so this part should be fixed  to allow the creation of services as abstract as possible. The differences between two EAs are in the operators, selectors or individual representation (as suggested by \person{Eiben and Smit} \cite{ParameterTuningEiben2011}).
+As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) a number of abstract services have been identified. In the {\em algorithm domain}, the Algorithm, Population, Parent Selector, Recombinator, Mutator, Replacer, Stop Criterion and Parameters. In the {\em problem domain}, the Fitness Calculator and Initializer. %Finally, a {\em infrastructure domain} service called Asynchronous Enabler, which is in charge of activating new operators when a local optimum is found (for example, no changes in best individual during certain time). FERGU: mover esto al ejemplo de Enabler
 
-Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) the next services have been identified.
+
 
 \begin{itemize}
 \item Algorithm
@@ -231,10 +227,9 @@ Solving the questions in Section \ref{subsec:soaea:identification} and the consi
 
 \subsubsection{Specification}
 
-This step requires...
+ Concrete implementations are defined: {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, such as {\em MMDP Fitness Calculator} or {\em Binary Initializer}. As we need a fixed set of steps, a {\em Evolutionary Algorithm} service is created to model the flow of services. The discovered services have been specified to accept  a list of individuals. A service to gather all selectors in the environment is used.
 
-
-REMARCAR QUE LOS SERVICIOS TIENEN QUE PENSARSE PARA SER LLAMADOS
+  
 
 \begin{itemize}
 \item Basic Order
@@ -323,8 +318,12 @@ There are several ways to create self-adaptable algorithms using SOA. For exampl
 Finally, another important usage of EAs is its hybridization with other metaheuristics, to obtain more effective search algorithms \cite{HybridRodriguez2012},  increasing the performance of intensification and diversification mechanisms. With  traditional frameworks this task can be difficult, mainly because the source code for each metaheuristic must be modified. Nevertheless, using SOA a combination of loosely coupled services could be used.
 
 \section{Conclusions}
-%In this chapter we have presented the requirements in the EA design: generic representation, generic fitness, generic operations, generic evolutionary model, parameter management and configurable output. On the other hand, the requirements in SOA have been also shown: genericity in the service interfaces, programming language independence, distribution transparency and flexibility. 
-In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism), explained in Section \ref{sec:soa:restrictions} have been taken into account to propose a methodology to model the services that compose an EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions to answer in each phase to help in the development has been proposed. This methodology has been used to create a service-oriented evolutionary algorithm that takes advantages of the SOA capabilities. It has been explained how to modify the services to change from a model to another, adding transparent distribution and load-balancing or dynamic adaptation of the parameters.
+
+There exist several shortcomings in the Evolutionary Algorithms area, such as the  incompatibility between frameworks or how to handle with new trends of distributed programming, where nodes enter and exit in runtime, for example. All these facts  motivate the creation of a proper way to define service oriented evolutionary algorithms (SOEAs) to facilitate the development, integration, standardization and dynamism.
+
+In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented presented in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism) explained in Section \ref{sec:soa:restrictions}, have been taken into account to propose a methodology to model the services that compose a service oriented EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to answer in each phase to help in the development. This methodology has been used to create a service-oriented evolutionary algorithm that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. It has been explained how to modify the services to change from a model to another, adding transparent distribution and load-balancing or dynamic adaptation of the parameters.
+
+
 
 Table \ref{tab:reasons} shows the advantages to design the elements of the EA as services.
 
