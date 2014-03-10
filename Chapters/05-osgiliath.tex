@@ -1,5 +1,5 @@
 %Para empezar, léete lo que he dicho de los otros capítulos - JJ FERGU: Cambiado el titulo
-\myChapter{Implementation and deployment of services for EAs}\label{chap:osgiliath}
+\myChapter{Development of a Service Oriented Architecture for Evolutionary Algorithms}\label{chap:osgiliath}
 % Dedicar un capítulo a la implementación es arriesgado, porque una
 % implementación no es parte de una tesis, es, bueno,
 % implementación. Salvo que justifiques que realmente lo es,
@@ -22,8 +22,124 @@
 %  Testing of metaHeuristics}), an implementation of SOA-EA based in
 %OSGi. % lo que hacemos porque... - JJ FERGUSON: comentado todo
 
-In this chapter the last two steps of our methodology (implementation and deployment) are used to implement and deploy the services designed in previous chapter. In this case, the final aim of this whole process is to develop a framework to facilitate to EA practioners the...
+This chapter justifies the use of SOA-EA and the steps to create services within it. Solving the questions in each step leads to...
 
+\section{Example of creating a service oriented evolutionary algorithm}
+\label{sec:soaea:creating}
+ 
+In this example a basic Genetic Algorithm is designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA, a NSGA-II algorithm is also designed using the existent services and adding new ones. Finally, new services for 
+
+\subsection{Identification}
+As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) a number of abstract services have been identified. In the {\em algorithm domain}, the Algorithm, Population, Parent Selector, Recombinator, Mutator, Replacer, Stop Criterion and Parameters. In the {\em problem domain}, the Fitness Calculator and Initializer. %Finally, a {\em infrastructure domain} service called Asynchronous Enabler, which is in charge of activating new operators when a local optimum is found (for example, no changes in best individual during certain time). FERGU: mover esto al ejemplo de Enabler
+
+
+
+\begin{itemize}
+\item Algorithm
+\item Population
+\item Initializer
+\item Parent Selector
+\item Recombinator
+\item Crossover
+\item Mutator
+\item Mutation
+\item Replacer
+\item Stop Criterion
+\item Fitness Calculator
+\item Parameters
+\end{itemize}
+
+\subsection{Specification}
+
+ Concrete implementations are defined: {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, such as {\em MMDP Fitness Calculator} or {\em Binary Initializer}. As we need a fixed set of steps, a {\em Evolutionary Algorithm} service is created to model the flow of services. The discovered services have been specified to accept  a list of individuals. A service to gather all selectors in the environment is used.
+
+  
+
+\begin{itemize}
+\item Basic Order
+\item Random Mutation
+\item NWorst individual replacer
+\end{itemize}
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/soaea/basicga.jpg}
+\caption{Diagram of a basic genetic algorithm. White blocks are interfaces and orange blocks are implementations. In this case, we are using specific implementations to solve the OneMax problem.}
+\label{BASICGAEXAMPLE}
+\end{SCfigure}
+
+
+
+
+
+Figure \ref{BASICGAEXAMPLE} shows the diagram of a complete service oriented genetic algorithm, taking into account the proposed ideas. In this figure (and in the following ones) white blocks are the service interfaces. Orange blocks are specific implementations of these interfaces (that is, the source-code of the service), and  arrows indicate how a service implementation can make use of other services via their interface. For example, almost all implementations access to the {\em Parameters} service using its interface. Service implementations (orange blocks) can be selected in a configuration file or be automatically bound when they are available (among other options).
+
+
+
+ The change from a problem instance to another is quite simple. It is only necessary to notify the algorithm a change in the implementation of the service {\em Fitness Calculator}. Because some algorithms need to calculate the fitness every time an individual is modified (and not only at the end of a generation) the service {\em Fitness Calculator} may be used inside the implementations that modify individuals ({\em Initializer}, {\em Mutator} or {\em Recombinator}). Moreover, each service can be in the local machine or distributed on the Internet, having the same behaviour. %FERGU: TODO Decir que el fitness se usa solo si hace falta! Arreglado
+
+\subsection{Extending the example to create a NSGA-II}
+%\label{sec:nsga2}
+
+As this is a iterative and incremental approach, other services can be discovered and designed in this step. For example, the difference between the previous version of a GA and the well known NSGA-II \cite{NSGA2} lies in the selection operator. Therefore, to change from the basic GA to NSGA-II, the mutator and crossover are kept and new selection operators are added. Figure \ref{fig:nsga2} shows the diagram of the service oriented version of NSGA-II algorithm, where the new implementations are marked with a thick border. The problem has also been changed to Multi-Objective Knacksack problem \cite{MULTIOBJECTIVEKNACKSACK}. New auxiliary services have been added, like {\em Crowding Distance Assignator} or {\em Pareto Assignator}. As these services may be used in other algorithms in the future, they should be designed as abstract as possible. These new services are called from the implementation (code) of the services {\em NSGA-II Replacer} or {\em Binary Crowding Distance Selector} (black arrows indicate an interface call). 
+
+
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/soaea/nsga2.jpg}
+\caption{Modification of the basic GA adding new service implementations (orange blocks with thick lines).}
+\label{fig:nsga2}
+\end{SCfigure}
+
+
+
+\subsection{Extending the example to add distribution}
+\label{sec:distribution}
+
+As every service must keep the same behaviour, independently of the machine that hosts it, distribution services for load balancing of a specific service can be easily created, for example, notifying the algorithm to use a distributed implementation for that service. As previously stated, the service {\em Fitness Calculator} receives a list of individuals to calculate their fitness, so, in this example, the new fitness implementation ({\em Basic Fitness Distributor}) binds with every fitness service available (in the same machine or in a network). The source code of this basic implementation simply distributes the list of individuals among the bound services and waits for their termination. Although more complex implementations probably will be more efficient, the objective of this section is to show how to distribute services, thus, this basic implementation is sufficient. Figure \ref{FITNESSDISTRIBUTOR} shows the modification from a sequential fitness calculator to a distributed one. Thanks to SOA, the number of distributed fitness calculators is not fixed: calculators can be added o removed in real time without stopping the system. As can be see in the figure, if one of the nodes is a cluster, it could also  implement another fitness distributor. This easy example can be adapted to more complex necessities depending on the infrastructure or the problem to be solved. More complex distribution services can be created, for example, taking into account communication latencies or computation capabilities of the nodes.
+
+
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/soaea/distributor.jpg}
+\caption{Fitness distributor. The thick line implementation also re-distribute the individuals.}
+\label{FITNESSDISTRIBUTOR}
+\end{SCfigure}
+
+
+
+One of the most extended model in parallel EAs is the island model. Using SOA-EA, the {\em Population} service implementation can be modified to become a distributed population. Each certain time, this population could exchange individuals with other populations modified by other algorithms. These populations should be added or deleted in execution time without affecting the algorithm execution. Figure \ref{POPULATION} shows this example, where a {\em Replacer} implementation maintains a list of references to other {\em Population} interfaces (which can be local or remote). Also other {\em Population} implementations exist ({\em List Population} is the usual list of individuals). If one of these population services drop, the others can continue working. The topology of these islands can also be managed from services (such as {\em Basic Replacer} service, or another). The  modification and dynamism of the population structure is difficult to apply in existing frameworks without using SOA because it is necessary to create mechanisms to modify the population behaviour, the operators to modify it, the data structures, and also the code to manage all. With he usage of SOA, and due to the capability of accessing to a population via its service interface, it is not necessary to modify the source code to modify the population and its behaviour. Also, to avoid bottlenecks in distributed executions, asynchronous communication must be provided to avoid idle time. This kind of communication offers excellent performance when working with different nodes and operating systems, as demonstrated by \cite{Alba2002Heterogeneous}.
+
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=7cm]{gfx/soaea/island.jpg}
+\caption{Island model. From time to time, the Basic Replacer Implementation could send or receive individuals from other islands.}
+\label{POPULATION}
+\end{SCfigure}
+
+
+
+\subsection{Self-adaptation of the services}
+\label{sec:otherexamples}
+There are several ways to create self-adaptable algorithms using SOA. For example, creating a service that modifies the parameters in the {\em Parameters} service, or activating and de-activating operators in real time. An easier way is to create a service that manages all available services of the same kind. For example a {\em Mutator} service that binds all the available mutation implementations and use the most adequate one depending on some rules during the execution \cite{SelfadaptationSerpell2010}.  This idea can also be extended to create a service that implements several interfaces and selects the most adequate implementation for each interface respect to some criteria, as can be seen in Figure \ref{INTELLIGENTALGORITHM}, where thick lines represent the implementations used at the current moment (they vary as time passes).
+
+
+
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=10cm]{gfx/soaea/intelligent.jpg}
+\caption{Self-adaptable Algorithm. The {\em Intelligent Operator Selector} selects which service implementation is used each time.}
+\label{INTELLIGENTALGORITHM}
+\end{SCfigure}
+
+
+Finally, another important usage of EAs is its hybridization with other metaheuristics, to obtain more effective search algorithms \cite{HybridRodriguez2012},  increasing the performance of intensification and diversification mechanisms. With  traditional frameworks this task can be difficult, mainly because the source code for each metaheuristic must be modified. Nevertheless, using SOA a combination of loosely coupled services could be used.
 
 
 
@@ -35,7 +151,9 @@ The questions presented in Section \ref{subsec:soaea:implementation} have been a
   only the affected service implementations without modifying the
   source code of the other services.
 
-\section{Technology used}
+\section{Implementation and Deployment}
+
+\subsection{Select the technology to use}
 \label{sec:osgiliath:technology}
 
 Of the existent technologies for SOA (presented in Section \ref{chap:soa:implementations} Web Services and OSGi have been considered.
@@ -201,7 +319,7 @@ authors in \cite{GarciaSanchez2013Gateway}.
                                 % también - JJ
 
  
-\section{Implementing the services}
+\subsection{Implementing the services}
 \label{sec:osgiliath:implementing}
 %Users have to define three elements to add a new service in OSGiLiath:
 % NO ES UN MANUAL. "To easen the development of new evolutionary
@@ -326,7 +444,7 @@ public void start(){
                                 % y además no sé qué tiene que ver con
                                 % TU TESIS - JJ FERGU: Quitado. En el anterior capitulo puse que era un ejemplo de flujo
 
-\section{Deploying the services}
+\subsection{Deploying the services}
 
 The services are deployed inside an OSGi container (such as Equinox or Felix). The container has mechanisms to list, start and stop services. To automatically bind the service implementations with the service interfaces                                
  the {\em Service Description} is used. % ¿Eso qué tiene que ver
