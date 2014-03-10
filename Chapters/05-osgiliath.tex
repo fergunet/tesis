@@ -22,12 +22,14 @@
 %  Testing of metaHeuristics}), an implementation of SOA-EA based in
 %OSGi. % lo que hacemos porque... - JJ FERGUSON: comentado todo
 
-This chapter justifies the use of SOA-EA and the steps to create services within it. Solving the questions in each step leads to...
+Previous chapter has presented a methodology to develop SOEAs. This chapter justifies the use of SOA-EA and the steps to create services within it. Solving the questions in each step leads to...
+
+Then, for the implementation and deployment step, we will use a specific SOA technology (OSGi) to implement and deploy all the examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA. As this is an iterative and and incremental methodology, new services can be discovered or removed in next steps (for example, infrastructure services).
 
 \section{Example of creating a service oriented evolutionary algorithm}
 \label{sec:soaea:creating}
  
-In this example a basic Genetic Algorithm is designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA, a NSGA-II algorithm is also designed using the existent services and adding new ones. Finally, new services for 
+In this example a basic Service Oriented Genetic Algorithm is designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA, a NSGA-II algorithm is also designed using the existent services and adding new ones. Finally, new services for 
 
 \subsection{Identification}
 As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) a number of abstract services have been identified. In the {\em algorithm domain}, the Algorithm, Population, Parent Selector, Recombinator, Mutator, Replacer, Stop Criterion and Parameters. In the {\em problem domain}, the Fitness Calculator and Initializer. %Finally, a {\em infrastructure domain} service called Asynchronous Enabler, which is in charge of activating new operators when a local optimum is found (for example, no changes in best individual during certain time). FERGU: mover esto al ejemplo de Enabler
@@ -707,7 +709,7 @@ self-adaptive one in OSGiliath.
                              % Me he quedado igual. ¿Ha servido esto de algo? ¿Dónde está el
 % ejemplo? ¿Funciona el algoritmo mejor? - JJ FERGU: Añadido el experimento abajo, reescrito
 
-Infrastructure services to deal with control of the population and to enable other operators are also implemented (Asynchronous Enabler Imp). Figure \ref{fig:enabler} shows this designed configuration.
+Infrastructure services to deal with control of the population and to enable other operators are also implemented (Asynchronous Enabler Imp). Figure \ref{fig:osgiliath:enabler} shows this designed configuration.
 
 To demonstrate that services can be managed and deployed during runtime a simple experiment is proposed. A external service to the algorithm runs in parallel consulting the population from time to time. If the best individual has not been improved in a number of times this service automatically enables another implementation of Parent Selector. This new implementation is automatically bound by the the {\em Selector Gatherer} service and start to use it. Figure \ref{fig:osgiliath:enabler} shows this configuration.
 
@@ -735,13 +737,13 @@ This section shows the comparative results obtained using the automatic enabling
 
 \begin{SCtable}[][t]
 \resizebox{9cm}{!}{
-               \begin{tabular}{|c|c|c|}
+               \begin{tabular}{lll}
 \hline
 
-      & Non-adaptive & Adaptive \\ \hline \hline
-Generations & 219403,10 $\pm$ 141692,16     & 167166,66 $\pm$ 93594,37 \\ \hline
-Evaluations & 14041926,40 $\pm$ 9068298,82  & 10698794,66 $\pm$ 5990039,68 \\ \hline
-Time    & 68766,40 $\pm$ 45073,04     & 51710,40 $\pm$ 29329,21 \\ \hline \hline
+\rowcolor{colorCorporativoSuave}      & Non-adaptive & Adaptive \\ \hline \hline
+\rowcolor{colorCorporativoMasSuave}Generations & 219403,10 $\pm$ 141692,16     & 167166,66 $\pm$ 93594,37 \\ \hline
+\rowcolor{colorCorporativoSuave}Evaluations & 14041926,40 $\pm$ 9068298,82  & 10698794,66 $\pm$ 5990039,68 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Time    & 68766,40 $\pm$ 45073,04     & 51710,40 $\pm$ 29329,21 \\ \hline 
 \end{tabular}
     }    
 \caption{Results obtained using the Asynchronous Enabler.}
