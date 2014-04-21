@@ -1,0 +1,4 @@
+Chapters/*.aux
+FrontBackmatter/*.aux
+tesis.m*
+*DS_Store
