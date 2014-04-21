@@ -13,7 +13,7 @@
 % Quitar los "Could be"
 \minitoc\mtcskip
 \vfill
-\lettrine{I}{n} Chapter \ref{chap:soaea} %we presented the services
+%\lettrine{I}{n} Chapter \ref{chap:soaea} %we presented the services
 %that conform an Evolutionary Algorithm  % ¿así, en general? ¿En qué
                                 % contexto? - JJ
 %and the process to design a service oriented EA. Although the previous
@@ -22,48 +22,29 @@
 %  Testing of metaHeuristics}), an implementation of SOA-EA based in
 %OSGi. % lo que hacemos porque... - JJ FERGUSON: comentado todo
 
-IMPORTANTE: Decir que otra de las cosas que ofrece SOA es el auto-descubrimiento de servicios (Y LUEGO USARLO EN EL CAPITULO DE HOMOHETERO)
+%IMPORTANTE: Decir que otra de las cosas que ofrece SOA es el auto-descubrimiento de servicios (Y LUEGO USARLO EN EL CAPITULO DE HOMOHETERO)
 
-Previous chapter has presented a methodology to develop SOEAs. This chapter justifies the use of SOA-EA and the steps to create services within it. Solving the questions in each step leads to...
+\lettrine{P}{revious} chapter has presented SOA-EA, a methodology to develop SOEAs. This chapter justifies the use of SOA-EA to create services using the steps proposed. Identification and specification of a complete example of a SOA will be presented, solving the questions to identify a number of services and its behaviour.
 
-Then, for the implementation and deployment step, we will use a specific SOA technology (OSGi) to implement and deploy all the examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA. As this is an iterative and and incremental methodology, new services can be discovered or removed in next steps (for example, infrastructure services).
+Then, for the implementation and deployment steps, a specific SOA technology (OSGi) will be used to implement and deploy all the services and examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA. As this is an iterative and and incremental methodology, new services can be discovered or removed in further steps (for example, infrastructure services). Finally, several experiment to demonstrate the ease in integration and development will be carried out.
 
 \section{Example of creating a service oriented evolutionary algorithm}
 \label{sec:soaea:creating}
  
-In this example a basic Service Oriented Genetic Algorithm is designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA, a NSGA-II algorithm is also designed using the existent services and adding new ones. Finally, new services for 
+\lettrine{I}{n} this example a basic SOEA will be designed. Then, to illustrate the iterative process of the proposed methodology and the capabilities of using SOA this example will be extended. First, a NSGA-II algorithm will be also designed using the existent services and adding new ones. Finally, new services to add distribution and self-adaptation will be developed. 
 
 \subsection{Identification}
-As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) a number of abstract services have been identified. In the {\em algorithm domain}, the Algorithm, Population, Parent Selector, Recombinator, Mutator, Replacer, Stop Criterion and Parameters. In the {\em problem domain}, the Fitness Calculator and Initializer. %Finally, a {\em infrastructure domain} service called Asynchronous Enabler, which is in charge of activating new operators when a local optimum is found (for example, no changes in best individual during certain time). FERGU: mover esto al ejemplo de Enabler
+As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by several steps. Solving the questions in Section \ref{subsec:soaea:identification} and the considerations about the design of services (Section \ref{sec:soa:restrictions}) and the genericity of EAs (Section \ref{sec:distributed:design}) a number of abstract services have been identified. In the {\em algorithm domain}, the Algorithm, Population, Parent Selector, Recombinator, Mutator, Mutation, Replacer, Stop Criterion and Parameters. In the {\em problem domain}, the Fitness Calculator and Initializer. Finally, in the {\em infrastructure domain}, a Launcher service to start the algorithm. %Finally, a {\em infrastructure domain} service called Asynchronous Enabler, which is in charge of activating new operators when a local optimum is found (for example, no changes in best individual during certain time). FERGU: mover esto al ejemplo de Enabler
 
 
-
-\begin{itemize}
-\item Algorithm
-\item Population
-\item Initializer
-\item Parent Selector
-\item Recombinator
-\item Crossover
-\item Mutator
-\item Mutation
-\item Replacer
-\item Stop Criterion
-\item Fitness Calculator
-\item Parameters
-\end{itemize}
 
 \subsection{Specification}
 
- Concrete implementations are defined: {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, such as {\em MMDP Fitness Calculator} or {\em Binary Initializer}. As we need a fixed set of steps, a {\em Evolutionary Algorithm} service is created to model the flow of services. The discovered services have been specified to accept  a list of individuals. A service to gather all selectors in the environment is used.
+ Concrete implementations are defined in this step: for example, {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, such as {\em MMDP Fitness Calculator} or {\em Binary Initializer}. 
+
+ As we need a fixed set of steps, a {\em Evolutionary Algorithm} service is created to model the flow of services. The discovered services in previous step have been specified to accept  a list of individuals. %A service to gather all selectors in the environment is used.
 
   
-
-\begin{itemize}
-\item Basic Order
-\item Random Mutation
-\item NWorst individual replacer
-\end{itemize}
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -732,7 +713,7 @@ This section shows the comparative results obtained using the automatic enabling
 
 \begin{SCfigure}[20][htb]
 \centering
-\includegraphics[width=10cm]{gfx/osgiliath/datos.jpg}
+\includegraphics[width=8cm]{gfx/osgiliath/enabler.pdf}
 \caption{Boxplot of the number of evaluations in each configuration.}
 \label{fig:osgiliath:boxplot}
 \end{SCfigure}
