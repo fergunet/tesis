@@ -62,8 +62,8 @@ seventy percent of adoption and satisfaction \cite{Heffner10strong}, adding sign
 
 Service Oriented Architecture (SOA) is a computational
 paradigm where agents % users o applications? o agents? - JJ FERGU: cambiado a agents, que es lo más genérico
-interact with each other using the concept of
-{\em service}. A service is a distributed entity (such as a node, program or
+interact with each other using loosely coupled, coarse-grained, and autonomous components called 
+{\em services} \cite{rotem2012soa}. A service is a distributed entity (such as a node, program or
 function), used to obtain a result, increasing the integration of heterogeneous
 systems (several operating systems, protocols or languages) due to
 this multi-platform nature. The service users do not need to know
@@ -109,7 +109,7 @@ used technologies to chose the most adequate one.
 %to what? Esto relaciónalo con la tesis, es un capítulo
                %de TU TESIS - JJ FERGU: añadido "one of the aims of this thesis..." y también lo de abajo
 
-In this chapter the usage of SOA is proposed to facilitate the shortcomings in the EAs presented in the previous chapter: development, integration, standardization and dynamism. First, several concepts to undarsted SOA are explained. Then the most used technologies and methodologies are presented and how can help with the previous shortcomings. After that, the benefits of using SOA in EAs are explained, but also the restrictions of SOA are listed in order to be considered when developing a methodology to develop service oriented evolutionary algorithms. 
+In this chapter, the usage of SOA is proposed to facilitate the shortcomings in the EAs presented in the previous chapter: development, integration, standardization and dynamism. First, several concepts to undarsted SOA are explained. Then the most used technologies and methodologies are presented and how can help with the previous shortcomings. After that, the benefits of using SOA in EAs are explained, but also the restrictions of SOA are listed in order to be considered when creating a methodology to develop evolutionary algorithms in this paradigm. 
 
 
 \section{What is a Service?}
@@ -129,8 +129,8 @@ language implementation of the service or the operating system, %esto
 
 
 Figure \ref{fig:soadiagram} shows the basic interaction among
-services. First, the {\em service provider} exposes the service, publishing
-its interface in the {\em service broker}. The \textsc{service consumer} (or
+services. First, the \textsc{service provider} exposes the service, publishing
+its interface in the \textsc{service broker}. The \textsc{service consumer} (or
 \textsc{requestor}) finds  a service in the broker to be used and receives its
 interface. Then the request is performed by the \textsc{consumer} (which uses or
 consumes the service).  
@@ -146,7 +146,7 @@ consumes the service).
 
 
 
-According to Valipour \cite{Valipour09surveysoa}, services to develop must follow these characteristics:
+According to \person{Valipour} \cite{Valipour09surveysoa}, services to develop must follow these characteristics:
 
 \begin{itemize}
 \item {\em Discoverable and Dynamically Bound}: Services must be discoverable. Thanks to the service registry, a service consumer can discover a service to be use at runtime.
@@ -175,7 +175,7 @@ The service broker in a SOA can be implemented in several ways and have
 different behaviours: for example, the implementations of the services to be used can be
 defined in a text file (if the services do not change in execution
 time). However, the broker can also assign implementations to
-interfaces in an automatic way, or using several rules, for example, in the context of EAs,
+interfaces in an automatic way, or using several rules. For example, in the context of EAs,
 to select a better operator if the current one is not working properly.
 %to distribute a fitness between several machines activated while the
 %algorithm is running. % ¿vas a hacerlo? ¿No? Trata de restringirte a
@@ -203,7 +203,7 @@ explained: the main difference between SOA and imperative programming or OOP is 
 \section{Implementation technologies}
 \label{chap:soa:implementations}
 
-\lettrine{D}{espite} the fact that the concept of service is independent of the technology used, there exist several ways to use and implement services, being Web Services, \definicion{ebXML}{Electronic Business XML} and \definicion{OSGi}{Open Service Gateway Initiative} the most extended.
+\lettrine{D}{espite} the fact that the concept of service is independent of the technology used, there exist several ways to use and implement services, being Web Services, REST, \definicion{ebXML}{Electronic Business XML} and \definicion{OSGi}{Open Service Gateway Initiative} the most extended.
 
 \subsection{Web Services}
 \label{subsec:soa:ws}
@@ -228,10 +228,10 @@ implementation transparent, such as the programming language of the
 routines, the operating system or the platform used by the provider of
 the service. % esto lo has repetido por enésima vez - JJ
 At the moment, there exist complete implementations of SOAP for Perl, Java, Python, C++ and most modern languages.
-Unlike other remote procedure call methods, such as RMI (\emph{remote method invocation}, used by the Java language) or XML-RPC, SOAP has two main advantages: it can be used with any programming language, and it can use any type of transport (\definicion{HTTP}{HyperText Transfer Protocol}, \definicion{SHTTP}{Secure HTTP}, \definicion{TCP}{Transmission Control Protocol}, \definicion{SMTP}{Simple Mail Transfer Protocol} and other protocols). In this way, SOAP constitutes a high level protocol, making easy the task of distributing objects among different servers, and avoiding the difficulties derived of defining the message formats, nor the explicit call to remote servers.
+Unlike other remote procedure call methods, such as RMI (Remote method invocation, used by the Java language) or XML-RPC, SOAP has two main advantages: it can be used with any programming language, and it can use any type of transport (\definicion{HTTP}{HyperText Transfer Protocol}, \definicion{TCP}{Transmission Control Protocol}, \definicion{SMTP}{Simple Mail Transfer Protocol} and other protocols). In this way, SOAP constitutes a high level protocol, making easy the task of distributing objects among different servers, and avoiding the difficulties derived of defining the message formats, nor the explicit call to remote servers.
 
 
-\subsubsection{Self-description} The interfaces of the methods that can be accessed are specified by a Web Services Description Language (WSDL) \cite{WSDL}. The WSDL of a web service consists in an XML description of its interface, i.e., it is a file that describes the name of the methods, their parameters (number and type) and their type of response.
+\subsubsection{Self-description} The interfaces of the methods of web services that can be accessed are specified by a Web Services Description Language (WSDL) \cite{WSDL}. The WSDL of a web service consists in an XML description of its interface, i.e., it is a file that describes the name of the methods, their parameters (number and type) and their type of response.
 
 \subsubsection{Self-discovery} UDDI ({\em Universal Description, Discovery and Integration}) \cite{UDDI} is a technical specification for describing, discovering and integrating web services \cite{Cerami2002Webservices}. This specification includes APIs for the storage and retrieval of information (also in an standardized XML format).
 
@@ -245,13 +245,13 @@ web services % nunca coma entre sujeto y predicado - JJ FERGU: OK
   \item WS-Policy and WS-Metadata Exchange (policy mechanisms for interactions)
   \item WS-Reliable Messaging  and WS-Transaction (add-on mechanisms for the communication channel)
 \end{itemize}
-% pero todo esto importa lo más mínimo para la tesis? Lo vas a usar?
+% pero todo esto importa lo más mínimo para la tesis? Lo vas a usar? FERGU: explicado después
 % No metas rollo por meterlo - JJ
 Also, functional extensions, such as WSRF \cite{WSRF}, % qué
                                 % significa? - JJ
  allows the discovery, inspection and interaction with stateful resources in standard and interoperable ways. Finally, BPEL ({\em Business Process Execution Language})  \cite{BPEL} is an XML-based language to control the invocation of different Web services with added business logic to help large-scale programming.
 
-Several studies about e-science taking advantage of web services can be found in bibliography \cite{Oinn04Taverna,davidson08workflows,Ludascher06Kepler,Perera06workflows}.
+The main advantage of using Web Services in research is their public discovering and usage, thanks to the security extensions. Several studies about e-science taking advantage of web services can be found in bibliography \cite{Oinn04Taverna,davidson08workflows,Ludascher06Kepler,Perera06workflows}.
 
 \subsection{REST}
 \textsc{Representational State Transfer} (REST)\footnote{\url{http://en.wikipedia.org/wiki/Representational_state_transfer}} is an alternative method to build web services.
@@ -277,7 +277,7 @@ to build, and finally, developments achieve a high performance
 The main differentiating factor is that Web Services using SOAP tend to be operation-based, while REST services are resource-based. This is one of the reasons REST is replacing SOAP on the web \cite{Mason11REST}. %FERGU: puesto lo de que se usa menos en la web
 
 \subsection{ebXML}
-ebXML defines a set of standards that allows the enterprises negotiate their products through the Internet. It is based on a well-defined documents interchange using a contract-based approach \cite{Patil03ebxmlVsWS}, providing a specification for messaging, registry/repositories and business processes description, and unlike other approaches, it is an horizontal standard (it is not oriented towards a specific industry sector). On the contrary, Web Services expose any kind of applications to the Web, so anyone can call them (service approach). Another significant difference between Web Services and ebXML is that the former is based on BPEL, which can only describe the scenario inside a company, due to it has not all the information about the services being orchestrated, while the latter can be used to model a global choreography among several companies. Due to this, and because it is mainly focused to commercial and business processes we are not going to delve into this technology in this thesis.
+ebXML defines a set of standards that allows the enterprises negotiate their products through the Internet. It is based on a well-defined documents interchange using a contract-based approach \cite{Patil03ebxmlVsWS}, providing a specification for messaging, registry/repositories and business processes description, and unlike other approaches, it is an horizontal standard (it is not oriented towards a specific industry sector). On the contrary, Web Services expose any kind of applications to the Web, so anyone can call them (service approach). Another significant difference between Web Services and ebXML is that the former is based on BPEL, which can only describe the scenario inside a company, due to it has not all the information about the services being orchestrated, while the latter can be used to model a global choreography among several companies. Due to this, and because it is mainly focused to commercial and business processes, this technology is not going to be addressed in this thesis.
 
 \subsection{OSGi}
 \label{subsec:soa:osgi}
@@ -291,7 +291,7 @@ packet abstraction, life-cycle management, packaging or versioning, % qué signi
 allowing a significant reduction of the building, support and deployment
 complexity of the applications. These features can be useful in the field of EAs, as suggested by \person{Wagner \etal} \cite{WagnerPlugins07}.
 
-OSGi technology allows dynamic discovery of new components, to increase the collaboration and to minimize and manage the coupling
+OSGi technology allows dynamic discovery of new components (or services), to increase the collaboration and to minimize and manage the coupling
 among modules. Moreover, the
 OSGi Alliance has developed several standard component interfaces for
 common usage patterns, like HTTP servers, configuration, logs, security,
@@ -337,17 +337,10 @@ transmission.   % so what? - JJ % ¿Esto es relevante? - JJ FERGU: TODO sí, est
 
 \section{Methodologies for developing SOA}
 \label{chap:soa:methodologies}
-Regardless of the chosen SOA framework, the processes % business? no estamos hablando de algoritmos - JJ FERGU: sí, es que a veces se les llama así, pero lo quito para no liar
+\lettrine{R}{egardless} of the chosen SOA framework, the processes % business? no estamos hablando de algoritmos - JJ FERGU: sí, es que a veces se les llama así, pero lo quito para no liar
  of the platform must be analysed and modelled. So it is necessary to use a consistent and well-defined methodology to design a model based on a machine-readable description \cite{Garcia09UMM}. {\em Business-Centric Methodology (BCM) for Enterprise Agility and Interoperability} \cite{Oasis03BCM} is a roadmap for the development and implementation of procedures to create effective, efficient, and sustainable interoperability mechanisms. It has been developed by OASIS, the same consortium that created BPEL or UDDI, among others, and it is complementary to other existent architectures and technologies designed to build business oriented services, like ebXML or Web Services. BCM is formed by a set of model layers with a step-guide process, and an information pyramid to align the semantic information of partners. This allows the participation of business experts and the creation of a very large documentation repository. Nevertheless, this methodology has some disadvantages: it has a very large learning curve and it is not very extended yet. 
 
-{\em SOMA} (Service Oriented Modelling and Architecture)
-\cite{Arsanjani2008SOMA} is an architecture proposed by IBM to model
-service oriented processes. It lets the identification, specification
-and implementation of services inside the SOA paradigm. To achieve
-this tasks, it proposes a top-down modelling oriented to
-intra-enterprise services (service-oriented instead of
-business-oriented). %Pero ¿esto lo vas a usar? ¿Le interesa lo más
-                    %mínimo al revisor y/o tribunal? - JJ FERGU: si, cambiado el capitulo siguiente
+
 
 {\em \definicion{UN/CEFACTs}{United Nations Center for Trade
     Facilitation and Electronic Business} Modelling Methodology (UMM)}
@@ -367,7 +360,17 @@ development, acceptance and maturity of UML \cite{Garcia09UMM}. In
 fact, a survey of B2B modelling languages show that UMM is the most
 complete approach \cite{Folmer08b2b}. 
 
+Finally, {\em SOMA} (Service Oriented Modelling and Architecture)
+\cite{Arsanjani2008SOMA} is an architecture proposed by IBM to model
+service oriented processes. It lets the identification, specification
+and implementation of  the services, flows and components inside the SOA paradigm. To achieve
+this tasks, it proposes a top-down modelling oriented to
+intra-enterprise services (service-oriented instead of
+business-oriented). It is more agile than the previous ones
+and it is not focused in enterprise environments. 
 
+%Pero ¿esto lo vas a usar? ¿Le interesa lo más
+                    %mínimo al revisor y/o tribunal? - JJ FERGU: si, cambiado el capitulo siguiente
 
 
 
@@ -389,8 +392,8 @@ services for EAs has been provided in previous works.  % estás
                                 % es gordo, porque entonces tienes que
                                 % hacerlo tú - JJ FERGU: Hecha la metodología en el capítulo siguiente :)
 
-In the previous chapter we described several shortcomings % y dale - JJ FERGU: cambiado a shortcomings
- in the Evolutionary Algorithms area, such as the new trends of
+In the previous chapter several shortcomings % y dale - JJ FERGU: cambiado a shortcomings
+ in the Evolutionary Algorithms area were presented, such as the new trends of
  distributed programming where nodes enter and exit in runtime, or the
  incompatibility between frameworks, for example. All these facts
  motivate the creation of a proper way to define services for evolutionary algorithms. The elements that combine an EA are candidate to be designed as services, as they can behave as input/output functions. Also, SOA solve the problems previously addressed: 
@@ -403,9 +406,9 @@ In the previous chapter we described several shortcomings % y dale - JJ FERGU: c
 \item {\em Standardization}: Interfaces of services use public
   standards (such as WSDL \cite{WSDL} or OSGi \cite{OSGI}). The
   service interfaces for EAs should be abstract enough to avoid their
-  modification. Furthermore, as Foster claims
+  modification. Furthermore, as \person{Foster} claims
   \cite{Foster2005Science}, SOA is the key to develop Open Science. 
-\item {\em Dynamism}: Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where the control of the nodes is not centralized. For example, new operators in different nodes can be bound and used during the run of an algorithm. Also, there should be easy to add and remove elements to achieve self-adaptive mechanisms.
+\item {\em Dynamism}: Services are not aware of the order of execution, so this paradigm can fit with new parallel approaches for EAs, where the control of the nodes is not centralized. Also, SOA provides techniques for automatic discovering of services. For example, new operators in different nodes can be bound and used during the run of an algorithm. Also, there should be easy to add and remove elements to achieve self-adaptive mechanisms.
 \end{itemize} 
 
 
@@ -444,10 +447,10 @@ restrictions: % ¿por qué? ¡Justifícalo todo! - JJ FERGU: Cambiada la primera
 
 
 One of the main restrictions in SOA, % ¿SOA o SOAs? será "a SOA" o
-                                % "SOAs", ¿no? - Jj FERGU: no, SOA es una metodología de diseño también
+                                % "SOAs", ¿no? - Jj FERGU: no, SOA es una metodología de diseño
  apart from focusing on the development of abstract services, is the
- stateless nature of services. Therefore, in SOA the services design
- must follow several guidelines. % ¿Puede estar esto relacionado con
+ stateless and un-ordered nature of services. Therefore, services must follow the next guidelines.
+ % ¿Puede estar esto relacionado con
                                 % programación funcional? Podías mirar
                                 % y citar los papers de Albert al
                                 % respecto - JJ FERGU: no, no está relacionado (pero ya cito los papers de Albert antes)
@@ -486,7 +489,7 @@ method of the {\em Individual} class. % Esto ya se hizo cuando
                                 % diseñamos los Evolving Objects,
                                 % podías citarlo - JJ FERGU: 
 
-Thinking as abstractly as possible requires to separate concepts such as
+Thinking as abstract as possible requires to separate concepts such as
 the order of recombination, and the crossover itself. Usually, after
 parent selection, individuals are crossed in order. However, if we
 need a different mechanism for mating (for example, using more than
@@ -497,36 +500,37 @@ design proposed in SOMA).  % ¿Esto es lo único que estás usando del
                            % SOMA? - JJ FERGU: no he cambiado el capítulo siguiente a saco
 
 Finally, no assumptions should be taken about services previously
-executed or being executed next. For example, services such as {\em
-  Recombinator} or {\em Mutator} should return the individuals with
-their fitness already calculated. % ¿Por qué? ¿Eso no implica que el
+executed or being executed next. For example, the {\em Mutation} 
+service could be applied before the {\em Recombination} or the fitness could be calculated in the middle of the generation. %For example, services to implement {\em
+  %Recombinator} or {\em Mutator} should return the individuals with
+%their fitness already calculated. % ¿Por qué? ¿Eso no implica que el
                                 % mutador tiene que saber que existe
                                 % otro servicio que calcula el
                                 % fitness? Además, en la práctica el
                                 % mutador no necesita el fitness (casi
-                                % nunca)- JJ
+                                % nunca)- JJ FERGU: cierto, quitado
 Usually this step is performed in
 the last stage of the generation, but if we require the individuals
 for other tasks: for example, a Local Search or a statistics collector
-to guide the algorithm. % if we require, ¿qué? - JJ
+to guide the algorithm. % if we require, ¿qué? - JJ FERGU: ejemplo puesto
 
 \section{Conclusions}
 
-Even as SOA is used extensively in software development area, it is
-not widely accepted in the main EA software, as the survey of \person{Parejo et al.}, presented in Section \ref{chap:distributed:conclusiones} claim. % pruébalo - JJ FERGU: Probado con la referencia al survey
-The authors should improve their frameworks adding SOA technologies in
+\lettrine{E}{ven} as SOA is used extensively in software development area, it is
+not widely accepted in the main EA software, as the survey of frameworks by \person{Parejo et al.}, presented in Section \ref{chap:distributed:conclusiones} claim. % pruébalo - JJ FERGU: Probado con la referencia al survey
+The authors of these frameworks should improve their frameworks adding SOA technologies in
 order to facilitate the communication and integration among them, without
  duplication of effort to re-program all the EA elements, and therefore, saving time. 
- Also, the benefits of using SOA in development, integration, standardization 
+ Therefore, the benefits of using SOA in development, integration, standardization 
  and dynamism (presented in Section \ref{sec:soa:benefitsofsoa}) could be applied.
   % ¿y qué se conseguiría con eso? - JJ FERGU: reescrito y añadidas cosas
  Although all the approaches described Section \ref{sec:distributed:parallel} are focused
  on the implementation of distributed EAs, the abstraction level of
  each alternative can be quite different, as shown in Figure
- \ref{fig:soagrid}.  As SOA is a methodology and not a technology,
+ \ref{fig:soagrid}.  As SOA is a paradigm and not a technology,
  areas such as Evolutionary Robotics, or EA classic frameworks can use
  SOA to be designed and developed. Implementation technologies, such
- as Web Services fill the gap between SOA (abstract) and grid
+ as Web Services, can fill the gap between SOA (abstract) and grid
  (infrastructure) where interfaces are designed using SOA principles
  (dynamism, visibility, loose-coupling and heterogeneity). Finally,
  cloud computing can be seen as a combination that extends SOA adding
@@ -542,11 +546,11 @@ order to facilitate the communication and integration among them, without
  Using specific technologies such as Web Services allows grid integration. This figure has been updated from the one presented in \cite{SOALIB}.}
 \label{fig:soagrid}
 \end{SCfigure}
-We are going to use SOMA guidelines (identification, specification and
-realization of the services, flows and components) because is the
-% Esto tienes que decirlo donde estés hablando de SOMA. - JJ
+In this thesis the SOMA guidelines (identification, specification and
+realization of the services, flows and components) are going to be used, because is the
+% Esto tienes que decirlo donde estés hablando de SOMA. - JJ FERGU: puesto
 methodology more flexible and less focused on commercial
-purposes. Next chapter will explain the design principles of SOA for
-developing services for EAs. Then, a specific SOA technology will be
+purposes. Next chapter will present a methodology to use the design principles of SOA for
+developing services for EAs. Then, in next chapters, a specific SOA technology will be
 used to develop an implementation of a service oriented architecture
 for EAs.

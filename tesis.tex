@@ -450,12 +450,12 @@ p{0.95\textwidth}}
 %-----------------------------  PONER LETTRINE EN SECCIONES Y NO INDENT EN SUBSECCIONES!!!
 \myPart{Introduction}\label{part:introduccion}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/02-distributedEAs}}{\myChapter{Distributed Evolutionary Algorithms}\label{chap:distributedEAs}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/03-soa}}{\myChapter{Service Oriented Architecture}\label{chap:soa}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/02-distributedEAs}}{\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
 \myPart{Materials and Methods}\label{part:metodoYmateriales}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/04-soaea}}{\myChapter{Service Oriented Architecture for EAs}\label{chap:soaea}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/03-soa}}{\myChapter{Service Oriented Architecture: technologies and restrictions for designing services for EAs}\label{chap:soa}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/04-soaea}}{\myChapter{A methodology for developing services for EAs}\label{chap:soaea}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{8}}{\include{Chapters/cuestionariosBordes}}{\myChapter{Recomendaciones para la Construcción de Cuestionarios de calidad de bordes}\label{chap:recCuestCalidadBordes}}
 %-----------------------------
 \myPart{Experimental Results}\label{part:resultadosExperimentales}
