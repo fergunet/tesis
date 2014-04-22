@@ -184,7 +184,7 @@ As presented in Section \ref{chap:soa:implementations}, there exist several tech
 Services are also independent of the transmission mechanism, so this issue must be considered depending on the system to deploy the services. In the case of EAs, where the performance is important, usually the most efficient transmission mechanism should be preferred. However, sometimes other transmission mechanism can be used. For example, SOAP (explained in Section \ref{chap:soa:implementations}), includes extra information in headers \cite{Castillo13SOAP}, producing more network overload. However, this information is easier to manage for other systems, or easier to configure to be used remotely (as it uses a standard HTTP port).
 
 \subsection{Deploy in the system} 
-Once the services have been implemented they have to be deployed in the desired system. Examples of environment to deploy services are application servers (such as Apache Tomcat or Oracle GlassFish), service containers (Equinox or Felix), BPEL engines (for example OpenESB) or as a stand-alone system. In this step, issues related with testing, user control, security and persistence should be taken into account. The implementations of the infrastructure services deal with this system.
+Once the services have been implemented they have to be deployed in the desired system. Examples of environment to deploy services are application servers (such as Apache Tomcat or Oracle GlassFish), service containers (Equinox or Felix), BPEL engines (for example OpenESB) or as a stand-alone system. In this step, issues related with testing, user control, security and persistence should be taken into account. The implementations of the infrastructure services deal with the chosen system.
 
 
 
@@ -205,8 +205,6 @@ Once the services have been implemented they have to be deployed in the desired 
 \lettrine{C}{hapter} \ref{chap:distributedEAs} presented several shortcomings in the Evolutionary Algorithms area, such as the  incompatibility between frameworks or how to handle with new trends of distributed programming, where nodes enter and exit in runtime, for example. All these facts  motivate the creation of a proper way to define service oriented evolutionary algorithms (SOEAs) to facilitate the development, integration, standardization and dynamism.
 
 In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented presented in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism) explained in Section \ref{sec:soa:restrictions}, have been taken into account to propose a methodology to model the services that compose a service oriented EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to answer in each phase to help in the development. This methodology can been used to create a service-oriented evolutionary algorithm that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. 
-
-
 
 
 

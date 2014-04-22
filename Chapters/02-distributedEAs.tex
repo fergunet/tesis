@@ -38,7 +38,7 @@
 Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, several ways to parallelize these algorithms were also presented, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some shortcomings, such as integration of heterogeneous elements or dynamic resources, and also to deal with fault-tolerance, churn, massive
 scalability or decentralization.
 
-As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs, taking into account the previous requirements. Therefore, in this chapter we present the classic classification of EAs to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the creation of new algorithms, establishing their similarities, to facilitate the {\em development}. Then, the new trends in EAs are also presented to summarize their benefits, but also their deficiencies and problems that should be addressed (such as {\em dynamism} of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of {\em standardization} and {\em integration}). This way, in following chapters, the design and development of interoperable, standardized and dynamic services for EAs will have a solid base to start.
+As previously said in the introduction, the aim of this thesis is to facilitate the development, standardization, integration and dynamism in EAs. Therefore, in this chapter the classic classification of EAs is presented to clarify their common elements, together with the most extended models to parallelize these algorithms. This classification can be used as a base for the creation of new algorithms, establishing their similarities, to facilitate the {\em development}. Then, the new trends in EAs are also presented to summarize their benefits, but also their deficiencies and problems that should be addressed (such as {\em dynamism} of computing nodes or in the elements that form the EA). Finally, some of the most used frameworks to develop EAs are listed and analysed, to understand their capabilities and deficiencies (such as the lack of {\em standardization} and {\em integration}). This way, in following chapters, the design and development of interoperable, standardized and dynamic services for EAs will have a solid base to start.
 
 
 
@@ -98,7 +98,7 @@ features. A possible classification is presented in this chapter,
 taking into account the new approaches that cannot fit in traditional 
 taxonomy. This classification would help to clarify the elements that 
 distinguish an algorithm from another (for example, the operators), 
-and the existent similarities and differences, in order to establish  
+and the existing similarities and differences, in order to establish  
 a good starting point for designing.
 
 \subsection{Classic classification of EAs}
@@ -107,7 +107,7 @@ This subsection explains the traditional variants, according to
 the book of \person{Eiben and Smith} \cite{eiben2003introduction}. These authors clarify that the features of an EA are:
 \begin{itemize}
 \item EAs are population based.
-\item EAs mostly uses recombination to generate new individual from the existent ones.
+\item EAs mostly uses recombination to generate new individual from the existing ones.
 \item EAs are stochastic.
 \end{itemize} % ¿Esto aporta algo a lo que has dicho antes? ¿A tu
               % tesis? - JJ FERGU: explicado a continuación
@@ -217,7 +217,7 @@ models for EAs were classified by \person{Alba and Tomassini} in
 \cite{alba2002parallelism}: \textsc{Global parallel EAs} and
 \textsc{Spatially structured EAs}. However, with the aim of new
 technologies and architectures, such as P2P, new ways to parallelize
-EAs have been proposed. In this section, the differences of the existent classification
+EAs have been proposed. In this section, the differences of the existing classification
 with these new trends are explained, and the requirements of each one are presented.
 
 % ¿Y a quién le importa lo que pasó en 2002?
@@ -411,7 +411,7 @@ with heterogeneous hardware and different communication protocols, but also
 
 
 \section{Parameter adaptation in Evolutionary Algorithms}
-\ref{chap:distributed:parameteradapt}
+\label{chap:distributed:parameteradapt}
 % y esto viene a cuento porque... - JJ
 
 \lettrine{O}{ne} of the greater challenges of the EC field is to find
@@ -429,8 +429,8 @@ There are two different approaches for algorithm parameter setting  in EC: {\em 
 \person{Eiben}, in \cite{ParameterControlEiben07} proposes the next taxonomy for the parameter control, according to {\em how} the are changes made:
 \begin{itemize}
 \item Deterministic methods: changes to a parameter are triggered by a deterministic rule (for example, increase mutation rate after certain number of generations).
-\item Adaptative methods: parameters change depending on some behaviour (for example, increase mutation rate if the average fitness of the population stagnates).
-\item Self-adaptative methods: parameters are encoded within the chromosome of the individuals of the population (for example, mutation rate can be a value in the chromosome).
+\item Adaptive methods: parameters change depending on some behaviour (for example, increase mutation rate if the average fitness of the population stagnates).
+\item Self-adaptive methods: parameters are encoded within the chromosome of the individuals of the population (for example, mutation rate can be a value in the chromosome).
 \end{itemize}
 
 Other classifications for control techniques in EAs are presented in that work. For example, regarding to {\em what} is changed:
@@ -538,7 +538,7 @@ integration and development of EAs.
 % TESIS a la vez que estableces el estado del arte - JJ FERGU: añadido arriba
 
  % cada vez que dices There exist, $deity mata a un gatito - JJ FERGU: Okis, los quito todos
-This is due to the existent large number of frameworks for Evolutionary
+This is due to the existing large number of frameworks for Evolutionary
 Algorithms. 
 Practically every programming language has its own implementation of the basic elements
 that form an EA. This implies a large effort made in each one, giving
@@ -550,7 +550,7 @@ language specific features (such as functional programming
 the elements of the frameworks in another systems (such as enterprise servers, for example). 
 However, is in the field of Open Science \cite{Altunay2011OpenScience} where the integration and standardization of
 the elements that conform an EA can take advantage, facilitating the re-use and access 
-to existent software, systems, data, and results.
+to existing software, systems, data, and results.
 %FERGU: DONE
  % Y migrar código es importante porque... - JJ
 
@@ -560,7 +560,7 @@ to existent software, systems, data, and results.
 % tu tesis no es tu framework - JJ
 
 In this section, the genericity, communication and features of the 
-development of EAs and existent frameworks are explained and compared 
+development of EAs and existing frameworks are explained and compared 
 to evaluate their benefits and shortcomings. 
 
 \subsection{Design of EAs}
@@ -573,7 +573,7 @@ The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six cr
 
 \item {\em Generic fitness}: Individual fitness should be as independent as possible from the selection operators and individual representation. That means that the fitness evaluation should be outside of the implementation of the individuals (for example, not implementing the fitness in the class that implements the individual). 
 
-\item {\em Generic operations}: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existent ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
+\item {\em Generic operations}: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existing ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
 
 \item {\em Generic evolutionary model}: As explained in Section \ref{subsec:classicEAs}, % ¿dónde? - JJ FERGU: hecho
 there exist different ways to model an EA leading to different algorithms (for example, a steady-state GA versus a generational GA, or a GA versus ES). Operators should be independent of the evolutionary model, being possible the change from a model to another. 
@@ -675,7 +675,7 @@ performance over the non-parallel versions of the algorithms. % over what? - JJ 
 
 Other research lines, such as the parameter adaptation can imply the existence of some kind of dynamism involving the parts that compose an algorithm: for example, different recombinators or mutators working at the same time. Moreover, there exist several lines of parameter adaptation in dynamic and heterogeneous environments, where different computational elements are working at the same time.
 
-Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out. Moreover, it is difficult to access, in a public way, to available public systems to execute existent EAs to validate experiments and save time, encouraging Open Science.
+Finally, there exist a large number of different (and incompatible) frameworks for EAs, each one using different languages, technologies and communication protocols. As \person{Parejo \etal}  suggest  in \cite{SURVEYMOFS}, a standardization of the presented (and other) frameworks should be carried out. Moreover, it is difficult to access, in a public way, to available public systems to execute existing EAs to validate experiments and save time, encouraging Open Science.
 
 % y todo esto es interesante para mi tesis porque... ¡No la has
 % mencionado ni una vez! - JJ FERGU: Cambiado lo anterior y lo siguiente

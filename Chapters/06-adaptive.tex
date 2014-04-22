@@ -157,62 +157,13 @@ and computational demands. %coñe, no lo digas
                            %computacionales? - JJ
  The problems to evaluate are the Massively Multimodal Deceptive
 Problem (MMDP) \cite{goldberg92massive} and the OneMax problem
-\cite{SchafferOnemax91}. Each one requires different actions/abilities by the GA
+\cite{SchafferOnemax91}. Both problems have been described previously in Section \ref{sec:osgiliath:experiments}. Each one requires different actions/abilities by the GA
 at the level of population sizing, individual selection and
 building-blocks mixing. % Podías citar los trabajos de Juanlu en esto
                         % y/o Lobo y/o Carlos Fernandes - JJ
-The MMDP is designed to be difficult for an EA, due to
-its multimodality and deceptiveness. % sez who? - JJ
-Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending of
-the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:mmdpvalues}.  
-
-\begin{SCtable}[][t]
-\resizebox{5cm}{!}{
-\begin{tabular}{cc}
-\hline
-\rowcolor{colorCorporativoSuave}Unitation&Subfunction value\\
-\hline\hline
-\rowcolor{colorCorporativoMasSuave}0 & 1.000000 \\
-\hline
-\rowcolor{colorCorporativoSuave}1 & 0.000000 \\
-\hline
-\rowcolor{colorCorporativoMasSuave}2 & 0.360384 \\
-\hline
-\rowcolor{colorCorporativoSuave}3 & 0.640576\\
-\hline
-\rowcolor{colorCorporativoMasSuave}4 & 0.360384\\
-\hline
-\rowcolor{colorCorporativoSuave}5 & 0.000000\\
-\hline
-\rowcolor{colorCorporativoMasSuave}6 & 1.000000\\
-\hline
-
-\end{tabular}
-}
-\caption{ Basic deceptive bipolar function ($s_i$) for MMDP.}
-\label{table:mmdpvalues} %Un grafiquito queda más mono - JJ
-
-\end{SCtable}
-%%%%%%%%%%%%%%%%%%
 
 
 
-The fitness value is defined as the sum of the $s_i$ subproblems with an optimum of $k$ (Equation \ref{eq:mmdp}).
-The search space is composed of $2^{6k}$ combinations from which there
-are only $2^k$ global solutions with $22^k$ deceptive
-attractors. Hence, a search method has to find a global solution
-out of $2^{5k}$ additionally to deceptiveness. In this work $k=25$. % ¿Porque yo lo valgo? - JJ
-
-\begin{equation}\label{eq:mmdp}
-f_{MMDP}(\vec s)= \sum_{i=1}^{k} fitness_{s_i}
-\end{equation}
-
-OneMax is a simple linear problem  % ¿Y eso cubre un rango amplio de
-                                % dificultad y no sé qué? - JJ 
-that consists in maximising the number of ones in a binary string. That is, maximize the expression:
-\begin{equation}
-f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
-\end{equation}
 
 \section{Hardware and parameter configurations}
 
