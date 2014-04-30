@@ -833,30 +833,36 @@ be transformed into a service to use inside OSGi. %For example, the
 \includegraphics[width=10cm]{gfx/osgiliath/axis.png}
 
 
-\caption{Communication with other kind of services. ECF service automatically creates WSDL interfaces for the OSGi interfaces to be used from other environments}
+\caption{Communication with other kind of services. Apache CXF service automatically creates WSDL interfaces for the OSGi interfaces to be used from other environments}
 \label{AXISFIGURE}
 \end{SCfigure}                                
 
-To test the differences in the communication protocol two configurations are going to be used. The first one ({\em OSGi configuration}) expose a distributed OSGi service to be automatically bound by another node, being undistinguishable from a local one. The second one ({\em WSDL configuration}) automatically generates a WSDL interface without modification of the code and it is accessed from a different programming language (Python). The service are the implementation {\em Binary Initializer}, which receives the number of individuals to generate with the size given in the {\em Parameters} service. Results are shown in Table \ref{tab:resultswsdl}, which shows the average time in milliseconds for each genome size and configuration. As expected (and explained in Section \ref{sec:osgiliath:technology}), the transmission time is higher in the WSDL configuration, because the extra markup added in the SOAP requests and responses. NOTA! LOS TIEMPOS AUN NO LOS HE CALCULADO.
+To test the differences in the communication protocol two configurations are going to be used. The first one ({\em OSGi configuration}) expose a distributed OSGi service to be automatically bound by another node, being undistinguishable from a local one (based in the OSGi Remote Specification standard). The second one ({\em SOAP configuration}) automatically generates a WSDL interface without modification of the code and it is accessed from a different programming language (\definicion{PHP}{PHP Hypertext Pre-processor} 5). The service are the implementation {\em Binary Initializer}, which receives the number of individuals to generate with the size given in the {\em Parameters} service. The individual size is 10 genomes and each configuration and number of individuals requested has been executed 100 times. Two Ubuntu 11.10 Intel(R) Core(TM)2 Quad CPU Q6600 machines in the same network have been used.
+
+Results are shown in Table \ref{tab:resultswsdl} and plotted in Figure \ref{fig:osgiliath:boxplot}, which show the average time in seconds for each individual number and configuration. As expected (and explained in Section \ref{sec:osgiliath:technology}), the transmission time is higher in the SOAP configuration, because the extra markup added in the SOAP requests and responses for each individual transmitted. However, using the WSDL interface and SOAP transmission mechanism have advantages with respect to OSGi Remote Specification: language independence and public exposition of the interfaces for automatically create remote clients.
 
 \begin{SCtable}[][t]
 \resizebox{9cm}{!}{
                \begin{tabular}{lll}
 \hline
 
-\rowcolor{colorCorporativoSuave}   Genome size   & OSGi configuration & WSDL configuration \\ \hline \hline
-\rowcolor{colorCorporativoMasSuave}100    &  $\pm$      & $\pm$ \\ \hline
-\rowcolor{colorCorporativoSuave}500       & $\pm$  & $\pm$  \\ \hline
-\rowcolor{colorCorporativoMasSuave}1000   &  $\pm$      & $\pm$\\ \hline 
-\rowcolor{colorCorporativoSuave}2000      &  $\pm$    & $\pm$ \\ \hline 
+\rowcolor{colorCorporativoSuave}   Number of individuals   & OSGi configuration & SOAP configuration \\ \hline \hline
+\rowcolor{colorCorporativoMasSuave}250    & 0.015 $\pm$ 0.007     & 0.08 $\pm$ 0.001  \\ \hline
+\rowcolor{colorCorporativoSuave}500       & 0.018 $\pm$ 0.001       & 0.16 $\pm$ 0.003  \\ \hline
+\rowcolor{colorCorporativoMasSuave}1000   & 0.029 $\pm$ 0.001     & 0.326 $\pm$ 0.007 \\ \hline 
+\rowcolor{colorCorporativoSuave}2000      & 0.052 $\pm$ 0.008     & 0.641 $\pm$ 0.012 \\ \hline 
 \end{tabular}
     }    
-\caption{Transmission time (average $\pm$ std. dev.) for each configuration and genome sizes.}
+\caption{Transmission time (average $\pm$ std. dev.) for each configuration and number of individuals.}
 \label{tab:resultswsdl}
 \end{SCtable}
 
-
-
+\begin{SCfigure}[20][htb]
+\centering
+\includegraphics[width=8cm]{gfx/osgiliath/soapplot.pdf}
+\caption{Transmission time for OSGi and SOAP configurations.}
+\label{fig:osgiliath:boxplot}
+\end{SCfigure}
 
 
 
@@ -961,10 +967,9 @@ is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la 
 
 In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}). A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
 
-Then, in the implementation step, a comparison of two SOA technologies based in standards have been performed: OSGi has been selected because a number of advantages over Web Services, such as speed and ease of development. The abstract services of previous steps have been implemented to form a basic GA as an example. These services can be combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). 
+Then, in the implementation step, a comparison of two SOA technologies based in standards have been performed: OSGi has been selected because a number of advantages over Web Services, such as transmission speed and ease of development. The abstract services of previous steps have been implemented to form a basic GA as an example. These services can be combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). 
 
-This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks.
-
+This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks. Two different transmission mechanisms have been tested (ECF Generic and SOAP) and two different standards for exposing services (WSDL and OSGi Remote Specification) have been used. Exposing services with public standards helps to Open Science, as explained in Section \ref{sec:soa:benefitsofsoa}.
 
 The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/LGPL license.
 
