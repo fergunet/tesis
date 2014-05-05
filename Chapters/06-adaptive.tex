@@ -1,7 +1,7 @@
 \myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} final aim of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
+\lettrine{T}{he} last objective of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
 %FERGU: añadido el párrafo de arriba para enlazar con la tesis
 
 This question is interesting due to new trends in distributed computing presented in Chapter \ref{chap:soa}, such as Cloud Computing, GRID
@@ -13,18 +13,18 @@ leading to heterogeneous computational devices, including for instance, laptops,
 tablets or desktop PCs, working in the same
 environment. Thus, many laboratories, which do not count with classic
 clusters but the usual workstations used by scientists, can leverage
-this motley set as a heterogeneous cluster. As explained in Chapter \ref{chap:soa} possible way to increase 
-the interoperability within these system is Service Oriented Architecture, and specifically, the use of OSGiLiath framework as an example.
+this motley set as a heterogeneous cluster. As explained in Chapter \ref{chap:distributedEAs}, Distributed Evolutionary
+Algorithms have been tested successfully in this type of systems and they have 
+become very popular because their implementation is
+not complex \cite{AsynchronousMultidemeMerelo08}. % Cita del asynchronous EAs del PPSN de Dortmund - JJ FERGU: hecho
+Also, as presented in Chapter \ref{chap:soa}, a possible way to increase 
+the interoperability within these systems is SOA, and specifically, the use of OSGiLiath framework as an example.
 
 
 % frase guay, pero tienes
                                 % que enganchar todo esto con LA TESIS
                                 % - JJ FERGU: Hecho
 
-Also, as explained in Chapter \ref{chap:distributedEAs}, Distributed Evolutionary
-Algorithms have been tested successfully in this type of systems and they have 
-become very popular because their implementation is
-not complex. % Cita del asynchronous EAs del PPSN de Dortmund - JJ
 
 
 
@@ -33,7 +33,7 @@ not complex. % Cita del asynchronous EAs del PPSN de Dortmund - JJ
 In this chapter, OSGiliath will be used % ¿Se podía haber usado otra
                                 % cosa? ¿Esto es exclusivo de
                                 % Osgiliath? - JJ FERGU: Frase al principio del capitulo
- to create a heterogeneous distributed system to be used to develop a scientific research related with PATATIN.
+ to create a heterogeneous distributed system to be used to develop a scientific research related with parameter tuning and control (explained in Section \ref{chap:distributed:pcontroltuning}). Several services to deal with automatic binding and parameter control will be developed following SOA-EA, and deployed in different cluster configurations.
 
 
 
@@ -76,9 +76,9 @@ In this chapter, OSGiliath will be used % ¿Se podía haber usado otra
              % hecho como un hecho consumado. - JJ FERGU: BORRADO TODO Y PUESTO A CONTINUACIÓN
 
 \section{Background and problem definition}
-In Section \ref{subsec:distributed:adapthetero} several works about adaptation in heterogeneous environment were presented. For example, the work of \person{Alba \etal}, where dEAs with the same parameter configuration could be more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with homogeneous devices, or the work of \ref{Gong and Fukunaga}, where different parameters in each island increased performance.
+In Section \ref{subsec:distributed:adapthetero} several works about adaptation in heterogeneous environment were presented. For example, the work of \person{Alba \etal}, where dEAs with the same parameter configuration could be more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with homogeneous devices, or the work of \person{Gong and Fukunaga}, where different parameters in each island increased performance.
 
- Therefore, OSGiLiath will be used in this chapter to give an insight to the following questions:
+ These trends have motivated the usage of OSGiLiath in this chapter to give an insight to the following research questions:
 \begin{itemize}
  \item Can a distributed EA be adapted to leverage the capability of a
    heterogeneous cluster?  % ¿Esa son las preguntas de la TESIS?
@@ -87,24 +87,26 @@ In Section \ref{subsec:distributed:adapthetero} several works about adaptation i
    computational power affects the execution time and number of
    evaluations?  % Y esta pregunta es interesante porque... - JJ
  \item Is there any difference between using the same sub-population sizes in a homogeneous and a heterogeneous cluster?
- \item How is each stage of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
+ \item How is each service of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
    configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ
 \end{itemize}
 
-The aim of this chapter is to use OSGiLiath to demonstrate if adapting the sub-population size to the computational power of an heterogeneous cluster nodes presents an improvement in execution time. New services will be created to TERMINA
+The aim of this chapter is to use OSGiLiath to demonstrate if adapting the sub-population size to the computational power of an heterogeneous cluster nodes presents an improvement in execution time. New services will be created to deal with different distributed nodes and setting the population sizes.
 
 
 
 
 \subsection{Algorithm to develop}
-This subsection shows the algorithm to develop
+
 The experimentation is centred in a distributed GA. Figure \ref{fig:EAused} shows the pseudo-code of the used algorithm. 
 The algorithm is steady-state, i.e. every generation the offspring is
-mixed with the parents and the worst individuals are removed. % 1: los
+mixed with the parents and the worst individuals are removed. This algorithm is general enough and not designed specifically for this study.
+
+% 1: los
                                 % detalles de los EAs tendrías que
                                 % haberlos dichos en su capítulo. 2:
                                 % ¿Por qué SS? ¿Si no lo fuera, sería
-                                % cierto? - JJ
+                                % cierto? - JJ FERGU: añadida arriba
  The used neighbourhood topology for migration between islands (nodes)
  is a ring (see Figure \ref{fig:ring} in Chapter
  \ref{chap:distributedEAs}). The best individual is sent to the
@@ -159,8 +161,7 @@ Therefore, a mechanism to stop all the executing nodes must be implemented.
 %suficientes, para que no te digan el clásico "Prueba otro algoritmo"
 %- JJ
 
-The results should be independent of the problem used, but we have
-selected the next ones because they cover different characteristics
+The results should be independent of the problem used, but the next ones have been selected because they cover different characteristics
 and computational demands. %coñe, no lo digas
                            %literlamente. ¡Justifícalo todo! ¿Qué
                            %características cubren? ¿Qué demandas
@@ -168,8 +169,8 @@ and computational demands. %coñe, no lo digas
  The problems to evaluate are the Massively Multimodal Deceptive
 Problem (MMDP)  and the OneMax problem. Both problems have been described previously in Section \ref{sec:osgiliath:experiments}. Each one requires different actions/abilities by the GA
 at the level of population sizing, individual selection and
-building-blocks mixing. % Podías citar los trabajos de Juanlu en esto
-                        % y/o Lobo y/o Carlos Fernandes - JJ
+building-blocks mixing \cite{AsynchronousMultidemeMerelo08}. % Podías citar los trabajos de Juanlu en esto
+                        % y/o Lobo y/o Carlos Fernandes - JJ FERGU: pongo este
 
 
 
@@ -217,9 +218,9 @@ cluster nodes presents an improvement in execution time. % Hombre, ya
                                 % unas preguntas? ¿Qué ha pasado con
                                 % eso? ¿Cómo engancha eso con LA
                                 % TESIS? - JJ
-In this work, for a possible offline way to calculate the computational performance of each node, % ein? - JJ fERGU
-we have used the average number of generations obtained in the
-HoSi/HeHa configuration for both problems to determine the
+In this chapter, for a possible offline way to calculate the computational performance of each node, % ein? - JJ fERGU
+ the average number of generations obtained in the
+HoSi/HeHa configuration for both problems will be used to determine the
 computational power of the heterogeneous machines. This comparison
 takes into account all the evolutionary process in a fair manner
 (proportional to the memory, processor and network usage), instead of a
@@ -227,17 +228,17 @@ traditional benchmark that usually relies only on the CPU
 speed. %Hay benchmarks de todo tipo. No se puede hablar de benchmarks
        %"tradicionales" a no ser que tengas pruebas de dónde se
        %utilizan y lo cites - JJ
- Although this is not obviously the best way, %¿Cuál es la mejor
-                                %manera? ¿Por qué no la usas? - JJ
- it is a possible
-way to establish the computational power for the experiments of this
-work and to determine if changing the sub-population size according
+ %Although this is not obviously the best way, %¿Cuál es la mejor
+                                %manera? ¿Por qué no la usas? - JJ FERGU: comentado
+ %it is a possible
+The proposed technique is a possible way to establish the computational power for the experiments of this
+chapter and to determine if changing the sub-population size according
 the computational power reduces the computing time of the whole
-approach. It should be considered that the contribution of this work
-is not the way we have computed these sizes, but compare the algorithm
-with parameters adapted to their power. % está mal escrito y aunque
+approach. %It should be considered that the contribution of this chapter
+%is not the way we have computed these sizes, but compare the algorithm
+%with parameters adapted to their power. % está mal escrito y aunque
                                 % estuviera bien no se entiende y/o
-                                % suena a excusa - JJ
+                                % suena a excusa - JJ FERGU: lo quito, tampoco dice nada
 
 Thus, we have used the obtained average number of generations in the
 previous sub-section (Table \ref{table:generations}) to set
@@ -254,12 +255,13 @@ versions, or number of processes being executed (inside a node). % ¿Y
 
 \subsection{Adaptive Size configuration}
 
-Finally, in order to validate the hypothesis that adapting the
-sub-population sizes to computational resources of a heterogeneous
-cluster leads to an improvement of the time needed to obtain the
-solution,  % el inglés de este capítulo es desastroso. Por favor,
-           % revisalo bien - JJ
-we propose a third configuration. In this experiment, the adaptation
+%Finally, in order to validate the hypothesis that adapting the
+%sub-population sizes to computational resources of a heterogeneous
+%cluster leads to an improvement of the time needed to obtain the
+%solution,  % el inglés de este capítulo es desastroso. Por favor,
+           % revisalo bien - JJ FERGU: reescrito abajo
+A third experiment is proposed to validate the hypothesis of sub-population 
+size adaptation to computational resources. In this case, the adaptation
 of the sub-population size to the computational power of the islands
 (nodes) is performed during runtime (online). % tienes que cualificar
                                 % la hipótesis, porque la situación es
@@ -286,7 +288,7 @@ If the new size is larger than the actual size, new individuals are
 added to the sub-population cloning random existent ones. % ¿Por qué?
                                 % No lo escribas todo como si pasaras
                                 % por aquí, ¡es una tesis! - JJ
-Otherwise, the sub-population must be reduced and thus, the worst are removed.
+Otherwise, the sub-population must be reduced and thus, the worst are removed. Therefore, the service {\em Population} is used to manage the population, as explained in Chapter \label{chap:osgiliath}.
 
 With this possible online adaptation scheme, each node only requires
 to receive information from one of the neighbours and not from the
@@ -298,26 +300,29 @@ the number of current generations are equal in all nodes during
 runtime. % cuidado con el inglés, dos correcciones aquí - JJ
 
 \subsection{Restrictions}
-Once the problem to solve, the algorithm to implement and the different configuration have been described, the restriction to the services to develop are the next:
+Once the problem to solve, the algorithm to implement and the different configuration have been described, the restriction to the services to develop are the summarized:
 \begin{itemize}
 \item There is not a central control node.
+\item The number of nodes participating in the experiment should not be fixed.
 \item All nodes automatically bind the available distribution (migration) services.
-\item The nodes must stop when the optimum is found
-\item Services must be executed in heterogeneous machines with different operating systems and architectures
+\item The nodes must stop when the optimum is found.
+\item Services must be executed in heterogeneous machines with different operating systems and architectures.
+\item It is necessary a log service to show the current state of the algorithm and service timings.
 \end{itemize}
 
+
 \section{Designing the services with SOA-EA}
-Once the requirements of the system to develop has been presented, the SOA-EA methodology (explained in Chapter \ref{chap:soaea}) is used.
+Once the description of the system to develop has been presented, the SOA-EA methodology (explained in Chapter \ref{chap:soaea}) is used to create a SOEA that fulfils the previous requirements.
 
 \subsection{Identification}
 
-In addition of the services for calculating the fitness of the problems ({\em MMDPFitnessCalculator} and {\em OneMaxFitnessCalculator}), or the {\em OptimumStopCriterion} and crossovers and mutators created in previous chapter, new services should be added. The first one deals with the migration between islands, so, a service {\em Migrator} (to receive and send individuals from/to other nodes) needs to be created. Also, it is necessary a service to start or stop the remote loops in all islands at the same time (service {\em Launcher}).
+In addition of the services for calculating the fitness of the problems ({\em MMDPFitnessCalculator} and {\em OneMaxFitnessCalculator}), or the {\em OptimumStopCriterion} and crossovers and mutators created in previous chapter, new services should be added. The first one deals with the migration between islands, so, a service {\em Migrator} (to receive and send individuals from/to other nodes) needs to be created. Also, it is necessary a service to start or stop the remote loops in all islands at the same time (service {\em Launcher}). Finally, it is necessary a to manage the received individuals from the migrators and control the population size, this can be performed in a new {\em Replacer} interface: {\em AdaptiveReplacer}.
 
 \subsection{Specification}
 
-The service {\em Launcher} and its specification {\em ExperimentLauncher} automatically binds all available {\em Algorithm} services in the network. This service can start all the distributed EAs at the same time. When one of them has finished, it has to notify the others to stop.
+The service {\em Launcher} and its specification {\em ExperimentLauncher} automatically binds all available {\em Algorithm} services in the network. This service can start all the distributed EAs at the same time (for example, from command line when all nodes are online and they services bound). When one of the EAs has finished, it has to notify the others to stop. 
 
-In this case, each node offers a migration buffer to
+To perform the migration taking into account the previous requirements, each node offers a migration buffer to
 accept foreign individuals. Also, in order to reduce bottlenecks in
 distributed executions, asynchronous communication needs to  be provided
 to avoid idle time using reception buffers (that is, the algorithm
@@ -326,7 +331,10 @@ used again until the reception is done). This kind of communication
 offers an excellent performance when working with different nodes and
 operating systems, as demonstrated in \cite{AsynchronousMerelo08}.
 
-The {\em Migrator}  has two operations: {\em send} and {\em read}. The first one is used to send the individuals to the migrator, and the other is used to read the individuals of that migrator. Usually, each node (island) has one migrator to receive individuals, and references to the other nodes' migrators. In our case, the implementation of {\em Replacer} binds the local {\em Migrator} to write in it the individual(s) to sent. One example of Migrator implementation is the {\em MigratorRingBuffer}: this class implements that interface and automatically binds all the Migrators available in the environment (in a vector of references) thanks to the bind/unbind methods of declarative services and ECF. So, the migrators can be added during runtime, and no stop the algorithm if one node fails.  The {\em MigratorRingBuffer} sends the individuals to the remote Migrator whose id is inmediatelly higher than the local id (or the smaller, if it not exist) following a ring topology. Figure \ref{MIGRATOR} shows this configuration. The {\em Replacer} implementation, a reference to the local {\em Migrator} interface just send and read the individuals. The {\em MigratorRingBuffer} implementation binds an unbinds other migrators in other nodes, keeping a reference to these remote service interfaces. Several properties can added to the service allows to ECF automatically announce the implementation to all nodes in the network and no specific code is required to change from one distribution mechanism to another. 
+The {\em Migrator}  has two operations: {\em send} and {\em read}. The first one is used to send the individuals to the migrator, and the other is used to read the individuals of that migrator. Usually, each node (island) has one migrator to receive individuals, and references to the other nodes' migrators. In our case, the implementation of {\em Replacer} binds the local {\em Migrator} to write in it the individual(s) to sent. In this chapter, the {\em Migrator} implementation is the {\em MigratorRingBuffer}: this class implements that interface and automatically binds all the Migrators available in the environment (in a vector of references). So, the migrators can be added during runtime, and no stop the algorithm if one node fails.  The {\em MigratorRingBuffer} sends the individuals to the remote Migrator whose id is inmediatelly higher than the local id (or the smaller, if it not exist) following a ring topology. Figure \ref{MIGRATOR} shows this configuration. The {\em Replacer} implementation, a reference to the local {\em Migrator} interface just send and read the individuals. The {\em MigratorRingBuffer} implementation binds an unbinds other migrators in other nodes, keeping a reference to these remote service interfaces. The {\em AdaptiveReplacer} implementation binds the local {\em Migrator} service and it manages the population sizes.
+
+
+
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -345,7 +353,7 @@ The {\em Migrator}  has two operations: {\em send} and {\em read}. The first one
 
 \subsection{Implementation and Deployment}
 
-All services have been implemented in OSGiLiath. The {\em Migrator} and {\em Algorithm} services are exposed using ECF Generic Server, as explained in Section \ref{sec:osgiliath:technology}). This services are, therefore, automatically bound to each node in the clusters, without notify their IP address. Extra code to manage the communication has not been added, as all services are undistinguishable of being remote or local.
+All services have been implemented in OSGiLiath. The {\em Migrator} and {\em Algorithm} services are exposed using ECF Generic Server, as explained in Section \ref{sec:osgiliath:technology}). This services are, therefore, automatically bound to each node in the clusters, without notify their IP address. Extra code to manage the communication has not been added, as all services are undistinguishable of being remote or local. Remote {\em Migrators} and {\em Algorithms} are bound thanks to the bind/unbind methods of declarative services and ECF (explained in Section \ref{sec:osgiliath:technology}). Several properties can added to the service allows to ECF automatically announce the implementation to all nodes in the network and no specific code is required to change from one distribution mechanism to another.
 
 The services have been deployed in two different computational systems: a {\em
   heterogeneous cluster} % no es un cluster, simplemente un grupillo
@@ -381,7 +389,8 @@ the nodes. % El espacio HeHa es muy amplio. Podrías haber probado
 
 \section{Experimental results}
 
-Once the services have been created, the different combinations of systems and parameter are evaluated.
+Once the services have been created, the different combinations of systems and parameter are evaluated. Table \ref{table:parameters} summarizes all the parameters used in the
+experiments. % ¿Explicación? ¿Has probado otros?  - JJ
 
 
 
@@ -404,8 +413,7 @@ Once the services have been created, the different combinations of systems and p
 
 
 
-Table \ref{table:parameters} summarizes all the parameters used in the
-experiments. % ¿Explicación? ¿Has probado otros?  - JJ
+
 
 
 
@@ -438,7 +446,7 @@ experiments. % ¿Explicación? ¿Has probado otros?  - JJ
 \rowcolor{colorCorporativoSuave}Sub-population sizes in HeSi for MMDP
 & 374, 364, 262 and 24 (from N1 to N4) (see Section \ref{subsec:adaptive:hesisizes})\\ \hline % ¿REsultado? ¿Cómo se
                                 % ha obtenido? - JJ FERGU: añado referencia
-\rowcolor{colorCorporativoMasSuave}Sub-population sizes in HeSi for OneMax & 396,  382, 232 and 14 (from N1 to N4)\\ \hline
+\rowcolor{colorCorporativoMasSuave}Sub-population sizes in HeSi for OneMax & 396,  382, 232 and 14 (from N1 to N4) (see Section \ref{subsec:adaptive:hesisizes})\\ \hline
 \hline
 \rowcolor{colorCorporativoSuave}Maximum island size in AdSi & 1024 \\ \hline
 \rowcolor{colorCorporativoMasSuave}Minimum island size in AdSi & 16 \\ \hline
@@ -855,7 +863,7 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 
 This sub-section shows the analysis the time spent by each node of the clusters
 in every %¿lo haces tú o la subsección? - JJ FERGU: cambiado
- stage of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-population size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
+ service of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-population size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
 
 Results also show how the stages of the algorithms depends on the node
 of execution. For example, recombination needs more time than mutation
@@ -965,7 +973,7 @@ how the diversity and search guidance is maintained in the whole system.
 
 \section{Conclusions}
 
-In this chapter OSGiLiath is used to address a UN QUE. Services for migration and algorithm control have been created to be automatically bound.
+
 
 % No. Tratamos de
                                 % probar un objetivo, dilo aquí!!!!!
@@ -993,7 +1001,7 @@ In this chapter OSGiLiath is used to address a UN QUE. Services for migration an
                                 % combinación entre cambio de
                                 % parámetros y adaptación al nodo - JJ 
 
-OSGiLiath has been used to present a study on the adaptation of the sub-population sizes of a distributed EA to the computational power of the different nodes of an heterogeneous cluster. Two adaptation schemes (offline and online) that use information of the computational load of the algorithm have been tested.
+In this chapter, OSGiLiath has been used to present a study on the adaptation of the sub-population sizes of a distributed EA to the computational power of the different nodes of an heterogeneous cluster.  Different services for migration and algorithm control have been created to be automatically bound. Two adaptation schemes (offline and online) that use information of the computational load of the algorithm have been tested.
 
 Results show that adapting (online or offline) the sub-population size to the computational power of each node in the heterogeneous cluster yields significantly
 better results in time than keeping the same parameter in all nodes. This advantage is due to the combination of the heterogeneous parameters with the heterogeneity of the machines. On the contrary, the same (heterogeneous) parameter setting in all islands of the homogeneous cluster could not improve the results than considering the same parameter value in all nodes.
@@ -1004,7 +1012,7 @@ Furthermore, changing the sub-population size affects to stages
 of the algorithm that are independent of this parameter, such as
 the migration. The sub-population size adaptation is also affected by the problem to solve.
 
-In this work, as a possible offline parameter setting, we have calculated the computational power of each node proportionally 
+In this chapter, as a possible offline parameter setting, we have calculated the computational power of each node proportionally 
 to the average number of generations of the homogeneous parameter set. Moreover, a possible way to adapt 
 online the sub-population sizes has been performed comparing the current generation with
  the neighbour generation. These results are a promising starting for adapting EAs to the
@@ -1017,7 +1025,8 @@ In the future it would be interesting to check the scalability of this
 approach, using more computational nodes and larger problem
 instances. In addition, other parameters such as migration rate or
 crossover probability could be adapted to the execution
-nodes. Other appropriate benchmarks to analyse the algorithm will be also used to lead to automatic
+nodes. Different implementation of these services could be automatically enabled depending of the current state of the EA and the node. 
+Other appropriate benchmark services to analyse the algorithm will be also used to lead to automatic
 parameter adaptation in runtime (online), with different nodes entering or
 exiting in the topology, or adapting the parameters to the current load of the
 system. 
