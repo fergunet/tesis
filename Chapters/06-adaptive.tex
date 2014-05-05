@@ -1,4 +1,13 @@
 \myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}
+
+
+
+\begin{flushright}{\slshape
+    It's a wonderful thing, as a writer, to be 
+    \\given parameters and walls and barriers.} \\ \medskip
+    --- {Neil Gaiman}
+\end{flushright}
+
 \minitoc\mtcskip
 \vfill
 \lettrine{T}{he} last objective of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
@@ -143,7 +152,7 @@ Therefore, a mechanism to stop all the executing nodes must be implemented.
 \end{minipage}
 \end{lrbox}
 
-\begin{SCfigure}[20][htb]
+\begin{SCfigure}[20][tb]
 \usebox{\algoadaptativebox}
 \caption{Pseudo-code of the used dEA: a distributed Genetic Algorithm
   (dGA).} % ¿Esto es tuyo? ¿Genérico? Si es genérico a) debería ir a
@@ -336,7 +345,7 @@ The {\em Migrator}  has two operations: {\em send} and {\em read}. The first one
 
 
 
-\begin{SCfigure}[20][htb]
+\begin{SCfigure}[20][tb]
 \centering
 \includegraphics[width=10cm]{gfx/osgiliath/migrator.png}
 
@@ -566,7 +575,7 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 
 
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 
 %\subfigure[Heterogeneous cluster]{
@@ -583,7 +592,7 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 \label{fig:timeMMDP}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 
 %\subfigure[Heterogeneous cluster]{
@@ -615,16 +624,16 @@ them). %no se entiende - JJ
  nodes during all runs.  
 
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
- \includegraphics[scale =0.4] {gfx/adaptiveresults/generationsMMDPhomosize.pdf}
+ \includegraphics[angle=-90,scale =0.4] {gfx/adaptiveresults/generationsMMDPhomosize.pdf}
 \caption{Average fitness in the first 1000 milliseconds of execution of the four nodes of the heterogeneous cluster with the same sub-population sizes (HoSi/HeHa) for the MMDP problem.}
 \label{fig:hosiheha}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
- \includegraphics[scale =0.4] {gfx/adaptiveresults/generationsMMDPheterosize.pdf}
+ \includegraphics[angle=-90,scale =0.4] {gfx/adaptiveresults/generationsMMDPheterosize.pdf}
 \caption{Average fitness in the first 1000 milliseconds of execution of the four nodes of the heterogeneous cluster with different sub-population sizes (HeSi/HeHa) for the MMDP problem.}
 \label{fig:hesiheha}
 \end{SCfigure}
@@ -632,14 +641,14 @@ them). %no se entiende - JJ
 With respect to AdSi/HeHa, %agh, regarding to. ¡Amoragismos no! - JJ FERGU: a lo mejor lo puso él xD (lo cambio).
 results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, better than HoSi/HeHa), but this time no previous tuning has been required.  Average sub-population sizes in each node are shown in Table \ref{table:sizesMMDP}. The proportions of size are similar to the proportions in Table \ref{table:generations}. Figure \ref{fig:sizesMMDP} plots all the possible sizes in each node during all the runs. This figure shows that the variation of the sub-population sizes lies proportionally to the computational power of each node. The outliers in boxplots are produced during the size changing, as it can be seen in Figure \ref{fig:sizesMMDP1ejec}. As N4 is the slower node with difference it keeps its size always close to the minimum (16 individuals).
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
  \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP.pdf}
 \caption{Boxplots of the sub-population sizes in each node during all the runs for the MMDP problem.}
 \label{fig:sizesMMDP}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
  \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP1ejec.pdf}
 \caption{Population size in each node during one execution to solve the MMDP problem.}
@@ -648,7 +657,7 @@ results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, b
 
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{6cm}{!}{
 \begin{tabular}{ccccc}
 \hline
@@ -705,7 +714,7 @@ HeN1 in an extremely large amount of time when using HoSi (every 64
 generations). 
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{11cm}{!}{
 \begin{tabular}{ccccc}
 \hline
@@ -723,7 +732,7 @@ generations).
 
 
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 
 %\subfigure[Heterogeneous cluster]{
@@ -738,7 +747,7 @@ generations).
 \label{fig:timeOneMax}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 
 %\subfigure[Heterogeneous cluster]{
@@ -755,16 +764,16 @@ generations).
 
 
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering 
-\includegraphics[scale =0.4] {gfx/adaptiveresults/generationsONEMAXhomosize.pdf}
+\includegraphics[angle=-90,scale =0.4] {gfx/adaptiveresults/generationsONEMAXhomosize.pdf}
 \caption{Average fitness in the first 15000 milliseconds of execution of the four nodes of the heterogeneous cluster with the same sub-population sizes (HoSi/HeHa) for the OneMax problem.}
 \label{fig:gensonemaxhomosize}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
-\includegraphics[scale =0.4] {gfx/adaptiveresults/generationsONEMAXheterosize.pdf}
+\includegraphics[angle=-90,scale =0.4] {gfx/adaptiveresults/generationsONEMAXheterosize.pdf}
 \caption{Average fitness in the first 15000 milliseconds of execution of the four nodes of the heterogeneous cluster with different sub-population sizes (HeSi/HeHa) for the OneMax problem.}
 \label{fig:gensonemaxheterosize}
 \end{SCfigure}
@@ -772,14 +781,14 @@ generations).
 
 In the AdSi/HeHa configuration significantly better results in terms of execution time (and number of evaluations) are also attained, and even better than those obtained with HeSi. Average sizes (Table \ref{table:sizesONEMAX}) and boxplots (in Figure \ref{fig:sizesONEMAX}) during all the runs also show proportionality to the computational power of each machine. As in MMDP case, some oscillations (outliers in boxplots) may appear during the execution (as it can be seen in Figure \ref{fig:sizesONEMAX1ejec}).
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesONEMAX.pdf}
 \caption{Boxplots of the sub-population sizes in each node during all the runs for the OneMax problem.}
 \label{fig:sizesONEMAX}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesONEMAX1ejec.pdf}
 \caption{Sub-population size in each node during one execution to solve the OneMax problem.}
@@ -787,7 +796,7 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 \end{SCfigure}
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{6cm}{!}{
 \begin{tabular}{ccccc}
 \hline
@@ -802,7 +811,7 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{11cm}{!}{
 \begin{tabular}{cccccc}
 \hline
@@ -830,7 +839,7 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 \end{SCtable}
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{11cm}{!}{
 \begin{tabular}{ccccccc}
 \hline
@@ -882,21 +891,21 @@ it must be taken into account that the duration of each part of the
 algorithm is not related to the time to attain the optimum, but rather to
 how the diversity and search guidance is maintained in the whole system.  
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 \includegraphics[scale =0.19] {gfx/adaptiveresults/timingMMDP.pdf}
 \caption{Average running time in each stage of the algorithm for the MMDP problem.}
 \label{fig:MMDPbars}
 \end{SCfigure}
 
-\begin{SCfigure}[htb]
+\begin{SCfigure}[tb]
 \centering
 \includegraphics[scale =0.19] {gfx/adaptiveresults/timingONEMAX.pdf}
 \caption{Average running time in each stage of the algorithm for the ONEMAX problem.}
 \label{fig:ONEMAXbars}
 \end{SCfigure}
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{11cm}{!}{
 \begin{tabular}{ccccccc}
 \hline
@@ -935,7 +944,7 @@ how the diversity and search guidance is maintained in the whole system.
 
 
 
-\begin{SCtable}[][htb]
+\begin{SCtable}[][tb]
 \resizebox{11cm}{!}{
 \begin{tabular}{ccccccc}
 \hline
