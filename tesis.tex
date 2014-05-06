@@ -454,7 +454,7 @@ p{0.95\textwidth}}
 {
 %-----------------------------  PONER LETTRINE EN SECCIONES Y NO INDENT EN SUBSECCIONES!!!
 \myPart{Introduction}\label{part:introduccion}
-%\ifthenelse{\equal{\value{IncluyeCapitulo}}{1}}{\include{Chapters/intro}}{\myChapter{Introducción}\label{chap:intro}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/00-intro}}{\myChapter{Introduction}\label{chap:introduction}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/02-distributedEAs}}{\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
@@ -465,7 +465,7 @@ p{0.95\textwidth}}
 %-----------------------------
 \myPart{Experimental Results}\label{part:resultadosExperimentales}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/05-osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/06-adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/06-adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/07-art}}{\myChapter{HSV and RGB comparison in Evolutionary Art}\label{chap:art}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{3}}{\include{Chapters/08-rts}}{\myChapter{Tree depth influence in RTS games}\label{chap:rts}}
 

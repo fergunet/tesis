@@ -1,45 +1,99 @@
-\myChapter{Evolutionary Algorithms}\label{chap:introduction}
+\myChapter{Introduction}\label{chap:introduction}
 \minitoc\mtcskip
 \vfill
 
-%%% IMPORTANTE: JJ NO REVISES ESTO AUN!!!!!!!!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%MENSAJE A JJ: JJ, NO CORRIJAS LA SECCION intro:eas ni intro:challenges AÚN!!!!!!!!!!!
 
-\lettrine{E}{volutionary}
+%(bueno, no corrijas nada todavía, que está superverde)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
-\section{Motivation of the thesis}
+\section{Thesis goal} %FERGU: esto es un párrafo que describe el objetivo de la tesis.
+The goal of this thesis is to demonstrate that use Service Oriented Architecture to develop Evolutionary Algorithms solves some of the problems present in the Evolutionary Algorithms area, such as the lack of standardization, integration and dynamism control. Moreover, this thesis aims to change the researchers mind to...
 
-Open Science
+\section{Evolutionary Algorithms}
+\label{sec:intro:eas}
 
-Interoperability
+\lettrine{E}{volutionary} Computation is a scientific field ...
 
-Dynamism 
+Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. This steps can be combined to create new algorithms, or being used dynamically depending some information during the run. Therefore, this steps should be designed and developed as loose-coupled elements.
 
-Therefore, the objective of the thesis is to demonstrate that SOA is the , also answering the next questions:
-\begin{itemize}
-\item Which is the best paradigm to expose EAs as Open Science? (CAMBIAAAAA)
-\item What advantages can offer SOA to EA researchers?
-\item 
-\end{itemize}
+With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate. 
 
-The applications...
+The first problem to address in this thesis is the lack of standardization and integration in EA software (as suggested by \person{Parejo \etal} in \cite{SURVEYMOFS}). Many frameworks for EAs exist, but without the possibility of integrate their components. Also, using standards for Open Science...
 
-\begin{itemize}
-\end{itemize}
+Service Oriented Architecture is proposed in this thesis as a solution to address previous shortcomings. This paradigm defines the usage of loose-coupled elements (services) based in standards to ... Therefore, SOA can
+
+
+\section{Challenges in Evolutionary Algorithms}
+\label{sec:intro:challenges}
+
+
+
+\subsection{Parameter Adaptation}
+
+Parameter adaptation refers to... Not only to adapt the numerical parameters (such as crossover rate), but also the elements that conform an evolutionary algorithm (different types of crossovers).
+
+\subsection{Dynamism}
+Many technologies for distribution of EAs are being used, such as MPI, or ... Usually, a fixed set of machines is used, but... Security... Fault tolerance... Load balancing...
+
+
+\subsection{Adaptation to hardware}
+Evolutionary Algorithms tackle blablabla. EAs have been used in robots, mobile devices or ...
+
+\subsection{Open Science} 
+As one of the main objectives . Free software.
+
+\subsection{Interoperability}
+
+
+
+
+
+
+
+
+\section{Motivation and objectives}
+\label{sec:intro:motivation}
+
+Also, to encourage to EA users and practitioner to change their mind and make an effort to migrate the existing software to SOA, making their services publicly available and loosely coupled to support new research results.
+
+To supporting objectives:
+
+\subsection{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
+\label{subsec:intro:obj:problems}
+EAs is a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to identify their problems. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and shortcomings. Parameter adaptation and . Finally, several works on the development of EAs will be explained to extract the requirements and different EA frameworks will be studied to extract their benefits and shortcomings.
+
+\subsection{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs} 
+\label{subsec:intro:obj:methodology}
+This methodology (called SOA-EA) will help to identify, specify, implement and deploy services that conform service oriented evolutionary algorithms. This methodology has to deal with the restrictions in the SOA design identified in previous objective, and help in development, integration and dynamism.
+
+\subsection{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
+\label{subsec:intro:obj:fwork}
+Applying the methodology of the previous objective a framework will created and used to solve some of the problems addressed: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be evaluated to solve the problems that...
+
+\subsection{Objective 4: Use the framework to develop several applications }
+\label{subsec:intro:obj:applications}
+Niano niano
+
 
 
 \section{Structure of the thesis}
+\label{sec:intro:structure}
 
 Current chapter shows an introduction to this thesis, with the motivations and question to address. 
 
-Chapter \ref{chap:distributed} describes the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms or being used dynamically. Also, new trends in distributed EAs, such as P2P or pool-based algorithms that deals with heterogeneous architectures and dynamism with the nodes. This chapter also shows different frameworks for EAs using different programming languages, but without any mechanism to facilitate the integration, being the lack of standardization a problem (as suggested by \person{Parejo \etal} in \{SURVEYMOFS}).
+Chapter \ref{chap:distributed} describes the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms, but they can be used dynamically (for example, using hiperheuristics). Also, new trends in distributed EAs, such as P2P or pool-based algorithms that deals with heterogeneous architectures and dynamism with the nodes are presented. Finally, this chapter also presents different frameworks for EAs using different programming languages, but without any mechanism to facilitate the integration, being the lack of standardization a problem.
 
 In chapter \ref{chap:soa} the Service Oriented Architecture paradigm is presented as a possible solution to deal with the issues described in previous chapter, because offers mechanisms to standardize and open science... Different technologies and methodologies are shown. Relation with...
 
 Taking into account the , chapter \ref{chap:soaea} presents a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) called SOA-EA. Steps for identification, specification, implementation and development of services are presented, with some guidelines about...
 
-This methodology is applied in chapter \ref{chap:osgiliath} to create a framework to develop . To show the automatic binding of services a experiment... Also, two different ways of exposing services publicly are shown, and a comparison of transmission time of two different distribution technologies. Also, a comparison with 
+This methodology is applied in chapter \ref{chap:osgiliath} to create a framework to develop . To show the automatic binding of services a experiment... Also, two different ways of exposing services publicly are shown, and a comparison of transmission time of two different distribution technologies. Also, a comparison with ...
+
+In next two chapters (Chapters \ref{chap:rts} and \ref{chap:rgb}) OSGiLiath is used in two different applications: generation of competitive bots for RTS games and evolutionary art. In both applications, SOA-EA is used to create new services and show...
 
 Finally, chapter \ref{chap:conclusions} summarizes the main contributions of this thesis and future lines of research.
 
-Figure \ref{fig:intro:piramid} summarizes the methodology applied to develop this thesis.
+Figure \ref{fig:intro:piramid} shows the methodology applied to develop this thesis.
 

@@ -32,7 +32,7 @@
 %FERGU: He comentado TODO lo de arriba por lo que viene aquí a continuación.
 
 
-\lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based in the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
+\lettrine{E}{volutionary} Algorithms are a set of bio-inspired techniques applied to optimization problems \cite{eiben2010whatis}, based on the process of natural selection \cite{darwin1859}. In this kind of algorithms, a \textsc{population} of codified solutions (called \textsc{individuals}) is created. The most adapted individuals have more chances to be selected for reproduction, so their offspring could inherit their genetic material. The level of adaptation of each solution is measured using a \textsc{fitness} function, that usually models the problem to solve.
 %FERGU: También he movido la figura del EA y pongo lo que viene a continuación:
 
 Initially the EAs were proposed as a fixed set of steps with different operators and data structures. Then, several ways to parallelize these algorithms were also presented, with new classifications and operations. Nowadays, new emerging trends that deal with new technologies (such as P2P or Cloud Computing) and new algorithmic methods (such as parameter adaptation) are being used. These trends require a new way to develop EAs taking into account some shortcomings, such as integration of heterogeneous elements or dynamic resources, and also to deal with fault-tolerance, churn, massive
@@ -58,12 +58,18 @@ As previously said in the introduction, the aim of this thesis is to facilitate 
 
 \section{Types of Evolutionary Algorithms}
 \label{sec:distributed:types}
-\lettrine{T}{he} general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}.
+\lettrine{T}{he} general scheme of an EA, extracted from the work of \person{Eiben and Smith} \cite{eiben2010whatis} is described in Figure \ref{fig:basicscheme}. Although most of the EAs follow the scheme shown in this Figure, they have differences depending on the
+representation of the solutions, the problems to solve, and other
+features. A possible classification is presented in this chapter, 
+taking into account the new approaches that cannot fit in the traditional 
+taxonomy. This classification would help to clarify the elements that 
+distinguish an algorithm from another (for example, the operators), 
+and the existing similarities and differences, in order to establish  
+a good starting point for designing services for EAs.
 
 %hay un entorno algoritmo que hace
                                 %esto mucho más chulo - JJ
                                 %FERGU: sí, y lo uso en posteriores capítulos. Esto lo he copiado tal cual del libro de Eiben.
-
 \begin{SaveVerbatim}{BasicEAtext} 
 BEGIN
  INITIALISE population with random candidate solutions;
@@ -79,7 +85,7 @@ END
 \end{SaveVerbatim} 
 %Parece COBOL. Qué vintage - JJ FERGU: Ya xD ¿Lo cambio? Ya te digo, es como viene en el libro.
 
-\begin{SCfigure}[][!hb]
+\begin{SCfigure}[][tb]
 \begin{tabular}{|A|}
 \hline
 \BUseVerbatim{BasicEAtext}
@@ -90,16 +96,6 @@ END
 \label{fig:basicscheme}
 \end{SCfigure}
 
-
-Although most of the EAs follow the scheme shown in Figure
-\ref{fig:basicscheme}, they have differences depending on the
-representation of the solutions, the problems to solve, and other
-features. A possible classification is presented in this chapter, 
-taking into account the new approaches that cannot fit in traditional 
-taxonomy. This classification would help to clarify the elements that 
-distinguish an algorithm from another (for example, the operators), 
-and the existing similarities and differences, in order to establish  
-a good starting point for designing.
 
 \subsection{Classic classification of EAs}
 \label{subsec:classicEAs}
@@ -128,7 +124,7 @@ These are the elements that distinguish the EAs from another meta-heuristics (su
 
 \item[Genetic Programming] The objective of this technique is to
   create functions or programs to solve determined
-  problems. Individual representation is frequently in form of a tree,
+  problems. Individual representation is frequently in the form of a tree,
   formed by operators (or {\em primitives}) and variables ({\em
     terminals}). These sets are usually fixed and known. The genome
   size is, therefore, variable, but the maximum size of the
@@ -195,7 +191,7 @@ based on the concept of {\em meme} % ¿por qué small caps y no
 proposed by \person{Dawkins}
 \cite{dawkins2006selfish}. In this context, a meme is domain specific knowledge coded by a computational representation to the effective solving of a problem.
 
-This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridization was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing (SA) \cite{Rodriguez2012Hybrid}. The local search can be performed before, during, or after the evaluation. New trends, such as adaptive MAs \cite{ong2006classification} lead to the usage of several memes for searching and deciding dynamically which meme to apply to each individual. For example, \person{Cowling \etal}  proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose the meme to be applied depending on the time and the region of the search space (or, in a brief, heuristic to choose memes).  Other examples are the work of \person{Krasnogor \etal} \cite{krasnogor2002multimeme}, where the 
+This kind of algorithms can be seen as an hybrid combination of the population-based evolution methods previously explained, coupled with some kind of local search. Initially, the hybridization was made just combining two o more methods with some kind of problem knowledge. For example combining a genetic algorithm with Simulated Annealing (SA) \cite{Rodriguez2012Hybrid}. The local search can be performed before, during, or after the evaluation. New trends, such as adaptive MAs \cite{ong2006classification} lead to the usage of several memes for searching and deciding dynamically which meme should be applied to each individual. For example, \person{Cowling \etal}  proposed the term \textsc{hyperheuristic} \cite{cowling2001hyperheuristic} as the strategy to choose the meme to be applied depending on the time and the region of the search space (or, in a brief, heuristic to choose memes).  Other examples are the work of \person{Krasnogor \etal} \cite{krasnogor2002multimeme}, where the 
 inclusion of the memetic codification inside the individual chromosome
 (\textsc{Multimemes}) to select which meme to use is applied;  or
 codify a set of rules, as proposed by \person{Smith} \cite{smith2002co}
@@ -226,7 +222,7 @@ with these new trends are explained, and the requirements of each one are presen
 
 \subsection{Traditional parallelization classification}
 
-As this classification was established in 2002 issues such as fault-tolerance, churn, massive
+As this classification was established in 2002, issues such as fault-tolerance, churn, massive
 scalability or decentralization were not taken into consideration.  % di
                                 % desde el principio que esto es lo
                                 % que vas a hacer - JJ FERGU: puesto en la intro del capítulo
@@ -273,7 +269,7 @@ The parallelism is performed at population level, that is, dividing the populati
                                 % - JJ FERGU: Cambiado a new trends
 
 When developing distributed and parallel EAs (or any distributed system in general), 
-we should to deal with the {\em Fallacies of Distributed Computing}, proposed by \person{Peter Deutsch}
+we should deal with the {\em Fallacies of Distributed Computing}, proposed by \person{Peter Deutsch}
 and explained after by \person{Rotem-Gal-Oz} in \cite{rotem2006fallacies}.
 
 \begin{enumerate}
@@ -394,16 +390,16 @@ in these systems have been presented \citep{grid8,grid4,grid10}. \textsc{Volunte
 infrastructures to allow people donate CPU cycles for a combined
 computational effort. Its main difference with grid computing is the
 presence of un-trusted resources: for example, some nodes could return
-intentionally wrong results, so it requires possibility of
-replication. % ¿posibilidad de replicación? - JJ
+intentionally wrong results, so it requires the possibility of
+replication of the results to be validated. % ¿posibilidad de replicación? - JJ FERGU: arreglado
 Also, the control of the participating nodes is not
-maintained by the experiment launcher. EAs have been used in these
+maintained by the experiment launcher. EAs have been executed in these
 systems, using several techniques, such as virtualization
 \cite{Fernandez2013BOINC} or ``parasite'' computing
 \cite{Merelo2007browser}. % Esta no es parásita, los participantes
                           % estaban avisados - JJ
 
-Summarizing, with these new trends in parallel EAs researchers must deal 
+Summarizing, with these new trends in parallel EAs, researchers must deal 
 with heterogeneous hardware and different communication protocols, but also
  with dynamic, non-centralized or uncontrolled environments. %FERGU: ...enlazando con la tesis...
 
@@ -417,7 +413,7 @@ with heterogeneous hardware and different communication protocols, but also
 \lettrine{O}{ne} of the greater challenges of the EC field is to find
 the appropriate values for EAs parameters
 \cite{Eiben12Parameters}. Usually, these parameters are established by
-convection or after several test runs, for example. However,
+convention or after several test runs, for example. However,
 practitioners need to put effort on finding these values in order to
 attain significant performance in their EAs, even taking into account
 other variables, such as the computational power of the machines
@@ -522,7 +518,7 @@ results than homogeneous periods, as explained by \person{Salto and Alba} in
 \cite{Salto2012HeterogeneousMigration}. This indicates that heterogeneous parameters
  may lead to an increase of performance, so it is necessary to validate if the 
  performance is due to the parameter set or to the heterogeneous
- devices combination. The way to access to the elements that conform 
+ devices combination. The way to access  the elements that conform 
  an EA (including their parameters) proposed in this thesis will be used 
  in next chapters to address this issue.
 
@@ -548,7 +544,7 @@ difficult to migrate the code from a framework to another, mainly due
 to design choices, such as the existence of hidden global variables or
 language specific features (such as functional programming
 \cite{Cruz2013Erlang}). This is important for example, to integrate and reuse 
-the elements of the frameworks in another systems (such as enterprise servers, for example). 
+the elements of the frameworks in other systems (such as enterprise servers, for example). 
 However, is in the field of Open Science \cite{Altunay2011OpenScience} where the integration and standardization of
 the elements that conform an EA can take advantage, facilitating the re-use and access 
 to existing software, systems, data, and results.
@@ -574,12 +570,12 @@ The work of \person{Gagn\'e and Parizeau} \cite{GENERICITY05} established six cr
 
 \item {\em Generic fitness}: Individual fitness should be as independent as possible from the selection operators and individual representation. That means that the fitness evaluation should be outside of the implementation of the individuals (for example, not implementing the fitness in the class that implements the individual). 
 
-\item {\em Generic operations}: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existing ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators must be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
+\item {\em Generic operations}: operations should be used in conjunction with others and have minimal side effects. For example, a multi-parent reproduction (crossover with more than two parents, as presented by \person{Eiben et al.} \cite{EibenMultiparent97}) requires separation of the concept crossover with only two elements, so the abstract concept of crossover  should accept a list of individuals. Also, new operations can be created without affect the existing ones, allowing the interaction of a non-limited number of operators. Finally, the granularity of the design of the operators should be equilibrated, not being neither too coarse (may limit the flexibility to create new operators) nor too fine (could be difficult to integrate all the operators).
 
 \item {\em Generic evolutionary model}: As explained in Section \ref{subsec:classicEAs}, % ¿dónde? - JJ FERGU: hecho
 there exist different ways to model an EA leading to different algorithms (for example, a steady-state GA versus a generational GA, or a GA versus ES). Operators should be independent of the evolutionary model, being possible the change from a model to another. 
 
-\item {\em Parameter management}: parameters, such as the population size, may be modified during runtime. Also, a good framework must accept the addition of new parameters.
+\item {\em Parameter management}: parameters, such as the population size, may be modified during runtime. Also, a good framework should accept the addition of new parameters.
 
 \item {\em Configurable output}: the output should be configurable. This is due to different statistics that could be used depending on the EA: for example, the tree depth in GP. Also, different outputs (console, files) should be managed.
 
@@ -616,7 +612,7 @@ libraries is mixed with the algorithm's code.
 
  Even being distributed, these frameworks can not communicate with
  each other. This implies an extra effort to combine the capabilities 
- that a framework can offer to other frameworks or other programs (for example, a web server).%lo que es un problema por... - JJ FERGU: puesto
+ that a framework can offer to other frameworks or other programs (for example, a web server). %lo que es un problema por... - JJ FERGU: puesto
   HeuristicLab \citep{HEURISTICLAB} is one of the few plug-in and service oriented frameworks. It uses web services for communication, but only to distribute the load, after consulting a central database of available jobs. Finally, %the only service oriented optimization framework is
  gridUFO is a service oriented framework \citep{gridUFO}, but it only allows the modification of the objective function and the addition of whole algorithms, without combining existing services.  Table \ref{tab:frameworks} shows a summary of the previous frameworks.
 
@@ -655,7 +651,7 @@ dynamic control of operators, or an user interface).
 
 
 %\subsection{Volunteer computing frameworks} FERGU: enlazado con lo anterior
-Other frameworks, not focused in EAs, can be used to deal with some of the issues, such as dynamism in nodes. \definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and the creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients ask the server for works, download information, compute data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this architecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without installing any other software. Previous systems have the possibility of task distribution among the nodes, following a master-slave model, but without interaction between clients. Also, these systems does not count with automatic discovering of operators.
+Other frameworks, not focused on EAs, can be used to deal with some of the issues, such as dynamism in nodes. \definicion{BOINC}{Berkeley Open Infrastructure for Network Computing} is one of the most used frameworks in volunteer computing. This middleware follows a master-slave architecture, where the server is in charge of hosting the project experiments and the creation and distribution of jobs \cite{Fernandez2013BOINC}. Clients ask the server for works, download information, compute data and upload the results. EAs have been used in BOINC, such as the work of \person{Fern\'andez \etal} \cite{Fernandez2013BOINC}. Other authors imitate this architecture using a browser-based scheme \cite{Merelo2007browser} to distribute fitness evaluations among clients without installing any other software. Previous systems have the possibility of task distribution among the nodes, following a master-slave model, but without interaction between clients. Also, these systems does not count with automatic discovering of operators.
 
 
 
