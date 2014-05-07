@@ -3,49 +3,60 @@
 \vfill
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%MENSAJE A JJ: JJ, NO CORRIJAS LA SECCION intro:eas ni intro:challenges AÚN!!!!!!!!!!!
+%%MENSAJE A JJ: JJ, NO CORRIJAS LA SECCION intro:eas
 
 %(bueno, no corrijas nada todavía, que está superverde)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 \section{Thesis goal} %FERGU: esto es un párrafo que describe el objetivo de la tesis.
-The goal of this thesis is to demonstrate that use Service Oriented Architecture to develop Evolutionary Algorithms solves some of the problems present in the Evolutionary Algorithms area, such as the lack of standardization, integration and dynamism control. Moreover, this thesis aims to change the researchers mind to...
+The goal of this thesis is to demonstrate that use Service Oriented Architecture paradigm to develop Evolutionary Algorithms solves some of the problems present in this field, such as the lack of standardization, integration and dynamism control. A methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) that deals with these problems is presented. This methodology is used to create a framework to develop SOEAs using a specific technology standard (OSGi) and it is used to carry out experiments that demonstrate dynamic binding, automatic distribution and publication of interfaces. Finally, different applications using this methodology and framework in different fields will be shown.
 
 \section{Evolutionary Algorithms}
 \label{sec:intro:eas}
 
-\lettrine{E}{volutionary} Computation is a scientific field ...
+\lettrine{E}{volutionary} Computation is a scientific field that involves a large number of bio-inspired methods, problems and tools. Evolutionary Algorithms (EAs) are a set of techniques of this field applied to optimization problems \cite{eiben2010whatis}. These algorithms imitate the process of natural selection, giving to fittest solutions (or {\em individuals}) more probability to mate with others to generate new solutions that inherit its information. Thus, iteratively, better individuals would recombine to form better solutions of the problem to solve.
 
-Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. This steps can be combined to create new algorithms, or being used dynamically depending some information during the run. Therefore, this steps should be designed and developed as loose-coupled elements.
+Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. This steps can be combined to create new algorithms, or being used dynamically depending some information during the run. Therefore, this steps should be designed and developed as loose-coupled elements. With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate. 
 
-With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate. 
+There are a number of shortcomings in the EA area, such as the lack of standardization and integration in EA software tools \cite{SURVEYMOFS}. Many frameworks for EAs exist, but without the possibility of integrate their components. Also, using standards helps Open Science... Finally, the lack of dynamism is also a 
 
-The first problem to address in this thesis is the lack of standardization and integration in EA software (as suggested by \person{Parejo \etal} in \cite{SURVEYMOFS}). Many frameworks for EAs exist, but without the possibility of integrate their components. Also, using standards for Open Science...
-
-Service Oriented Architecture is proposed in this thesis as a solution to address previous shortcomings. This paradigm defines the usage of loose-coupled elements (services) based in standards to ... Therefore, SOA can
+Service Oriented Architecture \cite{Papazoglou2007SOA} is proposed in this thesis as a solution to address previous shortcomings. This paradigm defines the usage of loose-coupled and self-contained elements (services) based in public standards, to facilitate the integration, interoperability and discovery in different software systems.
 
 
 \section{Challenges in Evolutionary Algorithms}
 \label{sec:intro:challenges}
 
-
+\lettrine{I}{n} the past decades much research have been conducted on Evolutionary Computation, and several challenges have been pointed out. The ones related with this thesis are shown next:
 
 \subsection{Parameter Adaptation}
 
-Parameter adaptation refers to... Not only to adapt the numerical parameters (such as crossover rate), but also the elements that conform an evolutionary algorithm (different types of crossovers).
+One of the greater challenges of the EC field is to find the appropriate values for EAs parameters, as claimed by {\person Eiben \etal.} 
+\cite{Eiben12Parameters}. Researchers need to put effort on finding these values in order to
+attain significant performance in their EAs. Not only to adapt the numerical parameters (such as crossover rate), but also the elements that conform an evolutionary algorithm (different types of crossovers). The integration should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the operators that conform the algorithm one, but also how to dynamically select among these available elements. 
 
-\subsection{Dynamism}
-Many technologies for distribution of EAs are being used, such as MPI, or ... Usually, a fixed set of machines is used, but... Security... Fault tolerance... Load balancing...
+\subsection{Dynamism and distribution}
+As in previous challenge, mechanisms to deal with dynamism in operators should be addressed. Several authors have mentioned the problem of the limited dynamic and reflexive capabilities for loading algorithm elements (for example, problems and heuristics) in frameworks for EAs \cite{SURVEYMOFS}. Thus, mechanisms to announce operators and automatically discovering and binding should be used.
 
+Dynamism should also be managed in distribution. In the traditional parallelization models \cite{alba2002parallelism} issues such as fault-tolerance, security, churn, massive scalability or decentralization were not taken into consideration \cite{Alba13parallel}. New trends on distributed EAs (such as P2P \cite{} or pool-based EAs \cite{merelo2012pool}) are emerging,  and classic paradigms (such as Object Oriented Programming) have not mechanism to deal with these issues.
 
 \subsection{Adaptation to hardware}
-Evolutionary Algorithms tackle blablabla. EAs have been used in robots, mobile devices or ...
+Adapting algorithm parameters to available computational resources can to improved performance \cite{AutomaticallyConfiguringStyles12}.  For example, the population size in EAs is the key to obtain good performance, because it has effect on the quality of the solution and the time spent during the run \cite{ShrinkageLaredo09}. This parameter has been studied as a fixed \cite{SizingHarik99} or adaptive parameter during runtime \cite{AdaptiveLobo07,SelfRegulatedSizeFernandes06}, but without taking into account the computational power of each machine in a heterogeneous cluster. 
 
-\subsection{Open Science} 
-As one of the main objectives . Free software.
+Also, EAs can be used in different hardware, such as mobile devices \cite{Garcia2009Mobile}, ``smart dust'' \cite{Rollings2008smartdust} or inside robots \cite{Garcia2012testing}, so EAs should be adapted to the execution environment.
+
 
 \subsection{Interoperability}
+Interoperability is the ability of making systems to work together. In the past decades, many programming languages and distribution technologies have been appeared, being the integration of these technologies an important problem to address \cite{Papazoglou2007SOA}. For example, a recent survey in metaheuristic frameworks \cite{SURVEYMOFS} shows that there are not any mechanism of integration in the 33 frameworks evaluated. Several development paradigms have been proposed, for example, the plug-in based programming \cite{WagnerPlugins07} to develop EAs. As in the new trends previously described, researchers also must deal  with heterogeneous hardware and different communication protocols, but also with dynamic, non-centralized or uncontrolled environments which expose different AND QUE resources.
 
+\subsection{Open Science}
+It is in the field of Open Science \cite{Altunay2011OpenScience} where the integration and standardization of
+the elements that conform an EA can take advantage, facilitating the re-use and access to existing software, systems, data, and results. Open Science is a movement that encourages the accessibility to all scientific research process open publicly to all citizens, based in free software, public licenses, open data, public scientific dissemination, and finally, well defined and publicly available services \cite{Foster2005Science}.
+
+
+\subsection{Applications}
+Evolutionary Algorithms have been applied to a wide number of applications from different fields. Various types of EAs, such as Genetic Algorithms, have been applied to optimize routing and inventory management \cite{Esparcia2009EVITA}, evolutionary art \cite{Garcia2013RGB}, evolution of robot behaviour \cite{Garcia2012testing}, optimization of Neural Networks \cite{Castillo1999gprop} among many others. Genetic Programming algorithms have been used for generation of agents for videogames \cite{Esparcia2013GPunreal} or document transformation \cite{Garcia2008XSLT}. 
+
+Different yearly conferences, such as EvoApps or GECCO, present research in fields as diverse as economics, energy, videogames, design, image analysis, industrial environments, and security, among others. Therefore, this field is wide enough to allow the participation of researchers in many different areas and expertise.
 
 
 
@@ -55,26 +66,25 @@ As one of the main objectives . Free software.
 
 \section{Motivation and objectives}
 \label{sec:intro:motivation}
+The main motivation of this thesis is to propose a new paradigm to develop EAs to solve some of the problems previously addressed. Also, other objective of this thesis is to encourage to EA users and practitioners to change their mind and make an effort to migrate the existing software to SOA, making their services publicly available and loosely coupled to support new research results.
 
-Also, to encourage to EA users and practitioner to change their mind and make an effort to migrate the existing software to SOA, making their services publicly available and loosely coupled to support new research results.
-
-To supporting objectives:
+To achieve this goal, the objectives to comply in this thesis are:
 
 \subsection{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
 \label{subsec:intro:obj:problems}
-EAs is a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to identify their problems. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and shortcomings. Parameter adaptation and . Finally, several works on the development of EAs will be explained to extract the requirements and different EA frameworks will be studied to extract their benefits and shortcomings.
+EAs is a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to identify their problems. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and shortcomings. Dynamic parameter adaptation and hardware adaptation will be . Finally, several works on the development of EAs will be explained to extract the requirements, and different EA frameworks will be studied to extract their benefits and shortcomings.
 
 \subsection{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs} 
 \label{subsec:intro:obj:methodology}
-This methodology (called SOA-EA) will help to identify, specify, implement and deploy services that conform service oriented evolutionary algorithms. This methodology has to deal with the restrictions in the SOA design identified in previous objective, and help in development, integration and dynamism.
+This methodology (called SOA-EA) will help to identify, specify, implement and deploy services to create SOEAs. This methodology has to deal with the restrictions in the SOA design identified in previous objective, and help in development, integration and dynamism.
 
 \subsection{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
 \label{subsec:intro:obj:fwork}
-Applying the methodology of the previous objective a framework will created and used to solve some of the problems addressed: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be evaluated to solve the problems that...
+Applying the methodology of the previous objective a framework (called OSGiLiath) will be created and used to solve some of the problems addressed: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be compared to select the most appropriate one to the problems we want to solve.
 
-\subsection{Objective 4: Use the framework to develop several applications }
+\subsection{Objective 4: Use the framework to develop several applications}
 \label{subsec:intro:obj:applications}
-Niano niano
+The final objective of this thesis is to demonstrate that SOEAs can be used to obtain scientific results in several fields. SOA-EA and OSGiLiath will be used to perform experiments in dynamic parameter adaptation to hardware, evolutionary art and creation of competitive bots for video-games.
 
 
 
@@ -83,15 +93,17 @@ Niano niano
 
 Current chapter shows an introduction to this thesis, with the motivations and question to address. 
 
-Chapter \ref{chap:distributed} describes the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms, but they can be used dynamically (for example, using hiperheuristics). Also, new trends in distributed EAs, such as P2P or pool-based algorithms that deals with heterogeneous architectures and dynamism with the nodes are presented. Finally, this chapter also presents different frameworks for EAs using different programming languages, but without any mechanism to facilitate the integration, being the lack of standardization a problem.
+Chapter \ref{chap:distributedEAs} describes the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms, but they can be used dynamically (for example, using {\em hiperheuristics} \cite{cowling2001hyperheuristic}). Also, new trends in distributed EAs, such as P2P or pool-based algorithms that deals with heterogeneous architectures and dynamism with the nodes are presented. Finally, this chapter also presents different frameworks for EAs using different programming languages, but without any mechanism to facilitate the integration, being the lack of standardization a problem.
 
-In chapter \ref{chap:soa} the Service Oriented Architecture paradigm is presented as a possible solution to deal with the issues described in previous chapter, because offers mechanisms to standardize and open science... Different technologies and methodologies are shown. Relation with...
+In chapter \ref{chap:soa} the Service Oriented Architecture paradigm is presented as a possible solution to deal with the issues described in previous chapter, because offers mechanisms to facilitate standardization, integration, open science and dynamism. Different technologies and methodologies for SOA are shown. The requirements in SOA design are applied to the genericity of EAs, and guidelines to create services for EAs are presented.
 
-Taking into account the , chapter \ref{chap:soaea} presents a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) called SOA-EA. Steps for identification, specification, implementation and development of services are presented, with some guidelines about...
+Taking into account the previous requirements, chapter \ref{chap:soaea} presents a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) called SOA-EA. Steps for identification, specification, implementation and development of services are presented, with some guidelines about how each element of the EA should be designed as service.
 
-This methodology is applied in chapter \ref{chap:osgiliath} to create a framework to develop . To show the automatic binding of services a experiment... Also, two different ways of exposing services publicly are shown, and a comparison of transmission time of two different distribution technologies. Also, a comparison with ...
+This methodology is applied in chapter \ref{chap:osgiliath} to create a framework to develop SOAEs using a specific technology. Two different SOA technologies (Web Services and OSGi) are compared. To show the automatic binding of services an experiment that adaptively enables and bind services to increase the performance. Also, two different ways of exposing services publicly are shown, and a comparison of transmission time of two different distribution technologies. Finally, a comparison in development time with other frameworks for EAs is presented.
 
-In next two chapters (Chapters \ref{chap:rts} and \ref{chap:rgb}) OSGiLiath is used in two different applications: generation of competitive bots for RTS games and evolutionary art. In both applications, SOA-EA is used to create new services and show...
+In chapter \ref{chap:adaptive} OSGiLiath is used to present a new method to adapt a parameter of a distributed EA to the computational power of the nodes which execute the algorithm. SOA-EA is used to create automatic binding of services to create a decentralized island-based EA.
+
+In next two chapters (Chapters \ref{chap:rts} and \ref{chap:art}) OSGiLiath is used in two different applications: generation of competitive bots for RTS games and evolutionary art. In both applications, SOA-EA is used to create new services and show...
 
 Finally, chapter \ref{chap:conclusions} summarizes the main contributions of this thesis and future lines of research.
 
