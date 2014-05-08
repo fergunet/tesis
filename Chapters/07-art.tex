@@ -1,40 +1,47 @@
 \myChapter{HSV and RGB comparison in Evolutionary Art}\label{chap:art}
+\begin{flushright}{\slshape
+   I’ve seen many things, my friend, but you’re right: \\
+   nothing quite as wonderful as the things you see.  \\ \medskip
+    --- {The Doctor. Vincent and the Doctor. Doctor Who.}
+\end{flushright}
 \minitoc\mtcskip
 \vfill
-\lettrine{E}{volutionary} Art \cite{EART} is a branch of generative art \cite{PHEROGRAPHY}, which is created using a
-computer, following the principle of the survival of the fittest, 
-using Evolutionary Computation methods. A population
-of artistic works (individuals) are evaluated with an aesthetic
-measure to yield a score (fitness). These individuals are combined and
-mutated to generate an offspring with inherited properties of the
-parents, during a certain number of times. % until algo, ¿no? - JJ
 
-% Esto es parte de una tesis y como tal tienes que tratarlo. ¿Por qué
-% es interesante para la tesis este capítulo? ¿Qué parte de la tesis
-% estás probando? - JJ 
 
-Metrics such as opinion from humans or image characteristics (for
-example, specific combination of colours) can be used to score the
-generated images. We will adopt the latter in this chapter, % why? - JJ
-whose main goal is to study the differences % with respect to what?
-of using
-the information of the HSV (Hue, Saturation, Value) and RGB (Red,
-Green, Blue) histograms during the evolution. Although the two
+\lettrine{E}{volutionary} 
+
+As part of the Objective 4 (Use the framework to develop several applications), in this chapter SOA-EA and OSGiLiath will be used to develop a SOEA that...
+
+The research objective of this application is to study the differences % with respect to what? FERGU: añadido abajo
+of using the information of the HSV (Hue, Saturation, Value) and RGB (Red,
+Green, Blue) histograms in fitness function during the evolution. Although the two
 histograms represent the same information, using HSV (instead as RGB)
 as a color model increases the accuracy in image retrieval and
 indexing, as explained by \person{Sebe and Lew}
-\cite{COLORDIFFERENCES}. The results of this investigation can help in
-future evolutionary art algorithms, adding the most appropiate color
-model feature with other features available in the literature. For
-example, to be used as one of the features of any kind of
-classifier. % En una tesis el trabajo futuro no viene a cuento. Tienes
-            % que evaluar el trabajo de por sí. - JJ
+\cite{COLORDIFFERENCES}.
+
+
+
+
+
+
+ %A population
+%of artistic works (individuals) are evaluated with an aesthetic
+%measure to yield a score (fitness). These individuals are combined and
+%mutated to generate an offspring with inherited properties of the
+%parents, during a certain number of times. % until algo, ¿no? - JJ FERGU: quitado
+
+% Esto es parte de una tesis y como tal tienes que tratarlo. ¿Por qué
+% es interesante para la tesis este capítulo? ¿Qué parte de la tesis
+% estás probando? - JJ FERGU: añadido
+
+
 
 In this chapter, the {\em Processing} \cite{PROCESSING} framework is
 integrated inside OSGiLiath % why? En una tesis hay que justificarlo
-                            % TODO - JJ
-to take advantage of the capabilities offered in image manipulation and analysis.Processing services are then used 
- to model the
+                            % TODO - JJ FERGU: 
+to take advantage of the capabilities offered in image manipulation and analysis. 
+Processing services are then used  to model the
 individuals, generate their associate images and extract information
 of them (HSV, RGB and Average histograms) to fit with the histograms
 of the test images.
@@ -43,12 +50,27 @@ of the test images.
 % arte generativo, porque no se ha aportado nada en ese tema o no está
 % claro qué vas a aportar. Es demostrar lo fácil que es adaptar
 % Osgiliath a un nuevo problema, midiendo la velocidad de desarrollo y
-% ejecución y uso de nuevos entornos como el dichoso processing - JJ
+% ejecución y uso de nuevos entornos como el dichoso processing - JJ FERGU: reescribiendo para que esté relacionado con la tesis
 
 
 \section{Background}
 
-\noindent Computational Aesthetics ``is the research of computational
+Evolutionary Art \cite{EART} is a branch of generative art \cite{PHEROGRAPHY}, which is created using a
+computer, following the principle of the survival of the fittest, 
+using Evolutionary Computation methods.
+
+Metrics such as opinion from humans or image characteristics (for
+example, specific combination of colours) can be used to score the
+generated images. %We will adopt the latter in this chapter, % why? - JJ
+%whose  
+
+%The results of this investigation can help in
+%future evolutionary art algorithms, adding the most appropiate color
+%model feature with other features available in the literature. For
+%example, to be used as one of the features of any kind of
+%classifier. % En una tesis el trabajo futuro no viene a cuento. Tienes
+            % que evaluar el trabajo de por sí. - JJ FERGU: tienes razón
+Computational Aesthetics ``is the research of computational
 methods that can make applicable aesthetics decisions in a similar
 fashion as humans can'' \cite{COMPAESTH}. In the field of
 computational aesthetics, evolutionary systems can play an important
@@ -72,7 +94,7 @@ and \cite{sims1994evolving}. % Si lo que quieres hacer es aportar algo
                              % seleccionando las fotos originales,
                              % buscando arte generativo a base de
                              % bolas similar... No te despistes de tu
-                             % objetivo que es el de la tesis - JJ
+                             % objetivo que es el de la tesis - JJ FERGU: tienes razón, esto es qeu lo hicimos entre todos en el hackathon
 
 One of the main challenges in Evolutionary Art is how to measure
 aesthetic value of the generated pieces. The source of this difficulty
@@ -89,7 +111,7 @@ the work of \person{den Heijer and Eiben} \cite{den2012evolving}),
 neural networks or complexity measures.   % ¿Cuál vas a usar? No se
                                 % trata de hacer "name dropping",
                                 % tienes que mencionar lo que sea
-                                % interesante o incumba a tu tesis - JJ
+                                % interesante o incumba a tu tesis - JJ FERGU: quitadas las morrallas
 
 This classification also provides a sub-classification for
 evolutionary systems. If aesthetical evaluation is done by human it is
@@ -117,7 +139,7 @@ performance % utility, más que performance - JJ
                                 % intégralas en la narrativa de tu
                                 % tesus y sobre todo añade citas. Por
                                 % cierto, agent swarm no es una
-                                % extensión de EAS- jj
+                                % extensión de EAS- jj FERGU: fuera
 
 A brief classification of the aesthetic measures found in the
 evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
@@ -145,49 +167,164 @@ evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
 \label{table_class} 
 \end{SCtable}
 
-Several methods for the representation of the art in evolutionary
-art % the _art_ in evolutionary _art_? Seriously? - JJ
- have been proposed. In symbolic expression, the genotype is a tree of
- expressions and the phenotype consists in the image produced  by the
- evaluation of the tree. Shape grammars can also be used as a formal
- description of the image. Previously existing images can be used as a
- basis for the evolution process. Finally, other representations can
- be based on mathematical models, like fractals or cellular
- automata. % Esto ¿a santo de qué? ¿Qué tiene que ver con las
-           % clasificaciones? - JJ
+%Several methods for the representation of the art in evolutionary
+%art % the _art_ in evolutionary _art_? Seriously? - JJ
+% have been proposed. In symbolic expression, the genotype is a tree of
+% expressions and the phenotype consists in the image produced  by the
+% evaluation of the tree. Shape grammars can also be used as a formal
+% description of the image. Previously existing images can be used as a
+% basis for the evolution process. Finally, other representations can
+% be based on mathematical models, like fractals or cellular
+% automata. % Esto ¿a santo de qué? ¿Qué tiene que ver con las
+           % clasificaciones? - JJ FERGU: to fura!
 
 
 %\rowcolors{2}{gray!25}{white}
 
-
-\section{Integrating Processing in OSGiLiath}
-\label{sec:processing}
 
 % Sin dedicarle una línea a enlazar tu trabajo con el trabajo
 % anterior, ni hablar de clasificación, ni de representación, ni de
 % por qué avanza el estado del arte ni tu tesis, venga, vamos a hablar
 % de processing. Una tesis es una narrativa continua. Aquí el lector
 % ya se ha perdido y no entiende a qué viene a cuento toda la parte
-% expositiva del capítulo anterior - JJ
-\noindent In this section we describe Processing
+% expositiva del capítulo anterior - JJ FERGU: reescribiendo capítulo entero y movido de sitio
+
+
+\section{Histograms} % ¿lo ves como antes no hablabas de histogramas? - JJ FERGU: cambiado de sitio
+The {\em Color module} can be used to extract the color histograms of
+the images, which represent the frequency of occurrence of each color
+intensities present in the image, by accounting for such sharing
+pixels color intensity values. % ¿ein? ¿Google translator? - JJ FERGU: puede ser, porque esto lo escribimos entre varios y a mí no me suena...
+
+The histogram is composed of different ranges or bins that represent a value or set of values of color intensity. % si esto es parte o traslación literal del trabajo, deberías reescribirlo (vas a tener que hacerlo de todas formas para integrarlo con la tesis) - JJ
+ The color space is defined as a model representation with respect to color intensity values. Two color models are used in this chapter: RGB (Red, Green, Blue) and HSV (Hue, Saturation and Value). The RGB model is an additive color model in which red, green and blue are added together in different proportions to reproduce a wide range of colors, while the HSV is based on hue or tone, saturation and brightness. While the RGB model is the closest to the way color is processed in some machines, the HSV representation provides a more accurate way to model how humans perceive colors, and also provides more information in image retrieval \cite{COLORDIFFERENCES}.
+Figure \ref{fig:histogram} shows the RGB histogram of the image in Figure \ref{fig:flevopark}.
+
+\begin{SCfigure}[20][htb]
+\centering
+   \includegraphics[scale =0.6] {gfx/art/histogram.png}
+\caption{RGB histogram of Figure \ref{fig:flevopark}. }
+\label{fig:histogram}
+\end{SCfigure}
+
+\begin{SCfigure}[20][htb]
+\centering
+   \includegraphics[scale =3] {gfx/art/flevopark.jpg}
+\caption{Test image to compare with the Fitness functions of our algorithm.}
+\label{fig:flevopark}
+\end{SCfigure}
+
+
+\section{Applying SOA-EA}
+\label{sec:art:soaea}
+
+\subsection{Identification}
+
+Primitive
+ArtisticIndividual
+Drawer (individual)
+ArtisticInitializer.
+ArtisticMutation
+ArtisticFitnessCalculator
+
+
+\subsection{Specification}
+
+The genome of the individual is a list of
+primitives. % ¿El genoma es una lista para llevar a cabo los experimentos? ¿En serio? - JJ FERGU: borrado
+Each primitive has a position, size and color. This list can
+be recombined or mutated (changing the color, position or radium of a
+primitive of the list). 
+
+
+% hala, una subsección con una sola frase. ¿Por qué se
+                     % usa esto? ¿Cómo lo enlazas con la literatura?
+                     % ¿Fue lo primero que se te ocurrió? ¿Por qué
+                     % usas círculos y no cuadrados? ¿O círculos y
+                     % cuadrados? ¿O divisiones fractales? ¿O, en
+                     % general, cualquier otra cosa? - JJ FERGU: quitada subsección
+
+
+For this piece of research, we focused on the aesthetics measure of
+histogram comparison. The fitness functions are included in the
+``Error relative to Exemplars'' category, using \person{Galanter
+\cite{galanter2012computational} classification. The idea is to obtain
+an image with the same proportion of tones and colors of a 
+existent image. 
+
+% Y eso ¿por qué tendría algo que ver con los valores
+                % estéticos de la imagen? Hasta ahora no has
+                % justificado que el histograma tenga nada que ver con
+                % lo bonita que es - JJ
+
+Three different fitness functions have been implemented:
+\begin{itemize}
+\item {\em RGB difference}: The difference of the RGB histogram of the individual with the RGB histogram of the test image.
+\item {\em HSV difference}: The difference of the HSV histogram of the individual with the HSV histogram of the test image.
+\item {\em Average difference}: An average of the two previous differences.
+\end{itemize}
+
+RGBFitnes
+
+The range of the these fitness function has been normalized to vary from 0 (totally different histograms) to 1 (the same histogram).
+
+For every color property (i.e., RED, GREEN, BLUE, HUE, SATURATION and VALUE), the histogram is computed using the expression (\ref{eq:histogram}) for each possible value (0-255). Then, again for every property, the difference between the target image and the individual histograms is obtained using (\ref{eq:diff}). Finally, the three fitness are calculated: RGB fitness (\ref{eq:RGB}), HSV fitness (\ref{eq:HSV}) and AVERAGE fitness (\ref{eq:AVERAGE}).
+
+\begin{eqnarray}
+  \label{eq:histogram}
+  H(c, prop) = \frac{1}{N}\sum_{j=0}^N \left\{\begin{matrix}
+1 & prop(j) = c\\ 
+0 & otherwise
+\end{matrix}\right. \\
+\label{eq:diff}
+diff(h_1, h_2) = \sum_{j=0}^{255} |h_1(j) - h_2(j)|
+\end{eqnarray}
+\begin{eqnarray}
+  d_R(i) = diff(H(i, RED), H(target, RED))\\
+  d_G(i) = diff(H(i, GREEN), H(target, GREEN))\\
+  d_B(i) =  diff(H(i, BLUE), H(target, BLUE))\\
+  \label{eq:RGB}
+  fitness_{RGB}(i) = 1 - 128\frac{d_R(i) + d_G(i) + d_B(i)}{3}
+\end{eqnarray}
+\begin{eqnarray}
+  d_H(i) = diff(H(i, HUE), H(target, HUE))\\
+  d_S(i) = diff(H(i, SAT), H(target, SAT))\\
+  d_V(i) =  diff(H(i, VAL), H(target, VAL))\\
+  \label{eq:HSV}
+  fitness_{HSV}(i) = 1 - 128\frac{d_H(i) + d_S(i) + d_V(i)}{3}
+\end{eqnarray}
+\begin{eqnarray}
+  \label{eq:AVERAGE}
+  fitness_{AVERAGE}(i) = \frac{fitness_{RGB}+fitness_{HSV}}{2}
+\end{eqnarray}
+
+
+
+
+\subsection{Implementation and deployment}
+
+
+
+To draw the art ................ Processing
 \footnote{\url{http://www.processing.org/}} and the histograms
 used. %¿Dónde has justificado el uso de histogramas? Tampoco engañes
       %al lector: Una cosa es Processing y otra los histogramas. Si
-      %estamos a processing, estamos a processing - JJ
+      %estamos a processing, estamos a processing - JJ FERGU: reestructurado
  Processing \cite{PROCESSING} is a framework formed by a simple
  programming language and an integrated development environment (IDE)
  (shown in Figure \ref{fig:ideProc}) primarily created for electronic
  and visual artists such as designers, musicians. Processing offers
  the following advantages: % No se usa etc en lenguaje formal. Y esto
-                           % os lo he dicho en más de mil papers - JJ
+                           % os lo he dicho en más de mil papers - JJ FERGU: quitados
 
 \begin{itemize}
 \item Processing was created for artists, rather than programmers. So, it allows very complex drawings and interactive applications with few lines of code.
 \item It is an Open Source software (licensed under the GNU Lesser General Public License), and counts with a large development community.
 \item It is based on OpenGL, thus providing 3D acceleration.
-\item It also includes more than 100 libraries for video, sound, physics, computer vision, networking, etc.
+\item It also includes more than 100 libraries for video, sound, physics, computer vision and networking.
 \item Easy integration with Java, HTML5 and Android.
 \end{itemize}
+
 %Lo que estás haciendo es dibujar bolas. las ventajas de processing no
 %tienes qu emedirlas de forma absoluta, sino relativa a usar
 %simplemente JS con el canvas. En todo caso, siempre se trata de
@@ -228,127 +365,44 @@ Processing is composed by several modules: %En general, cualquier
                                 %como esta, suena a copy paste. ¿En
                                 %serio que saber que processing tiene
                                 %un módulo de tipografía es
-                                %interesante para tu tesis? - JJ
+                                %interesante para tu tesis? - JJ FERGU: tienes razón, quitado
 
-\begin{itemize}
-\item Structure: Includes typical programming functions as is the case of return, draw, void, and everything related to the structure of the program.
-\item Environment: Formed by the functions that handle the modeling of the window: cursor, width, height, background, for example.
-\item Data: formed by the data types that make up the different program variables (int, char, float).
-\item Control: Consisting in relations operators.
-\item Shape: it is formed by all functions of the treatment of figures 3D and 2D.
-\item Input: input interactivity features such as functions for the mouse, keyboard or files.
-\item Output: output interactivity features such as write on the screen, save the image or serial control.
-\item Transform: transformations such as rotations or translations.
-\item Lights and Cameras: Functions for the treatment of the lights and cameras.
-\item Color: Functions to handle color of the figures.
-\item Image: Functions for loading images or textures.
-\item Rendering: Functions for rendering images.
-\item Typography: Functions for dealing with text.
-\item Math: Functions for dealing with all mathematical functionality.
-\end{itemize}
+%\begin{itemize}
+%\item Structure: Includes typical programming functions as is the case of return, draw, void, and everything related to the structure of the program.
+%\item Environment: Formed by the functions that handle the modeling of the window: cursor, width, height, background, for example.
+%\item Data: formed by the data types that make up the different program variables (int, char, float).
+%\item Control: Consisting in relations operators.
+%\item Shape: it is formed by all functions of the treatment of figures 3D and 2D.
+%\item Input: input interactivity features such as functions for the mouse, keyboard or files.
+%\item Output: output interactivity features such as write on the screen, save the image or serial control.
+%\item Transform: transformations such as rotations or translations.
+%\item Lights and Cameras: Functions for the treatment of the lights and cameras.
+%\item Color: Functions to handle color of the figures.
+%\item Image: Functions for loading images or textures.
+%\item Rendering: Functions for rendering images.
+%\item Typography: Functions for dealing with text.
+%\item Math: Functions for dealing with all mathematical functionality.
+%\end{itemize}
 
 Processing % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ
 can be integrated with Java just by adding a {\em jar} (a
 Java library) to existing software. In this chapter, Processing has
 been integrated to OSGiLiath. A new module called OSGiLiART has been
-added to the publicly-available source code of OSGiLiath.  % URL - JJ
+added to the publicly-available source code of OSGiLiath \footnote{\url{https://github.com/fergunet/osgiliath/tree/master/OSGiLiART}}.  % URL - JJ FERGU: Done
 Then, using the packages available in the Processing library an algorithm can generate individuals, manipulate images or extract information. Several services have been created, for example the interface {\em Drawer}, and its concrecte implementation using processing {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by shapes in Processing. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers), because the abstract design of OSGiLiath.
 
-\section{Histograms} % ¿lo ves como antes no hablabas de histogramas? - JJ
-The {\em Color module} can be used to extract the color histograms of
-the images, which represent the frequency of occurrence of each color
-intensities present in the image, by accounting for such sharing
-pixels color intensity values. % ¿ein? ¿Google translator? - JJ
-
-The histogram is composed of different ranges or bins that represent a value or set of values of color intensity. % si esto es parte o traslación literal del trabajo, deberías reescribirlo (vas a tener que hacerlo de todas formas para integrarlo con la tesis) - JJ
- The color space is defined as a model representation with respect to color intensity values. Two color models are used in this chapter: RGB (Red, Green, Blue) and HSV (Hue, Saturation and Value). The RGB model is an additive color model in which red, green and blue are added together in different proportions to reproduce a wide range of colors, while the HSV is based on hue or tone, saturation and brightness. While the RGB model is the closest to the way color is processed in some machines, the HSV representation provides a more accurate way to model how humans perceive colors, and also provides more information in image retrieval \cite{COLORDIFFERENCES}.
-Figure \ref{fig:histogram} shows the RGB histogram of the image in Figure \ref{fig:flevopark} (photo taken by the first author).
-
-\begin{SCfigure}[20][htb]
-\centering
-   \includegraphics[scale =0.6] {gfx/art/histogram.png}
-\caption{RGB histogram of Figure \ref{fig:flevopark}. }
-\label{fig:histogram}
-\end{SCfigure}
-
-\begin{SCfigure}[20][htb]
-\centering
-   \includegraphics[scale =3] {gfx/art/flevopark.jpg}
-\caption{Test image to compare with the Fitness functions of our algorithm.}
-\label{fig:flevopark}
-\end{SCfigure}
-
-\section{Experimental Setup}
-\label{sec:setup}
-
-\noindent This section shows how Processing has been used in the EA,
-the individual representation, the fitness functions, and the
-parameters of the experiments. % Una tesis debe ser también una metodología. ¿Esta metodología coincide con la del resto de los capítulos? - JJ
 
 
 
-\subsection{Individual Representation}
 
-To perform the experiments, the genome of the individual is a list of
-circles. % ¿El genoma es una lista para llevar a cabo los experimentos? ¿En serio? - JJ
-Each circle has a position, radium and color. This list can
-be recombined or mutated (changing the color, position or radium of a
-circle of the list). % hala, una subsección con una sola frase. ¿Por qué se
-                     % usa esto? ¿Cómo lo enlazas con la literatura?
-                     % ¿Fue lo primero que se te ocurrió? ¿Por qué
-                     % usas círculos y no cuadrados? ¿O círculos y
-                     % cuadrados? ¿O divisiones fractales? ¿O, en
-                     % general, cualquier otra cosa? - JJ
+%\noindent This section shows how Processing has been used in the EA,
+%the individual representation, the fitness functions, and the
+%parameters of the experiments. % Una tesis debe ser también una metodología. ¿Esta metodología coincide con la del resto de los capítulos? - JJ FERGU: quitado
 
-\subsection{Fitness Used}
-For this piece of research, we focused on the aesthetics measure of
-histogram comparison. The fitness functions are included in the
-``Error relative to Exemplars'' category, using Galanter
-\cite{galanter2012computational} classification. The idea is to obtain
-an image with the same proportion of tones and colors of a 
-existent image. % Y eso ¿por qué tendría algo que ver con los valores
-                % estéticos de la imagen? Hasta ahora no has
-                % justificado que el histograma tenga nada que ver con
-                % lo bonita que es - JJ
 
-Three different fitness functions have been tested:
-\begin{itemize}
-\item {\em RGB difference}: The difference of the RGB histogram of the individual with the RGB histogram of the test image.
-\item {\em HSV difference}: The difference of the HSV histogram of the individual with the HSV histogram of the test image.
-\item {\em Average difference}: An average of the two previous differences.
-\end{itemize}
 
-The range of the these fitness function has been normalized to vary from 0 (totally different histograms) to 1 (the same histogram).
 
-For every color property (i.e., RED, GREEN, BLUE, HUE, SATURATION and VALUE), the histogram is computed using the expression (\ref{eq:histogram}) for each possible value (0-255). Then, again for every property, the difference between the target image and the individual histograms is obtained using (\ref{eq:diff}). Finally, the three fitness are calculated: RGB fitness (\ref{eq:RGB}), HSV fitness (\ref{eq:HSV}) and AVERAGE fitness (\ref{eq:AVERAGE}).
 
-\begin{eqnarray}
-	\label{eq:histogram}
-	H(c, prop) = \frac{1}{N}\sum_{j=0}^N \left\{\begin{matrix}
-1 & prop(j) = c\\ 
-0 & otherwise
-\end{matrix}\right. \\
-\label{eq:diff}
-diff(h_1, h_2) = \sum_{j=0}^{255} |h_1(j) - h_2(j)|
-\end{eqnarray}
-\begin{eqnarray}
-	d_R(i) = diff(H(i, RED), H(target, RED))\\
-	d_G(i) = diff(H(i, GREEN), H(target, GREEN))\\
-	d_B(i) =  diff(H(i, BLUE), H(target, BLUE))\\
-	\label{eq:RGB}
-	fitness_{RGB}(i) = 1 - 128\frac{d_R(i) + d_G(i) + d_B(i)}{3}
-\end{eqnarray}
-\begin{eqnarray}
-	d_H(i) = diff(H(i, HUE), H(target, HUE))\\
-	d_S(i) = diff(H(i, SAT), H(target, SAT))\\
-	d_V(i) =  diff(H(i, VAL), H(target, VAL))\\
-	\label{eq:HSV}
-	fitness_{HSV}(i) = 1 - 128\frac{d_H(i) + d_S(i) + d_V(i)}{3}
-\end{eqnarray}
-\begin{eqnarray}
-	\label{eq:AVERAGE}
-	fitness_{AVERAGE}(i) = \frac{fitness_{RGB}+fitness_{HSV}}{2}
-\end{eqnarray}
 
 
 \subsection{Parameters Used}
@@ -365,7 +419,7 @@ A steady-state evolutionary algorithm has been used. % ¿Por qué? ¿No
 % metodología que estés proponiendo en la tesis.
 Each individual is randomly generated at the initialization of the EA. The genome size is 50 elements (circles of maximum radium of 128 pixels). Population size has been set to 32 individuals. Uniform crossover rate is 0.5, and a binary tournament has been chosen for selection (that is, a pool of 16 parents is selected and crossed). Mutation probability is 0.04 (the usual value of {\em 1/genomesize}). Finally, the image size for each individual is 256x256 pixels. The individuals have been compared with the histograms obtained from the image of Figure \ref{fig:flevopark} to guide the evolution. 
 
-\section{Results}
+\section{Experimental Results}
 \label{sec:results}
 
 \noindent Because of the stochastic nature of the EAs, each algorithm
@@ -467,7 +521,7 @@ individual using the HSV fitness in the first 64 generations. %Estás
 
 \section{Conclusions and Future Work}
 \label{sec:conclusions}
-\noindent In this chapter Processing has been integrated in OSGiLiath
+In this chapter Processing has been integrated in OSGiLiath
 to create an Evolutionary Algorithm  to generate images and to extract
 image information using HSV and RGB histograms. % .. y esto me ha
                                 % servido en esta tesis para probar x
@@ -484,12 +538,13 @@ are obtained using the HSV comparison (due to the noisy information
 provided by the RGB).  % y por lo tanto esto implica para mi tesis x o
                        % y. 
 
-% Una tesis no incluye trabajo futuro salvo en las conclusiones - JJ
-The future work for this research also includes more experiment with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in previous sections will be also implemented. Finally, our intention is not only to create only static images, but use the Processing libraries to create evolutionary interactive art combining sounds and motion. %A human guidance tool is also being developed to obtain human feedback to create a knowledge base for future experimentation (available in \url{http://evorq.ugr.es:8080/HumanGuidance}). The results will be gathered to create a database of different features to guide the evolution. 
-More complex measurements will be studied in next works, taking into
-account that the HSV is the color mode that provides more information
-during the evolution, having less noisy behaviour.
+% Una tesis no incluye trabajo futuro salvo en las conclusiones - JJ FERGU: quitado
+%The future work for this research also includes more experiment with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in previous sections will be also implemented. Finally, our intention is not only to create only static images, but use the Processing libraries to create evolutionary interactive art combining sounds and motion. 
+
+%More complex measurements will be studied in next works, taking into
+%account that the HSV is the color mode that provides more information
+%during the evolution, having less noisy behaviour.
 
 % Esto canta a inclusión a capón de un artículo en una tesis con la
 % que tiene en común solo el software usado. O lo adaptas muy mucho en
-% la línea que te he puesto en los comentarios o lo suprimes - JJ
+% la línea que te he puesto en los comentarios o lo suprimes - JJ FERGU: exactamente era eso lo que había hecho, pero me lo revisaste antes de que lo adaptara más a la tesis. Mira a ver si ahora tiene más sentido con la tesis o lo quito.
