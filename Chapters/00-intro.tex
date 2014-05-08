@@ -1,4 +1,8 @@
 \myChapter{Introduction}\label{chap:introduction}
+\begin{flushright}{\slshape
+    Call me Ishmael.} \\ \medskip
+    --- {Herman Melville, Moby-Dick; or, The Whale}
+\end{flushright}
 \minitoc\mtcskip
 \vfill
 
@@ -9,16 +13,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 \section{Thesis goal} %FERGU: esto es un párrafo que describe el objetivo de la tesis.
-The goal of this thesis is to demonstrate that use Service Oriented Architecture paradigm to develop Evolutionary Algorithms solves some of the problems present in this field, such as the lack of standardization, integration and dynamism control. A methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) that deals with these problems is presented. This methodology is used to create a framework to develop SOEAs using a specific technology standard (OSGi) and it is used to carry out experiments that demonstrate dynamic binding, automatic distribution and publication of interfaces. Finally, different applications using this methodology and framework in different fields will be shown.
+The goal of this thesis is to demonstrate that the use of Service Oriented Architecture paradigm to develop Evolutionary Algorithms solves some of the problems present in this field, such as the lack of standardization, integration and dynamism. A methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) that deals with these problems is presented. This methodology is used to create a framework to develop SOEAs using a specific technology standard (OSGi) and it is used to carry out experiments that demonstrate dynamic binding, automatic distribution and publication of interfaces. Finally, different applications using this methodology and framework in different fields will be shown.
 
-\section{Evolutionary Algorithms}
+\section{Evolutionary Computation}
 \label{sec:intro:eas}
 
 \lettrine{E}{volutionary} Computation is a scientific field that involves a large number of bio-inspired methods, problems and tools. Evolutionary Algorithms (EAs) are a set of techniques of this field applied to optimization problems \cite{eiben2010whatis}. These algorithms imitate the process of natural selection, giving to fittest solutions (or {\em individuals}) more probability to mate with others to generate new solutions that inherit its information. Thus, iteratively, better individuals would recombine to form better solutions of the problem to solve.
 
-Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. This steps can be combined to create new algorithms, or being used dynamically depending some information during the run. Therefore, this steps should be designed and developed as loose-coupled elements. With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate. 
+Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. This steps can be combined to create new algorithms, or being used dynamically depending on some information during the run (for example, average quality of solutions). Therefore, this steps should be designed and developed as loose-coupled elements. With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate. 
 
-There are a number of shortcomings in the EA area, such as the lack of standardization and integration in EA software tools \cite{SURVEYMOFS}. Many frameworks for EAs exist, but without the possibility of integrate their components. Also, using standards helps Open Science... Finally, the lack of dynamism is also a 
+There are a number of shortcomings in the EA area, such as the lack of standardization and integration in EA software tools \cite{SURVEYMOFS}. Many frameworks for EAs exist, but without the possibility of interoperation of their components. Also, using standards helps Open Science... Finally, the lack of dynamism is also a 
 
 Service Oriented Architecture \cite{Papazoglou2007SOA} is proposed in this thesis as a solution to address previous shortcomings. This paradigm defines the usage of loose-coupled and self-contained elements (services) based in public standards, to facilitate the integration, interoperability and discovery in different software systems.
 
@@ -30,12 +34,12 @@ Service Oriented Architecture \cite{Papazoglou2007SOA} is proposed in this thesi
 
 \subsection{Parameter Adaptation}
 
-One of the greater challenges of the EC field is to find the appropriate values for EAs parameters, as claimed by {\person Eiben \etal.} 
+One of the greater challenges of the EC field is to find the appropriate values for EAs parameters, as claimed by {\person Eiben \etal} 
 \cite{Eiben12Parameters}. Researchers need to put effort on finding these values in order to
-attain significant performance in their EAs. Not only to adapt the numerical parameters (such as crossover rate), but also the elements that conform an evolutionary algorithm (different types of crossovers). The integration should be as easy as possible to allow researchers develop new algorithms easily. Moreover, not only the way to combine the operators that conform the algorithm one, but also how to dynamically select among these available elements. 
+attain significant performance in their EAs. Not only to adapt the numerical parameters (such as crossover rate), but also the elements that conform an evolutionary algorithm (different types of crossovers). The integration should be as easy as possible to allow researchers develop new algorithms easily. 
 
 \subsection{Dynamism and distribution}
-As in previous challenge, mechanisms to deal with dynamism in operators should be addressed. Several authors have mentioned the problem of the limited dynamic and reflexive capabilities for loading algorithm elements (for example, problems and heuristics) in frameworks for EAs \cite{SURVEYMOFS}. Thus, mechanisms to announce operators and automatically discovering and binding should be used.
+As in previous challenge, mechanisms to deal with dynamism in operators should be addressed. That is, not only the way to combine the operators that conform an algorithm, but also how to dynamically select among these available elements. Also, several authors have mentioned the problem of the limited dynamic and reflexive capabilities for loading algorithm elements (for example, problems and heuristics) in frameworks for EAs \cite{SURVEYMOFS}. Thus, mechanisms to announce operators and automatically discovering and binding should be used.
 
 Dynamism should also be managed in distribution. In the traditional parallelization models \cite{alba2002parallelism} issues such as fault-tolerance, security, churn, massive scalability or decentralization were not taken into consideration \cite{Alba13parallel}. New trends on distributed EAs (such as P2P \cite{} or pool-based EAs \cite{merelo2012pool}) are emerging,  and classic paradigms (such as Object Oriented Programming) have not mechanism to deal with these issues.
 
@@ -70,19 +74,19 @@ The main motivation of this thesis is to propose a new paradigm to develop EAs t
 
 To achieve this goal, the objectives to comply in this thesis are:
 
-\subsection{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
+\subsection*{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
 \label{subsec:intro:obj:problems}
 EAs is a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to identify their problems. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and shortcomings. Dynamic parameter adaptation and hardware adaptation will be . Finally, several works on the development of EAs will be explained to extract the requirements, and different EA frameworks will be studied to extract their benefits and shortcomings.
 
-\subsection{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs} 
+\subsection*{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs} 
 \label{subsec:intro:obj:methodology}
 This methodology (called SOA-EA) will help to identify, specify, implement and deploy services to create SOEAs. This methodology has to deal with the restrictions in the SOA design identified in previous objective, and help in development, integration and dynamism.
 
-\subsection{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
+\subsection*{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
 \label{subsec:intro:obj:fwork}
 Applying the methodology of the previous objective a framework (called OSGiLiath) will be created and used to solve some of the problems addressed: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be compared to select the most appropriate one to the problems we want to solve.
 
-\subsection{Objective 4: Use the framework to develop several applications}
+\subsection*{Objective 4: Use the framework to develop several applications}
 \label{subsec:intro:obj:applications}
 The final objective of this thesis is to demonstrate that SOEAs can be used to obtain scientific results in several fields. SOA-EA and OSGiLiath will be used to perform experiments in dynamic parameter adaptation to hardware, evolutionary art and creation of competitive bots for video-games.
 
@@ -108,4 +112,11 @@ In next two chapters (Chapters \ref{chap:rts} and \ref{chap:art}) OSGiLiath is u
 Finally, chapter \ref{chap:conclusions} summarizes the main contributions of this thesis and future lines of research.
 
 Figure \ref{fig:intro:piramid} shows the methodology applied to develop this thesis.
+
+\begin{SCfigure}[tb]
+\centering
+ \includegraphics[scale =0.3] {gfx/intro/tesispiramide.pdf}
+\caption{Summary of the objectives of this thesis.}
+\label{fig:intro:piramid}
+\end{SCfigure}
 
