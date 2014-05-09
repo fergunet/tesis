@@ -1,0 +1,119 @@
+\myChapter{Conclusions}\label{chap:conclusions}
+\begin{flushright}{\slshape
+    I didn't jump. I took a tiny step, \\and there conclusions were.} \\ \medskip
+    --- {Buffy Summers. Phases. Buffy: the Vampire Slayer}
+\end{flushright}
+\minitoc\mtcskip
+\vfill
+
+\section{Achievements}
+
+Thanks to the Internet booming, there exist a paradigm change from Object Oriented Programming to Service Oriented Architectures, where the software is accessed as interoperable services that allow researchers sharing data and applications in a remote way. The usage of services does not imply remote accessing, but a way to develop and integrate without assumptions about implementation technology. The EAs research is a conducive area to migrate to SOA, because this kind of algorithms is inherently configurable and paralellizable. Moreover, there exist many software tools for EAs, although impossible to be integrated. Also, the booming of new trends, like Cloud Computing, and the usual high cost of this kind of algorithms makes them ideal to be transformed in loosely coupled and distributed services for an easy integration. 
+
+\subsection*{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
+
+Problems...
+Firstly, SOA fits with the genericity advantages in the development of software for EAs, proposed by \person{Gagn\'e and Parizeau} but adds new features, like language independence and  distribution mechanisms. SOA allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). It also increases the interoperability between different software elements (for example, it is possible to add communication libraries without modifying existing code). Related to the previous WHAT, the existing EA frameworks could be re-used thanks to SOA, because it provides language independence. Also, facilitate the code distribution: SOA does not require the use of a concrete implementation or library. Finally, this paradigm allows access to already created and operative services, facilitating Open Science.
+
+\subsection*{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs}
+
+A four step methodology called SOA-EA has been presented. This methodology, based in SOMA, stablish four steps to develop SOEAs: identification, specification, implementation and deployment. 
+
+
+
+\subsection*{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
+
+Loose coupling services for EAs have been designed with SOA-EA, and they have been implemented inside the OSGiLiath framework.  These services have been combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). These services have also been dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task.
+New services have been added in execution time using this implementation. Communication with different protocols (SOAP and ECF) and integration with different programming languages (Java and PHP) have been compared. No specific source code for a basic distribution have been added, neither the existing source code has been modified to achieve previous tasks. Finally, several techniques have been presented in this thesis to combine existing services in a flexible way.
+
+\subsection*{Objective 4: Use the framework and methodology to conduct research in applications of EAs}
+
+SOA-EA and the OSGiLiath framework have been used to develop services to run experiments on different application fields. The first one deals with automatic binding of distributed services to manage an island-based dEA. The next application shows services for integration with other environments ({\em Processing}) to compare different fitness functions in Evolutionary Art. Finally, services for other sub-type of EA, Genetic Programming, have been developed to validate the genericity in individual representation, operations and evolutionary model in the framework. This algorithm has been used to obtain competitive bots that play RTS games.
+
+
+\section{Contributions}
+
+\subsection*{Viability of the SOA paradigm has been analysed in terms of dynamic binding, interoperability and integration}
+Services have been exposed using different technologies. The concept Service Oriented Evolutionary Algorithm (SOEA) defines an EA whose elements are services.
+
+\subsection*{A methodology to model the services that compose a service oriented EA have been proposed}
+
+The requirements in EA design (genericity in representation, fitness, operations, model, parameters and output), with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism), have been taken into account to propose the SOA-EA methodology. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to answer in each phase to help in the development. This methodology can been used to create SOEAs that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. 
+
+\subsection*{A framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs have been developed}
+
+
+\subsection*{Two possible parameter adaptation to hardware methods have been proposed}
+As a possible offline parameter setting, we have calculated the computational power of each node proportionally 
+to the average number of generations of the homogeneous parameter set. Moreover, a possible way to adapt 
+online the sub-population sizes has been performed comparing the current generation with the neighbour generation. The results...
+
+\subsection*{A comparison of using HSV and RGB histograms in Evolutionary Art has been studied}
+ Three different fitness functions using color histogram have been tested: difference between the HSV and
+RGB histograms, and an average difference of the two histograms at the
+same time. Experiments show that better results in terms of similarity
+are obtained using the HSV comparison (due to the noisy information
+provided by the RGB).
+
+\subsection*{A method to generate competitive agents for RTS have been presented}
+
+A Genetic Programming algorithm that generates agents for playing Planet Wars game have been presented. A number of possible actions to
+perform and decision variables have been presented.  Generated bots have been tested against a larger
+set of maps not previously used during the evolution, obtaining
+equivalent or better results than competitive bots available in the literature. 
+
+\subsection*{All the results of this thesis have been released using free licenses}
+
+Following the principles of Open Science, all the work of this thesis has released using open licenses. OSGiLiath and all experiments presented in this thesis are available under GNU/LGPL V3 License in our GitHub repository \url{https://github.com/fergunet/osgiliath}. 
+
+The LaTeX files that generate this thesis have also been released in \url{https://github.com/fergunet/osgiliath} under a Creative Commons License. Finally, the web page \url{http://www.osgiliath.org} describes the steps of development of this thesis: news, awards, publications and documentation.
+
+
+\section{Outlook}
+
+\subsection{Service Oriented EAs}
+A web portal to centralize new implementations of services being offered to the community will be created as a future task. Also, interviews with EA practitioners with different skills in programming and areas will be performed, to validate if this change of paradigm is contributing to enhance their work.
+
+\subsection{Parameter Adaptation in heterogeneous machines}
+
+In the future it would be interesting to check the scalability of the approach presented in this thesis, using more computational nodes and larger problem instances. In addition, other parameters such as migration rate or crossover probability could be adapted to the execution nodes. Different implementation of these services could be automatically enabled depending of the current state of the EA and the node. Other appropriate benchmark services to analyse the algorithm will be also used to lead to automatic parameter adaptation in runtime (online), with different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system. 
+
+
+
+\subsection{Evolutionary Art}
+
+The future work for this research also includes more experiment with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in previous sections will be also implemented. Finally, our intention is not only to create only static images, but use the {\em Processing} libraries to create evolutionary interactive art combining sounds and motion. 
+
+More complex measurements will be studied in next works, taking into
+account that the HSV is the colour mode that provides more information
+during the evolution, having less noisy behaviour.
+
+\subsection{RTS games}
+
+In future work, other rules will be added to our algorithm (for
+example, the ones that analyse the map, as the Exp-Genebot does) and
+different enemies will be used. Other games used in the area of
+computational intelligence in videogames, such as
+Unreal\texttrademark~ or Super Mario\texttrademark~ will be tested.
+
+\section{Publications related with this thesis}
+
+\begin{itemize}
+\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Maribel García Arenas, Juan Julián Merelo Guervós} \emph{Service oriented evolutionary algorithms}.  Soft Comput. 17(6): 1059--1075 (2013).
+
+\item \person{Pablo Garc\'ia-S\'anchez, Jes\'us Gonz\'alez, Antonio Miguel Mora, Maribel Garc\'ia Arenas, Pedro A. Castillo, Carlos Fernandes and Juan Juli\'an Merelo}. \emph{Population size adaptation in distributed evolutionary algorithms on heterogeneous clusters}. Under review in Applied Soft Computing.
+
+
+\item \person{Pablo García-Sánchez, Maria I. García Arenas, Antonio Miguel Mora, Pedro A. Castillo, Carlos Fernandes, Paloma de las Cuevas, Gustavo Romero, Jesús González, Juan Julián Merelo Guervós} \emph{ Developing services in a service oriented architecture for evolutionary algorithms}. In Proceeding of the fifteenth annual conference companion on Genetic and evolutionary computation conference companion. ACM, 2013. p: 1341-1348.
+
+\item \person{Pablo García-Sánchez} \emph{ A service oriented evolutionary architecture: applications and results}. In Proceeding of the fifteenth annual conference companion on Genetic and evolutionary computation conference companion. ACM, 2013. p: 1663--1666.
+
+\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence. Springer, 2010. p: 211--222.
+
+\item \person{P. García-Sánchez, J. J. Merelo, D. Calandria, A. B. Pelegrina, R. Morcillo, F. Palacio and R. H. García-Ortega} \emph{Testing the Differences of using RGB and HSV Histograms during Evolution in Evolutionary Art } In proceedings of the 5th International Joint Conference on Computational Intelligence. 2013. p. 168-174.
+
+\item \person{P. García-Sánchez, A. Fernández-Ares, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, EvoNUM, and EvoSTOC, Proceedings. Springer, 2013 Lecture Notes in Computer Science (to appear).
+
+\end{itemize}
+
+During the development of this thesis, other works related with some of the topics of this thesis have also been published: Service Oriented Architecture \cite{GarciaSanchez2013Gateway,Garcia09UMM}, Cloud Computing \cite{meri2013cloud}, and other EA applications, such as Evolutionary Robotics \cite{Garcia2012testing}, video-games bot optimization \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, inventory and route management \cite{Esparcia2009EVITA}, document transformation \cite{Garcia2008XSLT}, or heterogeneous hardware environments \cite{Garcia2009Mobile}.

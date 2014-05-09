@@ -1,16 +1,21 @@
 \myChapter{HSV and RGB comparison in Evolutionary Art}\label{chap:art}
+
+
 \begin{flushright}{\slshape
-   I’ve seen many things, my friend, but you’re right: \\
-   nothing quite as wonderful as the things you see.  \\ \medskip
+    I've seen many things, my friend, but you're right:
+    \\nothing quite as wonderful as the things you see.} \\ \medskip
     --- {The Doctor. Vincent and the Doctor. Doctor Who.}
 \end{flushright}
+
+
 \minitoc\mtcskip
 \vfill
 
 
+
 \lettrine{E}{volutionary} 
 
-As part of the Objective 4 (Use the framework to develop several applications), in this chapter SOA-EA and OSGiLiath will be used to develop a SOEA that...
+As part of the Objective 4 (Use the framework to develop several applications), in this chapter SOA-EA and OSGiLiath will be used to develop a SOEA. 
 
 The research objective of this application is to study the differences % with respect to what? FERGU: añadido abajo
 of using the information of the HSV (Hue, Saturation, Value) and RGB (Red,
@@ -41,7 +46,7 @@ In this chapter, the {\em Processing} \cite{PROCESSING} framework is
 integrated inside OSGiLiath % why? En una tesis hay que justificarlo
                             % TODO - JJ FERGU: 
 to take advantage of the capabilities offered in image manipulation and analysis. 
-Processing services are then used  to model the
+{\em Processing} services are then used  to model the
 individuals, generate their associate images and extract information
 of them (HSV, RGB and Average histograms) to fit with the histograms
 of the test images.
@@ -113,59 +118,59 @@ neural networks or complexity measures.   % ¿Cuál vas a usar? No se
                                 % tienes que mencionar lo que sea
                                 % interesante o incumba a tu tesis - JJ FERGU: quitadas las morrallas
 
-This classification also provides a sub-classification for
-evolutionary systems. If aesthetical evaluation is done by human it is
-called {\em interactive} evolutionary systems. Another category is
-performance % utility, más que performance - JJ
- based goals: certain properties of the art piece are evaluated and
- optimized based on performance measures (e.g., usable surface in a
- furniture design generator). Other systems use an exemplar (i.e.,
- real world example) as a way to measure the fitness of the
- individuals. % esto más que arte es diseño, no confundas. Además,
+%This classification also provides a sub-classification for
+%evolutionary systems. If aesthetical evaluation is done by human it is
+%called {\em interactive} evolutionary systems. Another category is
+%performance % utility, más que performance - JJ
+% based goals: certain properties of the art piece are evaluated and
+% optimized based on performance measures (e.g., usable surface in a
+% furniture design generator). Other systems use an exemplar (i.e.,
+% real world example) as a way to measure the fitness of the
+% individuals. % esto más que arte es diseño, no confundas. Además,
               % ¿cómo se llama esta subclase si la de antes es
-              % interactiva? - JJ
- Finally, some models use the idea that the complexity is directly
- related to aesthetics and follow the path firstly stablished in
- \cite{birkhoff2003aesthetic}.  Given the multidimensional nature of
- aesthetics judgement, multi-objective EAs are a straightforward
- option to deal with this multidimensionality. %¿Es lo que vas a usar?
+              % interactiva? - JJ FERGU: quitando todo
+ %Finally, some models use the idea that the complexity is directly
+ %related to aesthetics and follow the path firstly stablished in
+ %\cite{birkhoff2003aesthetic}.  Given the multidimensional nature of
+ %aesthetics judgement, multi-objective EAs are a straightforward
+ %option to deal with this multidimensionality. %¿Es lo que vas a usar?
                                 %Si no, es que no estás usando lo
                                 %"mejor" para tu tesis. - JJ
- Other extensions to EA, like coevolution or agent swarm behavior, can
- be used in evolutionary art systems. % ¿Eso es una subclasificación?
+ %Other extensions to EA, like coevolution or agent swarm behavior, can
+ %be used in evolutionary art systems. % ¿Eso es una subclasificación?
                                 % ¿Cómo se usan? Una tesis no es un
                                 % gran ejercicio de "name dropping",
                                 % justifica cosas con enlaces,
                                 % intégralas en la narrativa de tu
                                 % tesus y sobre todo añade citas. Por
                                 % cierto, agent swarm no es una
-                                % extensión de EAS- jj FERGU: fuera
+                                % extensión de EAS- jj FERGU: to fuera
 
-A brief classification of the aesthetic measures found in the
-evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
+%A brief classification of the aesthetic measures found in the
+%evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
                                 % EN EL PREVIO, SINO EN EL
                                 % ANTERIOR. ¿Por qué no lo pones ahí?
                                 % - JJ
- is shown in Table~\ref{table_class}.
+% is shown in Table~\ref{table_class}.
 
 
-\begin{SCtable}[][t]
+%\begin{SCtable}[][t]
 
-\resizebox{11cm}{!}{
-\begin{tabular}{p{4cm}p{7cm}}
-\hline
-\rowcolor{colorCorporativoSuave}Type & Aesthetic Measure \\ \hline \hline
-\rowcolor{colorCorporativoMasSuave}Formulaic and Geometric Theories & Fractal dimension \cite{den2010comparing}, Image order \cite{li2012investigating}, Benford Law \cite{del2005benford}\\ \hline
-\rowcolor{colorCorporativoSuave}Based on Design Principles &  Color contrast (hue) \cite{den2012evolving},  Color ingredient \cite{li2012investigating}, Composition, tonality and color \cite{dipaola2009incorporating}.\\ \hline
-\rowcolor{colorCorporativoMasSuave}Interactive Evolutionary Computation & The electric sheep project \cite{draves2006electric} \cite{ashlock2006evolutionary,moroni2000vox}\\ \hline
-\rowcolor{colorCorporativoSuave}Error relative to Exemplars &  Resemblance score \cite{dipaola2009incorporating}, pixel comparation \cite{aguilar2008robotic}\\ \hline
-\rowcolor{colorCorporativoMasSuave}Performance based goals & Evolving virtual creatures \cite{sims1994evolving} \\\hline
-\rowcolor{colorCorporativoSuave}Complexity measures & Image complexity \cite{li2012investigating}, Machado and Cardoso aesthetic measure \cite{machado1998computing}\\ \hline
-\end{tabular}
-}
-\caption{Classification of the aesthetic measures used in a brief review of the literature on evolutive art.} 
-\label{table_class} 
-\end{SCtable}
+%\resizebox{11cm}{!}{
+%\begin{tabular}{p{4cm}p{7cm}}
+%\hline
+%\rowcolor{colorCorporativoSuave}Type & Aesthetic Measure \\ \hline \hline
+%\rowcolor{colorCorporativoMasSuave}Formulaic and Geometric Theories & Fractal dimension \cite{den2010comparing}, Image order \cite{li2012investigating}, Benford Law \cite{del2005benford}\\ \hline
+%\rowcolor{colorCorporativoSuave}Based on Design Principles &  Color contrast (hue) \cite{den2012evolving},  Color ingredient \cite{li2012investigating}, Composition, tonality and color \cite{dipaola2009incorporating}.\\ \hline
+%\rowcolor{colorCorporativoMasSuave}Interactive Evolutionary Computation & The electric sheep project \cite{draves2006electric} \cite{ashlock2006evolutionary,moroni2000vox}\\ \hline
+%\rowcolor{colorCorporativoSuave}Error relative to Exemplars &  Resemblance score \cite{dipaola2009incorporating}, pixel comparation \cite{aguilar2008robotic}\\ \hline
+%\rowcolor{colorCorporativoMasSuave}Performance based goals & Evolving virtual creatures \cite{sims1994evolving} \\\hline
+%\rowcolor{colorCorporativoSuave}Complexity measures & Image complexity \cite{li2012investigating}, Machado and Cardoso aesthetic measure \cite{machado1998computing}\\ \hline
+%\end{tabular}
+%}
+%\caption{Classification of the aesthetic measures used in a brief review of the literature on evolutive art.} 
+%\label{table_class} 
+%\end{SCtable}
 
 %Several methods for the representation of the art in evolutionary
 %art % the _art_ in evolutionary _art_? Seriously? - JJ
@@ -176,7 +181,7 @@ evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
 % basis for the evolution process. Finally, other representations can
 % be based on mathematical models, like fractals or cellular
 % automata. % Esto ¿a santo de qué? ¿Qué tiene que ver con las
-           % clasificaciones? - JJ FERGU: to fura!
+           % clasificaciones? - JJ FERGU: to fuera!
 
 
 %\rowcolors{2}{gray!25}{white}
@@ -190,9 +195,11 @@ evolutionary art systems mentioned in the previous paragraph % NO ESTÁ
 % expositiva del capítulo anterior - JJ FERGU: reescribiendo capítulo entero y movido de sitio
 
 
-\section{Histograms} % ¿lo ves como antes no hablabas de histogramas? - JJ FERGU: cambiado de sitio
-The {\em Color module} can be used to extract the color histograms of
-the images, which represent the frequency of occurrence of each color
+%\section{Histograms} % ¿lo ves como antes no hablabas de histogramas? - JJ FERGU: cambiado de sitio
+
+In this chapter.........
+The color histograms of 
+the images represent the frequency of occurrence of each color
 intensities present in the image, by accounting for such sharing
 pixels color intensity values. % ¿ein? ¿Google translator? - JJ FERGU: puede ser, porque esto lo escribimos entre varios y a mí no me suena...
 
@@ -247,7 +254,7 @@ primitive of the list).
 
 For this piece of research, we focused on the aesthetics measure of
 histogram comparison. The fitness functions are included in the
-``Error relative to Exemplars'' category, using \person{Galanter
+``Error relative to Exemplars'' category, using \person{Galanter}
 \cite{galanter2012computational} classification. The idea is to obtain
 an image with the same proportion of tones and colors of a 
 existent image. 
@@ -310,10 +317,10 @@ To draw the art ................ Processing
 used. %¿Dónde has justificado el uso de histogramas? Tampoco engañes
       %al lector: Una cosa es Processing y otra los histogramas. Si
       %estamos a processing, estamos a processing - JJ FERGU: reestructurado
- Processing \cite{PROCESSING} is a framework formed by a simple
+ {\em Processing} \cite{PROCESSING} is a framework formed by a simple
  programming language and an integrated development environment (IDE)
  (shown in Figure \ref{fig:ideProc}) primarily created for electronic
- and visual artists such as designers, musicians. Processing offers
+ and visual artists such as designers, musicians. This framework has been chosen because it offers
  the following advantages: % No se usa etc en lenguaje formal. Y esto
                            % os lo he dicho en más de mil papers - JJ FERGU: quitados
 
@@ -360,7 +367,7 @@ interactive music and other. A good selection can be seen in
                                 % fireworks que hicimos con leonardo
                                 % Trujillo - JJ
 
-Processing is composed by several modules: %En general, cualquier
+%Processing is composed by several modules: %En general, cualquier
                                 %itemización es mala. Y más cuando,
                                 %como esta, suena a copy paste. ¿En
                                 %serio que saber que processing tiene
@@ -384,12 +391,13 @@ Processing is composed by several modules: %En general, cualquier
 %\item Math: Functions for dealing with all mathematical functionality.
 %\end{itemize}
 
-Processing % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ
+{\em Processing} % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ
 can be integrated with Java just by adding a {\em jar} (a
-Java library) to existing software. In this chapter, Processing has
-been integrated to OSGiLiath. A new module called OSGiLiART has been
+Java library) to existing software.
+
+A new {\em bundle} called OSGiLiART has been
 added to the publicly-available source code of OSGiLiath \footnote{\url{https://github.com/fergunet/osgiliath/tree/master/OSGiLiART}}.  % URL - JJ FERGU: Done
-Then, using the packages available in the Processing library an algorithm can generate individuals, manipulate images or extract information. Several services have been created, for example the interface {\em Drawer}, and its concrecte implementation using processing {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by shapes in Processing. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers), because the abstract design of OSGiLiath.
+Then, using the packages available in the Processing library an algorithm can generate individuals, manipulate images or extract information. The service {\em Drawer} has been implemented with  {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by the primitives in {\em Processing}. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers explained in previous chapters), because the abstract design of OSGiLiath.
 
 
 
@@ -405,7 +413,11 @@ Then, using the packages available in the Processing library an algorithm can ge
 
 
 
-\subsection{Parameters Used}
+
+
+
+\section{Experimental Results}
+\label{sec:results}
 
 A steady-state evolutionary algorithm has been used. % ¿Por qué? ¿No
                                 % es Osgiliath tan flexible? ¿Por qué
@@ -419,10 +431,7 @@ A steady-state evolutionary algorithm has been used. % ¿Por qué? ¿No
 % metodología que estés proponiendo en la tesis.
 Each individual is randomly generated at the initialization of the EA. The genome size is 50 elements (circles of maximum radium of 128 pixels). Population size has been set to 32 individuals. Uniform crossover rate is 0.5, and a binary tournament has been chosen for selection (that is, a pool of 16 parents is selected and crossed). Mutation probability is 0.04 (the usual value of {\em 1/genomesize}). Finally, the image size for each individual is 256x256 pixels. The individuals have been compared with the histograms obtained from the image of Figure \ref{fig:flevopark} to guide the evolution. 
 
-\section{Experimental Results}
-\label{sec:results}
-
-\noindent Because of the stochastic nature of the EAs, each algorithm
+ Because of the stochastic nature of the EAs, each algorithm
 has been executed 30 times for each different fitness formula. Table
 \ref{tab:results} shows the average differences (and standard
 deviation) attained with each fitness used. As can be seen, using the
@@ -521,9 +530,11 @@ individual using the HSV fitness in the first 64 generations. %Estás
 
 \section{Conclusions and Future Work}
 \label{sec:conclusions}
-In this chapter Processing has been integrated in OSGiLiath
+In this chapter {\em Processing} has been integrated in OSGiLiath
 to create an Evolutionary Algorithm  to generate images and to extract
-image information using HSV and RGB histograms. % .. y esto me ha
+image information using HSV and RGB histograms. This complies the Objective 4 of this thesis.
+
+ % .. y esto me ha
                                 % servido en esta tesis para probar x
                                 % o y - JJ
 Individuals are represented as a list of Processing primitives
