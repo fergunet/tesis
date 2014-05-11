@@ -1,4 +1,4 @@
-\myChapter{Tree depth influence in RTS games}\label{chap:rts}
+\myChapter{Generation of bots for RTS games using Genetic Programming}\label{chap:rts}
 \begin{flushright}{\slshape
     This last week with Fry has been great. Beneath his warm,  
     \\soft exterior beats the cold, mechanical heart of a robot. } \\ \medskip
@@ -6,7 +6,13 @@
 \end{flushright}
 \minitoc\mtcskip
 \vfill
-\lettrine{R}{eal} Time Strategy (RTS) games are a type of videogame
+
+The last application to fulfill the \textbf{Objective 4} is to . With this application, Genetic Programming (explained in Section \ref{subsec:classicEAs}) will be used to validate if the genericity in evolutionary model explained in Section \ref{sec:distributed:design}. SOA-EA and OSGiLiath will be used to perform an study on tree depth influence of GP to create competitive bots for RTS games. New individuals will be used and new implementations for mutation and crossover, and services to execute remote environments outside the OSGi will be developed with SOA-EA.
+
+
+\section{Background}
+
+RTS Time Strategy (RTS) games are a type of videogame
 where the play takes action in real time (that is, there are not
 turns, as in chess). Well-known games of this genre are Age of
 Empires\texttrademark~ or Warcraft\texttrademark. In this kind of game
@@ -22,7 +28,7 @@ with a lot of actions and strategies at the same time. % y esto es
                                 % ahora, parece "Blancanieves y los
                                 % siete enanitos" o bien "Osgiliath y
                                 % todo lo que se me ha ocurrido hacer
-                                % con él" - JJ
+                                % con él" - JJ FERGU: reescribiendo
 
 The {\em Planet Wars} game, presented under the Google AI Challenge 2010\footnote{\url{http://planetwars.aichallenge.org/}} has been used by several authors for the study of computational intelligence in RTS games
 \cite{Lara2013mapgenerator,Mora2012Genebot,FernandezAres2012adaptive}. This
@@ -35,7 +41,7 @@ one type of unit). % Todo problema debe ser acompañado por una
                    % capítulo. Y no sé si seguírmelo leyendo, porque
                    % si no haces esto una opción es simplemente
                    % eliminar el capítulo si no contribuye a LA
-                   % TESIS. - JJ
+                   % TESIS. - JJ FERGU: pues eso, cambiando todo :)
 
 
  Although this game has been described in previous works
@@ -71,7 +77,7 @@ shows a screen capture of the game. % Hay que caracterizar el
 In this chapter we use Genetic Programming (GP) to obtain agents that play
 Planet Wars game. % hala, así, sin vaselina ni nada. ¿Por qué GP? ¿Por
                   % qué no ES? ¿O cualquier otra cosa? 
-The objective of GP is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size (depth) of the individuals is usually fixed, to avoid high evaluation costs. GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
+The objective of GP is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size (depth) of the individuals is usually fixed, to avoid high evaluation costs. %GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
 
 
 We try to solve the next questions: 
@@ -81,11 +87,9 @@ We try to solve the next questions:
 \item How does the maximum depth affects the results?
 \end{itemize}
 
-The rest of the work is structured as follows: after the state of the art, the description of our agent is presented in Section \ref{sec:agent}. Then, the experimental setup conduced with the EA are showed (Section \ref{sec:experiments}). Finally, results, conclusions and future works are discussed.
+%The rest of the work is structured as follows: after the state of the art, the description of our agent is presented in Section \ref{sec:agent}. Then, the experimental setup conduced with the EA are showed (Section \ref{sec:experiments}). Finally, results, conclusions and future works are discussed.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%SEC SOA
-\section{Background}
 
 RTS games have been used extensively in the computational intelligence area (see \cite{Lara2013review} for a review).
 Among other techniques, Evolutionary Algorithms (EAs) have been widely used in computational intelligence in RTS games \cite{Lara2013review}. For example, for parameter optimization \cite{Esparcia10FPS}, learning \cite{Kenneth2005neuroevolution} or content generation \cite{Mahlmann2012MapGeneration}. 
@@ -93,7 +97,7 @@ Among other techniques, Evolutionary Algorithms (EAs) have been widely used in c
 One of these types, genetic programming, has been proved as a good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating high-ranking humans \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, or (in principle) simpler games such as Ms. Pac-Man \cite{Brandstetter2012PacMan} and Spoof \cite{Wittkamp2007spoof} and even in modern video-games such as First Person Shothers (FPS) (for example, Unreal\texttrademark~ \cite{Esparcia2013GPunreal}).
 
 
-Planet Wars, the game we are going to use in this work, has been used as experimental environment for testing agents in other works. For example, in
+Planet Wars, the game we are going to use in this chapter, has been used as experimental environment for testing agents in other works. For example, in
 \cite{Mora2012Genebot} the authors programmed the behaviour of a {\em bot} (a computer-controlled player) with a decision tree of 3 levels. Then, the values of these rules were optimized using a genetic algorithm to tune the strategy rates and percentages.  % ein????? - JJ - FERGU: re-escrito.
   Results showed a good performance confronting with other bots
   provided by the Google AI Challenge. 
@@ -108,10 +112,16 @@ instead of using our own gaming experience to model it, and compare
 this agent with the two presented before.  
 
 
+\section{Application of SOA-EA}
 
-\section{Proposed Agent}
-\label{sec:agent}
+\subsection{Identification}
 
+Problem domain: Initializer, FitnessCalculator (hablar mucho de este)
+Algorithm Domain: Crossover y Mutation, TreeGenome 
+Infrastructure domain: IndidivualTester, Conversor
+
+\section{Specification}
+Hablar del Fitness jerárquico
 
 The proposed agent receives a tree to be executed. The generated tree
 is a binary tree of expressions formed by two different types of nodes:
@@ -152,21 +162,27 @@ The decision list is:
 
 An example of a possible tree is shown in Figure \ref{fig:java}. This example tree has a total of 5 nodes, with 2 decisions and 3 actions, and a depth of 3 levels.
 
-\begin{figure}[tb] 
-\begin{center}
+
+\newsavebox{\javaboxrts}
+\begin{lrbox}{\javaboxrts}
+\begin{minipage}{10cm}
 \begin{lstlisting}
 if(myShipsLandedFlyingRatio<0.796)
-	if(actualMyShipsRatio<0.201)
-		attackWeakestNeutralPlanet(0.481);
-	else
-		attackNearestEnemyPlanet(0.913);
+  if(actualMyShipsRatio<0.201)
+    attackWeakestNeutralPlanet(0.481);
+  else
+    attackNearestEnemyPlanet(0.913);
 else
-	attackNearestEnemyPlanet(0.819);
+  attackNearestEnemyPlanet(0.819);
 \end{lstlisting}
-\end{center}
+\end{minipage}
+\end{lrbox}
+
+\begin{SCfigure}[tb] 
+\usebox{\javaboxrts}
 \caption{Example of a generated Java tree.}
 \label{fig:java}
-\end{figure}
+\end{SCfigure}
 
 The bot behaviour is explained in Figure \ref{alg:turn}.
 
@@ -219,6 +235,9 @@ The bot behaviour is explained in Figure \ref{alg:turn}.
 %		\ENDFOR
 %\ENDLOOP
 
+\subsection{Implementation and Deployment}
+TERMINAAAAAAAAR
+Decisions and Actions are strings. CAssist. ListPopulation has been used. DeterministicTournamentSelector, NGenerationsStopCriterion. DistributedFitness
 
 
 
@@ -234,28 +253,28 @@ Two publicly available bots have been chosen for our experiments\footnote{Both c
 
 After running our algorithm without tree limitation in depth, it has also been executed with the lower and average levels obtained for the best individuals: 3 and 7, respectively, to study if this number has any effect on the results.   Table \ref{tab:parameters} summarizes all the parameters used.
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|}
+\begin{SCtable}[][tb]
+\resizebox{11cm}{!}{
+\begin{tabular}{ll}
 \hline
-{\em Parameter Name} & {\em Value} \\\hline
-Population size & 32 \\\hline
-Crossover type & Sub-tree crossover \\ \hline
-Crossover rate & 0.5\\ \hline
-Mutation  & 1-node mutation\\ \hline
-Mutation step-size & 0.25 \\ \hline
-Selection & 2-tournament \\ \hline
-Replacement & Steady-state\\ \hline
-Stop criterion & 50 generations \\ \hline
-Maximum Tree Depth & 3, 7 and unlimited \\ \hline
-Runs per configuration & 30 \\ \hline
-Evaluation & Playing versus Genebot \cite{Mora2012Genebot} and Exp-Genebot \cite{FernandezAres2012adaptive} \\ \hline
-Maps used in each evaluation & map76.txt map69.txt map7.txt map11.txt map26.txt \\ \hline
+\rowcolor{colorCorporativoSuave}{\em Parameter Name} & {\em Value} \\\hline\hline
+\rowcolor{colorCorporativoMasSuave}Population size & 32 \\\hline
+\rowcolor{colorCorporativoSuave}Crossover type & Sub-tree crossover \\ \hline
+\rowcolor{colorCorporativoMasSuave}Crossover rate & 0.5\\ \hline
+\rowcolor{colorCorporativoSuave}Mutation  & 1-node mutation\\ \hline
+\rowcolor{colorCorporativoMasSuave}Mutation step-size & 0.25 \\ \hline
+\rowcolor{colorCorporativoSuave}Selection & 2-tournament \\ \hline
+\rowcolor{colorCorporativoMasSuave}Replacement & Steady-state\\ \hline
+\rowcolor{colorCorporativoSuave}Stop criterion & 50 generations \\ \hline
+\rowcolor{colorCorporativoMasSuave}Maximum Tree Depth & 3, 7 and unlimited \\ \hline
+\rowcolor{colorCorporativoSuave}Runs per configuration & 30 \\ \hline
+\rowcolor{colorCorporativoMasSuave}Evaluation & Playing versus Genebot \cite{Mora2012Genebot} and Exp-Genebot \cite{FernandezAres2012adaptive} \\ \hline
+\rowcolor{colorCorporativoSuave}Maps used in each evaluation & map76.txt map69.txt map7.txt map11.txt map26.txt \\ \hline
 \end{tabular}
+}
 \caption{Parameters used in the experiments.}
 \label{tab:parameters}
-\end{center}
-\end{table}
+\end{SCtable}
 
 After all the executions we have evaluated the obtained best individuals in all runs confronting to the bots in a larger set of maps (the 100 maps provided by Google) to study the behaviour of the algorithm and how good are the obtained bots in maps that have not been used for training.
 
@@ -270,49 +289,53 @@ After all the executions we have evaluated the obtained best individuals in all 
 
 Tables \ref{tab:resultsGenebot} and \ref{tab:resultsExpgenebot} summarize all the obtained results of the execution of our EA. These tables also show the average age, depth and number of nodes of the best individuals obtained and also the average population at the end of the run. The average turns rows are calculated only taking into account the individuals with lower victories than 5, because this number is 0 if they have win the five battles.
 
+\newcommand{\SetRowColor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}}
+\newcommand{\mymulticolumn}[3]{\multicolumn{#1}{>{\columncolor{\RowColorName}}#2}{#3}}
+\newcommand{\mymultirow}[3]{\multirow{#1}{>{\rowcolor{\RowColorName}}#2}{#3}}
 
+\begin{SCtable}[][tb]
+\resizebox{11cm}{!}{
 
-\begin{table*}
-\centering{
-\begin{tabular}{|c|c|c|c|c|} \hline
-    \multicolumn{2}{|c|}{}    &  {\em Depth 3}                & {\em Depth 7}                &    {\em Unlimited  Depth}    \\ \hline  
-\multirow{2}{*}{Best Fitness}  & Victories     &   \textbf{4.933} $\pm$ 0.25       &  4.83 $\pm$ 0.53       &    4.9     $\pm$ 0.30  \\ \cline{2-5}  
-              & Turns         &  244.5 $\pm$  54.44     &  466   $\pm$ 205.44    &    266.667 $\pm$ 40.42 \\ \hline  
-\multirow{2}{*}{Population Ave. Fitness}  & Victories     &   \textbf{4.486}$\pm$ 0.52 & 4.43 $\pm$ 0.07   &    4.711   $\pm$ 0.45  \\ \cline{2-5}  
-              & Turns         &  130.77$\pm$ 95.81      &  139.43 $\pm$ 196.60   &    190.346 $\pm$ 102.92\\ \hline  
-\multirow{2}{*}{Depth}         & Best          &  3     $\pm$ 0          & 5.2 $\pm$ 1.78         &    6.933   $\pm$ 4.05  \\ \cline{2-5}
-              & Population    &  3  $\pm$ 0             & 5.267 $\pm$ 1.8        &    7.353   $\pm$ 3.11  \\ \hline  
-\multirow{2}{*}{Nodes}         & Best          &  7     $\pm$ 0          &   13.667 $\pm$ 7.68    &    22.133  $\pm$ 22.21 \\ \cline{2-5}  
-              & Population    &  7     $\pm$ 0          & 13.818 $\pm$ 5.86      &    21.418  $\pm$ 13.81 \\ \hline  
-\multirow{2}{*}{Age}           & Best          &  \textbf{8.133} $\pm$ 3.95       & 5.467 $\pm$ 2.95       &    5.066   $\pm$ 2.11  \\ \cline{2-5}
-              & Population    &  \textbf{4.297} $\pm$ 3.027      & 3.247 $\pm$ 0.25       &    3.092   $\pm$ 1.27  \\ \hline
+\begin{tabular}{ccccc} \hline
+\SetRowColor{colorCorporativoSuave}\mymulticolumn{2}{c}{}    &  {\em Depth 3}                & {\em Depth 7}                &    {\em Unlimited  Depth}    \\ \hline \hline 
+\rowcolor{colorCorporativoMasSuave} & Victories     &   \textbf{4.933} $\pm$ 0.25       &  4.83 $\pm$ 0.53       &    4.9     $\pm$ 0.30  \\ \cline{2-5}  
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Best Fitness}             & Turns         &  244.5 $\pm$  54.44     &  466   $\pm$ 205.44    &    266.667 $\pm$ 40.42 \\ \hline  
+\rowcolor{colorCorporativoSuave}  & Victories     &   \textbf{4.486}$\pm$ 0.52 & 4.43 $\pm$ 0.07   &    4.711   $\pm$ 0.45  \\ \cline{2-5}  
+\SetRowColor{colorCorporativoSuave}\multirow{-2}{*}{Population Ave. Fitness}               & Turns         &  130.77$\pm$ 95.81      &  139.43 $\pm$ 196.60   &    190.346 $\pm$ 102.92\\ \hline  
+\rowcolor{colorCorporativoMasSuave}     & Best          &  3     $\pm$ 0          & 5.2 $\pm$ 1.78         &    6.933   $\pm$ 4.05  \\ \cline{2-5}
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Depth}              & Population    &  3  $\pm$ 0             & 5.267 $\pm$ 1.8        &    7.353   $\pm$ 3.11  \\ \hline  
+\rowcolor{colorCorporativoSuave}        & Best          &  7     $\pm$ 0          &   13.667 $\pm$ 7.68    &    22.133  $\pm$ 22.21 \\ \cline{2-5}  
+\SetRowColor{colorCorporativoSuave}\multirow{-2}{*}{Nodes}              & Population    &  7     $\pm$ 0          & 13.818 $\pm$ 5.86      &    21.418  $\pm$ 13.81 \\ \hline  
+\rowcolor{colorCorporativoMasSuave}          & Best          &  \textbf{8.133} $\pm$ 3.95       & 5.467 $\pm$ 2.95       &    5.066   $\pm$ 2.11  \\ \cline{2-5}
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Age}             & Population    &  \textbf{4.297} $\pm$ 3.027      & 3.247 $\pm$ 0.25       &    3.092   $\pm$ 1.27  \\ \hline
 \end{tabular}
+}
 \caption{Average results obtained from each configuration versus Genebot. Each one has been tested 30 times.}
 \label{tab:resultsGenebot}
-}
-\end{table*}
 
-\begin{table*}
-\centering{
-\begin{tabular}{|c|c|c|c|c|} \hline            
- \multicolumn{2}{|c|}{}        &  {\em Depth 3}                & {\em Depth     7}            &   {\em Unlimited Depth}     \\ \hline  
-\multirow{2}{*}{Best Fitness}  & Victories     &   4.133   $\pm$ 0.50    & 4.2      $\pm$ 0.48    &   \textbf{4.4}     $\pm$ 0.56  \\ \cline{2-5} 
-              & Turns          &  221.625 $\pm$ 54.43   & 163.667  $\pm$ 106.38  &   123.533 $\pm$ 112.79\\ \hline 
-\multirow{2}{*}{Population Ave. Fitness}  & Victories      &  3.541   $\pm$ 0.34    & 3.689    $\pm$ 0.37    &   \textbf{4.043}   $\pm$ 0.38  \\ \cline{2-5} 
-              & Turns          &  200.086 $\pm$ 50.79   & 184.076  $\pm$ 57.02   &   159.094 $\pm$ 61.84 \\ \hline  
-\multirow{2}{*}{Depth}         & Best           &  3       $\pm$ 0       & 5.2      $\pm$ 1.84    &   6.966   $\pm$ 4.44  \\ \cline{2-5} 
-              & Population     &  3       $\pm$ 0       & 5.216    $\pm$ 0.92    &   6.522   $\pm$ 1.91  \\ \hline 
-\multirow{2}{*}{Nodes}         & Best           &  7       $\pm$ 0       & 12.6     $\pm$ 6.44    &   18.466  $\pm$ 15.46 \\ \cline{2-5}   
-              & Population     &  7       $\pm$ 0       & 13.05    $\pm$ 3.92    &   16.337  $\pm$ 7.67  \\ \hline 
-\multirow{2}{*}{Age}           & Best           &  4.266   $\pm$ 5.01    & 4.133    $\pm$ 4.26    &   \textbf{4.7}     $\pm$ 4.72  \\ \cline{2-5} 
-              & Population     &  3.706   $\pm$ 0.58    & 3.727    $\pm$ 0.62    &   \textbf{3.889}   $\pm$ 0.71  \\ \hline  
+\end{SCtable}
+
+\begin{SCtable}[][tb]
+\resizebox{11cm}{!}{
+\begin{tabular}{ccccc} \hline            
+\SetRowColor{colorCorporativoSuave}\mymulticolumn{2}{c}{}        &  {\em Depth 3}                & {\em Depth     7}            &   {\em Unlimited Depth}     \\ \hline  \hline
+\rowcolor{colorCorporativoMasSuave} & Victories     &   4.133   $\pm$ 0.50    & 4.2      $\pm$ 0.48    &   \textbf{4.4}     $\pm$ 0.56  \\ \cline{2-5} 
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Best Fitness}               & Turns          &  221.625 $\pm$ 54.43   & 163.667  $\pm$ 106.38  &   123.533 $\pm$ 112.79\\ \hline 
+\rowcolor{colorCorporativoSuave}   & Victories      &  3.541   $\pm$ 0.34    & 3.689    $\pm$ 0.37    &   \textbf{4.043}   $\pm$ 0.38  \\ \cline{2-5} 
+\SetRowColor{colorCorporativoSuave}\multirow{-2}{*}{Population Ave. Fitness}               & Turns          &  200.086 $\pm$ 50.79   & 184.076  $\pm$ 57.02   &   159.094 $\pm$ 61.84 \\ \hline  
+\rowcolor{colorCorporativoMasSuave}         & Best           &  3       $\pm$ 0       & 5.2      $\pm$ 1.84    &   6.966   $\pm$ 4.44  \\ \cline{2-5} 
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Depth}              & Population     &  3       $\pm$ 0       & 5.216    $\pm$ 0.92    &   6.522   $\pm$ 1.91  \\ \hline 
+\rowcolor{colorCorporativoSuave}        & Best           &  7       $\pm$ 0       & 12.6     $\pm$ 6.44    &   18.466  $\pm$ 15.46 \\ \cline{2-5}   
+\SetRowColor{colorCorporativoSuave}\multirow{-2}{*}{Nodes}              & Population     &  7       $\pm$ 0       & 13.05    $\pm$ 3.92    &   16.337  $\pm$ 7.67  \\ \hline 
+\rowcolor{colorCorporativoMasSuave}            & Best           &  4.266   $\pm$ 5.01    & 4.133    $\pm$ 4.26    &   \textbf{4.7}     $\pm$ 4.72  \\ \cline{2-5} 
+\SetRowColor{colorCorporativoMasSuave}\multirow{-2}{*}{Age}              & Population     &  3.706   $\pm$ 0.58    & 3.727    $\pm$ 0.62    &   \textbf{3.889}   $\pm$ 0.71  \\ \hline  
 
 
 \end{tabular}
 \caption{Average results obtained from each configuration versus Exp-Genebot. Each one has been tested 30 times.}
 \label{tab:resultsExpgenebot}
 }
-\end{table*}
+\end{SCtable}
 
 As can be seen, versus Genebot, the average population fitness is nearest to the optimum than versus Exp-Genebot, even with the lowest depth. Highest permanence in the population is also with the depth of 3 levels. On the contrary, confronting with Exp-Genebot the configuration with unlimited depth achieves better results. This make sense because more decisions should be taken because the enemy can be different in each map.
 
@@ -323,7 +346,7 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 
 
 
-\begin{table*}
+\begin{SCtable*}
 \centering{
 \begin{tabular}{|c|c|c|c|c|c|c|} \hline
    
@@ -347,9 +370,9 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 \caption{Results confronting the 30 best bots attained from each configuration in the 100 maps each.}
 \label{tab:allmaps}
 }
-\end{table*}
+\end{SCtable*}
 
-\begin{figure}[htb]
+\begin{SCfigure}[htb]
 \centering
 
 %\subfigure[Victories]{
@@ -363,35 +386,27 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 \caption{Average of executing the 30 best bots in each configuration (3, 7 and U) versus Genebot (G) and Exp-Genebot (E).}
 
 \label{fig:victories}
-\end{figure}
+\end{SCfigure}
 
-\begin{figure}[htb]
+\begin{SCfigure}[htb]
 \centering
 \includegraphics[scale =0.60] {gfx/rts/generations.png}
 \caption{Evolution of the best individual and the average population during one run for depth 7 versus Genebot and Exp-Genebot.}
 \label{fig:gens}
-\end{figure}
+\end{SCfigure}
  
 \section{Conclusions}
 \label{sec:conclusion}
 
-This work presents a Genetic Programming algorithm that generates
-agents for playing Planet Wars game. A number of possible actions to
-perform and decision variables have been presented. We have used two
-competitive bots available in the literature (Genebot and Exp-Genebot)
-to calculate the fitness of the generated individuals. These two bots
-were the best obtained from several runs and the behaviour to optimize
-was extracted from human expertise. Three different maximum depth for
-the trees have been used: 3, 7 and unlimited. Results show that best
-individuals outperforms these agents during the evolution in all
-configurations. These individuals have been tested against a larger
-set of maps not previously used during the evolution, obtaining
-equivalent or better results than Genebot and Exp-Genebot. 
+This chapter presents a Genetic Programming algorithm that generates
+agents for playing Planet Wars game. 
+
+
 % Las conclusiones del trabajo explícito no sirven. Debes de sacar
 % conclusiones de la aplicación de una metodología a un problema
 % específico y generalizar para problemas de esa clase. También tienes
 % que mostrar como TU TESIS ha contribuido, de forma decisiva, a la
-% solución de ese problema. - JJ
+% solución de ese problema. - JJ FERGU: ya, que es que lo copié y na más xD
 
 %In future work, other rules will be added to our algorithm (for
 %example, the ones that analyse the map, as the Exp-Genebot does) and
