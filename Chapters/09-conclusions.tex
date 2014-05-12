@@ -10,24 +10,24 @@
 
 In the past decade, and  thanks to the Internet booming, a paradigm change from Object Oriented Programming to Service Oriented Architecture (SOA) has begun. In this paradigm the software is accessed as interoperable services that allow researchers to share data and applications in a remote way. The usage of services does not imply remote accessing, but a way to develop and integrate without assumptions about implementation or the technology used. Evolutionary Computation is a conducive area to migrate to SOA, because this kind of algorithms is inherently configurable and paralellizable. Moreover, there exist many software tools for EAs, although difficult to be integrated. Also, the booming of new trends, like Cloud Computing, and the usual heavy requirements of this kind of algorithms makes them ideal to be transformed into loosely coupled and distributed services for an easy integration. 
 
-\subsection*{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
+\subsection*{Objective 1: \objectiveparadigm}
 
-Chapter \label{chap:distributed} presented new trends on design of EAs, distribution and parallelization models and frameworks. A number of problems have been identified in the fields of development, integration, interoperability and dynamism
+Chapter \ref{chap:distributedEAs} presented new trends on design of EAs, distribution and parallelization models and frameworks. A number of problems have been identified in the fields of development, integration, interoperability and dynamism
 
-Chapter \label{chap:soa} proposed SOA as a possible solution to address these problems. First, SOA fits with the genericity advantages in the development of software for EAs, proposed by \person{Gagn\'e and Parizeau}. It also adds new features, like language independence and  distribution mechanisms. SOA allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). It also increases the interoperability between different software elements (for example, it is possible to add communication libraries without modifying existing code). Thanks to this, the existing EA frameworks could be re-used thanks to SOA, because it provides language independence. Both shortcomings were pointed out by \person{Parejo \etal}. Also, SOA facilitates the code distribution, as it does not require the use of a concrete implementation or library. Finally, this paradigm allows access to already created and operative services, contributing to the growth of Open Science.
+Chapter \ref{chap:soa} proposed SOA as a possible solution to address these problems. First, SOA fits with the genericity advantages in the development of software for EAs, proposed by \person{Gagn\'e and Parizeau}. It also adds new features, like language independence and  distribution mechanisms. SOA allows the addition and removal of services in execution time without altering the general execution of the algorithm (that is, it is not mandatory to stop it or to add extra code to support new operators). It also increases the interoperability between different software elements (for example, it is possible to add communication libraries without modifying existing code). Thanks to this, the existing EA frameworks could be re-used thanks to SOA, because it provides language independence. Both shortcomings were pointed out by \person{Parejo \etal}. Also, SOA facilitates the code distribution, as it does not require the use of a concrete implementation or library. Finally, this paradigm allows access to already created and operative services, contributing to the growth of Open Science.
 
-\subsection*{Objective 2: Provide a methodology to researchers to design and implement service oriented EAs}
+\subsection*{Objective 2: \objectivemethodology}
 
-A four step methodology called SOA-EA has been presented. This methodology, based in SOMA, establish four steps to develop SOEAs: identification, specification, implementation and deployment. 
+A four step methodology called SOA-EA has been presented in Chapter \ref{chap:soaea}. This methodology, based in SOMA, establish four steps to develop SOEAs: identification, specification, implementation and deployment. 
 
 
 
-\subsection*{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
+\subsection*{Objective 3: \objectiveframework}
 
-Loose coupled services for EAs have been designed with the SOA-EA methodology, and they have been implemented inside the OSGiLiath framework.  These services have been combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). These services have also been dynamically bound to change the needed EA aspects (model and distribution mechanisms among others). The source code of the basic EA services have not been re-written or re-compiled to achieve this task.
+Loose coupled services for EAs have been designed with the SOA-EA methodology, and they have been implemented inside the OSGiLiath framework (Chapter \ref{chap:osgiliath}).  These services have been combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). These services have also been dynamically bound to change the needed EA aspects (model and distribution mechanisms among others). The source code of the basic EA services have not been re-written or re-compiled to achieve this task.
 New services have been added in execution time using this implementation. Communication with different protocols (SOAP and ECF) and integration with different programming languages (Java and PHP) have been compared. No specific source code for a basic distribution have been added, neither the existing source code has been modified to achieve previous tasks. Finally, several techniques have been presented in this thesis to combine existing services in a flexible way.
 
-\subsection*{Objective 4: Use the framework and methodology to conduct research in applications of EAs}
+\subsection*{Objective 4: \objectiveresearch}
 
 SOA-EA and the OSGiLiath framework have been used to develop several services to run experiments on different application fields. The first one deals with automatic binding of distributed services to manage an island-based dEA. The next application shows services for integration with other environments ({\em Processing}) to compare different fitness functions in Evolutionary Art. Finally, services for other sub-type of EA, Genetic Programming, have been developed to validate the genericity in individual representation, operations and evolutionary model in the framework. This algorithm has been used to obtain competitive bots that play RTS games.
 
@@ -37,7 +37,7 @@ SOA-EA and the OSGiLiath framework have been used to develop several services to
 \subsection*{Viability of the SOA paradigm has been analysed in terms of dynamic binding, interoperability and integration}
 Services have been exposed using different technologies. The concept Service Oriented Evolutionary Algorithm (SOEA) defines an EA whose elements are services.
 
-\subsection*{A methodology to model the services that compose a service oriented EA have been proposed}
+\subsection*{A methodology to model the services that compose a service oriented EA has been proposed}
 
 The requirements in EA design (genericity in representation, fitness, operations, model, parameters and output), with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism), have been taken into account to propose the SOA-EA methodology. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to answer in each phase to help with the development. This methodology can been used to create SOEAs that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. 
 
@@ -85,19 +85,19 @@ The LaTeX files that generate this thesis have also been released in \url{https:
 \section{Outlook}
 
 \subsection{Service Oriented EAs}
-A web portal to centralize new implementations of services being offered to the community will be created as a future task. Also, interviews with EA practitioners with different skills in programming and areas will be performed, to validate if this change of paradigm is contributing to enhance their work.
+A web portal to centralize  services and implementations being offered to the community will be created as a future task. Also, interviews with EA practitioners with different skills in programming and different research areas will be performed, to validate if this change of paradigm is contributing to enhance their work.
 
 \subsection{Parameter Adaptation in heterogeneous machines}
 
-In the future it would be interesting to check the scalability of the approach presented in this thesis, using more computational nodes and larger problem instances. In addition, other parameters such as migration rate or crossover probability could be adapted to the execution nodes. Different implementation of these services could be automatically enabled depending of the current state of the EA and the node. Other appropriate benchmark services to analyse the algorithm will be also used to lead to automatic parameter adaptation in runtime (online), with different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system. 
+In the future it is planned to check the scalability of the approach presented in this thesis, using more computational nodes and larger problem instances. In addition, other parameters such as migration rate or crossover probability could be adapted to the execution nodes. Different implementation of these services could be automatically enabled depending of the current state of the EA and the node. Other appropriate benchmark services to analyse the algorithm will also be  used to  enable automatic parameter adaptation at runtime (online), with different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system. 
 
 
 
 \subsection{Evolutionary Art}
 
-The future work for this research also includes more experiment with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in previous sections will be also implemented. Finally, our intention is not only to create only static images, but use the {\em Processing} libraries to create evolutionary interactive art combining sounds and motion. 
+The future work for this research also includes performing more experiments with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in Chapter \ref{chap:art} will also be  implemented. Finally, our intention is not only to create only static images, but use the {\em Processing} libraries to create evolutionary interactive art combining sounds and motion. 
 
-More complex measurements will be studied in next works, taking into
+More complex measurements will also be studied in future, taking into
 account that the HSV is the colour mode that provides more information
 during the evolution, having less noisy behaviour.
 
@@ -127,7 +127,7 @@ Unreal\texttrademark~ or Super Mario\texttrademark~ will be tested.
 
 \item \person{P. García-Sánchez, A. Fernández-Ares, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, EvoNUM, and EvoSTOC, Proceedings. Springer, 2014 Lecture Notes in Computer Science (to appear).
 
-\item \person{P. García-Sánchez, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{A methodology to develop Service Oriented Evolutionary Algorithms}. . Springer, 2014. Studies in Computational Science (to appear).
+\item \person{P. García-Sánchez, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{A methodology to develop Service Oriented Evolutionary Algorithms}. Proceedings of 8th International Symposium on Intelligent Distributed Computing (IDC'2014) Springer, 2014. Studies in Computational Science (to appear).
 
 \end{itemize}
 

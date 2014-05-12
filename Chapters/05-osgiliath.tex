@@ -11,6 +11,14 @@
 
 %TODO:
 % Quitar los "Could be"
+
+\begin{flushright}{\slshape
+  If the river is taken, if the garrison at Osgiliath falls, 
+  \\ the last defence of this city will be gone } \\ \medskip
+    --- {Gandalf The White. The Lord of the Rings.}
+\end{flushright}
+
+
 \minitoc\mtcskip
 \vfill
 %\lettrine{I}{n} Chapter \ref{chap:soaea} %we presented the services
@@ -24,9 +32,10 @@
 
 %IMPORTANTE: Decir que otra de las cosas que ofrece SOA es el auto-descubrimiento de servicios (Y LUEGO USARLO EN EL CAPITULO DE HOMOHETERO)
 
-\lettrine{P}{revious} chapter has presented SOA-EA, a methodology to develop SOEAs. This chapter justifies the use of SOA-EA to create services using the steps proposed. Identification and specification of a complete example of a SOA will be presented, solving the questions to identify a number of services and its behaviour.
+\lettrine{P}{revious} chapter has presented SOA-EA, a methodology to develop SOEAs. This chapter validates the use of SOA-EA to create services using the steps proposed. Identification and specification of a complete example of a SOA will be presented, solving the questions to identify a number of services and their behaviour.
 
-Then, for the implementation and deployment steps, a specific SOA technology (OSGi) will be used to implement and deploy all the services and examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA. As this is an iterative and and incremental methodology, new services can be discovered or removed in further steps (for example, infrastructure services). Finally, several experiment to demonstrate the ease in integration and development will be carried out.
+Then, for the implementation and deployment steps, a specific SOA technology (OSGi) will be used to implement and deploy all the services and examples shown in previous sections, and how to accomplish the requirements in the development of EAs and SOA, taking advantage of the capabilities of SOA. As this is an iterative and and incremental methodology, new services can be discovered or removed in further steps (for example, infrastructure services). The result will be a framework to facilitate the development of SOEAs, called \textsc{OSGiLiath} ({\em OSGi Laboratory for Implementation and
+ Testing of metaHeuristics}). Finally, several experiment to demonstrate the ease in integration and development will be carried out to fulfil the \textbf{Objective 3} of this thesis: validate the methodology creating a framework using a SOA technology that solves the problems addressed.
 
 \section{Example of creating a service oriented evolutionary algorithm}
 \label{sec:soaea:creating}
@@ -40,7 +49,7 @@ As  stated in in Section \ref{sec:distributed:types}, a basic EA is formed by se
 
 \subsection{Specification}
 
- Concrete implementations are defined in this step: for example, {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, such as {\em OneMax Fitness Calculator} or {\em Binary Initializer}. 
+ Concrete implementations are defined in this step: for example, {\em N Tournament} and {\em Roulette} are implementations of parent selectors and {\em Optimum Found} the desired stop criterion. Also, to address the problem to be solved, implementations of the Problem domain should be created: services such as {\em OneMax Fitness Calculator} or {\em Binary Initializer}. The Initializer is the service that establish the representation of the individuals (for example, a list of elements or a tree), depending of the problem to solve. In this case, a {\em ListIndividual} implementation of {\em Individual} interface is created.
 
  As we need a fixed set of steps, a {\em Evolutionary Algorithm} service is created to model the flow of services. The discovered services in previous step have been specified to accept  a list of individuals. %A service to gather all selectors in the environment is used.
 
@@ -66,7 +75,7 @@ Figure \ref{BASICGAEXAMPLE} shows the diagram of a complete service oriented gen
 \subsection{Extending the example to create a NSGA-II}
 \label{subsec:osgiliath:nsga2}
 
-As this is a iterative and incremental approach, other services can be discovered and designed in this step. For example, the difference between the previous version of a GA and the well known NSGA-II lies in the selection operator. Therefore, to change from the basic GA to NSGA-II, the mutator and crossover are kept and new selection operators are added. Figure \ref{fig:nsga2} shows the diagram of the service oriented version of NSGA-II algorithm, where the new implementations are marked with a thick border. The problem has also been changed to Multi-Objective Knacksack problem \cite{zitzler1999multiobjective}. New auxiliary services have been added, like {\em Crowding Distance Assignator} or {\em Pareto Assignator}. As these services may be used in other algorithms in the future, they should be designed as abstract as possible. These new services are called from the implementation (code) of the services {\em NSGA-II Replacer} or {\em Binary Crowding Distance Selector} (black arrows indicate an interface call). 
+As this is an iterative and incremental approach, other services can be discovered and designed in this step. For example, the difference between the previous version of a GA and the well known NSGA-II lies in the selection operator. Therefore, to change from the basic GA to NSGA-II, the mutator and crossover are kept and new selection operators are added. Figure \ref{fig:nsga2} shows the diagram of the service oriented version of NSGA-II algorithm, where the new implementations are marked with a thick border. The problem has also been changed to Multi-Objective Knacksack problem \cite{zitzler1999multiobjective}. New auxiliary services have been added, like {\em Crowding Distance Assignator} or {\em Pareto Assignator}. As these services may be used in other algorithms in the future, they should be designed as abstract as possible. These new services are called from the implementation (code) of the services {\em NSGA-II Replacer} or {\em Binary Crowding Distance Selector} (black arrows indicate an interface call). 
 
 
 
@@ -83,7 +92,7 @@ As this is a iterative and incremental approach, other services can be discovere
 \subsection{Extending the example to add distribution}
 \label{sec:distribution}
 
-As every service must keep the same behaviour, independently of the machine that hosts it, distribution services for load balancing of a specific service can be easily created. For example, notifying the algorithm to use a distributed implementation for that service, instead a local one. As previously stated, the service {\em Fitness Calculator} receives a list of individuals to calculate their fitness, so, in this example, the new fitness implementation ({\em Basic Fitness Distributor}) binds with every fitness service available (in the same machine or in a network). The source code of this basic implementation simply distributes the list of individuals among the bound services and waits for their termination. Although more complex implementations probably will be more efficient, the objective of this section is to show how to distribute services, thus, this basic implementation is sufficient. Figure \ref{FITNESSDISTRIBUTOR} shows the modification from a sequential fitness calculator to a distributed one. Thanks to SOA, the number of distributed fitness calculators is not fixed: calculators can be added or removed in real time without stopping the system. As can be see in the figure, if one of the nodes is a cluster, it could also  implement another fitness distributor (block with thick lines in the Figure). This easy example can be adapted to more complex necessities depending on the infrastructure or the problem to be solved. More complex distribution services can be created, for example, taking into account communication latencies or computation capabilities of the nodes.
+As every service must keep the same behaviour, independently of the machine that hosts it, distribution services for load balancing of a specific service can be easily created. For example, notifying the algorithm to use a distributed implementation for that service, instead a local one. As previously stated, the service {\em Fitness Calculator} receives a list of individuals to calculate their fitness, so, in this example, the new fitness implementation ({\em Basic Fitness Distributor}) binds with every fitness service available (in the same machine or in a network). The source code of this basic implementation simply distributes the list of individuals among the bound services and waits for their termination. Although more complex implementations probably will be more efficient, the objective of this section is to show how to distribute services, thus, this basic implementation is sufficient. Figure \ref{FITNESSDISTRIBUTOR} shows the modification from a sequential fitness calculator to a distributed one. Thanks to SOA, the number of distributed fitness calculators is not fixed: calculators can be added or removed in real time without stopping the system. As can be seen in the figure, if one of the nodes is a cluster, it could also  implement another fitness distributor (block with thick lines in the Figure). This easy example can be adapted to more complex necessities depending on the infrastructure or the problem to be solved. More complex distribution services can be created, for example, taking into account communication latencies or computation capabilities of the nodes.
 
 
 
@@ -97,7 +106,7 @@ As every service must keep the same behaviour, independently of the machine that
 
 
 
-As explained in Section \ref{sec:distributed:parallel} other way to parallelize EAs is the island model. Using SOA-EA, the {\em Population} service implementation can be modified to become a distributed population. Each certain time, this population could exchange individuals with other populations modified by other algorithms. These populations should be added or deleted in execution time without affecting the algorithm execution. Figure \ref{POPULATION} shows this example, where a {\em Replacer} implementation maintains a list of references to other {\em Population} interfaces (which can be local or remote).  If one of these population services drop, the others can continue working. The topology of these islands can also be managed from services (such as {\em Basic Replacer} service, or another). The  modification and dynamism of the population structure is difficult to apply in existing frameworks without using SOA because it is necessary to create mechanisms to modify the population behaviour, the operators to modify it, the data structures, and also the code to manage all. With he usage of SOA, and due to the capability of accessing to a population via its service interface, it is not necessary to modify the source code to modify the population and its behaviour. Also, to avoid bottlenecks in distributed executions, asynchronous communication must be provided to avoid idle time. This kind of communication offers excellent performance when working with different nodes and operating systems, as demonstrated by \cite{Alba2002Heterogeneous}.
+As explained in Section \ref{sec:distributed:parallel} other way to parallelize EAs is the island model. Using SOA-EA, the {\em Population} service implementation can be modified to become a distributed population. Each certain time, this population could exchange individuals with other populations modified by other algorithms. These populations should be added or deleted in execution time without affecting the algorithm execution. Figure \ref{POPULATION} shows this example, where a {\em Replacer} implementation maintains a list of references to other {\em Population} interfaces (which can be local or remote).  If one of these population services drop, the others can continue working. The topology of these islands can also be managed from services (such as {\em Basic Replacer} service, or another). The  modification and dynamism of the population structure is difficult to apply in existing frameworks without using SOA because it is necessary to create mechanisms to modify the population behaviour, the operators to modify it, the data structures, and also the code to manage all. With the usage of SOA, and due to the capability of accessing to a population via its service interface, it is not necessary to modify the source code to modify the population and its behaviour. Also, to avoid bottlenecks in distributed executions, asynchronous communication must be provided to avoid idle time. This kind of communication offers excellent performance when working with different nodes and operating systems, as demonstrated by \cite{Alba2002Heterogeneous}.
 
 
 
@@ -138,12 +147,12 @@ Summarizing, the questions presented in Section \ref{subsec:soaea:implementation
 
 \section{Implementation and Deployment}
 
-\lettrine{I}{n} this section, the previous examples are going to be implemented and deployed. The aim of this section is to create a framework to facilitate the creation of SOEAs, taking into account the benefices of SOA, to provide a number of interfaces to implement and mechanisms to dynamic binding of services. The previous examples will be implemented and added to the framework as a base for new developments and creation of new services for the rest of this thesis. First, a SOA technology will be selected, analysing their benefits and shortcomings. Then, the steps to implement and deploy the services using the chosen technology are explained.
+\lettrine{I}{n} this section, the previous examples are going to be implemented and deployed. The aim of this section is to create OSGiLiath, a framework to facilitate the creation of SOEAs, taking into account the benefits  of SOA, to provide a number of interfaces to implement and mechanisms for the dynamic binding of services. The previous examples will be implemented and added to the framework as a base for new developments and creation of new services for the rest of this thesis. First, a SOA technology will be selected, analysing their benefits and shortcomings. Then, the steps to implement and deploy the services using the chosen technology are explained.
 
 \subsection{Select the technology to use}
 \label{sec:osgiliath:technology}
 
-Of the existing technologies for SOA (presented in Section \ref{chap:soa:implementations} Web Services and OSGi have been considered to compliment with the restrictions previously addressed.
+Of the existing technologies for SOA (presented in Section \ref{chap:soa:implementations}) Web Services and OSGi have been considered to compliment with the restrictions previously addressed.
 % Primero: esto debería ir al principio, incluso en la intro. Segundo
 % ¡no uses items! Cuéntalo, nárralo, úsalo como argumento - JJ FERGUSON: Movido y re-escrito (muevo abajo todos tus comentarios juntos)
 % ¿Faster que qué? - JJ FERGU: WS
@@ -169,8 +178,8 @@ Of the existing technologies for SOA (presented in Section \ref{chap:soa:impleme
 OSGi has been selected because it is faster than Web Services, because it was designed for 
   lightweight devices \cite{LimGateway08}. Therefore, it can be
   used in embedded devices, like Evolutionary Robotics
-  \cite{Garcia2012testing}. On the contrary, as explained in Section \ref{chap:soa:implementations} Web services were created to integrate complex
-  data interchange among different companies. This is related with the transmission protocol in web services is SOAP, which implies
+  \cite{Garcia2012testing}. On the contrary, as explained in Section \ref{chap:soa:implementations} Web Services were created to integrate complex
+  data interchange among different companies. This is related with the transmission protocol in Web Services, SOAP, which implies
   the transmission of an XML, as explained in Section \ref{subsec:soa:ws}. This file is usually too large (for example, a
   complete list of workers in a company). EAs often need to send
   minimal information, but a large number of times (for example, the
@@ -180,7 +189,7 @@ OSGi has been selected because it is faster than Web Services, because it was de
   the algorithms (for example, in a machine, in a local
   network, over the Internet, or even in more lightweight devices). 
 
-Unlike web services, OSGi includes a blackboard event-manager,
+Unlike Web Services, OSGi includes a blackboard event-manager,
    that is, services can inform what they are doing without indicating 
  any receiver. Other services can filter this information and actuate
  accordingly, so the synchronization is easier. For example, it is not
@@ -191,8 +200,7 @@ Unlike web services, OSGi includes a blackboard event-manager,
 Other reason to use OSGi is the separation between OSGi and the source code of the
    services, so the code of OSGi-based applications can be used in other
    Java-based applications without OSGi. For the same reason,
-   frameworks written in Java can be migrated into services in a easy
-   way.
+   frameworks written in Java can be migrated into services easily.
 
 Finally, OSGi includes other features that, although they are not related to SOA, facilitate the service development and deployment: version and package
    control, security and life-cycle management of the used
@@ -200,14 +208,14 @@ Finally, OSGi includes other features that, although they are not related to SOA
    (as explained by \person{Wagner \etal} \cite{WagnerPlugins07}). These advantages can be used by the EA developers if
    they work in a team collaboration. % Pero ¿lo son? - JJ
 
-ECF\footnote{\url{http://www.eclipse.org/ecf/}} has
- been chosen because it is the most mature and accepted implementation
+To distribute the OSGi services, the OSGi 4.2 Remote Services
+standard\footnote{\url{http://www.osgi.org/Release4/Download}} is proposed.  The
+ {\em Eclipse Communication Framework}\footnote{\url{http://www.eclipse.org/ecf/}} (ECF) has
+ been chosen because it is the most mature and accepted implementation of this standard
  (claimed by \person{Petzold \etal} \cite{petzold2011dynamic}), % o
                                 % sea, que no lo has probado - JJ FERGU: no, lo ha dicho el tipo ese
 and it also supports the largest number of transmission protocols,
-including both synchronous and asynchronous communication. It provides
-a modular implementation of the OSGi 4.2 Remote Services
-standard\footnote{\url{http://www.osgi.org/Release4/Download}}. % Una
+including both synchronous and asynchronous communication.  % Una
                                 % vez más, NUNCA JUSTIFIQUES A
                                 % POSTERIORI. Una tesis es una
                                 % descripción de un camino. Quería tal
@@ -317,27 +325,27 @@ In OSGi, the services are formed by the next elements:
 \item {\em Service interface}. It is a Java interface. The user just needs to specify the operations that the service will perform.
 \item {\em Service implementation}. The programmer just writes the code of the interface methods.
 \item {\em Service description}. It is an XML file that indicates which
-  interface is being implemented and which other services needs to be
+  interface is being implemented and which other services need to be
   activated. 
 \end{itemize}
 These elements accomplish with the restrictions of the separation between interfaces and implementations, explained in Section \ref{sec:soa:restrictions}. More information about these concepts are explained in detail in Appendix \ref{chap:appendixosgi}. % ¿Dónde? Etiqueta secciones para poder referirte a ellas - JJ FERGU: movido al apendice. Verás que ahora está lleno de referencias por todos los lados.
 
 In this step the interfaces of the services identified in
 Section \ref{sec:soaea:creating}, such as {\em Algorithm}, {\em
-  StopCriterion}, {\em Population} or {\em Recombinator} are implemented in Java. These
+  StopCriterion}, {\em Population} or {\em Recombinator} are implemented in Java. Concrete examples are {\em TPXCrossover} or {\em List Population}.
+These
 interfaces are grouped along other interfaces that do not need to be a
 service. For example, the interface of the object {\em
   Individual}. This interface is used in the {\em Recombinator}
 interface, which receives a list of {\em Individual} objects to be
 recombined, and returns another list with the recombined ones. 
-Also, several implementations are included, like {\em
-  EvolutionaryAlgorithm} (implementing {\em  Algorithm}) or the rest
-of  services explained in previous chapter, like the services for
+Also, several implementations are included, such as the rest
+of  services explained in previous sections, like the services for
 NSGA-II. % Para que... ¡no describas, justifica! ¡¡¡¡Es una tesis!!! - JJ
 
-Then several of these interfaces have been implemented: examples are {\em TPXCrossover} or {\em List Population}.
 
-Once the services are implemented, the flow of execution must be implemented. In previous chapter the usage of a Evolutionary Algorithm service implementation was proposed. The source code of the method that executes the algorithm in the class
+
+Once the services are implemented, the flow of execution must be implemented. In previous chapter the usage of a Evolutionary Algorithm service implementation was proposed (Section \ref{subsec:soaea:flows}). The source code of the method that executes the algorithm in the class
 {\em EvolutionaryAlgorithm} (implementation) is shown in Figure
 \ref{fig:javaevo}. It includes methods to bind the six references
 to the service implementations that are needed: \texttt{Population} ({\em pop}
@@ -434,7 +442,7 @@ public void start(){
 The services are deployed inside an OSGi container (such as Equinox\footnote{\url{http://www.eclipse.org/equinox/}} or Felix \footnote{\url{https://felix.apache.org/}}). The container has mechanisms to list, start and stop services. To automatically bind the service implementations with the service interfaces                                
  the {\em Service Description} is used. % ¿Eso qué tiene que ver
                                 % con el código de antes? - JJ FERGU: Añadida frase en medio
-Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:ds}. This file describes that the \texttt{EvolutionaryAlgorithm} class is an implementation of the \texttt{Algorithm} interface, and that it needs implementations of the interfaces \texttt{Population}, \texttt{Mutator}, \texttt{ParentSelector}, \texttt{Replacer}, \texttt{StopCriterion} and \texttt{Recombinator} to be activated. 
+Each implementation of a service has an XML file indicating which interface is being implemented, and also other properties. This file is used by OSGi to automatically bind the services. The service descriptor of the EA is shown in Figure \ref{fig:dsevo}. This file describes that the \texttt{EvolutionaryAlgorithm} class is an implementation of the \texttt{Algorithm} interface, and that it needs implementations of the interfaces \texttt{Population}, \texttt{Mutator}, \texttt{ParentSelector}, \texttt{Replacer}, \texttt{StopCriterion} and \texttt{Recombinator} to be activated. 
 
 It should be noted that this file usually can be modified using a friendly GUI, or from an assistant in Java IDEs, such as NetBeans or Eclipse (so, users do not have to care about its XML structure). The user interface to create this file in Eclipse is shown in Figure \ref{fig:xmlgui}. The interface being implemented is set in the lower part ({\em Algorithm}). The necessary services to activate this implementation are indicated in the upper part (with the cardinality and functions to set and unset the service implementations in the implementation source code).
 
@@ -496,8 +504,8 @@ name="Recombinator" policy="static" unbind="unsetRecombinator"/>
 
 This XML file is read by the OSGi execution environment, which is the
 responsible to bind the available services to this implementation. For
-example, if a {\em ParentSelector} is activated, automatically is
-bound to the variable \texttt{ parentSelector} through the function \texttt{setParentSelector}. The \texttt{cardinality} is also set in the file,
+example, if a {\em ParentSelector} is activated, it is automatically 
+bound to the variable \texttt{ parentSelector} through the function \texttt{setParentSelector}. The \texttt{cardinality} (explained in Appendix \ref{chap:appendixosgi}) is also set in the file,
 in this case, only one implementation is necessary (not
 multiple). This file can be modified in execution time, so it is not
 required to re-compile the Java code to use and set new services. % zzzzzzzzz interés para la tesis: 0 - Jj
@@ -513,7 +521,7 @@ this case only the {\em Replacers} whose property \texttt{replacerName=nsga2} ar
 
 Following the development example shown in Section \ref{subsec:osgiliath:nsga2},
 the extra services have been developed to convert the basic GA into a
-NSGA-II and new implementations also have been added to the framework to be available for
+NSGA-II and new implementations also have been added to OSGiLiath to be available for
 users. % ¿Lo ves como lo de arriba no incluía todos los GAs? - JJ Bueno, en teoría NO he modificado el código del EA, sólo he añadido servicios nuevos
 
 There exist many options for the implementation of the EA to pick up the appropriate
@@ -549,7 +557,7 @@ services: they just indicates which services uses each time.
 \label{sec:osgiliath:distributed}
 % ¿Por qué no pones etiquetas de sección ? - JJ FERGU: añadida
 
-As previously stated in Section \ref{sec:soa:restrictions}, services should be undistinguishable of being local or remote, and not to add extra code for distribution. Therefore, all services
+As previously stated in Section \ref{sec:soa:restrictions}, services should be undistinguishable of being local or remote, and should not add extra code for distribution. Therefore, all services
 can be distributed using the OSGi features. In this case, the
 distribution is performed using the service descriptor to set which
 service is distributable and which is the distribution technology that
@@ -603,7 +611,7 @@ previously stated, the service properties can be modified from other
 services, so these properties  % THESE properties!!! - JJ
 can be added outside the XML. It should be noted that the source code
 of the services has not been modified to distribute them (as would
-happen if MPI had been used to perform the distribution, for
+happen if MPI, or other middleware, had been used to perform the distribution, for
 example). % Pues pon como requisito desde el principio que eso es lo
           % que buscas y por eso has elegido ECF en vez de MPI o lo
           % que sea - JJ FERGUSON: añadido al principio
@@ -640,7 +648,7 @@ example). % Pues pon como requisito desde el principio que eso es lo
 \section{Experiments} %¿Implementation o experiments? ¿Estamos a setas
 % o estamos a Rolex? - JJ FERGU: Puesto párrafo. TERMINADO
 \label{sec:osgiliath:experiments}
-In this section, several experiments to confirm some of the advantages of using SOA and OSGi, explained in previous sections, are performed. First, a comparison of time of using OSGi and the services as normal classes is presented to demonstrate that OSGi does not adds extra overhead (as explained in Section \ref{subsec:soa:osgi}). Experiments to demonstrate the automatic adding of new operators during runtime, and integration with other systems without modification of the existing source code are shown. Finally, a comparison of Lines of Code (LoCs) with other existing frameworks for EAs (presented in Section \ref{subsec:soaea:fworks}) is performed.
+In this section, several experiments to confirm some of the advantages of using SOA and OSGi, explained in previous chapters, are performed using OSGiLiath. First, a comparison of time of using OSGi and the services as normal classes is presented to demonstrate that OSGi does not adds extra overhead (as explained in Section \ref{subsec:soa:osgi}). Experiments to demonstrate the automatic adding of new operators during runtime, and integration with other systems without modification of the existing source code are shown. Finally, a comparison of Lines of Code (LoCs) with other existing frameworks for EAs (presented in Section \ref{subsec:soaea:fworks}) is performed.
 
 \subsection{Comparing overhead of using services}
 \label{subsec:osgiliath:comparingoverhead}
@@ -682,9 +690,31 @@ that consists in maximising the number of ones in a binary string. That is, maxi
 f_{OneMax}(\vec{x}) = \sum_{i=1}^{N}{x_{i}}
 \end{equation}
 
-Results show that time of services of OSGiLiath is not affected by the
+
+
+
+Results of Table \ref{tab:osgiliath:noosgi} show that time of services of OSGiLiath and numerical results are not affected by the
 OSGi framework: times are almost identical to the integration with
 Java code (p-value $<<$ 0.05).
+
+\begin{SCtable}[][t]
+\resizebox{8cm}{!}{
+\begin{tabular}{llll}
+\hline
+\rowcolor{colorCorporativoSuave}Name    &  Average solution    & Average Time (s) \\
+\hline\hline
+\rowcolor{colorCorporativoMasSuave}OSGiLiath               &   612.36 $\pm$ 6.05  & 0.19 $\pm$ 18.21 \\
+\rowcolor{colorCorporativoSuave}OSGiLiath (without OSGi)&   613.36  $\pm$ 4.50 & 0.19 $\pm$ 22.74 \\
+
+\hline
+\end{tabular}
+}
+\caption{Comparison of tested EA frameworks in time and development.}
+\label{tab:osgiliath:noosgi}
+\end{SCtable}
+
+
+
 
 \subsection{Adding operators in runtime for self-adaptation} % ¿Una subsección? ¿Seriously? ¿Y con un párrafo? - JJ FERGU: cambiado el nombre, reescrito y movido de sitio todo lo que había
 
@@ -702,7 +732,7 @@ self-adaptive one in OSGiliath.
 
 %Infrastructure services to deal with control of the population and to enable other operators have been implemented ({\em Asynchronous Enabler Imp}). Figure \ref{fig:osgiliath:enabler} shows this designed configuration.
 
-To demonstrate that services can be managed and deployed during runtime a simple experiment is proposed. An external service to the algorithm (called {\em Asynchronous Enabler}) runs in parallel consulting the population from time to time. If the best individual has not been improved in a number of times this service automatically enables another implementation of the service {\em Parent Selector}. This new implementation is automatically bound by the the {\em Selector Gatherer} service and start to use it. Figure \ref{fig:osgiliath:enabler} shows this configuration.
+To demonstrate that services can be managed and deployed during runtime, a simple experiment is proposed. An external service to the algorithm (called {\em Asynchronous Enabler}) runs in parallel consulting the population from time to time. If the best individual has not been improved in a number of times, this  service automatically enables another implementation of the service {\em Parent Selector}. This new implementation is automatically bound to the the {\em Selector Gatherer} service and starts to use it. Figure \ref{fig:osgiliath:enabler} shows this configuration.
 
 \begin{SCfigure}[20][htb]
 \centering
@@ -718,8 +748,8 @@ OSGi. %In the same way as the rest of services, these operators can be activated
 Two versions have been compared: a non-adaptive version that only uses a {\em Binary Tournament} implementation for {\em Parent Selection} service, and an adaptive one, which automatically enables a {\em Roulette} implementation when a local optimum is found. The parameters used in this comparison (accessed from the {\em Parameters} service) are a population of 64 individuals, selector rate of 0.5, TPX crossover, bit flip mutation, and individual length of 60 genes. The {\em Roulette} selector service is enabled when the best individual of the population has not changed in 10 seconds (checked every 2 seconds). According to the classifications of parameter control presented Section \ref{chap:distributed:parameteradapt}, this method is {\em adaptive}, the population is the key change, and it is based in {\em absolute evidence}. 
 
 The problem to solve is the MMDP (Massively Multimodal Deceptive Problem) \cite{goldberg92massive}. The MMDP is designed to be difficult for an EA, due to
-its multimodality and deceptiveness. Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending of
-the number of ones (unitation) $s_i$ takes the values shown in Table \ref{table:mmdpvalues}.  
+its multimodality and deceptiveness. Deceptive problems are functions where low-order building-blocks do not combine to form higher order building-blocks. Instead, low-order building-blocks may mislead the search towards local optima, thus challenging search mechanisms. MMDP it is composed of $k$ subproblems of 6 bits each one ($s_i$). Depending on
+the number of ones (unitation), $s_i$ takes the values shown in Table \ref{table:mmdpvalues}.  
 
 \begin{SCtable}[][t]
 \resizebox{5cm}{!}{
@@ -781,24 +811,24 @@ f_{MMDP}(\vec s)= \sum_{i=1}^{k} fitness_{s_i}
 \rowcolor{colorCorporativoMasSuave}Time    & 68766,40 $\pm$ 45073,04     & 51710,40 $\pm$ 29329,21 \\ \hline 
 \end{tabular}
     }    
-\caption{Results obtained using the Asynchronous Enabler.}
+\caption{Results obtained using the Asynchronous Enabler to solve the MMDP problem.}
 \label{tab:osgiliath:resultsenabler}
 \end{SCtable}
 
 
 
-Table \ref{tab:osgiliath:resultsenabler} shows the results obtained of the 30 executions of the two configurations tested. As it can be seen, automatic and adaptive enabling of selection operators has allowed an increase of performance, reducing time and evaluations (both significantly with a p-value$<$0.05 of a Wilcoxon test). It must be remarked that the aim of this experiment is not the numerical results obtained. This example has been used to demonstrate that applying a methodology to develop loose coupled services that can be dynamically bound, without modification of the existing services, can be used to achieve better results.
+Table \ref{tab:osgiliath:resultsenabler} shows the results obtained from the 30 executions of the two configurations tested. As it can be seen, automatic and adaptive enabling of selection operators has allowed an increase of performance, reducing time and evaluations (both significantly with a p-value$<$0.05 of a Wilcoxon test). It must be remarked that the aim of this experiment is not the numerical results obtained. This example has been used to demonstrate that applying a methodology to develop loose coupled services that can be dynamically bound, without modification of the existing services, can be used to achieve better results.
 
 
 \subsection{Increasing interoperability with other systems}
 
 As previously stated, another advantage of SOA is the programming
-language independence respect to the service interfaces. Although OSGi
+language independence with respect to the service interfaces. Although OSGi
 is a kind of SOA, it does not include  the capability of
 interoperability with other kind of services by default. However,
 adaptation services can be added to transform OSGi interfaces into
 other SOA interfaces, such as Web Services (presented in Chapter
-\ref{chap:soa}) without modify the existing code. So, services that are not written in Java, neither
+\ref{chap:soa}) without modifying the existing code. So, services that are not written in Java, neither
 OSGi-based, could use services implemented in OSGiLiath (and
 vice-versa). 
 
@@ -904,7 +934,7 @@ distribution mechanisms. The LoC have been calculated using {\em
 \label{tab:times}
 \end{SCtable}
 
- Note that, although are services developed under SOA, and
+ Note that, although the services are developed under SOA, and
 bound in runtime, they are not distributed. Algorithmically, all
 frameworks behaves the same, and results are not quite different. The
 differences among frameworks are produced because the different
@@ -941,15 +971,15 @@ mainly because many parameters and operators are defined by default.
 
 
 
-ECJ and OSGiLiath do not require code to combine different operators,
-only to modify configuration files without re-compilation. % ¿Estas
+ECJ and OSGiLiath do not require code to combine different operators, just
+only to modify some configuration files without re-compilation. % ¿Estas
                                 % líneas las has incluido? - JJ
-The difference is in ECJ the available operators must be known prior
+The main difference is that in ECJ the available operators must be known prior
 to execution (the interfaces are linked in the source code), while in
-OSGiLiath, all interfaces are bound in configuration files, or even
-without them (for example, appearing in the same network/machine). But
-there also exist limitations, because ECJ only provides a fixed ways
-of distribution mechanisms, and only certain parts of the framework
+OSGiLiath, all interfaces are bound to their implementations in configuration files, or even
+without them (for example, the implementations appear in the same network/machine). But
+there also exist limitations, because ECJ only provides  fixed mechanisms
+of distribution, and only certain parts of the framework
 can be accessed remotely, while in OSGiLiath all operators have the
 chance to be distributed if desired, modifying the configuration
 files. 
@@ -965,7 +995,7 @@ is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la 
 % refleja el modelo y lo valida. ¿Es el modelo válido? ¿Cómo lo has
 % probado? ¿Es la implementación válida? ¿Cómo lo has probado? - JJ FERGU: Escritas las conclusiones, que antes no había
 
-In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}). A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
+In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}) to fulfil the \textbf{Objective 3} of this thesis: Validate the methodology creating a framework using a SOA technology that solves the problems addressed. A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
 
 Then, in the implementation step, a comparison of two SOA technologies based in standards have been performed: OSGi has been selected because a number of advantages over Web Services, such as transmission speed and ease of development. The abstract services of previous steps have been implemented to form a basic GA as an example. These services can be combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). 
 

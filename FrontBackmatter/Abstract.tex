@@ -9,43 +9,44 @@
 \let\cleardoublepage\relax
 
 \chapter*{Resumen}
-Esta Tesis Doctoral trata de probar que usar un marco determinado es
-el más adecuado para solucionar problemas actuales en los Algoritmos
+%Esta Tesis Doctoral trata de probar que usar un marco determinado es
+%el más adecuado para solucionar problemas actuales en los Algoritmos
+
 % aparte de que no se entiende, está mal: usar un marco... es el más
 % adecuado ¿Qué marco? ¿Sabes cuál? ¿Lo vas a buscar en la tesis? ¿Vas
 % a comparar varios marcos? Si lo sabes de antemano, di cual y por qué
 % a priori debe ser el más adecuado - JJ
-Evolutivos en desarrollo, integración, interoperabilidad y
-dinamismo. Para validar este objetivo la tesis se ha dividido en 3
-partes.  
+%Evolutivos en desarrollo, integración, interoperabilidad y
+%dinamismo. Para validar este objetivo la tesis se ha dividido en 3
+%partes.  
 % Yo quitaría desarrollo; para desarrollar los lenguajes de script son
 % más fáciles - JJ
 
-Primero se analizan las nuevas tendencias % las tendencias no se
+%Primero se analizan las nuevas tendencias % las tendencias no se
                                 % analizan, se hallan. ¿Esto dónde lo
                                 % haces? Ten en cuenta que toda la
                                 % tesis debe de ir a avanzar estos
                                 % tres objetivos, y *debes decirlo
                                 % explícitamente* - JJ
-en investigación en Algoritmos Evolutivos para detectar sus principales carencias y se propone el uso de Arquitectura Orientada a Servicios (AOS) como el marco para resolver estas carencias.
+%en investigación en Algoritmos Evolutivos para detectar sus principales carencias y se propone el uso de Arquitectura Orientada a Servicios (AOS) como el marco para resolver estas carencias.
 
-La siguiente parte de esta tesis propone una metodología (SOA-EA) para
-desarrollar Algoritmos Evolutivos Orientados a Servicios (AEOS). Esta
-metodología se ha utilizado para implementar un framework para AEOS,
-llamado OSGiLiath, utilizando una tecnología concreta (OSGi). Se
-presentan diferentes experimentos para validar cada una de las mejoras
-propuestas. % ¿Qué mejoras? ¿El objetivo de la tesis son esas mejoras?
+%La siguiente parte de esta tesis propone una metodología (SOA-EA) para
+%desarrollar Algoritmos Evolutivos Orientados a Servicios (AEOS). Esta
+%metodología se ha utilizado para implementar un framework para AEOS,
+%llamado OSGiLiath, utilizando una tecnología concreta (OSGi). Se
+%presentan diferentes experimentos para validar cada una de las mejoras
+%propuestas. % ¿Qué mejoras? ¿El objetivo de la tesis son esas mejoras?
             % No has mencionado ni una vez si has tenido que hacer un
             % cambio en el algoritmo ni si has propuesto un nuevo
             % algoritmo. ¿La adaptación de los AGs a OSGi es directa?
             % Si es así, es sólo implementación y no hay mucha
             % tesis. ¿Tienen más enjundia?
 
-OSGiLiath se ha usado también para desarrollar un método para adaptar
-el tamaño de población de un AE distribuido a la potencia de calculo
-de los nodos que forman el sistema distribuido. Finalmente, SOA-EA y
-OSGiLiath se han utilizado en otras aplicaciones: generación de un bot
-inteligente para un juego en tiempo real y arte generativo. % ¿Eh? ¿Se
+%OSGiLiath se ha usado también para desarrollar un método para adaptar
+%el tamaño de población de un AE distribuido a la potencia de calculo
+%de los nodos que forman el sistema distribuido. Finalmente, SOA-EA y
+%OSGiLiath se han utilizado en otras aplicaciones: generación de un bot
+%inteligente para un juego en tiempo real y arte generativo. % ¿Eh? ¿Se
                                 % ha usado también? ¿Te pillaba de
                                 % camino? ¿Es parte de la tesis? ¿Es
                                 % consecuencia de la tesis? ¿La
@@ -61,10 +62,13 @@ inteligente para un juego en tiempo real y arte generativo. % ¿Eh? ¿Se
 
 % No me gusta nada este resumen. No abarca toda la tesis (no abarca
 % las aplicaciones ni las encaja más que con un "también". 
+%FERGU: reescrito abajo entero
+
+El objetivo de esta tesis es crear una metodología para desarrollar Algoritmos Evolutivos (AEs) en entornos dinámicos y heterogéneos. En esta metodología, denominada SOA-EA, se propone el uso del paradigma de Arquitectura Orientada a Servicios (AOS) para desarrollar Algoritmos Evolutivos Orientados a Servicios (AEOS). AOS proporciona independencia en el lenguaje de programación y mecanismo de transmisión y facilita la administración de componentes de forma dinámica. La metodología propuesta tiene en cuenta los requisitos para desarrollar servicios y EAs y proporciona los pasos para identificar, especificar, implementar y desplegar los componentes que forman un AEOS, y cómo convertir un AE tradicional a un AEOS. Para validarla, esta metodología se ha utilizado para crear un framework para AEOS, llamado OSGiLiath, basado una tecnología pública (OSGi). Este framework  proporciona mecanismos para administración de componentes dinámicos, independencia del lenguaje y protocolo de comunicación. Tanto OSGiLiath como SOAEA se han utilizado para realizar experimentos en distintos campos para validar el control del dinamismo y la heterogeneidad: AEs distribuidos no centralizados, integración con otros sistemas y distintos modelos de EAs.
 
 \pdfbookmark[1]{Abstract}{Abstract}
 \chapter*{Abstract}
-This Ph. Thesis aims to ...
+The objective of this thesis is to create a methodology to develop Evolutionary Algorithms (EAs) in dynamic and heterogeneous environments. In this methodology, called SOA-EA, the Service Oriented Architecture (SOA) paradigm is proposed to develop Service Oriented Evolutionary Algorithms (SOEAs). SOA provides independence in programming language and transmission mechanisms , and also facilitates the dynamic component management. The proposed methodology takes into account the requirement to develop services and EAs, and it provides the steps to identify, specify, implement and deploy the elements that conform a SOEA, and how to convert a traditional EA into a SOEA. To validate this methodology, it has been used to create a framework for SOEAs, called OSGiLiath, based in a public specification technology (OSGi). This framework provides mechanisms for dynamic component management and language and transmission independence. OSGiLiath and SOA-EA have been used to carry out experiments in different areas to validate dynamic control and different and heterogeneous environments : uncentralized distributed EAs, other systems integration and different EA models.
 
 
 \endgroup

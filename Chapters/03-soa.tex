@@ -5,6 +5,12 @@
                                 %si quien lo lea ya sabe de SOA se lo
                                 %salta - JJ %FERGU: Mejor este título? (para distinguirlo del siguiente)
 
+ 
+
+\begin{flushright}{\slshape
+    Service with a smile?} \\ \medskip
+    --- {The Joker. The Last Laugh. Batman: The Animated Series.}
+\end{flushright}
 %PREGUNTAS PARA JJ:
 % ¿Está bien el título de este capítulo?
 % Mencionar metodologías? (SOMA y todas esas)
@@ -45,7 +51,7 @@ solving a problem combining existing services in an automatic way
                                 % publica tanto. Es muy
                                 % tricky. Deberías de pensar en algún
                                 % otro mérito - JJ FERGU: puesto a continuación que se usa mucho también en la empresa. Ya, ya, no es el mundo académico, pero podemos decir que así están más unidos.
-Not only in the academic world, but also in the industry, with more than an 
+Not only in the academic world, but also in the industry, with more than a 
 seventy percent of adoption and satisfaction \cite{Heffner10strong}, adding significant value to the enterprises \cite{Heffner13soa}.
 
 % En la conclusión del capítulo anterior has dicho que este capítulo iba a resolver diferentes asuntos. ¿Qué asuntos está resolviendo? ¿Qué propones, en general y en particular, para resolverlos? - JJ FERGU: Escrito al final de la introducción para resumir lo que vamos a resolver
@@ -130,7 +136,7 @@ language implementation of the service or the operating system, %esto
 
 Figure \ref{fig:soadiagram} shows the basic interaction among
 services. First, the \textsc{service provider} exposes the service, publishing
-its interface in the \textsc{service broker}. The \textsc{service consumer} (or
+its interface in the \textsc{service broker} (or \textsc{service registry}). The \textsc{service consumer} (or
 \textsc{requestor}) finds  a service in the broker to be used and receives its
 interface. Then the request is performed by the \textsc{consumer} (which uses or
 consumes the service).  
@@ -146,7 +152,7 @@ consumes the service).
 
 
 
-According to \person{Valipour} \cite{Valipour09surveysoa}, services to develop must follow these characteristics:
+According to \person{Valipour} \cite{Valipour09surveysoa}, services must follow these characteristics:
 
 \begin{itemize}
 \item {\em Discoverable and Dynamically Bound}: Services must be discoverable. Thanks to the service registry, a service consumer can discover a service to be use at runtime.
@@ -208,8 +214,7 @@ explained: the main difference between SOA and imperative programming or OOP is 
 \subsection{Web Services}
 \label{subsec:soa:ws}
 One of most popular services implementations are  \textsc{Web
-  Services} \cite{Papazoglou2007SOA}. A web service is a service that
-is available over Internet that uses any standardized XML (eXtended
+  Services} \cite{Papazoglou2007SOA}. A web service is a service available over Internet, that uses any standardized XML (eXtended
 Meta Language) \cite{XML} messaging system, and it is not tied to any
 specific language or operating system \cite{Cerami2002Webservices}.
 As SOA proposes, web services should be self-describing (using a
@@ -385,7 +390,7 @@ problems, as can be seen in the works of
 \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL
 interfaces and other transmission mechanisms (such as Remote Procedure
 Call \cite{grid6,grid7}). Although EAs are executed in grids
-\cite{grid8,grid4,grid10}) no information about how to design these
+\cite{grid8,grid4,grid10}), no information about how to design these
 services for EAs has been provided in previous works.  % estás
                                 % diciendo que no hay una metodología
                                 % para diseñar estos servicios y eso
@@ -475,7 +480,7 @@ executed in local or in remote, even the {\em Population} or the {\em
   Parameters}. Mechanisms to ensure the correct data-sharing should be
 provided. Also, many implementations of the same service could exist
 at the same time (different implementations of {\em Crossover}, for
-example) and it should be correctly managed and used. % pero ¿las va a
+example) and they should be correctly managed and used. % pero ¿las va a
                                 % haber? ¿Vas a usar estas
                                 % características? - JJ FERGU: sí, las va a haber y lo voy a poner en el experimento (aunque estaba descrito en siguientes capítulos)
 
