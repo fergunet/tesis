@@ -275,3 +275,19 @@ class ExampleImpl implements ExampleService,EventHandler{
 \caption{Code to read an event.}
 \label{fig:OSGIreadevent} 
 \end{SCfigure}
+
+\section{OSGiLiath components}
+
+This section presents the organization of the bundles of OSGiLiath (available at \url{https://github.com/fergunet/osgiliath}):
+
+\begin{itemize}
+\item osgiliath: This is the core bundle. It includes all the interfaces common to the algorithms such as {\em Algorithm}, {\em AlgorithmParameters} or {\em Problem}. 
+\item Evolutionary Algorithm:  Includes the {\em EvolutionaryAlgorithm} implementation and interfaces to create the rest of the services that form an EA: {\em Recombinator} and {\em Crossover}, {\em Mutator} and {\em Mutation}, {\em StopCriterion} or {\em FitnessCalculator}. It also provides interfaces for the creation of individuals: {\em Individual}, {\em Fitness}, {\em Gene}, and {\em Genome}. 
+\item Basic Evolutionary Components: Includes several implementations (the most common ones) of the previous interfaces: {\em ListPopulation}, {\em ListIndividual}, {\em DoubleFitness}, {\em NGenerationStopCriterion}, {\em BasicOrderRecombinator}, {\em UPXListCrossover} and others.
+\item Binary Problems: Includes implementation of well-known problems, such as OneMax and MMDP: {\em OneMaxFitnessCalculator}, {\em MMDPFitnessCalculator} or {\em BinaryProblemRandomInitializer}.
+\item Function Problems: Multi-dimensional optimization functions, such as Griegwank or Rastrigin are implemented in this bundle, with their associate Initializers or Fitness Calculators.
+\item NSGA2: Interfaces and implementations of services for the NSGA2 algorithm.
+\item OSGiLiART: Service implementation for the creation of Evolutionary Art: {\em ArtisticIndividual} or {\em HistogramFitnessCalculator} are examples.
+\item NoOSGi: Because OSGi allows the separation of source code with the OSGi framework capabilities, this bundle includes Java code to integrate the services without any specific technology (just using basic Object Oriented programming).
+\item IntelligentManager: An example of how the services can be bound/unbound in real-time. Includes, implementation {\em IntelligentRandomManager} selects randomly from the available Crossovers, Mutators and Replacers implementations. Also, gatherers for other operations (such as SelectorGatherer) and automatic enablers of services ({\em AsynchronousEnabler}).
+\end{itemize}

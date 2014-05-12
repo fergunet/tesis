@@ -13,9 +13,8 @@
 
 
 
-\lettrine{E}{volutionary} 
 
-As part of the Objective 4 (Use the framework to develop several applications), in this chapter SOA-EA and OSGiLiath will be used to develop a SOEA. 
+\lettrine{A}{s} part of the \textbf{Objective 4} (\objectiveresearch), in this chapter SOA-EA and OSGiLiath will be used to develop a SOEA. 
 
 The research objective of this application is to study the differences % with respect to what? FERGU: añadido abajo
 of using the information of the HSV (Hue, Saturation, Value) and RGB (Red,
@@ -312,9 +311,8 @@ diff(h_1, h_2) = \sum_{j=0}^{255} |h_1(j) - h_2(j)|
 
 
 
-To draw the art ................ Processing
-\footnote{\url{http://www.processing.org/}} and the histograms
-used. %¿Dónde has justificado el uso de histogramas? Tampoco engañes
+To draw the information contained in the individuals, the {\em Processing} framework has been chosen.
+\footnote{\url{http://www.processing.org/}}.  %¿Dónde has justificado el uso de histogramas? Tampoco engañes
       %al lector: Una cosa es Processing y otra los histogramas. Si
       %estamos a processing, estamos a processing - JJ FERGU: reestructurado
  {\em Processing} \cite{PROCESSING} is a framework formed by a simple
@@ -354,11 +352,11 @@ used. %¿Dónde has justificado el uso de histogramas? Tampoco engañes
 \caption{Processing IDE and sketch execution. }
 \end{SCfigure}
 
-However, being a light framework, there exist some disadvantages:
-\begin{itemize}
-\item More complex applications require more programming skills.
-\item The calculations of large computer images are a bit inefficient (although expert programmers can manage OpenGL at low level to fix this).
-\end{itemize}
+%However, being a light framework, there exist some disadvantages:
+%\begin{itemize}
+%\item More complex applications require more programming skills.
+%\item The calculations of large computer images are a bit inefficient (although expert programmers can manage OpenGL at low level to fix this).
+%\end{itemize} FERGU: esto también lo quito
 
 There exist a lot of interactive artistic projects made with
 Processing; examples include art generation, artificial life,
@@ -391,13 +389,13 @@ interactive music and other. A good selection can be seen in
 %\item Math: Functions for dealing with all mathematical functionality.
 %\end{itemize}
 
-{\em Processing} % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ
+{\em Processing} % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ FERGU:
 can be integrated with Java just by adding a {\em jar} (a
 Java library) to existing software.
 
 A new {\em bundle} called OSGiLiART has been
 added to the publicly-available source code of OSGiLiath \footnote{\url{https://github.com/fergunet/osgiliath/tree/master/OSGiLiART}}.  % URL - JJ FERGU: Done
-Then, using the packages available in the Processing library an algorithm can generate individuals, manipulate images or extract information. The service {\em Drawer} has been implemented with  {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by the primitives in {\em Processing}. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers explained in previous chapters), because the abstract design of OSGiLiath.
+Then, using the packages available in the {\em Processing} library an algorithm can generate individuals, manipulate images or extract information. The service {\em Drawer} has been implemented with  {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by the primitives in {\em Processing}. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers explained in previous chapters), because the abstract design of OSGiLiath.
 
 
 
@@ -532,7 +530,7 @@ individual using the HSV fitness in the first 64 generations. %Estás
 \label{sec:conclusions}
 In this chapter {\em Processing} has been integrated in OSGiLiath
 to create an Evolutionary Algorithm  to generate images and to extract
-image information using HSV and RGB histograms. This complies the Objective 4 of this thesis.
+image information using HSV and RGB histograms. This complies the Objective 4 (\objectiveresearch) of this thesis.
 
  % .. y esto me ha
                                 % servido en esta tesis para probar x

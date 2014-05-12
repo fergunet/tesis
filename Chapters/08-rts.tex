@@ -7,7 +7,7 @@
 \minitoc\mtcskip
 \vfill
 
-The last application to fulfill the \textbf{Objective 4} is to . With this application, Genetic Programming (explained in Section \ref{subsec:classicEAs}) will be used to validate if the genericity in evolutionary model explained in Section \ref{sec:distributed:design}. SOA-EA and OSGiLiath will be used to perform an study on tree depth influence of GP to create competitive bots for RTS games. New individuals will be used and new implementations for mutation and crossover, and services to execute remote environments outside the OSGi will be developed with SOA-EA.
+\lettrine{T}{he} last application to fulfill the \textbf{Objective 4} is to use OSGiLiath to obtain competitive bots for RTS games. With this application, Genetic Programming (explained in Section \ref{subsec:classicEAs}) will be used to validate if the genericity in evolutionary model explained in Section \ref{sec:distributed:design}. SOA-EA and OSGiLiath will be used to perform an study on tree depth influence of GP to create competitive bots for RTS games. New individuals will be used and new implementations for mutation and crossover, and services to execute remote environments outside OSGi will be developed with SOA-EA.
 
 
 \section{Background}
@@ -75,8 +75,8 @@ shows a screen capture of the game. % Hay que caracterizar el
 
 
 In this chapter we use Genetic Programming (GP) to obtain agents that play
-Planet Wars game. % hala, así, sin vaselina ni nada. ¿Por qué GP? ¿Por
-                  % qué no ES? ¿O cualquier otra cosa? 
+Planet Wars game. The reason is to obtain agents without any human knowledge, obtaining the rules to play automatically.% hala, así, sin vaselina ni nada. ¿Por qué GP? ¿Por
+                  % qué no ES? ¿O cualquier otra cosa? FERGU: puesto
 The objective of GP is to create functions or programs to solve determined problems. Individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). These sets are usually fixed and known. The genome size is, therefore, variable, but the maximum size (depth) of the individuals is usually fixed, to avoid high evaluation costs. %GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
 
 
@@ -116,12 +116,11 @@ this agent with the two presented before.
 
 \subsection{Identification}
 
-Problem domain: Initializer, FitnessCalculator (hablar mucho de este)
-Algorithm Domain: Crossover y Mutation, TreeGenome 
-Infrastructure domain: IndidivualTester, Conversor
+In the {\em Problem domain} an {\em Initializer} of individual and a {\em FitnessCalculator} service need to be used. The first one generates individuals codified as a tree of decisions and operations, and the latter one will integrate the Planet Wars environment to OSGiLiath.
+The operators of the {\em Algorithm Domain: Crossover y Mutation, TreeGenome . Operators previously defined in previous chapter (such as Parent Selector) does not need modification.
+Finally, inside the {\em Infrastructure domain} services to test each individual (\em IndidivualTester) and convert the codification of the individual to the appropriate codification to different playing environments ({\em Conversor}).
 
 \section{Specification}
-Hablar del Fitness jerárquico
 
 The proposed agent receives a tree to be executed. The generated tree
 is a binary tree of expressions formed by two different types of nodes:
@@ -235,9 +234,13 @@ The bot behaviour is explained in Figure \ref{alg:turn}.
 %		\ENDFOR
 %\ENDLOOP
 
+A hierarchical fitness ({\em HierarchichalFitness} implementation) will be used, as proposed in \cite{Mora2012Genebot}. An individual is better than another if it wins in a higher number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. it is stronger) is considered better. The {\em PlanetWarsFitnessCalculator} will confront each individual to other agents a number of times.
+
 \subsection{Implementation and Deployment}
-TERMINAAAAAAAAR
-Decisions and Actions are strings. CAssist. ListPopulation has been used. DeterministicTournamentSelector, NGenerationsStopCriterion. DistributedFitness
+
+The {\em TreeGenome} individual is composed of {\em Decisions} and {\em Actions} codified as strings coincident with the actions the agent can execute. The {Conversor} implementation translates the tree to a string of Java code to be executed in the Planet Wars environment by the {\em IndividualTester}, using the {\em CAssist} library to compile the string into executable Java bytecode.
+
+The rest of implementations used are the ones available in OSGiLiath (and previously explained in chapter \ref{chap:osgiliath}): {\em ListPopulation}, {\em DeterministicTournamentSelector}, {\em NGenerationsStopCriterion} and {\em DistributedFitness} to execute several simulations at the same time. Besides using Genetic Programming, the flow to use the previous services is the {\em EvolutionaryAlgorithm} implementation used in previous chapters.
 
 
 
@@ -246,7 +249,7 @@ Decisions and Actions are strings. CAssist. ListPopulation has been used. Determ
 
 Sub-tree crossover and 1-node mutation evolutionary operators have been used, following other researchers' proposals that have used these operators obtaining good results \cite{Esparcia2013GPunreal}. In our case, the mutation randomly changes the decision of a node or mutate the value with a step-size of 0.25 (an adequate value empirically tested). Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
 
-To test each individual during the evolution a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google. Hierarchical fitness is used, as proposed in \cite{Mora2012Genebot}. Thus, an individual is better than another if it wins in a higher number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. it is stronger) is considered better. The maximum fitness is, therefore 5 victories and 0 turns. Also, as proposed by \cite{Mora2012Genebot}, and due to the noisy fitness effect, in every generation all individuals are re-evaluated.
+To test each individual during the evolution a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google. The maximum fitness is, therefore 5 victories and 0 turns. Also, as proposed by \cite{Mora2012Genebot}, and due to the noisy fitness effect, in every generation all individuals are re-evaluated.
 
 
 Two publicly available bots have been chosen for our experiments\footnote{Both can be downloaded from \url{https://github.com/deantares/genebot}}. The first bot to confront is {\em GeneBot}, proposed in \cite{Mora2012Genebot}. This bot was trained using a GA to optimize the 8 parameters that conforms a set of hand-made rules, obtained from an expert human player experience. The second one is an advanced version of the previous, called {\em Exp-Genebot} (Expert Genebot) \cite{FernandezAres2012adaptive}. This bot outperformed Genebot widely. Exp-Genebot bot analyses the distribution of the planets of the map to chose a previously optimized set of parameters by a GA.  Both bots are the best individual obtained of all runs of their algorithm (not an average one).
@@ -398,8 +401,10 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 \section{Conclusions}
 \label{sec:conclusion}
 
-This chapter presents a Genetic Programming algorithm that generates
-agents for playing Planet Wars game. 
+This chapter presents a Service Oriented Genetic Programming algorithm that generates
+agents for playing Planet Wars game without using human knowledge. OSGiLiath has been used to obtain relevant results in this field, adding services to manipulate individuals codified as a tree. All services developed follow the genericity in EA development and the SOA requirements. Independence of the individual representation with respect to the existent services to facilitate reuse of existent services have been shown. 
+
+
 
 
 % Las conclusiones del trabajo explícito no sirven. Debes de sacar
