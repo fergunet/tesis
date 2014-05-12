@@ -8,19 +8,65 @@
 
 
 
-\section{Thesis goal} %FERGU: esto es un párrafo que describe el objetivo de la tesis.
-The goal of this thesis is to demonstrate that the use of Service Oriented Architecture paradigm to develop Evolutionary Algorithms solves some of the problems present in this field, such as the lack of standardization, integration and dynamism. To validate this goal a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) that deals with these problems is presented. This methodology is applied to create a framework to develop SOEAs using a specific technology standard (OSGiLiath). This framework is used to carry out experiments that demonstrate dynamic binding, automatic distribution and publication of interfaces. Finally, different applications using this methodology and framework in different fields will be shown.
+\section{Goals of this Thesis} %FERGU: esto es un párrafo que describe el objetivo de la tesis.
+The goal of this thesis is to prove that the use of Service Oriented Architecture paradigm to develop Evolutionary Algorithms solves some of the problems present in this field, such as the lack of standardization, integration and dynamism. To validate this goal a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) that deals with these problems is presented. This methodology is applied to create a framework to develop SOEAs using a specific technology standard (OSGiLiath). This framework is used to carry out experiments that demonstrate dynamic binding, automatic distribution and publication of interfaces. Finally, different applications using this methodology and framework in different fields will be shown. % las aplicaciones no usan la metodología. El algoritmo para la aplicación se ha desarrollado (anteriormente) usando esa metodología. Y el problema se resuelve usando el algoritmo - JJ
+
+% Esto tienes que reescribirlo. "probar que resuelve algunos problemas", sin especificar los problemas, ni decir por qué son importantes estos problemas, ni nada de nada, suena a filfa. Ya hablamos de cuál era el objetivo de la tesis: Crear una metodología para adaptar algoritmos bioinspirados a un entorno distribuido y dinámico. Esto tienes que tenerlo muy claro. La metodología no es para validar un objetivo, la metodología es el objetivo y el desarrollo del SOA es parte de esa metodología. Tienes que ponerlo justamente al revés. - JJ
 
 \section{Evolutionary Computation}
 \label{sec:intro:eas}
 
-\lettrine{E}{volutionary} Computation is a scientific field that involves a large number of bio-inspired methods, problems and tools. Evolutionary Algorithms (EAs) are a set of techniques of this field applied to optimization problems \cite{eiben2010whatis}. These algorithms imitate the process of natural selection, giving to fittest solutions (or {\em individuals}) more probability to mate with others to generate new solutions that inherit its information. Thus, iteratively, better individuals would recombine to form better solutions of the problem to solve.
+% Hala, esta sección aquí a pelo sin ningún tipo de introducción antes ni nada de nada. 
 
-Initially, the EAs were proposed as a fixed set of steps to be executed in a machine. These steps can be combined to create new algorithms, or being used dynamically depending on some information during the run (for example, average quality of solutions). Therefore, these steps should be designed and developed as loose-coupled elements. With the advancement of Internet, new trends such as P2P, leads to a new paradigm where different software architectures, programming languages and transmission protocols collaborate to share computational resources and integration. 
+\lettrine{E}{volutionary} Computation is a scientific field that
+involves a large number of bio-inspired methods, problems and
+tools. One of these methods is evolutionary Algorithms (EAs) are a set
+of techniques of this field applied to optimization problems
+\cite{eiben2010whatis}. These algorithms imitate the process of
+natural selection, giving to fittest solutions (or {\em individuals})
+more probability to mate with others to generate new solutions that
+inherit its information. Thus, iteratively, better individuals would
+recombine to form better solutions of the problem to solve. % Añadido
+                                % enlace de la segunda frase con la
+                                % primera. La tesis debe narrar, no
+                                % contar las cosas a saltos y según se
+                                % te ocurran - JJ
 
-Because of this, a number of challenges in the EA area needs to be addressed.  One of them is the lack of standardization and integration in EA software tools \cite{SURVEYMOFS}. Many frameworks for EAs exist, but without the possibility of interoperation of their components. Establishing public and discoverable standards for computing elements not only can help in development and integration, but facilitate Open Science \cite{Foster2005Science}. Finally, there are not mechanism to deal with dynamism to manage operators (locally or remotely).
+Initially, the EAs were proposed as a fixed set of steps to be
+executed in a machine. % ¿Inicialmente cuando? ¿Quién hizo eso? ¿Por
+                       % qué? Todas las afirmaciones o probadas o de
+                       % una cita - JJ
+These steps can be combined to create new algorithms, or be used % corrección gramatical - JJ
+dynamically  depending on some information during the run (for
+example, average quality of solutions). Therefore, they should be
+designed and developed as loose-coupled elements. With the advancement
+of Internet, new trends such as P2P, leads to a new paradigm where
+different software architectures, programming languages and
+transmission protocols collaborate to share computational resources
+and integration.  
 
-Service Oriented Architecture \cite{Papazoglou2007SOA} is proposed in this thesis as a solution to address previous shortcomings. This paradigm defines the usage of loose-coupled and self-contained elements (services) based in public standards. Its aim to facilitate the integration, interoperability and discovery in different software systems.
+Because of this, % this qué? Avance de internet? Transmission
+                 % protocols? - JJ
+a number of challenges in the EA area needs to be addressed.  One of
+them is the lack of standardization and integration in EA software
+tools \cite{SURVEYMOFS}. Many frameworks for EAs exist, but without
+the possibility of interoperation of their components. % this would be
+                                % desirable because... JJ
+Establishing public and discoverable standards for computing elements
+not only can help in development and integration, but facilitate Open
+Science \cite{Foster2005Science}. Finally, there are not mechanism to
+deal with dynamism to manage operators (locally or remotely). %¿Alguna
+                                %ciencia donde haya ocurrido esa
+                                %integración y haya servido de algo?
+                                %¿O es algo que te parece a ti que
+                                %debería de ser así? - JJ
+
+Service Oriented Architecture \cite{Papazoglou2007SOA} is proposed in
+this thesis as a solution to address previous shortcomings. This
+paradigm defines the usage of loose-coupled and self-contained
+elements (services) based in public standards. Its aim to facilitate
+the integration, interoperability and discovery in different software
+systems. 
 
 
 \section{Challenges in Evolutionary Algorithms}
@@ -56,7 +102,12 @@ the elements that conform an EA can take advantage, facilitating the re-use and 
 \subsection{Applications}
 Evolutionary Algorithms have been applied to a wide number of applications from different fields. Various types of EAs, such as Genetic Algorithms, have been applied to optimize routing and inventory management \cite{Esparcia2009EVITA}, evolutionary art \cite{Garcia2013RGB}, evolution of robot behaviour \cite{Garcia2012testing}, optimization of Neural Networks \cite{Castillo1999gprop} among many others. Genetic Programming algorithms have been used for generation of agents for videogames \cite{Esparcia2013GPunreal} or document transformation \cite{Garcia2008XSLT}. 
 
-Different yearly conferences, such as EvoApps or GECCO, present research in fields as diverse as economics, energy, videogames, design, image analysis, industrial environments, and security, among others. Therefore, this field is wide enough to allow the participation of researchers in many different areas and expertise.
+Different yearly conferences, such as EvoApps or GECCO, % citas
+present research in fields as diverse as economics, energy,
+videogames, design, image analysis, industrial environments, and
+security, among others. Therefore, this field is wide enough to allow
+the participation of researchers in many different areas and
+expertise. %¿ein? - JJ
 
 
 
@@ -64,13 +115,16 @@ Different yearly conferences, such as EvoApps or GECCO, present research in fiel
 
 
 
-\section{Motivation and objectives}
+\section{Motivation and objectives} %¿Después de explicar los
+                                %algoritmos evolutivos? ¿Por qué? - JJ
 \label{sec:intro:motivation}
 The main motivation of this thesis is to propose a new paradigm for the development of EAs to address some of the problems previously explained. Also, other objective of this thesis is to encourage to EA users and practitioners to change their mind and make an effort to migrate the existing software to SOA, making their services publicly available and loosely coupled to support new research results.
 
 To achieve this goal, the objectives that this thesis tries to achieve are:
 
-\subsection*{Objective 1: Identify the problems in the EA field, and propose a possible solution to address these problems}
+\subsection*{Objective 1: Identify the problems in the EA field, and
+  propose a possible solution to address these problems} %eso no es un
+                                %objetivo, es _previo_ a la tesis - JJ
 \label{subsec:intro:obj:problems}
 EAs is a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to identify their problems. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and deficiencies. Dynamic parameter adaptation and hardware adaptation works will be shown. Finally, several works on the development of EAs will be explained to extract the requirements to design EAs, and different EA frameworks will be studied, to extract their advantages and weaknesses. A new paradigm will be proposed to manage previous shortcomings.
 
@@ -78,10 +132,13 @@ EAs is a large area that deals with several fields of computer science: parallel
 \label{subsec:intro:obj:methodology}
 This methodology will help to identify, specify, implement and deploy services to create SOEAs. This methodology will have to deal with the restrictions in the SOA and EA design identified in previous objective, to help in development, integration and dynamism.
 
+% El objetivo debe ser validar la metodología, no aplicarla. 
 \subsection*{Objective 3: Apply the methodology to create a framework using a SOA technology that solves the problems addressed}
 \label{subsec:intro:obj:fwork}
 Applying the methodology of the previous objective, a framework will be developed and used to solve some of the problems previously addressed: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be compared to select the most appropriate one for the problems we want to solve.
 
+% el objetivo debe ser resolver un problema determinado, no usar el
+% framework. ¡El objetivo es el problema!
 \subsection*{Objective 4: Use the framework and methodology to conduct research in applications of EAs}
 \label{subsec:intro:obj:applications}
 The final objective of this thesis is to demonstrate that SOEAs can be used to obtain relevant scientific results in several fields. The methodology and framework will be used to perform experiments in dynamic parameter adaptation to hardware, evolutionary art and creation of competitive bots for video-games.
@@ -91,8 +148,14 @@ The final objective of this thesis is to demonstrate that SOEAs can be used to o
 \section{Structure of the thesis}
 \label{sec:intro:structure}
 
-This chapter shows an introduction to this thesis, with the motivations and question to address. The rest chapters are structured as follows:
+This chapter shows an introduction to this thesis, with the
+motivations and question to address. % Y una intro a los algoritmos
+                                % evolutivos que no viene a cuento - JJ
+The rest of the chapters are structured as follows:
 
+% Una vez más, tienes que "contar" la tesis haciendo referencia a los
+% capítulos, no contar los capítulos. No es un catálogo, es una tesis
+% - JJ
 Chapter \ref{chap:distributedEAs} describes the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms, but they can be used dynamically (for example, using {\em hiperheuristics} \cite{cowling2001hyperheuristic}). Also, new tendencies in distributed EAs, such as P2P or pool-based algorithms, that deals with heterogeneous architectures and dynamism with the nodes are presented. Finally, this chapter also presents different frameworks for EAs using different programming languages, but without any standardization or mechanisms to facilitate the integration.
 
 In chapter \ref{chap:soa} the Service Oriented Architecture paradigm is presented as a possible solution to deal with the issues described in previous chapter. SOA  offers mechanisms to facilitate standardization, integration, open science and dynamism. Different technologies and methodologies for SOA are shown. The requirements in SOA design are applied to the genericity of EAs. Also, guidelines to create services for EAs are presented.
