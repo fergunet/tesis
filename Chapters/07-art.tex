@@ -196,7 +196,7 @@ neural networks or complexity measures.   % ¿Cuál vas a usar? No se
 
 %\section{Histograms} % ¿lo ves como antes no hablabas de histogramas? - JJ FERGU: cambiado de sitio
 
-In this chapter.........
+In this chapter, the histogram feature will be used as aesthetic measure.
 The color histograms of 
 the images represent the frequency of occurrence of each color
 intensities present in the image, by accounting for such sharing
@@ -224,20 +224,21 @@ Figure \ref{fig:histogram} shows the RGB histogram of the image in Figure \ref{f
 \section{Applying SOA-EA}
 \label{sec:art:soaea}
 
+Once the background has been provided, SOA-EA will be applied.
+
 \subsection{Identification}
 
-Primitive
-ArtisticIndividual
-Drawer (individual)
-ArtisticInitializer.
-ArtisticMutation
-ArtisticFitnessCalculator
+The problem to solve with this SOEA is to generate images that match the most to a given . Therefore infrastructure services to read, write and analyze images will be needed. In the problem domain, it is required an {\em Initializer} that generates individuals with the coded information of an image, and a {\em FitnessCalculator} to obtain a fitness of equality with the example image. Finally, in the Algorihm Domain a Mutation specific for this kind of individuals will be created. 
+
+%Drawer (individual)
+%ArtisticMutation
+%ArtisticFitnessCalculator
 
 
 \subsection{Specification}
 
-The genome of the individual is a list of
-primitives. % ¿El genoma es una lista para llevar a cabo los experimentos? ¿En serio? - JJ FERGU: borrado
+The input of the services are implementations of the {\em Individual} class that codify the information of each generated image. The {\em ListIndividual}   implementation previously defined will be used: the genome of the individual is a list of
+{\em primitives}. % ¿El genoma es una lista para llevar a cabo los experimentos? ¿En serio? - JJ FERGU: borrado
 Each primitive has a position, size and color. This list can
 be recombined or mutated (changing the color, position or radium of a
 primitive of the list). 
@@ -263,14 +264,12 @@ existent image.
                 % justificado que el histograma tenga nada que ver con
                 % lo bonita que es - JJ
 
-Three different fitness functions have been implemented:
+Three different fitness functions will be implemented in three different services:
 \begin{itemize}
-\item {\em RGB difference}: The difference of the RGB histogram of the individual with the RGB histogram of the test image.
-\item {\em HSV difference}: The difference of the HSV histogram of the individual with the HSV histogram of the test image.
-\item {\em Average difference}: An average of the two previous differences.
+\item {\em RGBFitnessCalculator}: The difference of the RGB histogram of the individual with the RGB histogram of the test image.
+\item {\em HSVFitness}: The difference of the HSV histogram of the individual with the HSV histogram of the test image.
+\item {\em AverageFitness}: An average of the two previous differences (uses the previous two services).
 \end{itemize}
-
-RGBFitnes
 
 The range of the these fitness function has been normalized to vary from 0 (totally different histograms) to 1 (the same histogram).
 
@@ -322,19 +321,19 @@ To draw the information contained in the individuals, the {\em Processing} frame
  the following advantages: % No se usa etc en lenguaje formal. Y esto
                            % os lo he dicho en más de mil papers - JJ FERGU: quitados
 
-\begin{itemize}
-\item Processing was created for artists, rather than programmers. So, it allows very complex drawings and interactive applications with few lines of code.
-\item It is an Open Source software (licensed under the GNU Lesser General Public License), and counts with a large development community.
-\item It is based on OpenGL, thus providing 3D acceleration.
-\item It also includes more than 100 libraries for video, sound, physics, computer vision and networking.
-\item Easy integration with Java, HTML5 and Android.
-\end{itemize}
+%\begin{itemize}
+%\item Processing was created for artists, rather than programmers. So, it allows very complex drawings and interactive applications with few lines of code.
+%\item It is an Open Source software (licensed under the GNU Lesser General Public License), and counts with a large development community.
+%\item It is based on OpenGL, thus providing 3D acceleration.
+%\item It also includes more than 100 libraries for video, sound, physics, computer vision and networking.
+%\item Easy integration with Java, HTML5 and Android.
+%\end{itemize}
 
 %Lo que estás haciendo es dibujar bolas. las ventajas de processing no
 %tienes qu emedirlas de forma absoluta, sino relativa a usar
 %simplemente JS con el canvas. En todo caso, siempre se trata de
 %ventajas para la tesis. Deja el modo "justificar lo que se me
-%ocurrió" y entra en el modo "justificar la tesis" - JJ
+%ocurrió" y entra en el modo "justificar la tesis" - JJ FERGU: quitado
 
 \begin{SCfigure}[htb]
 \centering
@@ -389,13 +388,13 @@ interactive music and other. A good selection can be seen in
 %\item Math: Functions for dealing with all mathematical functionality.
 %\end{itemize}
 
-{\em Processing} % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ FERGU:
+{\em Processing} % usa alguna tipografía para diferenciar processing la librería de processing el verbo - JJ FERGU: hecho
 can be integrated with Java just by adding a {\em jar} (a
 Java library) to existing software.
 
 A new {\em bundle} called OSGiLiART has been
 added to the publicly-available source code of OSGiLiath \footnote{\url{https://github.com/fergunet/osgiliath/tree/master/OSGiLiART}}.  % URL - JJ FERGU: Done
-Then, using the packages available in the {\em Processing} library an algorithm can generate individuals, manipulate images or extract information. The service {\em Drawer} has been implemented with  {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by the primitives in {\em Processing}. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. These fitness are explained in next section. There is not necessary to modify other existent service implementations (such as existent Recombinators or Replacers explained in previous chapters), because the abstract design of OSGiLiath.
+Then, using the packages available in the {\em Processing} library an algorithm can generate individuals, manipulate images or extract information. The service {\em Drawer} has been implemented with  {\em ProcessingDrawer}). To create random individuals we have implemented the {\em ArtisticInitializer} to generate individuals composed by the primitives in {\em Processing}. The implementation {\em ArtisticMutator} modifies randomly one of the elements of the individual. Finally, several {\em FitnessCalculator} implementations have been added: {\em HSVFitnessCalculator}, {\em RGBFitnessCalculator} and {\em AverageHistogramFitnessCalculator}. There is not necessary to modify other existent service implementations (such as existent {\em Recombinators} or {\em Replacers} explained in previous chapters), because the abstract design of OSGiLiath.
 
 
 
@@ -539,7 +538,7 @@ Individuals are represented as a list of Processing primitives
 (circles) and the fitness functions used are based on the similarity
 with an existent aesthetic image. % como yo propongo en mi tesis en x
                                 % o y - JJ
- Three different fitness functions
+ Three different fitness functions services
 using color histogram have been tested: difference between the HSV and
 RGB histograms, and an average difference of the two histograms at the
 same time. Experiments show that better results in terms of similarity
@@ -556,4 +555,4 @@ provided by the RGB).  % y por lo tanto esto implica para mi tesis x o
 
 % Esto canta a inclusión a capón de un artículo en una tesis con la
 % que tiene en común solo el software usado. O lo adaptas muy mucho en
-% la línea que te he puesto en los comentarios o lo suprimes - JJ FERGU: exactamente era eso lo que había hecho, pero me lo revisaste antes de que lo adaptara más a la tesis. Mira a ver si ahora tiene más sentido con la tesis o lo quito.
+% la línea que te he puesto en los comentarios o lo suprimes - JJ FERGU: exactamente era eso lo que había hecho, pero me lo revisaste antes de que lo adaptara más a la tesis. Tengo que adaptarlo más a la tesis, OJO!!!!
