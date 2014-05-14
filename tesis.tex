@@ -135,6 +135,7 @@
 \usepackage{ifthen}
 
 \usepackage{fancyvrb} %FERGU
+
 \usepackage{minted}
 \usepackage{algorithmic}
 \providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
@@ -337,6 +338,8 @@ p{0.95\textwidth}}
 
 \newcounter{IncluyeCapitulo}
 \setcounter{IncluyeCapitulo}{2}
+
+
 % ********************************************************************
 % ********************************************************************
 % ********************************************************************
@@ -432,24 +435,7 @@ p{0.95\textwidth}}
 \myPart{Introducción}\label{part:introduccion}
 
 %REALMENTE tienes que escribir una introducción. 
-\include{Chapters/intro}
-\include{Chapters/procImagenes}
-\include{Chapters/evaluacionCalidad}
-\include{Chapters/cuestionarios}
-\include{Chapters/BajaVision}
-%-----------------------------
-\myPart{Método y Materiales}\label{part:metodoYmateriales}
-\include{Chapters/convLIP}
-\include{Chapters/criterios_calidad}
-\include{Chapters/cuestionariosBordes}
-%-----------------------------
-\myPart{Resultados Experimentales}\label{part:resultadosExperimentales}
-\include{Chapters/experimentosConvLIP}
-\include{Chapters/resultadosEncuestas}
-%-----------------------------
-\myPart{Discusión y Conclusiones}\label{part:discusionYconclusiones}
-\include{Chapters/discusion}
-\include{Chapters/conclusiones}
+
 }
 {
 %-----------------------------  PONER LETTRINE EN SECCIONES Y NO INDENT EN SUBSECCIONES!!!
@@ -466,7 +452,7 @@ p{0.95\textwidth}}
 \myPart{Experimental Results}\label{part:resultadosExperimentales}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/05-osgiliath}}{\myChapter{Implementation of SOA-EA}\label{chap:osgiliath}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/06-adaptive}}{\myChapter{Parameter adaptation in heterogeneous machines}\label{chap:adaptive}}
-\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/07-art}}{\myChapter{HSV and RGB comparison in Evolutionary Art}\label{chap:art}}
+%\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/07-art}}{\myChapter{HSV and RGB comparison in Evolutionary Art}\label{chap:art}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/08-rts}}{\myChapter{Generation of bots for RTS games using Genetic Programming}\label{chap:rts}}
 
 %-----------------------------

@@ -17,13 +17,13 @@
 
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} previous chapter has explained some shortcomings % some
+\lettrine{T}{he} previous chapter has explained several shortcomings % some
                                 % lacks? algunas faltas? something
                                 % lacking no es lo mismo que some
                                 % lacks y no se debe usar en este
                                 % contexto formal - JJ FERGU: cambiado a shortcomings en este y otros capis
- in the development of EAs, mainly related with the integration of
-% shortcomings no pueden ser absolutos, tienes que hablar en un contexto determinado. Para algunas cosas trabajar con un script en Perl puede ser perfecto. - JJ
+ in the development of EAs in some contexts, mainly related with the integration of
+% shortcomings no pueden ser absolutos, tienes que hablar en un contexto determinado. Para algunas cosas trabajar con un script en Perl puede ser perfecto. - JJ FERGU: añadido que hay en algunos contextos, no en general
  different frameworks, distributed programming and heterogeneity of
  computational environments, among others. This chapter explains the
  concept \textsc{Service Oriented Architecture} (SOA), with several
@@ -385,14 +385,17 @@ and it is not focused in enterprise environments.
 \section{Benefits of using SOA in Evolutionary Algorithms Area}
 \label{sec:soa:benefitsofsoa}
 
-% de hecho, no has incluido el trabajo principal en el área, que tienes que conocer, y además es de Enrique Alba:http://onlinelibrary.wiley.com/doi/10.1002/9780470411353.ch25/summary Tiene una versión en español - JJ
+% de hecho, no has incluido el trabajo principal en el área, que tienes que conocer, y además es de Enrique Alba:http://onlinelibrary.wiley.com/doi/10.1002/9780470411353.ch25/summary Tiene una versión en español - JJ FERGU: no lo conocía, añadido
 
-\lettrine{S}{OA} has been previously used in the EA area. For example,
-web services have been used in the grid area for optimization
+\lettrine{S}{OA} has been previously used in the EA area. \person{Garc\'ia-Nieto \etal} proposed {\em Remote Optimization Service}  \cite{ROSGarcia08}, a client/server environment for launching different algorithms programmed in several languages. Although it uses XML and DTD to define inputs and outputs of the services, only the whole algorithm is exposed as a service. Also, this system does not allow dynamic discovering or combination of available operators.
+
+Web Services have been used in the grid area for optimization
 problems, as can be seen in the works of
 \cite{grid1,grid2,grid3,grid5}, where services are defined using WSDL
 interfaces and other transmission mechanisms (such as Remote Procedure
-Call \cite{grid6,grid7}). Although EAs are executed in grids
+Call \cite{grid6,grid7}). 
+
+Although EAs are executed in grids
 \cite{grid8,grid4,grid10}), no information about how to design these
 services for EAs has been provided in previous works.  % estás
                                 % diciendo que no hay una metodología
