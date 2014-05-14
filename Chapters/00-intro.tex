@@ -14,12 +14,13 @@
 % Esto tienes que reescribirlo. "probar que resuelve algunos problemas", sin especificar los problemas, ni decir por qué son importantes estos problemas, ni nada de nada, suena a filfa. Ya hablamos de cuál era el objetivo de la tesis: Crear una metodología para adaptar algoritmos bioinspirados a un entorno distribuido y dinámico. Esto tienes que tenerlo muy claro. La metodología no es para validar un objetivo, la metodología es el objetivo y el desarrollo del SOA es parte de esa metodología. Tienes que ponerlo justamente al revés. - JJ
 
 %REESCRITO:
-\lettrine{T}{he} goal of this thesis is to create a methodology to adapt Evolutionary Algorithms (EAs) to dynamic and distributed environments. This methodology proposes the use of Service Oriented Architecture (SOA) as a new paradigm to develop EAs. To validate this methodology, a framework that use all the advantages of this paradigm (dynamic binding, automatic distribution and publication of interfaces using standards) will be created. Finally, this methodology will be used to create Service Oriented Evolutionary Algorithms (SOEAs) in different scenarios, where these advantages will be reflected.
+\lettrine{T}{he} goal of this thesis is to create a methodology that adapts Evolutionary Algorithms (EAs) to dynamic and distributed environments. This methodology proposes the use of Service Oriented Architecture (SOA) as a new paradigm to develop EAs. To validate this methodology, a framework that use all the advantages of this paradigm (dynamic binding, automatic distribution and publication of interfaces using standards) will be created. Finally, this methodology will be used to create Service Oriented Evolutionary Algorithms (SOEAs) in different scenarios, where these advantages will be reflected.
 
 \section{Evolutionary Computation}
 \label{sec:intro:eas}
 
 % Hala, esta sección aquí a pelo sin ningún tipo de introducción antes ni nada de nada. FERGU: si es que esto es copiao de la tesis de gente varia xD
+% Pues di quienes y cítalos... pero por mucho que sea de gente varia eso no es justificación para nada - JJ
 
 \lettrine{E}{volutionary} Computation is a scientific field that
 involves a large number of bio-inspired methods, problems and
@@ -131,17 +132,21 @@ To achieve this goal, the objectives that this thesis tries to achieve are:
 %  propose a possible solution to address these problems} %eso no es un
                                 %objetivo, es _previo_ a la tesis - JJ FERGU: cambiado el orden
 \newcommand{\objectiveparadigm}{Propose a new paradigm to address some of the problems in the EA field}
+% un objetivo no puede ser resolver "algunos" problemas. Un objetivo es probar algo. ¿Qué pruebas resolviendo esos problemas? Además, no puedes decir "algunos". El objetivo es algo aśi como "El objetivo de esta tesis es probar que esta metodología es capaz de hacer esto" Los problemas forman parte de "hacer esto", y todo ello es previo a la tesis. Como ya te he dicho como cuatro veces esto y no hay manera de que lo pongas bien, te propongo esto:
+% Prove that evolutionary algorithms can be adapted successfully to a distributed, dynamic, standards-based environment.
  \subsection*{Objective 1: \objectiveparadigm}
 \label{subsec:intro:obj:problems}
 EAs are a large area that deals with several fields of computer science: parallelism and distribution, parameter adaptation or development of applications and tools. Therefore, the first objective is to propose a new paradigm that can deal with some of the problems in this area: lack of standardization and mechanisms to facilitate integration, dynamism and interoperability of their components. First, the traditional classification of EAs and distributed EAs will be presented to clarify their common elements. Then, new trends in EAs (such as P2P or pool-based EAs) will be explained to show their advantages and deficiencies. Dynamic parameter adaptation and hardware adaptation works will be shown. Finally, several works on the development of EAs will be explained to extract the requirements to design EAs, and different EA frameworks will be studied, to extract their advantages and weaknesses. A new paradigm, the Service Oriented Evolutionary Algorithms (SOEAs) will be proposed to address the detected shortcomings.
 
 \newcommand{\objectivemethodology}{Provide a methodology to researchers to design and implement service oriented EAs}
+% Propose a methodology that is able to successfully adapt evolutionary algorithms to distributed, dynamic, standards-based environment.
 \subsection*{Objective 2: \objectivemethodology} 
 \label{subsec:intro:obj:methodology}
 This methodology will help to identify, specify, implement and deploy services to create SOEAs. This methodology will have to deal with the restrictions in the SOA and EA design identified in previous objective, to help in development, integration and dynamism.
 
 % El objetivo debe ser validar la metodología, no aplicarla. FERGU: Cambiado
 \newcommand{\objectiveframework}{Validate the methodology creating a framework using a SOA technology that solves the problems addressed}
+% Validate the methodology using SOA 
 \subsection*{Objective 3: \objectiveframework}
 \label{subsec:intro:obj:fwork}
 Applying the methodology of the previous objective, a framework (called OSGiLiath) will be developed and used to solve some of the problems previously detected: dynamic binding of services, publication of service interfaces using public standards and save time without adding specific code for distribution. In this objective, different SOA technologies will be compared to select the most appropriate one for the problems we want to solve.
@@ -149,6 +154,7 @@ Applying the methodology of the previous objective, a framework (called OSGiLiat
 % el objetivo debe ser resolver un problema determinado, no usar el
 % framework. ¡El objetivo es el problema! FERGU: Cambiado
 
+% y te faltaría: prove that a SOA-based implementation of distributed, dynamic, standards-based evolutionary algorithms is able to solve efficiently this and that problem. - JJ
 
 \newcommand{\objectiveresearch}{Solve different problems using SOA-EA and OSGiLiath in several applications}
 \subsection*{Objective 4: \objectiveresearch}
@@ -169,8 +175,9 @@ The rest of the chapters are structured as follows:
 % capítulos, no contar los capítulos. No es un catálogo, es una tesis
 % - JJ
 The first step of this thesis is to describe in Chapter \ref{chap:distributedEAs} the traditional classification of the EAs, showing that EAs follow a number of common steps that can be recombined to create new algorithms, but they can be used dynamically (for example, using {\em hiperheuristics} \cite{cowling2001hyperheuristic}). Also, new tendencies in distributed EAs, such as P2P or pool-based algorithms, that deals with heterogeneous architectures and dynamism with the nodes are presented. Finally, this chapter also presents several frameworks for EAs using various programming languages, but without any standardization or mechanisms to facilitate the integration.
+% AGHHH. Estás haciendo lo mismo de antes, pero parafraseándolo. El "paso" no es describir "la clasificación tradicional" de los EAs. la tesis debe ir encaminada a probar algo  cumpliendo los objetivos planteados arriba. ¿Por qué describes eso? ¿qué objetivo estás cumpliendo? Así es como debes engarzar un capítulo con otro. - JJ
 
- As a possible solution to deal with the issues described in previous chapter, the Service Oriented Architecture paradigm is presented in chapter \ref{chap:soa}. SOA  offers mechanisms to facilitate standardization, integration, open science and dynamism. Different technologies and methodologies for SOA are shown. The requirements in SOA design are applied to the genericity of EAs. Also, guidelines to create services for EAs are presented.
+ As a possible solution to deal with the issues described in the previous chapter, the Service Oriented Architecture paradigm is presented in chapter \ref{chap:soa}. SOA  offers mechanisms to facilitate standardization, integration, open science and dynamism. Different technologies and methodologies for SOA are shown. The requirements in SOA design are applied to the genericity of EAs. Also, guidelines to create services for EAs are presented.
 
 Taking into account the previous requirements, chapter \ref{chap:soaea} presents a methodology to develop Service Oriented Evolutionary Algorithms (SOEAs) called SOA-EA. Steps for identification, specification, implementation and development of services are presented, with some guidelines about how each element of the EA should be designed as a service.
 
