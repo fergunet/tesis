@@ -454,9 +454,10 @@ It should be noted that this file usually can be modified using a friendly GUI, 
                frame=lines,
                framesep=2mm]{xml}
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" enabled="false"
-immediate="true" name="OsgiliathEvolutionary" >
-<implementation class="es.ugr.osgiliath.evolutionary.EvolutionaryAlgorithm"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" 
+enabled="false" immediate="true" name="OsgiliathEvolutionary" >
+<implementation 
+class="es.ugr.osgiliath.evolutionary.EvolutionaryAlgorithm"/>
 <service>
 <provide interface="es.ugr.osgiliath.algorithms.Algorithm"/>
 </service>
@@ -480,7 +481,8 @@ name="StopCriterion" policy="static" unbind="unsetStopCriterion"/>
 <reference bind="setRecombinator" cardinality="1..1"
 interface="es.ugr.osgiliath.evolutionary.elements.Recombinator"
 name="Recombinator" policy="static" unbind="unsetRecombinator"/>
-<property name="algorithmName" type="String" value="EvolutionaryAlgorithm"/>
+<property name="algorithmName" type="String" 
+value="EvolutionaryAlgorithm"/>
 </scr:component>
 \end{minted}
 \end{minipage}
@@ -496,7 +498,7 @@ name="Recombinator" policy="static" unbind="unsetRecombinator"/>
 \centering
 \includegraphics[width=8cm]{gfx/osgiliath/eclipse.png}
 
-\caption{Graphic user interface in Eclipse that generates the Service Descriptor of Figure \ref{fig:dsevo} }.
+\caption{Graphic user interface in Eclipse that generates the Service Descriptor of Figure \ref{fig:dsevo} }
 \label{fig:xmlgui}
 \end{SCfigure}
 
@@ -514,7 +516,7 @@ In brief, each implementation of a service (\texttt{$<$im\-ple\-men\-ta\-tion$>$
 
 Moreover, each service can provide properties to be used by other
 services to obtain more information and filtering. For example, in
-this case only the {\em Replacers} whose property \texttt{replacerName=nsga2} are used. 
+this case only the {\em Replacers} whose property \texttt{replacerName = nsga2} are used. 
 
 
 \subsection{Managing services: implementing the NSGA-II from the canonical GA}
@@ -1001,6 +1003,6 @@ Then, in the implementation step, a comparison of two SOA technologies based in 
 
 This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks. Two different transmission mechanisms have been tested (ECF Generic and SOAP) and two different standards for exposing services (WSDL and OSGi Remote Specification) have been used. Exposing services with public standards helps to Open Science, as explained in Section \ref{sec:soa:benefitsofsoa}.
 
-The source code of OSGiLiath is available in \url{http://www.osgiliath.org} under a GNU/LGPL license.
+The source code of OSGiLiath is available in the web page \url{http://www.osgiliath.org} under a GNU/LGPL license.
 
 Next chapters will use SOA-EA and OSGiLiath to solve several problems: parameter adaptation in heterogeneous clusters, genetic programming to generate agents in video-games and evolutionary art.

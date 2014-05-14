@@ -577,15 +577,17 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 
 \begin{SCfigure}[tb]
 \centering
-
-%\subfigure[Heterogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/timeMMDPhetero.pdf}
-   \label{fig:subfig1}
-%}
-%\subfigure[Homogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/timeMMDPhomo.pdf}
-   \label{fig:subfig2}
-% }
+\begin{tabular}{c}
+\subfloat[Heterogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/timeMMDPhetero.pdf}
+   \label{fig:subfigtimeMMDPhetero}
+}
+\\
+\subfloat[Homogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/timeMMDPhomo.pdf}
+   \label{fig:subfigtimeMMDPhomo}
+ }
+ \end{tabular}
 \caption{Time to obtain the optimum in the MMDP problem
   (milliseconds).}
 
@@ -594,15 +596,17 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 
 \begin{SCfigure}[tb]
 \centering
-
-%\subfigure[Heterogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/evalsMMDPhetero.pdf}
-   \label{fig:subfig1}
- %}
-%\subfigure[Homogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/evalsMMDPhomo.pdf}
-   \label{fig:subfig2}
- %}
+\begin{tabular}{c}
+\subfloat[Heterogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/evalsMMDPhetero.pdf}
+   \label{fig:evalsMMDPhetero}
+ }
+ \\
+\subfloat[Homogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/evalsMMDPhomo.pdf}
+   \label{fig:evalsMMDPhomo}
+ }
+ \end{tabular}
 \caption{Number of evaluations for MMDP problem.}
 \label{fig:evalsMMDP}
 \end{SCfigure}
@@ -734,30 +738,34 @@ generations).
 
 \begin{SCfigure}[tb]
 \centering
-
-%\subfigure[Heterogeneous cluster]{
-    \includegraphics[scale =0.4] {gfx/adaptiveresults/timeONEMAXhetero.pdf}
-   \label{fig:subfig1}
- %}
-%\subfigure[Homogeneous cluster]{
-    \includegraphics[scale =0.4] {gfx/adaptiveresults/timeONEMAXhomo.pdf}
-   \label{fig:subfig2}
- %}
+\begin{tabular}{c}
+\subfloat[Heterogeneous cluster]{
+    \includegraphics[scale =0.5] {gfx/adaptiveresults/timeONEMAXhetero.pdf}
+   \label{fig:timeONEMAXhetero}
+ }
+ \\
+\subfloat[Homogeneous cluster]{
+    \includegraphics[scale =0.5] {gfx/adaptiveresults/timeONEMAXhomo.pdf}
+   \label{fig:timeONEMAXhomo}
+ }
+ \end{tabular}
 \caption{Time to obtain the optimum in the OneMax problem (milliseconds).}
 \label{fig:timeOneMax}
 \end{SCfigure}
 
 \begin{SCfigure}[tb]
 \centering
-
-%\subfigure[Heterogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/evalsONEMAXhetero.pdf}
-   \label{fig:subfig1}
- %}
-%\subfigure[Homogeneous cluster]{
-   \includegraphics[scale =0.4] {gfx/adaptiveresults/evalsONEMAXhomo.pdf}
-   \label{fig:subfig2}
- %}
+\begin{tabular}{c}
+\subfloat[Heterogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/evalsONEMAXhetero.pdf}
+   \label{fig:evalsONEMAXhetero}
+ }
+ \\
+\subfloat[Homogeneous cluster]{
+   \includegraphics[scale =0.5] {gfx/adaptiveresults/evalsONEMAXhomo.pdf}
+   \label{fig:evalsONEMAXhomo}
+ }
+ \end{tabular}
 \caption{Number of evaluations for OneMax problem.}
 \label{fig:evalsOneMax}
 \end{SCfigure}
@@ -872,7 +880,7 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 
 This sub-section shows the analysis the time spent by each node of the clusters
 in every %¿lo haces tú o la subsección? - JJ FERGU: cambiado
- service of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-population size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
+ service of the EA for each configuration with fixed sizes (HoSi and HeSi). Tables \ref{tab:mmdptimes} and \ref{tab:onemaxtimes} show the average and standard deviation of the time spent in each stage of the algorithm (He=Heterogeneous cluster, Ho=Homogeneous cluster). Figures \ref{fig:MMDPbars} and \ref{fig:ONEMAXbars} graphically compare these results. As it can be seen, the migration is the most time consuming operation in all configurations, being the migration in HeHa more expensive than in HoHa. This happens because we are using the multi-purpose laboratory network to communicate the nodes, instead of the specific one used in the HoHa system. Note that the standard deviation of the migration is larger in the HeHa cluster because the network is having real conditions of traffic during the experiment. In the MMDP problem (Table \ref{tab:mmdptimes}) changing the sub-po\-pu\-la\-tion size does not affect the migration time, but it affects the rest of the algorithm's stages. However, with larger data communications (individuals of 5000 elements of the OneMax problem), the sub-population size affects the migration time of all nodes. This might be due to the synchronization of migration buffers: if the slowest machine is sending/receiving, bottlenecks can be propagated (as it can be seen in Figure \ref{fig:gensonemaxhomosize}). 
 
 Results also show how the stages of the algorithms depends on the node
 of execution. For example, recombination needs more time than mutation
@@ -1012,7 +1020,7 @@ how the diversity and search guidance is maintained in the whole system.
 
 In this chapter, OSGiLiath has been used to present a study on the adaptation of the sub-population sizes of a distributed EA to the computational power of the different nodes of an heterogeneous cluster.  Different services for migration and algorithm control have been created to be automatically bound. Two adaptation schemes (offline and online) that use information of the computational load of the algorithm have been tested.
 
-Results show that adapting (online or offline) the sub-population size to the computational power of each node in the heterogeneous cluster yields significantly
+Results show that adapting (online or offline) the sub-po\-pu\-la\-tion size to the computational power of each node in the heterogeneous cluster yields significantly
 better results in time than keeping the same parameter in all nodes. This advantage is due to the combination of the heterogeneous parameters with the heterogeneity of the machines. On the contrary, the same (heterogeneous) parameter setting in all islands of the homogeneous cluster could not improve the results than considering the same parameter value in all nodes.
 
 

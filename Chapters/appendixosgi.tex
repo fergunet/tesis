@@ -52,7 +52,7 @@ Java programmers are familiar with the {\em jar} concept. The first difference a
 
 \begin{SCfigure}[20][tb]
 \noindent
-\ttfamily
+\ttfamily \footnotesize
 \hlstd{}{\bf Manifest-Version:} 1.0\\
 \hlstd{}{\bf Bundle-ManifestVersion:} 2\\
 \hlstd{}{\bf Bundle-Name:} VRP\\
@@ -159,6 +159,7 @@ Code in Figure \ref{fig:OSGIspecific} shows the code for this implementation.
 \begin{minipage}{10cm}
 \begin{minted}[mathescape,
                linenos,
+               fontsize=\footnotesize,
                frame=lines,
                framesep=2mm]{java}
 class VRPFitnessCalculator implements FitnessCalculator{
@@ -249,6 +250,7 @@ The code  in Figure \ref{fig:OSGIreadevent} shows how to handle events. In this 
 \begin{minipage}{10cm}
 \begin{minted}[mathescape,
                linenos,
+               fontsize=\footnotesize,
                frame=lines,
                framesep=2mm]{java}
 class ExampleImpl implements ExampleService,EventHandler{
