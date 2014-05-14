@@ -12,7 +12,21 @@
 \vfill
 \lettrine{T}{he} last objective of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
 %FERGU: añadido el párrafo de arriba para enlazar con la tesis
+% UN OBJETIVO DE LA TESIS NO PUEDE SER "HACER INVESTIGACIÓN". ¿La
+% tesis es Osgiliath? ¿Qué has usado de un algoritmo genético basado
+% en SOA que no podrías haber hecho con otro algoritmo? 
 
+% Planteamiento incorrecto y, como en las conclusiones, estoy tentado
+% de borrarlo todo. El enfoque debe ser
+% "Parte de la adaptación de un algoritmo evolutivo a una arqutiectura
+% heterogénea y dinámica es tener en cuenta y aprovechar las
+% diferentes capacidades de los nodos que se vayan añadiendo a la
+% red. Estos nodos pueden tener diferentes capacidades, etc,
+% etc... por eso, como parte de la metodología que implementa AGs
+% sobre tal, en este capítulo examinamos posibles estrategias de
+% adaptación pare evaluar cuál es la más adecuada paraellas". Si no te
+% gusta esto, pregúntate siempre cuál es TU TESIS y en qué contribuye
+% este capítulo a probarla - JJ 
 This question is interesting due to new trends in distributed computing presented in Chapter \ref{chap:soa}, such as Cloud Computing, GRID
  or Service Oriented Science
  are % si se han presentado en los capítulos
@@ -568,7 +582,10 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 
 \end{tabular}
 }
-\caption{Results for the MMDP problem}
+\caption{Results for the MMDP problem.}
+% Comprueba los puntos en los pies de figura. En este caso, también
+% trata de resaltar de alguna forma qué resultados son los mejores. Y
+% haz siempre tests estadísticos. - JJ
 \label{tab:resultsMMDP}
 \end{SCtable}
 
@@ -590,6 +607,8 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
  \end{tabular}
 \caption{Time to obtain the optimum in the MMDP problem
   (milliseconds).}
+%En estos gráficos no se ve nada. O cambias la escala para eliminar
+%los outliers o los pones logarítmicos - JJ 
 
 \label{fig:timeMMDP}
 \end{SCfigure}
@@ -638,24 +657,58 @@ them). %no se entiende - JJ
 \begin{SCfigure}[tb]
 \centering
  \includegraphics[angle=-90,scale =0.4] {gfx/adaptiveresults/generationsMMDPheterosize.pdf}
-\caption{Average fitness in the first 1000 milliseconds of execution of the four nodes of the heterogeneous cluster with different sub-population sizes (HeSi/HeHa) for the MMDP problem.}
+\caption{Average fitness in the first 1000 milliseconds of execution
+  of the four nodes of the heterogeneous cluster with different
+  sub-population sizes (HeSi/HeHa) for the MMDP problem.} % Explica la
+                                % leyenda en este pie. ¿Qué diablos es
+                                % n1, n2, etc...? - JJ
 \label{fig:hesiheha}
 \end{SCfigure}
 
-With respect to AdSi/HeHa, %agh, regarding to. ¡Amoragismos no! - JJ FERGU: a lo mejor lo puso él xD (lo cambio).
-results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, better than HoSi/HeHa), but this time no previous tuning has been required.  Average sub-population sizes in each node are shown in Table \ref{table:sizesMMDP}. The proportions of size are similar to the proportions in Table \ref{table:generations}. Figure \ref{fig:sizesMMDP} plots all the possible sizes in each node during all the runs. This figure shows that the variation of the sub-population sizes lies proportionally to the computational power of each node. The outliers in boxplots are produced during the size changing, as it can be seen in Figure \ref{fig:sizesMMDP1ejec}. As N4 is the slower node with difference it keeps its size always close to the minimum (16 individuals).
+With respect to AdSi/HeHa, %agh, regarding to. ¡Amoragismos no! - JJ
+                           %FERGU: a lo mejor lo puso él xD (lo
+                           %cambio).
+% No es cuestión de cambiarlo, es cuestión de "narrar" lo que quieres
+% contar. No se trata de ir contando figura en figura lo que se
+% ve. ¿Qué querías probar? ¿En qué contribuye esta gráfica a probarlo?
+% ¿Qué tiene que ver todo ello con LA TESIS? - JJ
+results are significantly  equal (p-value 0.139) to HeSi/HeHa (and,
+therefore, better than HoSi/HeHa), but this time no previous tuning
+has been required.  Average sub-population sizes in each node are
+shown in Table \ref{table:sizesMMDP}. The proportions of size are
+similar to the proportions in Table \ref{table:generations}. Figure
+\ref{fig:sizesMMDP} plots all the possible sizes in each node during
+all the runs. This figure shows that the variation of the
+sub-population sizes lies proportionally to the computational power of
+each node. The outliers in boxplots are produced during the size
+changing, as it can be seen in Figure \ref{fig:sizesMMDP1ejec}. As N4
+is the slower node with difference it keeps its size always close to
+the minimum (16 individuals). % ¿Esto es bueno o malo? ¿Qué significa?
+                              % ¿Se debe a que es asíncrono? ¿Si no lo
+                              % fuera no haría falta que fuera la
+                              % población tan pequeña? - JJ 
 
 \begin{SCfigure}[tb]
 \centering
  \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP.pdf}
-\caption{Boxplots of the sub-population sizes in each node during all the runs for the MMDP problem.}
+\caption{Boxplots of the sub-population sizes in each node during all
+  the runs for the MMDP problem.} 
+%Otra figura, otra terminología, además diferente de la de
+%abajo. ¿Esto es population size de qué? ¿Es un resultado? ¿Menor
+%poblacióne s mejor? ¿Qué diablos significa el resultado? ¿Final?
+%¿Media de cuantas? 
+- JJ
 \label{fig:sizesMMDP}
 \end{SCfigure}
 
 \begin{SCfigure}[tb]
 \centering
  \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP1ejec.pdf}
-\caption{Population size in each node during one execution to solve the MMDP problem.}
+\caption{Population size in all nodes during one execution to solve
+  the MMDP problem.} % ¿average? ¿Typical? ¿Por qué un nodo se queda
+                     % sin nadie? Etiqueta cada nodo con alguna cosa
+                     % que signifique algo, como el procesador que
+                     % usan o algo - JJ 
 \label{fig:sizesMMDP1ejec}
 \end{SCfigure}
 
@@ -669,7 +722,9 @@ results are significantly  equal (p-value 0.139) to HeSi/HeHa (and, therefore, b
 \rowcolor{colorCorporativoMasSuave}Size &  556.31 & 504.30  & 321.15 & 19.81 \\ \hline
 \rowcolor{colorCorporativoSuave}Proportion  & 39.69 &  35.98 & 22.91 & 1.41   \\ \hline
 \end{tabular}
-\caption{Average sub-population size in each node on the heterogeneous cluster with adaptive size (MMDP).}
+\caption{Average % over what? -proportion over what? What does it
+                 % mean¿ - JJ
+sub-population size in each node on the heterogeneous cluster with adaptive size (MMDP).}
 \label{table:sizesMMDP}
 }
 \end{SCtable}
@@ -684,10 +739,17 @@ time, so the improvement is produced by the heterogeneity and not due
 to the different island sizes. Moreover, the AdSi proposal is not
 applicable in HoHa because there are not differences of generations
 during runtime. % y esto es interesante porque... - JJ
+% y sigues sin decir por qué es interesante y en qué contribuye a
+% probar TU TESIS  - JJ 
 
 \subsection{OneMax results}
 
-Results for this problem are shown in Table \ref{tab:onemaxresults} and Figures  \ref{fig:timeOneMax} and \ref{fig:evalsOneMax}. In this case, adapting offline the sub-population sizes significantly decreases  the running time for solving it in the heterogeneous cluster, but this time, the number of evaluations is increased (see statistical significance in Table \ref{tab:significanceONEMAX}). In the homogeneous system, the effect of changing the sub-population sizes is clearer, and this time the number of evaluations (and therefore, the time) are reduced (both significantly). 
+% REcuerda: ¿qué querías probar? ¿Porqué este problema es importante?
+% ¿En qué se diferencia del anterior? 
+% ¿PODEMOS DE UNA VEZ SALIR DEL ESQUEMA DE "HE HECHO ESTO Y ME HA
+% SALIDO TAL COSA"? - jj
+Results  % ¿Qué results?
+for this problem are shown in Table \ref{tab:onemaxresults} and Figures  \ref{fig:timeOneMax} and \ref{fig:evalsOneMax}. In this case, adapting offline the sub-population sizes significantly decreases  the running time for solving it in the heterogeneous cluster, but this time, the number of evaluations is increased (see statistical significance in Table \ref{tab:significanceONEMAX}). In the homogeneous system, the effect of changing the sub-population sizes is clearer, and this time the number of evaluations (and therefore, the time) are reduced (both significantly). 
 
 The efficiency to resolve OneMax problem depends mainly on the ability to mix
 % ¿onemax es el que es eficiente? ¿resolverlo lo es? - JJ FERGU: arreglado
