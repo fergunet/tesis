@@ -1,4 +1,4 @@
-\myChapter{Conclusions}\label{chap:conclusions} %and future work, ¿no?
+\myChapter{Conclusions and future work}\label{chap:conclusions} %and future work, ¿no? FERGU: ok
 \begin{flushright}{\slshape
     I didn't jump. I took a tiny step, \\and there conclusions were.} \\ \medskip
     --- {Buffy Summers. Phases. Buffy: the Vampire Slayer}
@@ -9,58 +9,73 @@
 % Tienes que reescribirlo prácticamente completo. Una tesis es "queremos probar esto". Las conclusiones son "hemos probado esto". Además, las conclusiones normalmente se leen, "con la venia del tribunal", en voz alta y tienen que enfatizar lo que se ha probado y en qué se ha avanzado el estado del arte, así como qué conclusiones se han deducido de los resultados obtendios - JJ
 
 
+\section{Conclusions}
+
+This thesis studies the viability of the Service Oriented Architecture paradigm to create distributed, dynamic and standards-based environments for EAs. To that end, the concept Service Oriented Evolutionary Algorithm (SOEA) has been presented, and a methodology to develop this kind of algorithms have been proposed. This methodology has been used to validate this paradigm under several scenarios, using specific technologies.
+
+In particular, the following contributions have been provided with this thesis: %FERGU: lo he puesto así en listado con frases cortas sin desarrollarlas para leerlas en voz alta. ¿Es así o hay que explicar cada frase con un párrafo más largo?
+
+\begin{itemize} 
+\item The Service Oriented Architecture paradigm has been pro\-po\-sed to create distributed, heterogeneous, dynamic and standards-based environments for Evolutionary Algorithms, as it provides mechanisms for interoperability, integration and dynamic control.
+
+\item SOA-EA, a methodology that is able to successfully adapt evolutionary algorithms to these distributed, heterogeneous, dynamic, standards-based environments has been proposed.
+
+\item The presented methodology has been validated using a specific SOA technology.
+
+\item A SOA-based implementation of distributed, dynamic, stan\-dards-ba\-sed evolutionary algorithms has been able to solve efficiently different problems.
+
+\item A comparison of two SOA stan\-dard-ba\-sed technologies, OS\-Gi and Web Services, have been compared to develop SO\-EAs. OSGi have been chosen because it offers better transmission speed and more flexibility in distribution mechanisms. %FERGU: Esta no sé si ponerla, pero es una conclusión también de la tesis
+
+\end{itemize}
+
 
 \section{Outlook}
 
-% Yo no pondría subapartados. Y el trabajo futuro tiene que estar encaminado a probar alguna hipótesis que haya surgido del trabajo hecho en la tesis, no a demostrar que no se ha hecho todo el trabajo. 
+% Yo no pondría subapartados. Y el trabajo futuro tiene que estar encaminado a probar alguna hipótesis que haya surgido del trabajo hecho en la tesis, no a demostrar que no se ha hecho todo el trabajo.  FERGU: Quitados subapartados y poniendo al principio de que se puede usar lo propuesto para nuevas cosas.
 
-\subsection{Service Oriented EAs}
-A web portal to centralize  services and implementations being offered to the community will be created as a future task. Also, interviews with EA practitioners with different skills in programming and different research areas will be performed, to validate if this change of paradigm is contributing to enhance their work.
+The results presented in this thesis can be considered as a new starting point to a new line in automatic adaptation of parameters and operators in dynamic and heterogeneous environments under the SOA paradigm.
 
-% ¿Una entrevista? ¿En serio? ¿Eres de letras? Como lean esto se descojonan - JJ
+Taking into account the dynamic nature of SOA, other adaptive mechanisms to enable or disable services (remotely or locally) depending some metrics could be created. For example, more experiments to enable or disable different implementations of services depending of the current state of the EA or the execution node, as proposed in this thesis. Different benchmark services to analyse the algorithm will also be used to  enable automatic parameter adaptation at runtime (online). Also, adapting parameters or operators of different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system.  As the adaptation of the parameter size to heterogeneous hardware has been proved in this thesis, other parameters such as migration rate or crossover probability could be adapted to the execution nodes.
 
-\subsection{Parameter Adaptation in heterogeneous machines}
+Different transmission mechanisms can be compared easily, as no modification in the source code of the services is necessary. More experiments about service binding and automatic service composition can be carried out, using different distribution technologies apart from OSGi and Web Services.
 
-In the future it is planned to check the scalability of the approach presented in this thesis, using more computational nodes and larger problem instances. In addition, other parameters such as migration rate or crossover probability could be adapted to the execution nodes. Different implementation of these services could be automatically enabled depending of the current state of the EA and the node. Other appropriate benchmark services to analyse the algorithm will also be  used to  enable automatic parameter adaptation at runtime (online), with different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system. 
+Although this thesis is focused in EAs, the concept of service oriented algorithms can be extended to other meta-heuristic of the field of EC, such as Ant Colony Optimization or Particle Swarm Optimization. Their specific development restrictions can be taken into account to modify SOA-EA to create services for these kind of algorithms in the environments presented in this work.
 
-% ¿No has probado la escalabilidad de esto? ¿En serio? Como lean esto los que no se hayan descojonado del primer trabajo futuro se descojonan de este. Además, enseguda vas a tener la pregunta: ¿Es escalable? -JJ
+OSGiLiath will be updated with new modules and services to address new problems. Also, a web portal to centralize  services and implementations being offered to the community will be created as a future task. Finally, questionnaires will be proposed to EA practitioners with different skills in programming and different research areas, to validate if this change of paradigm is contributing to enhance their work.
 
+% ¿Una entrevista? ¿En serio? ¿Eres de letras? Como lean esto se descojonan - JJ FERGU: tengo en la mesa dos tesis que usan cuestionarios para validar las hipótesis
 
+% ¿No has probado la escalabilidad de esto? ¿En serio? Como lean esto los que no se hayan descojonado del primer trabajo futuro se descojonan de este. Además, enseguda vas a tener la pregunta: ¿Es escalable? -JJ FERGU: quitado y reescrito el principio
 
 
 %Todo esto esto por borrarlo también. El trabajo futuro tiene que ser específico a la tesis, y tienes que poner algo que haya surgido de la tesis, no lo que no te haya dado tiempo de hacer. Además, tienen que ser cosas que no se pudan hacer de otra forma.
 
-\subsection{Evolutionary Art}
 
-The future work for this research also includes performing more experiments with other kind of individuals, apart from circles: using other primitives, such as rectangles or triangles, for example. The use of textures and gradients will generate images with higher number of colors, obtaining more fidelity (more than 25\%) with the test image. Other metrics explained in Chapter \ref{chap:art} will also be  implemented. Finally, our intention is not only to create only static images, but use the {\em Processing} libraries to create evolutionary interactive art combining sounds and motion. 
+% ¿Es específico de Osgiliath? No. Pues fuera - JJ FERGU: fuera el arte
 
-More complex measurements will also be studied in future, taking into
-account that the HSV is the colour mode that provides more information
-during the evolution, having less noisy behaviour.
-% ¿Es específico de Osgiliath? No. Pues fuera - JJ
-
-\subsection{RTS games}
-
-In future work, other rules will be added to our algorithm (for
-example, the ones that analyse the map, as the Exp-Genebot does) and
-different enemies will be used. Other games used in the area of
-computational intelligence in videogames, such as
-Unreal\texttrademark~ or Super Mario\texttrademark~ will be tested.
-
-% ¿Es específico de Osgiliath? No. Pues fuera - JJ
+% ¿Es específico de Osgiliath? No. Pues fuera - JJ FERGU: fuera el RTS
 
 \section{Publications related with this thesis}
 
+Some of the results presented in this thesis have been published in several peer reviewed journal and conference proceedings:
 \begin{itemize}
 \item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Maribel García Arenas, Juan Julián Merelo Guervós} \emph{Service oriented evolutionary algorithms}.  Soft Comput. 17(6): 1059--1075 (2013).
 
+\item \person{Pablo García-Sánchez, Maria I. García Arenas, Antonio Miguel Mora, Pedro A. Castillo, Carlos Fernandes, Paloma de las Cuevas, Gustavo Romero, Jesús González, Juan Julián Merelo Guervós} \emph{ Developing services in a service oriented architecture for evolutionary algorithms}. In Proceeding of the fifteenth annual conference companion on Genetic and evolutionary computation conference companion. ACM, 2013. p: 1341-1348.
 
 \item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence. Springer, 2010. p: 211--222.
 
 \item \person{P. García-Sánchez, A. Fernández-Ares, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, EvoNUM, and EvoSTOC, Proceedings. Springer, 2014 Lecture Notes in Computer Science (to appear).
 
+\item \person{P. García-Sánchez, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{A methodology to develop Service Oriented Evolutionary Algorithms}. Proceedings of 8th International Symposium on Intelligent Distributed Computing (IDC'2014) Springer, 2014. Studies in Computational Science (to appear).
+
 % eliminado los trabajos o que no están a la altura o que no tienen mucho que ver con la tesis - JJ
 
 \end{itemize}
 
-During the development of this thesis, other works related with some of the topics of this thesis have also been published: Service Oriented Architecture \cite{GarciaSanchez2013Gateway,Garcia09UMM}, Cloud Computing \cite{meri2013cloud}, and other EA applications, such as Evolutionary Robotics \cite{Garcia2012testing}, video-games bot optimization \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, inventory and route management \cite{Esparcia2009EVITA}, document transformation \cite{Garcia2008XSLT}, or heterogeneous hardware environments \cite{Garcia2009Mobile}.
+In addition to previous publications, the OSGiLiath framework has also been used to compare different the fitness functions in Evolutionary Art \cite{Garcia2013RGB}. Also, during the development of this work, other works related with some of the topics addressed in this thesis have also been published: Service Oriented Architecture \cite{GarciaSanchez2013Gateway,Garcia09UMM}, Cloud Computing \cite{meri2013cloud}, and other EA applications, such as Evolutionary Robotics \cite{Garcia2012testing}, video-games bot optimization \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, inventory and route management \cite{Esparcia2009EVITA}, document transformation \cite{Garcia2008XSLT}, or heterogeneous hardware environments \cite{Garcia2009Mobile}. 
+
+
+Following the principles of Open Science, all the work of this thesis has been released using open licenses. OSGiLiath and all experiments presented in this thesis are available under GNU/LGPL V3 License in our GitHub repository \url{https://github.com/fergunet/osgiliath}. 
+
+The LaTeX files that generate this thesis have also been released in \url{https://github.com/fergunet/osgiliath} under a Creative Commons License. Finally, the web page \url{http://www.osgiliath.org} describes the steps of development of this thesis: news, awards, publications and documentation.

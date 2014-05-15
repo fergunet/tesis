@@ -189,7 +189,7 @@ OSGi has been selected because it is faster than Web Services, because it was de
   the algorithms (for example, in a machine, in a local
   network, over the Internet, or even in more lightweight devices). 
 
-Unlike Web Services, OSGi includes a blackboard event-manager,
+Unlike Web Services, OSGi includes a blackboard e\-vent-ma\-na\-ger,
    that is, services can inform what they are doing without indicating 
  any receiver. Other services can filter this information and actuate
  accordingly, so the synchronization is easier. For example, it is not
@@ -997,12 +997,12 @@ is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la 
 % refleja el modelo y lo valida. ¿Es el modelo válido? ¿Cómo lo has
 % probado? ¿Es la implementación válida? ¿Cómo lo has probado? - JJ FERGU: Escritas las conclusiones, que antes no había
 
-In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}) to fulfil the \textbf{Objective 3} of this thesis: Validate the methodology creating a framework using a SOA technology that solves the problems addressed. A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
+In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}) to fulfil the \textbf{Objective 3} of this thesis: \objectiveframework . A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
 
 Then, in the implementation step, a comparison of two SOA technologies based in standards have been performed: OSGi has been selected because a number of advantages over Web Services, such as transmission speed and ease of development. The abstract services of previous steps have been implemented to form a basic GA as an example. These services can be combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). 
 
-This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks. Two different transmission mechanisms have been tested (ECF Generic and SOAP) and two different standards for exposing services (WSDL and OSGi Remote Specification) have been used. Exposing services with public standards helps to Open Science, as explained in Section \ref{sec:soa:benefitsofsoa}.
+This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks. Two different transmission mechanisms have been tested (ECF Generic and SOAP) and two different standards for exposing services (WSDL and OSGi Remote Specification) have been used. Exposing services with public standards helps to Open Science, as explained in Section \ref{sec:soa:benefitsofsoa}. Therefore, all services developed have accomplished the requirements of Section \ref{sec:soaea:validationservices}.
 
 The source code of OSGiLiath is available in the web page \url{http://www.osgiliath.org} under a GNU/LGPL license.
 
-Next chapters will use SOA-EA and OSGiLiath to solve several problems: parameter adaptation in heterogeneous clusters, genetic programming to generate agents in video-games and evolutionary art.
+Next chapters SOA-EA and OSGiLiath will be used to solve several problems: parameter adaptation in heterogeneous clusters and genetic programming to generate agents in video-games.

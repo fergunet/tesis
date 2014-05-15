@@ -198,6 +198,28 @@ Services are also independent of the transmission mechanism, so this issue must 
 Once the services have been implemented they have to be deployed in the desired system. Examples of environments to deploy services are application servers (such as {\em Apache Tomcat}\footnote{\url{http://tomcat.apache.org/}} or {\em Oracle GlassFish}\footnote{\url{https://glassfish.java.net/}}), service containers ({\em Equinox}\footnote{\url{http://www.eclipse.org/equinox/}} or {\em Felix}\footnote{\url{http://felix.apache.org/}}), BPEL engines (for example {\em OpenESB}\footnote{\url{http://www.open-esb.net/}}) or as a stand-alone system. In this step, issues related with testing, user control, security and persistence should be taken into account. The implementations of the infrastructure services deal with the chosen system.
 
 
+%FERGU: HE AÑADIDO UNA NUEVA SECCIÓN
+\section{Validation of the services}
+\label{sec:soaea:validationservices}
+
+As previously remarked, during all the steps of the methodology it must be validated if the created services for EAs accomplish the requirements of the development of services (Section \ref{sec:soa:restrictions}) with the genericity of developing EAs (Section \ref{sec:distributed:design}). Therefore, at the end of the application of the methodology, all services must accomplish next restrictions:
+
+\begin{itemize}
+\item All elements of the EA should be designed as loose-coupled, stateless services.
+\item The services for EAs should operate with independence of the structure of the individuals (generic representation).
+\item The operators of the EAs should be designed to be used in conjunction with others (for example, aggregation) and have minimal side effects (generic operations).
+\item The services for EAs should work with independence of the evolutionary model (generic evolutionary model).
+\item Services must be discoverable and dynamically bound.
+\item Services must provide a standard-based interface.
+\item Services can be added or removed in execution time.
+\item Services must be indistinguishable of being executed locally or remotely.
+\item No specific code should be added in the implementation of the services to specify the distribution mechanism.
+\item In relation with previous requirement, the distribution mechanism can be modified without affect the existent code.
+\end{itemize}
+
+
+
+
 
 
 %Taking into account the previous restrictions a possible way for designing services for EAs is shown: 
@@ -215,7 +237,7 @@ Once the services have been implemented they have to be deployed in the desired 
 
 \lettrine{C}{hapter} \ref{chap:distributedEAs} presented several shortcomings in the Evolutionary Algorithms area, such as the  incompatibility between frameworks or how to handle with new trends of distributed programming, where nodes enter and exit in runtime, for example. All these facts  motivate the creation of a proper way to define service oriented evolutionary algorithms (SOEAs) to facilitate the development, integration, standardization and dynamism.
 
-In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented  in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism) explained in Section \ref{sec:soa:restrictions}, have been taken into account to propose a methodology to model the services that compose a service oriented EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to be answered in each phase to help in the development. This methodology can been used to create a service-oriented evolutionary algorithm that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. 
+In this chapter the requirements in EA design (genericity in representation, fitness, operations, model, parameters and output) presented  in Section \ref{sec:distributed:design}, with the requirements in SOA (genericity in interfaces, language independence, distribution and dynamism) explained in Section \ref{sec:soa:restrictions}, have been taken into account to propose a methodology to model the services that compose a service oriented EA, and several guidelines about the design of these services have been explained. This methodology proposes 4 iteratively and incremental phases: identification, specification, implementation and deployment. A number of questions has been proposed to be answered in each phase to help in the development and validation of the created elements. This methodology can been used to create a service-oriented evolutionary algorithm that takes advantage of the SOA capabilities, such as loose-coupled services and automatic binding of new operators. 
 
 
 
