@@ -9,22 +9,31 @@
 % Tienes que reescribirlo prácticamente completo. Una tesis es "queremos probar esto". Las conclusiones son "hemos probado esto". Además, las conclusiones normalmente se leen, "con la venia del tribunal", en voz alta y tienen que enfatizar lo que se ha probado y en qué se ha avanzado el estado del arte, así como qué conclusiones se han deducido de los resultados obtendios - JJ
 
 
-\section{Conclusions}
+
 
 This thesis studies the viability of the Service Oriented Architecture paradigm to create distributed, dynamic and standards-based environments for EAs. To that end, the concept Service Oriented Evolutionary Algorithm (SOEA) has been presented, and a methodology to develop this kind of algorithms have been proposed. This methodology has been used to validate this paradigm under several scenarios, using specific technologies.
 
-In particular, the following contributions have been provided with this thesis: %FERGU: lo he puesto así en listado con frases cortas sin desarrollarlas para leerlas en voz alta. ¿Es así o hay que explicar cada frase con un párrafo más largo?
+%FERGU: Conclusiones: Vamos, lo que ha surgido tras observar la tesis
+Some conclusions have been obtained solving this objective. The first one is that the Evolutionary Algorithms can be successfully migrated to SOA, and therefore, they can take advantage of this paradigm in scenarios of heterogeneity and dynamism. The used SOA technology have a huge impact in several issues (such as the publication mechanisms or transmission time), so the technology should be chosen depending of the necessities to address.  In our case, OSGi has helped to save time, as no specific code has been added to announce the distributed interfaces of the developed services or mechanisms to find and bind these interfaces.  Also, SOA not forces to use only distributed services, but it can help in development in EAs that can be executed in one machine.
+
+We consider that the SOA paradigm can be applied successfully to EAs to facilitate the integration, distribution, dynamism and development in particular scenarios. In particular, the following contributions have been provided with this thesis: %FERGU: lo he puesto así en listado con frases cortas sin desarrollarlas para leerlas en voz alta. ¿Es así o hay que explicar cada frase con un párrafo más largo?
 
 \begin{itemize} 
 \item The Service Oriented Architecture paradigm has been pro\-po\-sed to create distributed, heterogeneous, dynamic and standards-based environments for Evolutionary Algorithms, as it provides mechanisms for interoperability, integration and dynamic control.
 
-\item SOA-EA, a methodology that is able to successfully adapt evolutionary algorithms to these distributed, heterogeneous, dynamic, standards-based environments has been proposed.
+\item The requirements to develop EAs in the SOA paradigm have been identified.
 
-\item The presented methodology has been validated using a specific SOA technology.
+\item These requirements have been taken into account to propose SOA-EA, a methodology that is able to successfully adapt evolutionary algorithms to distributed, heterogeneous, dynamic, standards-based environments.
 
-\item A SOA-based implementation of distributed, dynamic, stan\-dards-ba\-sed evolutionary algorithms has been able to solve efficiently different problems.
+\item Several steps to design all the elements in an EA has been proposed inside this methodology.
 
-\item A comparison of two SOA stan\-dard-ba\-sed technologies, OS\-Gi and Web Services, have been compared to develop SO\-EAs. OSGi have been chosen because it offers better transmission speed and more flexibility in distribution mechanisms. %FERGU: Esta no sé si ponerla, pero es una conclusión también de la tesis
+\item The methodology has been validated using a specific SOA technology.
+
+\item A SOA-based implementation (OSGiLiath) of distributed, dynamic, stan\-dards-ba\-sed evolutionary algorithms has been able to solve efficiently different problems.
+
+\item As an application of this methodology, two different parameter adaptation schemes of island-based EAs to heterogeneous hardware have been proposed, and an algorithm to obtain competent bots for RTS games has been obtained.
+
+%\item A comparison of two SOA stan\-dard-ba\-sed technologies, OS\-Gi and Web Services, have been compared to develop SO\-EAs. OSGi have been chosen because it offers better transmission speed and more flexibility in distribution mechanisms. %FERGU: Esta no sé si ponerla, pero es una conclusión también de la tesis (por ahora no está puesta)
 
 \end{itemize}
 
@@ -35,11 +44,11 @@ In particular, the following contributions have been provided with this thesis: 
 
 The results presented in this thesis can be considered as a new starting point to a new line in automatic adaptation of parameters and operators in dynamic and heterogeneous environments under the SOA paradigm.
 
-Taking into account the dynamic nature of SOA, other adaptive mechanisms to enable or disable services (remotely or locally) depending some metrics could be created. For example, more experiments to enable or disable different implementations of services depending of the current state of the EA or the execution node, as proposed in this thesis. Different benchmark services to analyse the algorithm will also be used to  enable automatic parameter adaptation at runtime (online). Also, adapting parameters or operators of different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system.  As the adaptation of the parameter size to heterogeneous hardware has been proved in this thesis, other parameters such as migration rate or crossover probability could be adapted to the execution nodes.
+Taking into account the dynamic nature of SOA, other adaptive mechanisms to enable or disable services (remotely or locally) depending some metrics could be created. For example, more experiments to enable or disable different implementations of services depending of the current state of the EA or the execution node, as proposed in this thesis. Different benchmark services to analyse the algorithm can also be used to  enable automatic parameter adaptation at runtime. Also, adapting parameters or operators of different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system.  As the adaptation of the parameter size to heterogeneous hardware has been proved in this thesis, other parameters such as migration rate or crossover probability could be adapted to the execution nodes.
 
 Different transmission mechanisms can be compared easily, as no modification in the source code of the services is necessary. More experiments about service binding and automatic service composition can be carried out, using different distribution technologies apart from OSGi and Web Services.
 
-Although this thesis is focused in EAs, the concept of service oriented algorithms can be extended to other meta-heuristic of the field of EC, such as Ant Colony Optimization or Particle Swarm Optimization. Their specific development restrictions can be taken into account to modify SOA-EA to create services for these kind of algorithms in the environments presented in this work.
+Although this thesis is focused in EAs, the concept of service oriented algorithms can be extended to other meta-heuristic of the field of EC, such as Ant Colony Optimization \cite{MoraIslandACO13} or Particle Swarm Optimization. Their specific development restrictions can be taken into account to modify SOA-EA to create services for these kind of algorithms in the environments presented in this work.
 
 OSGiLiath will be updated with new modules and services to address new problems. Also, a web portal to centralize  services and implementations being offered to the community will be created as a future task. Finally, questionnaires will be proposed to EA practitioners with different skills in programming and different research areas, to validate if this change of paradigm is contributing to enhance their work.
 
@@ -61,17 +70,44 @@ Some of the results presented in this thesis have been published in several peer
 \begin{itemize}
 \item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Maribel García Arenas, Juan Julián Merelo Guervós} \emph{Service oriented evolutionary algorithms}.  Soft Comput. 17(6): 1059--1075 (2013).
 
-\item \person{Pablo García-Sánchez, Maria I. García Arenas, Antonio Miguel Mora, Pedro A. Castillo, Carlos Fernandes, Paloma de las Cuevas, Gustavo Romero, Jesús González, Juan Julián Merelo Guervós} \emph{ Developing services in a service oriented architecture for evolutionary algorithms}. In Proceeding of the fifteenth annual conference companion on Genetic and evolutionary computation conference companion. ACM, 2013. p: 1341-1348.
+\item \person{Pablo García-Sánchez, Maria I. García Arenas, Antonio Miguel Mora, Pedro A. Castillo, Carlos Fernandes, Paloma de las Cuevas, Gustavo Romero, Jesús González, Juan Julián Merelo Guervós} \emph{ Developing services in a service oriented architecture for evolutionary algorithms}. In Proceesings of Genetic and Evolutionary Computation Conference, GECCO '13, Amsterdam, The Netherlands, July 6-10, 2013, Companion Material.  p: 1341--1348. ACM, 2013.
 
-\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence. Springer, 2010. p: 211--222.
+\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence.  p: 211--222. Springer, 2010.
 
-\item \person{P. García-Sánchez, A. Fernández-Ares, A. M. Mora, P. A. Castillo, J. González and J.J. Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, EvoNUM, and EvoSTOC, Proceedings. Springer, 2014 Lecture Notes in Computer Science (to appear).
+\item \person{Pablo García-Sánchez, Antonio Fernández-Ares, Antonio Miguel Mora, Pedro Ángel Castillo, Jesús González and Juan Julián Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, Evo\-NUM, and EvoSTOC, Proceedings.  Lecture Notes in Computer Science Springer, 2014. (to appear).
 
 % eliminado los trabajos o que no están a la altura o que no tienen mucho que ver con la tesis - JJ
 
 \end{itemize}
 
-In addition to previous publications, the OSGiLiath framework has also been used to compare different the fitness functions in Evolutionary Art \cite{Garcia2013RGB}. Also, during the development of this work, other works related with some of the topics addressed in this thesis have also been published: Service Oriented Architecture \cite{GarciaSanchez2013Gateway,Garcia09UMM}, Cloud Computing \cite{meri2013cloud}, and other EA applications, such as Evolutionary Robotics \cite{Garcia2012testing}, video-games bot optimization \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, inventory and route management \cite{Esparcia2009EVITA}, document transformation \cite{Garcia2008XSLT}, or heterogeneous hardware environments \cite{Garcia2009Mobile}. 
+In addition to previous publications, other works related with SOA and their methodologies have been also published during the development of this thesis. The next works have helped to identify some of the requirement in SOA design and implementation (with different technologies used in this thesis):
+
+\begin{itemize}
+\item \person{Pablo García-Sánchez, Jesús González, Antonio Miguel Mora, Alberto Prieto} {\em Deploying intelligent e-health services in a mobile gateway}. Expert Syst. Appl. 40(4): 1231-1239 (2013).
+
+\item \person{Pablo García-Sánchez, Jesús González, Pedro A. Castillo, and Alberto Prieto} {\em Using UN/CEFACT's modelling methodology
+(UMM) in e-health projects}. In Bio-Inspired Systems: Computational and Ambient Intelligence, 10th International Work Conference on Artificial Neural Networks, IWANN 2009, Salamanca, Spain, June 10-12, 2009. Proceedings, Part I, volume 5517 of Lecture Notes in Computer Science.  p: 925--932.  Springer, 2009.
+
+\item \person{Pablo García-Sánchez, S. González, A. Rivadeneyra, M. P. Palomares, and J. González}. {\em Context-awareness in a service
+oriented e-health platform}. In José Bravo, Ramón Hervás, and Vladimir Villarreal (editors): Ambient Assisted Living - Third International Workshop, IWAAL 2011,  Held at IWANN 2011, Torremolinos-Málaga, Spain, June 8-10, 2011. Proceedings, volume 6693 of Lecture Notes in Computer Science, pages 172-179. Springer, 2011.
+
+\end{itemize}
+
+With respect to the application of EAs in heterogeneous environments, some lessons learned have been also published in next works:
+
+\begin{itemize}
+
+\item \person{Khaled Meri, Maribel García Arenas, Antonio Miguel Mora, Juan Julián Merelo, Pedro Ángel Castillo, Pablo Gar\-cía\--Sán\-chez, and Juan Luís Jiménez Laredo}. {\em Cloud-based evolutionary algorithms: An algorithmic study}. Natural Computing, p: 1--13, 2013.
+
+
+\item \person {Pablo García-Sánchez, Juan P. Sevilla, Juan Julián Merelo Guervós, Antonio Miguel Mora, Pedro A. Castillo, Juan Luís Jiménez Laredo, and Francisco Casado}. {\em Pervasive evolutionary algorithms on mobile devices}. In Distributed Computing, Artificial Intelligence, Bioinformatics, Soft Computing, and Ambient Assisted Living, 10th International Work-Conference on Artificial Neural Networks, IWANN 2009 Workshops, Salamanca, Spain, June 10-12, 2009. Proceedings, Part II, volume 5518 of Lecture Notes in Computer Science, p: 163--170. Springer, 2009.
+
+
+\end{itemize}
+
+
+
+Finally, the OSGiLiath framework has also been used to compare different the fitness functions in Evolutionary Art \cite{Garcia2013RGB}. Also, during the development of this thesis, other works related with EA applications have been published: such as Evolutionary Ro\-bo\-tics \cite{Garcia2012testing}, video-games bot optimization \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, inventory and route management \cite{Esparcia2009EVITA,Esparcia13TowardsMOretail} or document transformation \cite{Garcia2008XSLT,Garcia2010XPath}. 
 
 
 Following the principles of Open Science, all the work of this thesis has been released using open licenses. OSGiLiath and all experiments presented in this thesis are available under GNU/LGPL V3 License in our GitHub repository \url{https://github.com/fergunet/osgiliath}. 
