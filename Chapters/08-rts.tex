@@ -7,7 +7,7 @@
 \minitoc\mtcskip
 \vfill
 
-\lettrine{T}{he} last application to fulfill the \textbf{Objective 4} is to use OSGiLiath to obtain competitive bots for RTS games. With this application, Genetic Programming (explained in Section \ref{subsec:classicEAs}) will be used to validate if the genericity in evolutionary model explained in Section \ref{sec:distributed:design}. SOA-EA and OSGiLiath will be used to perform an study on tree depth influence of GP to create competitive bots for RTS games. New individuals will be used and new implementations for mutation and crossover, and services to execute remote environments outside OSGi will be developed with SOA-EA.
+\lettrine{T}{he} last application to fulfill the \textsc{Objective 4} is to use OSGiLiath to obtain competitive bots for RTS games. With this application, Genetic Programming (explained in Section \ref{subsec:classicEAs}) will be used to validate if the genericity in evolutionary model explained in Section \ref{sec:distributed:design}, can also be adapted to SOA. SOA-EA and OSGiLiath will be used to perform an study on tree depth influence of GP to create competitive bots for RTS games. New individuals will be used and new implementations for mutation and crossover, and services to execute remote environments outside OSGi will be developed with SOA-EA.
 
 
 \section{Background}
@@ -116,9 +116,10 @@ this agent with the two presented before.
 
 \subsection{Identification}
 
-In the {\em Problem domain} an {\em Initializer} of individual and a {\em FitnessCalculator} service need to be used. The first one generates individuals codified as a tree of decisions and operations, and the latter one will integrate the Planet Wars environment to OSGiLiath.
-The operators of the {\em Algorithm Domain}: Crossover y Mutation, TreeGenome . Operators previously defined in previous chapter (such as Parent Selector) does not need modification.
-Finally, inside the {\em Infrastructure domain} services to test each individual ({\em IndidivualTester}) and convert the codification of the individual to the appropriate codification to different playing environments ({\em Conversor}).
+As in previous examples, in the {\em Problem domain} an {\em Initializer} of individual and a {\em FitnessCalculator} service need to be used. The first one generates needs to generate individuals codified as a tree of decisions and operations ({\em TreeGenome}), and the latter one will integrate the Planet Wars environment to OSGiLiath.
+
+The operators of the {\em Algorithm Domain} to deal with this new codification of indivudals needs to be created: a Crossover and the Mutation. However, some of the operators previously defined in previous chapter (such as {\em Parent Selector}) does not need modification.
+Finally, inside the {\em Infrastructure domain} services to test each individual ({\em IndidivualTester}) and convert the codification of the individual to the appropriate codification to different playing environments ({\em Conversor}) needs to be created.
 
 \subsection{Specification}
 
@@ -238,7 +239,7 @@ A hierarchical fitness ({\em HierarchichalFitness} implementation) will be used,
 
 \subsection{Implementation and Deployment}
 
-The {\em TreeGenome} individual is composed of {\em Decisions} and {\em Actions} codified as strings coincident with the actions the agent can execute. The {Conversor} implementation translates the tree to a string of Java code to be executed in the Planet Wars environment by the {\em IndividualTester}, using the {\em CAssist} library to compile the string into executable Java bytecode.
+The {\em TreeGenome} individual is composed of {\em Decisions} and {\em Actions} codified as strings coincident with the actions the agent can execute, according the description in previous section. The {\em Conversor} implementation translates the tree to a string of Java code to be executed in the Planet Wars environment by the {\em IndividualTester}, using the {\em Javassist}\footnote{\url{http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/}}  library to compile the string into executable Java bytecode.
 
 The rest of implementations used are the ones available in OSGiLiath (and previously explained in chapter \ref{chap:osgiliath}): {\em ListPopulation}, {\em DeterministicTournamentSelector}, {\em NGenerationsStopCriterion} and {\em DistributedFitness} to execute several simulations at the same time. Besides using Genetic Programming, the flow to use the previous services is the {\em EvolutionaryAlgorithm} implementation used in previous chapters.
 

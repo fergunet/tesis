@@ -14,7 +14,7 @@
 This thesis studies the viability of the Service Oriented Architecture paradigm to create distributed, dynamic and standards-based environments for EAs. To that end, the concept Service Oriented Evolutionary Algorithm (SOEA) has been presented, and a methodology to develop this kind of algorithms have been proposed. This methodology has been used to validate this paradigm under several scenarios, using specific technologies.
 
 %FERGU: Conclusiones: Vamos, lo que ha surgido tras observar la tesis
-Some conclusions have been obtained solving this objective. The first one is that the Evolutionary Algorithms can be successfully migrated to SOA, and therefore, they can take advantage of this paradigm in scenarios of heterogeneity and dynamism. The used SOA technology have a huge impact in several issues (such as the publication mechanisms or transmission time), so the technology should be chosen depending of the necessities to address.  In our case, OSGi has helped to save time, as no specific code has been added to announce the distributed interfaces of the developed services or mechanisms to find and bind these interfaces.  Also, SOA not forces to use only distributed services, but it can help in development in EAs that can be executed in one machine.
+Some conclusions have been obtained while trying to achieve this objective. The first one is that the Evolutionary Algorithms can be successfully migrated to SOA, and therefore, they can take advantage of this paradigm in scenarios of heterogeneity and dynamism. The used SOA technology have a huge impact in several issues (such as the publication mechanisms or transmission time), so the technology should be chosen depending of the necessities to address.  In our case, OSGi has helped to save time, as no specific code has been added to announce the distributed interfaces of the developed services or mechanisms to find and bind these interfaces.  Also, SOA does not force to use only distributed services, thus it can help in development in EAs that can be executed in one machine.
 
 We consider that the SOA paradigm can be applied successfully to EAs to facilitate the integration, distribution, dynamism and development in particular scenarios. In particular, the following contributions have been provided with this thesis: %FERGU: lo he puesto así en listado con frases cortas sin desarrollarlas para leerlas en voz alta. ¿Es así o hay que explicar cada frase con un párrafo más largo?
 
@@ -27,7 +27,7 @@ We consider that the SOA paradigm can be applied successfully to EAs to facilita
 
 \item Several steps to design all the elements in an EA has been proposed inside this methodology.
 
-\item The methodology has been validated using a specific SOA technology.
+\item The methodology has been validated using a specific SOA technology: OSGi.
 
 \item A SOA-based implementation (OSGiLiath) of distributed, dynamic, stan\-dards-ba\-sed evolutionary algorithms has been able to solve efficiently different problems.
 
@@ -42,11 +42,11 @@ We consider that the SOA paradigm can be applied successfully to EAs to facilita
 
 % Yo no pondría subapartados. Y el trabajo futuro tiene que estar encaminado a probar alguna hipótesis que haya surgido del trabajo hecho en la tesis, no a demostrar que no se ha hecho todo el trabajo.  FERGU: Quitados subapartados y poniendo al principio de que se puede usar lo propuesto para nuevas cosas.
 
-The results presented in this thesis can be considered as a new starting point to a new line in automatic adaptation of parameters and operators in dynamic and heterogeneous environments under the SOA paradigm.
+The results presented in this thesis can be considered as the starting point to a new research line in automatic adaptation of parameters and operators in dynamic and heterogeneous environments under the SOA paradigm.
 
-Taking into account the dynamic nature of SOA, other adaptive mechanisms to enable or disable services (remotely or locally) depending some metrics could be created. For example, more experiments to enable or disable different implementations of services depending of the current state of the EA or the execution node, as proposed in this thesis. Different benchmark services to analyse the algorithm can also be used to  enable automatic parameter adaptation at runtime. Also, adapting parameters or operators of different nodes entering or exiting in the topology, or adapting the parameters to the current load of the system.  As the adaptation of the parameter size to heterogeneous hardware has been proved in this thesis, other parameters such as migration rate or crossover probability could be adapted to the execution nodes.
+Taking into account the dynamic nature of SOA, other adaptive mechanisms to enable or disable services (remotely or locally) depending some metrics could be created. For example, more experiments to enable or disable different implementations of services depending of the current state of the EA or the execution node, as proposed in this thesis. Different benchmark services to analyse the algorithm can also be used to  enable automatic parameter adaptation at runtime. Also, adapting parameters or operators of different nodes entering or exiting  the topology, or adapting the parameters to the current load of the system.  As the adaptation of the parameter size to heterogeneous hardware has been proved in this thesis, other parameters such as migration rate or crossover probability could be adapted to the execution nodes.
 
-Different transmission mechanisms can be compared easily, as no modification in the source code of the services is necessary. More experiments about service binding and automatic service composition can be carried out, using different distribution technologies apart from OSGi and Web Services.
+Different transmission mechanisms (R-OSGi, JMS, REST, XMMP, among others) can be compared easily, as no modification in the source code of the services is necessary. More experiments about service binding and automatic service composition can be carried out, using different distribution technologies apart from OSGi and Web Services (such as SLP or Zookeeper).
 
 Although this thesis is focused in EAs, the concept of service oriented algorithms can be extended to other meta-heuristic of the field of EC, such as Ant Colony Optimization \cite{MoraIslandACO13} or Particle Swarm Optimization. Their specific development restrictions can be taken into account to modify SOA-EA to create services for these kind of algorithms in the environments presented in this work.
 
@@ -74,7 +74,7 @@ Some of the results presented in this thesis have been published in several peer
 
 \item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence.  p: 211--222. Springer, 2010.
 
-\item \person{Pablo García-Sánchez, Antonio Fernández-Ares, Antonio Miguel Mora, Pedro Ángel Castillo, Jesús González and Juan Julián Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, Evo\-NUM, and EvoSTOC, Proceedings.  Lecture Notes in Computer Science Springer, 2014. (to appear).
+\item \person{Pablo García-Sánchez, Antonio Fernández-Ares, Antonio Miguel Mora, Pedro Ángel Castillo, Jesús González and Juan Julián Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, Evo\-IN\-TE\-LLI\-GEN\-CE, E\-vo\-NUM, and EvoSTOC, Proceedings.  Lecture Notes in Computer Science Springer, 2014. (to appear).
 
 % eliminado los trabajos o que no están a la altura o que no tienen mucho que ver con la tesis - JJ
 
@@ -112,4 +112,4 @@ Finally, the OSGiLiath framework has also been used to compare different the fit
 
 Following the principles of Open Science, all the work of this thesis has been released using open licenses. OSGiLiath and all experiments presented in this thesis are available under GNU/LGPL V3 License in our GitHub repository \url{https://github.com/fergunet/osgiliath}. 
 
-The LaTeX files that generate this thesis have also been released in \url{https://github.com/fergunet/osgiliath} under a Creative Commons License. Finally, the web page \url{http://www.osgiliath.org} describes the steps of development of this thesis: news, awards, publications and documentation.
+The LaTeX files that generate this thesis have also been released in \url{https://github.com/fergunet/osgiliath} under a Creative Commons License. Finally, the web page \url{http://www.osgiliath.org} describes the steps of development of this thesis: news, publications, awards and documentation.
