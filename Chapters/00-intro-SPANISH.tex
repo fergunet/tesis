@@ -1,0 +1,187 @@
+\myChapter{Introducci{\'o}n}\label{chap:introductionSPANISH}
+
+\minitoc\mtcskip
+\vfill
+
+
+
+\section{Objetivos de esta tesis} 
+
+\lettrine{E}l objetivo de esta tesis es crear una metodología para adaptar Algoritmos Evolutivos (AEs) a entornos dinámicos, heterogéneos y basados en estándares. Esta metodología propone el uso de Arquitectura Orientada a Servicios (AOS) como un nuevo paradigma para desarrollar AEs. Para validar esta metodología se usará para crear un {\em framework} que use todas las ventajas de este paradigma (enlace din{\'a}mico y distribuci{\'o}n y publicaci{\'o}n de interfaces utilizando estándares). Finalmente, esta metodología se usará para crear Algoritmos Evolutivos Orientados a Servicios (AEOS) en diferentes escenarios, donde se reflejarán estas ventajas.
+
+
+
+
+\section{Motivación}
+
+\lettrine{L}{a} Computación Evolutiva es un campo científico
+que abarca un gran número de métodos bio-inspirados, problemas
+y he\-rra\-mien\-tas. Uno de estos métodos son los Algoritmos Evolutivos (AEs),
+un conjunto de técnicas  aplicadas a problemas de optimización 
+\cite{eiben2010whatis}. Estos algoritmos imitan el proceso de la selección natural, 
+dando a las soluciones (o {\em individuos}) más adaptadas más probabilidad de cruzarse
+con otras para generar nuevas soluciones que hereden su información. Así, iterativamente, 
+los mejores individuos se recombinan para formar mejores soluciones al problema a resolver.
+
+
+Inicialmente, los AEs fueron propuestos como un conjunto fijo de pasos
+para ser ejecutados en una sola máquina \cite{eiben2010whatis}.
+Estos pasos pueden combinarse para crear nuevos algoritmos, o 
+escogerse dinámicamente dependiendo de alguna información durante 
+la ejecución (por ejemplo, la calidad media de las soluciones). 
+Por lo tanto, deberían diseñarse y desarrollarse como elementos débilmente acoplados.
+Con el avance de internet, nuevas tendencias como el P2P traen un nuevo
+ paradigma donde distintas arquitecturas software, lenguajes de 
+ programación y protocolos de transmisión colaboran e interoperan para compartir 
+ recursos computacionales.
+
+
+Debido a esta combinación de diferentes tecnologías y tendencias,
+se necesitan abordar nuevos retos. Uno de ellos es la falta de estandarización
+e integración en las herramientas software para EAs \cite{SURVEYMOFS}.
+Existen muchos frameworks para AEs, pero sin la posibilidad de interoperación entre 
+sus componentes. Esta integración es deseable, ya que podría ahorrar tiempo y 
+esfuerzo en desarrollo, reutilizando componentes existentes para crear nuevos EAs.
+
+El establecimiento de estándares públicos y accesibles para elementos computacionales no sólo puede contribuir en desarrollo e integración, si no que también facilita la adopción del principio de Ciencia Abierta \cite{Foster2005Science}. Finalmente, no existen mecanismos que permitan lidiar con el dinamismo en operadores (local o remotamente).
+
+
+
+
+
+La Arquitectura Orientada a Servicios \cite{Papazoglou2007SOA} es la solución propuesta en esta tesis para abordar las limitaciones previamente mencionadas. Este paradigma define el uso de elementos (llamados servicios) autocontenidos y con bajo acoplamiento. Este tipo de arquitectura aspira a facilitar la integración, la interoperatividad y el descubrimiento en diferentes sistemas software.
+
+
+%\section{Challenges in Evolutionary Algorithms}
+\section{Desafíos en Algoritmos Evolutivos}
+
+
+
+\lettrine{E}{n} las últimas décadas, se han realizado muchas investigaciones en el campo de la Computación Evolutiva, y numerosos retos han aparecido. Los retos a abordar en esta tesis son los listados a continuación:
+
+
+%\subsection{Parameter Adaptation}
+\subsection{Adaptación de parámetros}
+
+
+
+Uno de los principales retos en el campo de la CE es el de encontrar los valores apropiados para los parámetros de los AEs, tal y como se reivindica en \person{Eiben \etal} \cite{Eiben12Parameters}. Los investigadores invierten un gran esfuerzo para encontrar el valor adecuado de estos parámetros, con el objetivo de obtener un rendimiento adecuado de sus algoritmos. Sin embargo, no sólo se trata de adaptar los valores numéricos (como la tase de cruce), sino también alguno de los elementos que componen un algoritmo evolutivo (diferentes tipos de cruce). La integración debería ser lo más fácil posible para permitir a los investigadores el desarrollo fácil de nuevos algoritmos.
+
+%\subsection{Dynamism and distribution}
+\subsection{Dinamismo y distribución}
+
+Al igual que en el reto anterior, es necesario proveer mecanismos para gestionar el dinamismo de operadores. Esto es, no sólo la forma en la que los operadores que componen el algoritmo se combinan, sino cómo seleccionar dinámicamente entre los elementos disponibles. Además, diversos autores han mencionado el problema del limitado dinamismo y la falta de capacidades reflexivas para cargar elementos de los algoritmos (por ejemplo, problemas y heurísticas) en frameworks para AEs \cite{SURVEYMOFS}. Por tanto, es necesario ofrecer mecanismos para la publicación de operadores y el descubrimiento y enlace automático.
+
+
+
+
+El dinamismo también tiene que ser gestionado en AEs. En los modelos tradicionales de paralelización \cite{alba2002parallelism} no se tienen en cuenta aspectos tales como tolerancia a fallos, seguridad, caída de nodos, escalabilidad masiva o descentralización  \cite{Alba13parallel}. Nuevas tendencias en algoritmos evolutivos distribuidos (como redes P2P \cite{laredo2010evag} o basados en {\em pool} \cite{merelo2012pool}) han surgido en los últimos años y los paradigmas tradicionales de programación (como la orientación a objetos) no ofrecen mecanismos para gestionar los aspectos anteriormente señalados.
+
+%\subsection{Adaptation to hardware}
+\subsection{Adaptación al hardware}
+
+
+La adaptación de los parámetros de los algoritmos evolutivos a los recursos computacionales disponibles puede mejorar su rendimiento \cite{AutomaticallyConfiguringStyles12}. Por ejemplo, el tamaño de las poblaciones en algoritmos evolutivos es una de las claves para obtener un buen desempeño, puesto que afecta tanto la calidad de la solución ofrecida como el tiempo de ejecución del algoritmo \cite{ShrinkageLaredo09}. Este parámetro ha sido estudiado como un parámetro fijo \cite{SizingHarik99} o cómo un parámetro adaptativo durante la ejecución \cite{AdaptiveLobo07,SelfRegulatedSizeFernandes06}. Sin embargo, no se ha sido estudiado teniendo en cuenta la potencia computacional de cada máquina en una red heterogénea.
+
+Asimismo, AEs pueden ser ejecutados en distintos tipos de hardware, como por ejemplo dispositivos móviles \cite{Garcia2009Mobile}, ``smart dust'' \cite{Rollings2008smartdust} o en robots \cite{Garcia2012testing}. Los AEs pueden beneficiarse también de la adaptación al entorno de ejecución.
+
+
+%\subsection{Interoperability}
+\subsection{Interoperabilidad}
+
+La interoperabilidad es la propiedad que permite que diferentes sistemas trabajen juntos. En las últimas décadas, han surgido muchos lenguajes de programación y tecnologías de distribución. La integración de estos tecnologías es un importante dificultad a superar \cite{Papazoglou2007SOA}. A pesar de que varios paradigmas de desarrollo has sido propuestos para el desarrollo de AEs (por ejemplo, la programación basada en plug-ins \cite{WagnerPlugins07}), un reciente estudio in frameworks para metaheurísticas \cite{SURVEYMOFS} muestra que ninguno de los 33 frameworks evaluados incluye mecanismos de integración. Como el surgimiento de nuevas tendencias como las mencionadas anteriormente, los investigadores no sólo tienen que enfrentarse con hardware heterogéneo y di\-fe\-ren\-tes protocolos de comunicación, sino también con entornos dinámicos, no centralizados o no controlados que ofrecen distintos tipos de recursos.
+
+%\subsection{Open Science}
+\subsection{Ciencia Abierta}
+
+En el campo de la Ciencia Abierta \cite{Altunay2011OpenScience}, la integración y es\-tan\-da\-ri\-za\-ción de los elementos que componen un AE pueden ofrecer gran utilidad: facilitar la reutilización y el acceso a software, sistemas, datos y resultados ya existentes. El movimiento de Ciencia Abierta incentiva el acceso abierto al proceso de investigación científica para todos los ciudadanos, el uso de software libre, datos abiertos, difusión de la ciencia y, finalmente, servicios bien definidos y públicos \cite{Foster2005Science}.
+
+%\subsection{Applications}
+\subsection{Aplicaciones}
+
+Los Algoritmos Evolutivos has sido aplicados a un amplio nú\-me\-ro de problemas en distintos campos. Distintos tipos de AEs, como Algoritmos Genéticos, han sido utilizados para la optimización de rutas y la gestión de inventario \cite{Esparcia2009EVITA}, arte evolutivo \cite{Garcia2013RGB}, evolución del comportamiento de robots \cite{Garcia2012testing} y optimización de Redes Neuronales \cite{Castillo1999gprop}, entre otras muchas posibles aplicaciones. Algunos algoritmos de Programación Genética has sido utilizados para la generación de agentes en videojuegos \cite{Esparcia2013GPunreal} o transformación de documentos \cite{Garcia2008XSLT}.
+
+
+Numerosas conferencias anuales, como EvoApp o GECCO, presentan investigaciones en campos tan diversos como economía \cite{Kampouridis13financial}, energía \cite{HuttererEnergy13}, videojuegos \cite{Mora2012Genebot}, diseño \cite{DorinDesign13}, análisis de imágenes \cite{AmelioImage13}, entornos industriales \cite{Li13Industry} y seguridad \cite{Harmer11Security}. Por tanto, este campo es suficientemente amplio para permitir la participación de investigadores en diferentes áreas de estudio, obteniendo resultados aplicables a diferentes campos, ya sean a\-ca\-dé\-mi\-cos, culturales o industriales. 
+
+
+
+
+
+\section{Objetivos} 
+
+
+
+
+Los objetivos que esta tesis quiere validar son los siguientes:
+\newcommand{\objectiveparadigmSPANISH}{Probar que el paradigma de la Arquitectura Orientada a Servicios puede ser utilizada para crear entornos para AEs distribuidos, dinámicos y basados en estándares}
+
+
+\subsection*{Objetivo 1: \objectiveparadigmSPANISH}
+
+Los AEs definen un área en la que se aplican  distintas ramas de las ciencias de la computación, como el paralelismo y sistemas distribuidos, la adaptación de parámetros y el desarrollo de aplicaciones y herramientas. En consecuencia, el primer objetivo propone un nuevo paradigma que permita tratar con algunos de los problemas presentes en este área: falta de estandarización y mecanismos para facilitar la integración, el dinamismo y la interoperatibilidad de sus componentes. En primer lugar, la clasificación tradicional de AEs y AEs distribuidos será presentada para clarificar sus elementos comunes. A continuación, se explicarán las nuevas tendencias en AEs (como P2P y basadas en {\em pools}), mostrando sus ventajas y deficiencias. Un nuevo pa\-ra\-dig\-ma, los Algoritmos Evolutivos Orientados a Servicios (AEOSs) será propuesto para tratar de paliar las desventajas detectadas en otros paradigmas.
+
+
+\newcommand{\objectivemethodologySPANISH}{Proponer una metodología que sea capaz de adaptar exitosamente algoritmos evolutivos en sistemas distribuidos, dinámicos, heterogéneos y basados en estándares}
+
+\subsection*{Objetivo 2: \objectivemethodologySPANISH} 
+
+
+
+
+Esta metodología deberá facilitar la identificación, especificación, implementación y despliegue de servicios para crear AEOS. Esta metodología también tendrá que tratar con las restricciones pro\-pias de los AE y SOA identificadas en el objetivo previo, para facilitar el desarrollo, integración y dinamismo.
+
+\newcommand{\objectiveframeworkSPANISH}{Validar la metodología usando una tecnología SOA}
+\subsection*{Objetivo 3: \objectiveframeworkSPANISH}
+
+
+Para validar la metodología presentada en el objetivo anterior, ésta será aplicada para la creación de un framework (llamado OSGiLiath) utilizando un tecnología SOA específica: OSGi. Este framework será utilizado para abordar algunos de los problemas previamente detectados: enlace dinámico de servicios, pu\-bli\-ca\-ción de  interfaces de servicio usando estándares públicas y el ahorro de tiempo, eliminando la necesidad de escribir código específico para la distribución. En este objetivo, distintas tecnologías SOA se compararán para seleccionar la más apropiada para cada problema a resolver.
+
+
+\newcommand{\objectiveresearchSPANISH}{Probar que una implementación basada en SOA de algoritmos evolutivos distribuidos, dinámicos y basados en estándares  tiene la capacidad de resolver de forma eficiente distintos problemas} %FERGU: OJO!! Añadir el problema de GP?
+
+
+\subsection*{Objetivo 4: \objectiveresearchSPANISH}
+El objetivo final de esta tesis es demostrar que los AEOSs pueden ser utilizados para obtener resultados de relevancia científica en distintos campos. La metodología y el framework serán usados en una serie de experimentos en adaptación dinámica de parámetros al hardware y la creación de bots competitivos para videojuegos.
+
+
+\section{Estructura de la tesis}
+
+Este capítulo ofrece una introducción a esta tesis, incluyendo su motivación y las preguntas a abordar.
+
+A continuación se expone la estructura del resto de capítulos:
+
+El primer paso de esta tesis es probar que la Arquitectura O\-rien\-ta\-da a Servicios puede ser utilizado para crear entornos para AEs que sean distribuidos, dinámicos y basados en estándares (Objetivo 1). La razón para utilizar este tipo de entornos será explicada en el Capítulo \ref{chap:distributedEAs}, donde se muestra cómo las nuevas tendencias en AEs distribuidos, como P2P y algoritmos basados en {\em pool}, requieren ciertos mecanismos que proporcionen control dinámico de los nodos y arquitecturas heterogéneas. Además, serán explicados otros defectos de este tipo de entornos que pueden  abordarse, como la falta de integración de los lenguajes y protocolos de comunicación.
+
+
+
+ SOA se explicará en el Capítulo \ref{chap:soa} como un posible paradigma para el desarrollo de este tipo de entornos distribuidos, dinámicos y basados en estándares, al ofrecer mecanismos que fa\-ci\-li\-tan la estandarización, integración, la ciencia abierta y el dinamismo. Diferentes tecnologías y metodologías para SOA serán explicadas. Por otra parte, se presentarán los requerimientos en SOA aplicados a la genericidad de los AEs, así como las directrices para la creación de servicios para AEs que permitirán cumplir con el próximo objetivo: proponer una metodología que pueda adaptar con éxito algoritmos evolutivos a sistemas distribuidos, dinámicos y basados en estándares. Esta metodología, llamada SOA-EA, será presentada en el Capítulo \ref{chap:soa}. SOA-EA propone varios pasos para crear Algoritmos Evolutivos Orientados a Servicios (AEOSs). Los pasos para la identificación, especificación, implementación y desarrollo de servicios serán también presentados en este capítulo, junto con algunas directrices acerca de cómo deberá ser diseñado como un servicio cada elemento de un AE.
+
+
+Para validar SOA-EA (objetivo 3), esta metodología será aplicada en el Capítulo  \ref{chap:osgiliath} para crear un framework (OSGiLiath) para el desarrollo de AEOSs utilizando una tecnología específica.
+
+Con el objetivo de mostrar el enlace automático de servicios, se presenta un experimento en el cual se activa y enlaza de forma adaptativa servicios para incrementar el rendimiento de un AEOS. Se mostrarán diferentes formas de publicar servicios utilizando diferentes estándares, comparando los tiempos de trans\-mi\-sión de cada tecnología de distribución. Finalmente, se presenta un estudio comparativo de los tiempos de desarrollo con distintos frameworks para AE.
+
+
+OSGiLiath se utilizará en el Capítulo \ref{chap:adaptive} para desarrollar un nuevo método para la adaptación de parámetros de un AE distribuido (tamaño de la población) a la potencia computacional de los diferentes nodos en los que se ejecuta el algoritmo. Para efectuar este experimento, SOA-EA será utilizado para diseñar servicios para la creación de un AEOS descentralizado y basado en islas. De esta forma, se alcanzará el objetivo 4: probar que una implementación basada en SOA de algoritmos evolutivos distribuidos, dinámicos y basados en estándares tiene la capacidad de resolver de forma eficiente distintos problemas.
+
+
+En el siguiente capítulo (Capítulo \ref{chap:rts}), se utilizará OSGiLiath para crear AEOSs que generan bots competitivos para juegos RTS. SOA-EA será aplicada para la creación de servicios dinámicos, obteniendo resultados relevantes.
+
+
+Finalmente, el Capítulo \ref{chap:conclusions} resumirá la principales contribuciones de esta tesis y las futuras líneas de investigación.
+
+La Figura \ref{fig:intro:piramidSPANISH} muestra cómo la metodología se aplicará para probar todos los objetivos de esta tesis.
+
+
+
+\begin{SCfigure}[tb]
+\centering
+ \includegraphics[scale =0.3] {gfx/intro/tesispiramide.pdf}
+\caption{Resumen de los objetivos de esta tesis}
+\label{fig:intro:piramidSPANISH}
+\end{SCfigure}
+
+
+
+

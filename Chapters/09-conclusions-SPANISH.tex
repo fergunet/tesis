@@ -1,0 +1,100 @@
+\myChapter{Conclusiones y trabajo futuro}\label{chap:conclusionsSPANISH} %and future work, ¿no? FERGU: ok
+
+\minitoc\mtcskip
+\vfill
+
+\lettrine{E}{sta} tesis estudia la viabilidad del paradigma de la Arquitectura Orientada a Servicios (AOS) para crear entornos distribuidos, dinámicos y basados en estándares para Algoritmos Evolutivos. Para ello se ha presentado el concepto Algoritmo Evolutivo Orientado a Servicios (AEOS), junto con una metodología para desarrollar este tipo de algoritmos. Esta metodología ha sido usada para validar este paradigma en distintos escenarios, utilizando tecnologías específicas.
+
+
+Se han obtenido algunas conclusiones mientras se desarrollaba esta tesis. La primera es que los AEs pueden migrarse con éxito a AOS, y por lo tanto, pueden aprovecharse de este paradigma en escenarios de heterogeneidad y dinamismo. La tecnología SOA usada tiene un gran impacto en diferentes ámbitos (como los mecanismos de publicación y el tiempo de transmisión), por lo tanto, la tecnología a usar debe escogerse dependiendo de las necesidades a abordar. En nuestro caso, OSGi ha servido para ahorrar tiempo de desarrollo, ya que no ha hecho falta código específico para publicar las interfaces de los servicios desarrollados en esta tesis, o los mecanismos para encontrar y enlazar esas interfaces. También es importante remarcar que AOS no fuerza a utilizar servicios distribuidos, por lo que puede ayudar en el desarrollo de AEs que se ejecutan en local.
+
+Consideramos que el paradigma SOA puede aplicarse con é\-xi\-to a los AEs para facilitar la integración, distribución, dinamismo y desarrollo en escenarios particulares. En concreto, las si\-guien\-tes contribuciones han sido propuestas en esta tesis:
+
+
+
+\begin{itemize} 
+
+\item Se ha propuesto el paradigma de Arquitectura Orientada a Servicios para crear entornos distribuidos, heterogéneos dinámicos y basados en estándares para Algoritmos Evolutivos, ya que proporciona mecanismos para interoperabilidad, integración y control del dinamismo.
+
+\item Se han identificado requisitos para desarrollar AEs en el paradigma AOS.
+
+\item Estos requisitos se han tenido en cuenta para proponer SOA-EA, una metodología que es capaz de adaptar con éxito algoritmos evolutivos a entornos distribuidos, heterogéneos, dinámicos y basados en estándares.
+
+\item En esta metodología se han propuesto varios pasos para diseñar todos los elementos de un AE.
+
+\item Esta metodología se ha validado utilizando una tecnología SOA específica: OSGi.
+
+\item Una implementación basada en SOA (OSGiLiath) de algoritmos evolutivos dinámicos y basados en estándares, ha sido capaz de resolver eficientemente diferentes problemas.
+
+\item Como aplicación de esta metodología, se han propuesto dos diferentes esquemas de adaptación de parámetros a hardware heterogéneo en AEs basados en islas, junto con un algoritmo para obtener bots competitivos para juegos en tiempo real.
+
+
+%\item A comparison of two SOA stan\-dard-ba\-sed technologies, OS\-Gi and Web Services, have been compared to develop SO\-EAs. OSGi have been chosen because it offers better transmission speed and more flexibility in distribution mechanisms. %FERGU: Esta no sé si ponerla, pero es una conclusión también de la tesis (por ahora no está puesta)
+
+\end{itemize}
+
+
+\section{Trabajo futuro}
+
+
+Los resultados presentados en esta tesis pueden considerarse como el punto de inicio de una nueva linea de investigación en adaptación automática de parámetros y operadores bajo el paradigma AOS.
+
+Teniendo en cuenta la naturaleza dinámica de AOS, se pueden crear otros mecanismos adaptativos para activar o desactivar servicios (remota o localmente) dependiendo de algunas métricas. Por ejemplo, más experimentos para activar o desactivar diferentes implementaciones de servicios dependiendo del estado actual del AE o del nodo de ejecución, como se propone en esta tesis. Diferentes servicios de {\em benchmarking} para analizar el algoritmo pueden utilizarse para activar adaptación de pa\-rá\-me\-tros en tiempo real. También, adaptando los parámetros u o\-pe\-ra\-do\-res de diferentes nodos que entran o salen de la topología, o adaptando parámetros a la carga actual del sistema. Teniendo en cuenta que en esta tesis se ha propuesto la adaptación del tamaño de las sub-poblaciones a hardware heterogéneo, se pueden adaptar otros parámetros del AE, como la tasa de cruce.
+
+También se pueden comparar fácilmente distintos mecanismos de transmisión (R-OSGi, JMS, REST, XMMP, entre otros), ya que no hace falta modificación del código fuente de los servicios. Así mismo, se pueden llevar a cabo más experimentos sobre el enlace de servicios y composición automática de servicios, utilizando distintas tecnologías de distribución además de OSGi y Servicios Web (como SLP o Zookeeper).
+
+Aunque esta tesis está enfocada en EAs, el concepto de algoritmos orientados a servicios puede extenderse a otras meta-heurísticas del campo de la computación evolutiva, como Ant Colony Optimization \cite{MoraIslandACO13} o Particle Swarm Optimization \cite{Kennedy95PSO}. Sus restricciones de desarrollo específicas deben tenerse en cuen\-ta para modificar SOA-EA para crear servicios para este tipo de algoritmos en los entornos presentados en este trabajo.
+
+OSGiLiath se actualizará con nuevos módulos y servicios para tratar nuevos problemas. También, se pretende crear un portal web para centralizar servicios e implementaciones ofrecidas a la comunidad. Finalmente, se propondrán cuestionarios a los desarrolladores de AEs, con distintas destrezas en programación y de distintas áreas de investigación, para validar si este cambio de paradigma está contribuyendo a facilitar su trabajo.
+
+
+
+\section{Publicaciones relacionadas con esta tesis}
+
+Algunos de los resultados presentados en esta tesis han sido pu\-blica\-dos anteriormente en la siguientes revistas y actas de congresos revisadas por pares:
+
+\begin{itemize}
+\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Maribel García Arenas, Juan Julián Merelo Guervós} \emph{Service oriented evolutionary algorithms}.  Soft Comput. 17(6): 1059--1075 (2013).
+
+\item \person{Pablo García-Sánchez, Maria I. García Arenas, Antonio Miguel Mora, Pedro A. Castillo, Carlos Fernandes, Paloma de las Cuevas, Gustavo Romero, Jesús González, Juan Julián Merelo Guervós} \emph{ Developing services in a service oriented architecture for evolutionary algorithms}. In Proceesings of Genetic and Evolutionary Computation Conference, GECCO '13, Amsterdam, The Netherlands, July 6-10, 2013, Companion Material.  p: 1341--1348. ACM, 2013.
+
+\item \person{Pablo García-Sánchez, J. González, Pedro A. Castillo, Juan Julián Merelo Guervós, Antonio Miguel Mora, Juan Luís Jiménez Laredo, Maribel García Arenas} \emph{ A Distributed Service Oriented Framework for Metaheuristics Using a Public Standard}. In Proceeding of Nature Inspired Cooperative Strategies for Optimization. Studies in Computational Intelligence.  p: 211--222. Springer, 2010.
+
+\item \person{Pablo García-Sánchez, Antonio Fernández-Ares, Antonio Miguel Mora, Pedro Ángel Castillo, Jesús González and Juan Julián Merelo} \emph{Tree depth influence in Genetic Programming for generation of competitive agents for RTS games}. Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, Evo\-IN\-TE\-LLI\-GEN\-CE, E\-vo\-NUM, and EvoSTOC, Proceedings.  Lecture Notes in Computer Science Springer, 2014. (to appear).
+
+
+\end{itemize}
+
+Además de las publicaciones anteriores, durante el desarrollo de esta tesis se han publicado otros trabajos relacionados con AOS y sus metodologías. Los siguientes trabajos han ayudado a identificar algunos de los requisitos en el diseño e implementación en  AOS (y las diferentes tecnologías utilizadas en esta tesis): 
+
+\begin{itemize}
+\item \person{Pablo García-Sánchez, Jesús González, Antonio Miguel Mora, Alberto Prieto} {\em Deploying intelligent e-health services in a mobile gateway}. Expert Syst. Appl. 40(4): 1231-1239 (2013).
+
+\item \person{Pablo García-Sánchez, Jesús González, Pedro A. Castillo, and Alberto Prieto} {\em Using UN/CEFACT's modelling methodology
+(UMM) in e-health projects}. In Bio-Inspired Systems: Computational and Ambient Intelligence, 10th International Work Conference on Artificial Neural Networks, IWANN 2009, Salamanca, Spain, June 10-12, 2009. Proceedings, Part I, volume 5517 of Lecture Notes in Computer Science.  p: 925--932.  Springer, 2009.
+
+\item \person{Pablo García-Sánchez, S. González, A. Rivadeneyra, M. P. Palomares, and J. González}. {\em Context-awareness in a service
+oriented e-health platform}. In José Bravo, Ramón Hervás, and Vladimir Villarreal (editors): Ambient Assisted Living - Third International Workshop, IWAAL 2011,  Held at IWANN 2011, Torremolinos-Málaga, Spain, June 8-10, 2011. Proceedings, volume 6693 of Lecture Notes in Computer Science, pages 172-179. Springer, 2011.
+
+\end{itemize}
+
+Con respecto a la aplicación de AEs en entornos heterogéneos, se han aplicado algunas de las lecciones aprendidas en los si\-guien\-tes trabajos:
+
+\begin{itemize}
+
+\item \person{Khaled Meri, Maribel García Arenas, Antonio Miguel Mora, Juan Julián Merelo, Pedro Ángel Castillo, Pablo Gar\-cía\--Sán\-chez, and Juan Luís Jiménez Laredo}. {\em Cloud-based evolutionary algorithms: An algorithmic study}. Natural Computing, p: 1--13, 2013.
+
+
+\item \person {Pablo García-Sánchez, Juan P. Sevilla, Juan Julián Merelo Guervós, Antonio Miguel Mora, Pedro A. Castillo, Juan Luís Jiménez Laredo, and Francisco Casado}. {\em Pervasive evolutionary algorithms on mobile devices}. In Distributed Computing, Artificial Intelligence, Bioinformatics, Soft Computing, and Ambient Assisted Living, 10th International Work-Conference on Artificial Neural Networks, IWANN 2009 Workshops, Salamanca, Spain, June 10-12, 2009. Proceedings, Part II, volume 5518 of Lecture Notes in Computer Science, p: 163--170. Springer, 2009.
+
+
+\end{itemize}
+
+Finalmente, el framework OSGiLiath ha sido utilizado para comparar diferentes funciones fitness en Arte Evolutivo \cite{Garcia2013RGB}. Durante el desarrollo de esta tesis, también se han publicado otros trabajos relacionados con distintas aplicaciones de AEs: como la Robótica Evolutiva \cite{Garcia2012testing}, optimización de bots en video-juegos \cite{Fernandez20111optimizing,Mora2012Genebot,FernandezAres2012adaptive,Esparcia10FPS}, administración de inventario y transporte \cite{Esparcia2009EVITA,Esparcia13TowardsMOretail} o transformación de documentos \cite{Garcia2008XSLT,Garcia2010XPath}. 
+
+
+Siguiendo los principios del movimiento de Ciencia Abierta, todo el trabajo de esta tesis se ha liberado utilizando licencias libres. OSGiLiath y todos los experimentos presentados en esta tesis están disponibles  en el repositorio de GitHub \url{https://github.com/fergunet/osgiliath} bajo una licencia GNU/GPL V3. 
+
+Los ficheros LaTeX que generan esta tesis también han sido liberados en \url{https://github.com/fergunet/osgiliath} bajo una licencia Creative Commons. Finalmente, la página web \url{http://www.osgiliath.org} ha descrito los pasos de desarrollo de esta tesis: noticias, publicaciones, premios y documentación.
+
+

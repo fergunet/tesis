@@ -441,6 +441,7 @@ p{0.95\textwidth}}
 %-----------------------------  PONER LETTRINE EN SECCIONES Y NO INDENT EN SUBSECCIONES!!!
 \myPart{Introduction}\label{part:introduccion}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/00-intro}}{\myChapter{Introduction}\label{chap:introduction}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/00-intro-SPANISH}}{\myChapter{Introducci{\'o}n}\label{chap:introductionSPANISH}}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/02-distributedEAs}}{\myChapter{Evolutionary Algorithms}\label{chap:distributedEAs}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{5}}{\include{Chapters/BajaVision}}{\myChapter{Cuestionarios para la \textsc{Baja Visión}}\label{sec:cuestionariosBajaVision}}
 %-----------------------------
@@ -458,6 +459,7 @@ p{0.95\textwidth}}
 %-----------------------------
 \myPart{Conclusions}\label{part:discusionYconclusiones}
 \ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/09-conclusions}}{\myChapter{Conclusions and future work}\label{chap:conclusions}}
+\ifthenelse{\equal{\value{IncluyeCapitulo}}{2}}{\include{Chapters/09-conclusions-SPANISH}}{\myChapter{Conclusiones y trabajo futuro}\label{chap:conclusionsSPANISH}}
 %\ifthenelse{\equal{\value{IncluyeCapitulo}}{12}}{\include{Chapters/conclusiones}}{\myChapter{Conclusiones}\label{chap:conclusiones}}
 
 }
