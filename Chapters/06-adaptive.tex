@@ -10,7 +10,7 @@
 
 \minitoc\mtcskip
 \vfill
-\lettrine{T}{he} last objective of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
+%\lettrine{T}{he} last objective of this thesis is to apply the created framework to solve the problems previously addressed, and therefore, to be used to perform some kind of research. In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed EA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance.
 %FERGU: añadido el párrafo de arriba para enlazar con la tesis
 % UN OBJETIVO DE LA TESIS NO PUEDE SER "HACER INVESTIGACIÓN". ¿La
 % tesis es Osgiliath? ¿Qué has usado de un algoritmo genético basado
@@ -27,7 +27,11 @@
 % adaptación pare evaluar cuál es la más adecuada paraellas". Si no te
 % gusta esto, pregúntate siempre cuál es TU TESIS y en qué contribuye
 % este capítulo a probarla - JJ 
-This question is interesting due to new trends in distributed computing presented in Chapter \ref{chap:soa}, such as Cloud Computing, GRID
+%FERGU: muy bien pensado. Joder, qué bien se te dan estas cosas.
+
+\lettrine{A}{dapting} Evolutionary Algorithms to dynamic and heterogeneous architectures using SOA require some kind of mechanism to take advantage of the different capacities of the resources that are going to be used. As a part of the methodology to adapt EAs to the SOA paradigm, in this chapter several adaptation strategies are compared to evaluate which one is the most adequate. 
+
+In this chapter, the capabilities of OSGiLiath will be used to investigate if adapting the parameters of a distributed SOEA taking into account the computational capabilities of the different nodes of execution leads to an increase of performance. This question is interesting due to new trends in distributed computing presented in Chapter \ref{chap:soa}, such as Cloud Computing, GRID
  or Service Oriented Science
  are % si se han presentado en los capítulos
                              % previos, tendrás que hacer referencia a
@@ -56,7 +60,7 @@ the interoperability within these systems is SOA, and specifically, the use of O
 In this chapter, OSGiliath will be used % ¿Se podía haber usado otra
                                 % cosa? ¿Esto es exclusivo de
                                 % Osgiliath? - JJ FERGU: Frase al principio del capitulo
- to create a heterogeneous distributed system to be used to develop a scientific research related with parameter tuning and control (explained in Section \ref{chap:distributed:pcontroltuning}). Several services to deal with automatic binding and parameter control will be developed following SOA-EA, and deployed in different cluster configurations.
+ to create a heterogeneous distributed system to be used to develop a scientific research related with parameter tuning and control (explained in Section \ref{chap:distributed:pcontroltuning}). Several services to deal with automatic binding and parameter control will be developed following SOA-EA, and deployed in different cluster configurations. The conclusions of this study could help to validate if the SOA paradigm, where different resources can collaborate, can take advantage of the heterogeneity. Also, to investigate if a change in a parameter affects all the services that are going to be executed in the whole system.
 
 
 
@@ -99,22 +103,23 @@ In this chapter, OSGiliath will be used % ¿Se podía haber usado otra
              % hecho como un hecho consumado. - JJ FERGU: BORRADO TODO Y PUESTO A CONTINUACIÓN
 
 \section{Background and problem definition}
-In Section \ref{subsec:distributed:adapthetero} several works about adaptation in heterogeneous environment were presented. For example, the work of \person{Alba \etal}, where dEAs with the same parameter configuration could be more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with homogeneous devices, or the work of \person{Gong and Fukunaga}, where different parameters in each island increased performance.
-
- These trends have motivated the usage of OSGiLiath in this chapter to give an insight to the following research questions:
+In Section \ref{subsec:distributed:adapthetero} several works about adaptation in heterogeneous environment were presented. For example, the work of \person{Alba \etal}, where dEAs with the same parameter configuration could be more efficient in time and evaluations on heterogeneous hardware configurations than on clusters with homogeneous devices, or the work of \person{Gong and Fukunaga}, where different parameters in each island increased performance. The first aim of this chapter is to use OSGiLiath to demonstrate if adapting the sub-population size to the computational power of an heterogeneous cluster nodes presents an improvement in execution time. New services will be created to deal with different distributed nodes and setting the population sizes to give an insight to the following research questions:
 \begin{itemize}
- \item Can a distributed EA be adapted to leverage the capability of a
+ \item Can a distributed SOEA be adapted to leverage the capability of a
    heterogeneous cluster?  % ¿Esa son las preguntas de la TESIS?
-                           % ¿Dónde lo has dicho? - JJ FERGU: son preguntas DEL CAPÍTULO (puesto)
+                           % ¿Dónde lo has dicho? - JJ FERGU: son preguntas DEL CAPÍTULO (puesto) y SOEA
  \item How the adaptation of the sub-population size to the
    computational power affects the execution time and number of
-   evaluations?  % Y esta pregunta es interesante porque... - JJ
+   evaluations?  % Y esta pregunta es interesante porque... - JJ FERGU: abajo
  \item Is there any difference between using the same sub-population sizes in a homogeneous and a heterogeneous cluster?
  \item How is each service of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
-   configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ
+   configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ FERGU: abajo
 \end{itemize}
 
-The aim of this chapter is to use OSGiLiath to demonstrate if adapting the sub-population size to the computational power of an heterogeneous cluster nodes presents an improvement in execution time. New services will be created to deal with different distributed nodes and setting the population sizes.
+These previous questions should help to give some information about the research of SOEAs, as the have to deal with dynamism and parameter adaptation to heterogeneous resources. For example, changing a parameter in one of the nodes that execute the SOEA may have an enormous impact in their performance.
+
+
+
 
 
 
@@ -221,21 +226,21 @@ As we are going to test parameter adaptation to hardware, different configuratio
 \subsection{Homogeneous Size configuration}
 
 In this configuration, each node has 256 individuals (so, the total
-amount is 1024).  % ¿Por qué? - JJ
+amount is 1024). This value has been chosen empirically, as it is big enough to test different sub-population sizes.  % ¿Por qué? - JJ FERGU: puesto.
 
 The results of executing the algorithm in the will be used to set the sizes of the next configuration.
 
 
 
 
-% ¿Ya está? ¿Nada de laxitud pos-tabla? Ahí está, y apáñatelas, ¿no? - JJ
+% ¿Ya está? ¿Nada de laxitud pos-tabla? Ahí está, y apáñatelas, ¿no? - JJ FERGU: Esta frase ya no está 
 
 
 \subsection{Heterogeneous Size configuration}
 
-Our aim consists in validating the following hypothesis: adapting the %%%%QUITAR ESTO QUE LO HE PUESTO ARRIBA IGUAL!!!
-sub-population size to the computational power of the heterogeneous
-cluster nodes presents an improvement in execution time. % Hombre, ya
+%Our aim consists in validating the following hypothesis: adapting the %%%%QUITAR ESTO QUE LO HE PUESTO ARRIBA IGUAL!!!
+%sub-population size to the computational power of the heterogeneous
+%cluster nodes presents an improvement in execution time. % Hombre, ya
                                 % era hora de que supiéramos la
                                 % hipótesis. ¿No queríamos responder a
                                 % unas preguntas? ¿Qué ha pasado con
@@ -512,10 +517,10 @@ As claimed by \person{Alba and Luque} in
 parallel EA by the number of fitness function evaluations required to
 attain a solution may be misleading. In our case, for example, the
 evaluation time is different in each node of the heterogeneous
-cluster, so the real algorithm speed could not be reflected
-correctly. %¿Cuál es la velocidad "real"? - JJ
+cluster, so the real algorithm speed (in time) could not be reflected
+correctly. %¿Cuál es la velocidad "real"? - JJ FERGU: puesto (in time)
  However, the number of evaluations has been included in
-this chapter to better understanding the results. % ¿Better que qué? - JJ
+this chapter to better understanding the results. % ¿Better que qué? - JJ FERGU: better than no ponerlo. En Wordreference dicen que se pone así
 The total number of
 generations carried out by all nodes, and the maximum number of
 generations required by the faster node in each configuration are also
@@ -585,7 +590,7 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 \caption{Results for the MMDP problem.}
 % Comprueba los puntos en los pies de figura. En este caso, también
 % trata de resaltar de alguna forma qué resultados son los mejores. Y
-% haz siempre tests estadísticos. - JJ
+% haz siempre tests estadísticos. - JJ FERGU: sí, los tests están hechos
 \label{tab:resultsMMDP}
 \end{SCtable}
 
@@ -608,7 +613,7 @@ used. % y esto lo haces porque... ¿Debe todo el mundo saber esto? -JJ
 \caption{Time to obtain the optimum in the MMDP problem
   (milliseconds).}
 %En estos gráficos no se ve nada. O cambias la escala para eliminar
-%los outliers o los pones logarítmicos - JJ 
+%los outliers o los pones logarítmicos - JJ FERGU: puesto
 
 \label{fig:timeMMDP}
 \end{SCfigure}
@@ -661,7 +666,7 @@ them). %no se entiende - JJ
   of the four nodes of the heterogeneous cluster with different
   sub-po\-pu\-la\-tion sizes (HeSi/HeHa) for the MMDP problem.} % Explica la
                                 % leyenda en este pie. ¿Qué diablos es
-                                % n1, n2, etc...? - JJ
+                                % n1, n2, etc...? - JJ FERGU: cambiada leyenda a las imagenes
 \label{fig:hesiheha}
 \end{SCfigure}
 
@@ -691,23 +696,23 @@ the minimum (16 individuals). % ¿Esto es bueno o malo? ¿Qué significa?
 \begin{SCfigure}[tb]
 \centering
  \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP.pdf}
-\caption{Boxplots of the sub-population sizes in each node during all
+\caption{Boxplots of the sub-population sizes in each node of the AdSi/HeHa configuration during all
   the runs for the MMDP problem.} 
 %Otra figura, otra terminología, además diferente de la de
 %abajo. ¿Esto es population size de qué? ¿Es un resultado? ¿Menor
 %poblacióne s mejor? ¿Qué diablos significa el resultado? ¿Final?
-%¿Media de cuantas? - JJ
+%¿Media de cuantas? - JJ FERGU: cambiando todo (figuras y pies de pagina)
 \label{fig:sizesMMDP}
 \end{SCfigure}
 
 \begin{SCfigure}[tb]
 \centering
- \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP1ejec.pdf}
-\caption{Population size in all nodes during one execution to solve
+ \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesMMDP1ejec.png}
+\caption{Population size in all nodes of the AdSi/HeHa configuration during one execution to solve
   the MMDP problem.} % ¿average? ¿Typical? ¿Por qué un nodo se queda
                      % sin nadie? Etiqueta cada nodo con alguna cosa
                      % que signifique algo, como el procesador que
-                     % usan o algo - JJ 
+                     % usan o algo - JJ FERGU: cambiada la imagen para que tenga el mismo nombre y el pie de pagina
 \label{fig:sizesMMDP1ejec}
 \end{SCfigure}
 
@@ -722,8 +727,8 @@ the minimum (16 individuals). % ¿Esto es bueno o malo? ¿Qué significa?
 \rowcolor{colorCorporativoSuave}Proportion  & 39.69 &  35.98 & 22.91 & 1.41   \\ \hline
 \end{tabular}
 \caption{Average % over what? -proportion over what? What does it
-                 % mean¿ - JJ
-sub-population size in each node on the heterogeneous cluster with adaptive size (MMDP).}
+                 % mean¿ - JJ FERGU: after all runs
+sub-population size in each node on the heterogeneous cluster with adaptive size (MMDP) after all runs.}
 \label{table:sizesMMDP}
 }
 \end{SCtable}
@@ -736,7 +741,7 @@ obtain the optimum. The same heterogeneous fixed sizes in the
 homogeneous cluster does not produce a significant decrease of running
 time, so the improvement is produced by the heterogeneity and not due
 to the different island sizes. Moreover, the AdSi proposal is not
-applicable in HoHa because there are not differences of generations
+applicable in HoHa because there is not differences of generations
 during runtime. % y esto es interesante porque... - JJ
 % y sigues sin decir por qué es interesante y en qué contribuye a
 % probar TU TESIS  - JJ 
@@ -853,14 +858,15 @@ In the AdSi/HeHa configuration significantly better results in terms of executio
 \begin{SCfigure}[tb]
 \centering
 \includegraphics[scale =0.4] {gfx/adaptiveresults/sizesONEMAX.pdf}
-\caption{Boxplots of the sub-population sizes in each node during all the runs for the OneMax problem.}
+\caption{Boxplots of the sub-population sizes in each node of the AdSi/HeHa configuration during all
+  the runs for the OneMax problem.}
 \label{fig:sizesONEMAX}
 \end{SCfigure}
 
 \begin{SCfigure}[tb]
 \centering
-\includegraphics[scale =0.4] {gfx/adaptiveresults/sizesONEMAX1ejec.pdf}
-\caption{Sub-population size in each node during one execution to solve the OneMax problem.}
+\includegraphics[scale =0.4] {gfx/adaptiveresults/sizesONEMAX1ejec.png}
+\caption{Sub-population size in each node during one execution of the AdSi/HeHa configuration to solve the OneMax problem.}
 \label{fig:sizesONEMAX1ejec}
 \end{SCfigure}
 
@@ -1079,22 +1085,22 @@ how the diversity and search guidance is maintained in the whole system.
                                 % combinación entre cambio de
                                 % parámetros y adaptación al nodo - JJ 
 
-In this chapter, OSGiLiath has been used to present a study on the adaptation of the sub-population sizes of a distributed EA to the computational power of the different nodes of an heterogeneous cluster.  Different services for migration and algorithm control have been created to be automatically bound. Two adaptation schemes (offline and online) that use information of the computational load of the algorithm have been tested.
+The SOA paradigm imply to deal with heterogeneous and dynamic environments. The different components of these environment can be adapted to take advantage of their computational resources, so the services that conform a SOEA can also be adapted in consideration. In this chapter, OSGiLiath has been used to present a study on the adaptation of the sub-population sizes of a distributed EA to the computational power of the different nodes of an heterogeneous environment.  Different services for migration and algorithm control have been created to be automatically bound and two adaptation schemes (offline and online) that use information of the computational load of the algorithm have been tested. The results of this study reveal some interesting information about the use of heterogeneous systems to develop EAs with the paradigm proposed in this thesis.
 
 Results show that adapting (online or offline) the sub-po\-pu\-la\-tion size to the computational power of each node in the heterogeneous cluster yields significantly
 better results in time than keeping the same parameter in all nodes. This advantage is due to the combination of the heterogeneous parameters with the heterogeneity of the machines. On the contrary, the same (heterogeneous) parameter setting in all islands of the homogeneous cluster could not improve the results than considering the same parameter value in all nodes.
 
 
 
-Furthermore, changing the sub-population size affects to stages
-of the algorithm that are independent of this parameter, such as
-the migration. The sub-population size adaptation is also affected by the problem to solve.
+Furthermore, changing the sub-population size affects to the services (stages)
+of the SOEA that, in principle, are independent of this parameter, such as
+the migration. The sub-population size adaptation is also affected by the problem to solve. Therefore, this should be taken into consideration when dealing with this kind of environments and creating services for them.
 
 In this chapter, as a possible offline parameter setting, we have calculated the computational power of each node proportionally 
 to the average number of generations of the homogeneous parameter set. Moreover, a possible way to adapt 
 online the sub-population sizes has been performed comparing the current generation with
- the neighbour generation. These results are a promising starting for adapting EAs to the
-performance of each execution node with OSGiLiath, using more adequate benchmarks or in a dynamic way. 
+ the neighbour generation. These results are a promising starting for adapting SOEAs to the
+performance of each execution node, using more adequate benchmarks or in a dynamic way. 
 % Falta una discusión sobre si las mejoras se deben exclusivamente al
 % número de evaluaciones o hay algún otro factor ¿menos overhead?
 % ¿nodos más rápidos? - JJ FERGU: no, de hecho el número de evaluaciones no siempre disminuye, lo digo arriba.

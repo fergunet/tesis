@@ -96,6 +96,7 @@ it is not mandatory to distribute the parameters among all services, and also th
 \item How are the services going to be used?
 \item Which is the order of execution of the services?
 \item Is only one type of service required?
+\item Are the services going to be adapted to computational power of the machines?
 \end{itemize}
 
 All the characteristics of genericity for the design of an EAs, presented in Section \ref{sec:distributed:design}, should be taken into account when designing elements for EAs. However, requirements are also aligned with the requirements for designing services, explained in previous chapter (Section \ref{sec:soa:restrictions}). It is important to remark that in the future these services could be extended, so they should be designed taking into account this possibility.
@@ -138,6 +139,8 @@ A SOEA can be seen as a service flow. Flows should be designed to reduce the imp
 
 
   Furthermore, to accomplish with the genericity presented in Section \ref{sec:distributed:design}, the parameters and operators should be added dynamically. This is done with the SOA service binding. Users can specify the operators they need in several ways, for example, in a configuration file, or in an intelligent manner (an algorithm), taking into account the classification about evidence in parameter control presented in Section \ref{chap:distributed:parameteradapt} . It is important to remark that these ``pieces'' do not need to be modified and compiled again, because the loose coupling and the dynamic binding of SOA. Without SOA this behaviour is very difficult to achieve or maintain, as will be explained in next section.
+
+  Also, mechanisms to allow adaptation of computational power to the machines should be addressed in this step. As this new paradigm may deal with dynamism and heterogeneity of the resources, services to control these issues need to be defined: for example, adapting parameters values or different operators depending some metric or benchmark, or to control nodes that disappear during running time. 
 
 \subsection{Specifying the infrastructure services}
 The infrastructure services function is to manage the system. For example, output mechanisms (GUI or logging services) that should be independent of the services of the other domains. In this step, also the control of the system should be described (for example, user control or load balancing control).
