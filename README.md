@@ -10,3 +10,5 @@ Requisitos para compilar el pdf:
 Más información en http://www.osgiliath.org
 
 Esta obra está licenciada bajo la Licencia Creative Commons Atribución 4.0 Internacional. Para ver una copia de esta licencia, visita http://creativecommons.org/licenses/by/4.0/deed.es.
+
+V1.0: Versión entregada en biblioteca de la UGR
