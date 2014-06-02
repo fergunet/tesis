@@ -12,7 +12,7 @@
 
 \section{Background}
 
-RTS Time Strategy (RTS) games are a type of videogame
+\lettrine{R}{TS} Time Strategy (RTS) games are a type of videogame
 where the play takes action in real time (that is, there are not
 turns, as in chess). Well-known games of this genre are Age of
 Empires\texttrademark~ or Warcraft\texttrademark. In this kind of game
@@ -67,7 +67,7 @@ shows a screen capture of the game. % Hay que caracterizar el
                                 % hayas escrito en el paper - JJ
 
 \begin{SCfigure}
-\includegraphics[scale =0.7] {gfx/rts/naves.png}
+\includegraphics[scale =0.7] {gfx/rts/naves.pdf}
 
 \caption{Example of execution of the Player Wars game. White planets and ships are owned by the player and dark gray ones are controlled by the enemy. Clear gray are neutral planets (not invaded).}
 \label{fig:naves}
@@ -166,7 +166,10 @@ An example of a possible tree is shown in Figure \ref{fig:java}. This example tr
 \newsavebox{\javaboxrts}
 \begin{lrbox}{\javaboxrts}
 \begin{minipage}{10cm}
-\begin{lstlisting}
+\begin{minted}[mathescape,
+               linenos,
+               frame=lines,
+               framesep=2mm]{java}
 if(myShipsLandedFlyingRatio<0.796)
   if(actualMyShipsRatio<0.201)
     attackWeakestNeutralPlanet(0.481);
@@ -174,7 +177,7 @@ if(myShipsLandedFlyingRatio<0.796)
     attackNearestEnemyPlanet(0.913);
 else
   attackNearestEnemyPlanet(0.819);
-\end{lstlisting}
+\end{minted}
 \end{minipage}
 \end{lrbox}
 
@@ -188,6 +191,7 @@ The bot behaviour is explained in Figure \ref{alg:turn}.
 
 \newsavebox{\algoartsbox}
 \begin{lrbox}{\algoartsbox}
+\fbox{
 \begin{minipage}{10cm}
 \begin{algorithmic}
 %\COMMENT{At the beginning of the execution the agent receives the tree}
@@ -205,6 +209,7 @@ The bot behaviour is explained in Figure \ref{alg:turn}.
 \ENDWHILE
 \end{algorithmic}
 \end{minipage}
+}
 \end{lrbox}
 
 \begin{SCfigure}[20][htb]
@@ -248,7 +253,7 @@ The rest of implementations used are the ones available in OSGiLiath (and previo
 \section{Experimental Setup}
 \label{sec:experiments}
 
-Sub-tree crossover and 1-node mutation evolutionary operators have been used, following other researchers' proposals that have used these operators obtaining good results \cite{Esparcia2013GPunreal}. In our case, the mutation randomly changes the decision of a node or mutate the value with a step-size of 0.25 (an adequate value empirically tested). Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
+\lettrine{S}{ub-tree} crossover and 1-node mutation evolutionary operators have been used, following other researchers' proposals that have used these operators obtaining good results \cite{Esparcia2013GPunreal}. In our case, the mutation randomly changes the decision of a node or mutate the value with a step-size of 0.25 (an adequate value empirically tested). Each configuration is executed 30 times, with a population of 32 individuals and a 2-tournament selector for a pool of 16 parents.
 
 To test each individual during the evolution a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google. The maximum fitness is, therefore 5 victories and 0 turns. Also, as proposed by \cite{Mora2012Genebot}, and due to the noisy fitness effect, in every generation all individuals are re-evaluated.
 
@@ -291,7 +296,7 @@ After all the executions we have evaluated the obtained best individuals in all 
 
 \section{Results}
 
-Tables \ref{tab:resultsGenebot} and \ref{tab:resultsExpgenebot} summarize all the obtained results of the execution of our EA. These tables also show the average age, depth and number of nodes of the best individuals obtained and also the average population at the end of the run. The average turns rows are calculated only taking into account the individuals with lower victories than 5, because this number is 0 if they have win the five battles.
+\lettrine{T}{ables} \ref{tab:resultsGenebot} and \ref{tab:resultsExpgenebot} summarize all the obtained results of the execution of our EA. These tables also show the average age, depth and number of nodes of the best individuals obtained and also the average population at the end of the run. The average turns rows are calculated only taking into account the individuals with lower victories than 5, because this number is 0 if they have win the five battles.
 
 \newcommand{\SetRowColor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}}
 \newcommand{\mymulticolumn}[3]{\multicolumn{#1}{>{\columncolor{\RowColorName}}#2}{#3}}
@@ -378,16 +383,17 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 
 \begin{SCfigure}[htb]
 \centering
-
+\begin{tabular}{c}
  \subfloat[Victories]{
    \includegraphics[scale =0.50] {gfx/rts/victories.pdf}
    \label{fig:subfigvictories}
  }
- \newline
+ \\
 \subfloat[Turns]{
    \includegraphics[scale =0.50] {gfx/rts/turns.pdf}
    \label{fig:subfigturns}
  }
+ \end{tabular}
 \caption{Average of executing the 30 best bots in each configuration (3, 7 and U) versus Genebot (G) and Exp-Genebot (E).}
 
 \label{fig:victories}
@@ -403,7 +409,7 @@ To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slight
 \section{Conclusions}
 \label{sec:conclusion}
 
-This chapter presents a Service Oriented Genetic Programming algorithm that generates
+\lettrine{T}{his} chapter presents a Service Oriented Genetic Programming algorithm that generates
 agents for playing Planet Wars game without using human knowledge. OSGiLiath has been used to obtain relevant results in this field, adding services to manipulate individuals codified as a tree. All services developed follow the genericity in EA development and the SOA requirements. Independence of the individual representation with respect to the existent services to facilitate reuse of existent services have been shown. 
 
 

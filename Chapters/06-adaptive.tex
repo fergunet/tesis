@@ -111,7 +111,7 @@ In Section \ref{subsec:distributed:adapthetero} several works about adaptation i
  \item How the adaptation of the sub-population size to the
    computational power affects the execution time and number of
    evaluations?  % Y esta pregunta es interesante porque... - JJ FERGU: abajo
- \item Is there any difference between using the same sub-population sizes in a homogeneous and a heterogeneous cluster?
+ \item Is there any difference between using the same sub\--po\-pu\-la\-tion sizes in a homogeneous and a heterogeneous cluster?
  \item How is each service of the algorithm (selection, recombination, mutation, replacement and migration) affected by the different
    configurations?  % ¿Y cómo afecta todo esto a LA TESIS? - JJ FERGU: abajo
 \end{itemize}
@@ -147,6 +147,7 @@ Therefore, a mechanism to stop all the executing nodes must be implemented.
 
 \newsavebox{\algoadaptativebox}
 \begin{lrbox}{\algoadaptativebox}
+\fbox{
 \begin{minipage}{10cm}
 \begin{algorithmic} %Esto podías haberlo usado también en otros
                     %capítulos - JJ FERGU: En el unico sitio donde no lo he usado es en el del BasicGA de Eiben.
@@ -169,6 +170,7 @@ Therefore, a mechanism to stop all the executing nodes must be implemented.
 \ENDWHILE
 \end{algorithmic}
 \end{minipage}
+}
 \end{lrbox}
 
 \begin{SCfigure}[20][tb]
