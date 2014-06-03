@@ -516,7 +516,7 @@ In brief, each implementation of a service (\texttt{$<$im\-ple\-men\-ta\-tion$>$
 
 Moreover, each service can provide properties to be used by other
 services to obtain more information and filtering. For example, in
-this case only the {\em Replacers} whose property \texttt{replacerName = nsga2} are used. 
+this case only the {\em Replacers} whose property \texttt{re\-pla\-cer\-Na\-me = nsga2} are used. 
 
 
 \subsection{Managing services: implementing the NSGA-II from the canonical GA}
@@ -650,7 +650,7 @@ example). % Pues pon como requisito desde el principio que eso es lo
 \section{Experiments} %¿Implementation o experiments? ¿Estamos a setas
 % o estamos a Rolex? - JJ FERGU: Puesto párrafo. TERMINADO
 \label{sec:osgiliath:experiments}
-In this section, several experiments to confirm some of the advantages of using SOA and OSGi, explained in previous chapters, are performed using OSGiLiath. First, a comparison of time of using OSGi and the services as normal classes is presented to demonstrate that OSGi does not adds extra overhead (as explained in Section \ref{subsec:soa:osgi}). Experiments to demonstrate the automatic adding of new operators during runtime, and integration with other systems without modification of the existing source code are shown. Finally, a comparison of Lines of Code (LoCs) with other existing frameworks for EAs (presented in Section \ref{subsec:soaea:fworks}) is performed.
+\lettrine{I}{n} this section, several experiments to confirm some of the advantages of using SOA and OSGi, explained in previous chapters, are performed using OSGiLiath. First, a comparison of time of using OSGi and the services as normal classes is presented to demonstrate that OSGi does not adds extra overhead (as explained in Section \ref{subsec:soa:osgi}). Experiments to demonstrate the automatic adding of new operators during runtime, and integration with other systems without modification of the existing source code are shown. Finally, a comparison of Lines of Code (LoCs) with other existing frameworks for EAs (presented in Section \ref{subsec:soaea:fworks}) is performed.
 
 \subsection{Comparing overhead of using services}
 \label{subsec:osgiliath:comparingoverhead}
@@ -705,8 +705,8 @@ Java code (p-value $<<$ 0.05).
 \hline
 \rowcolor{colorCorporativoSuave}Name    &  Average solution    & Average Time (s) \\
 \hline\hline
-\rowcolor{colorCorporativoMasSuave}OSGiLiath               &   612.36 $\pm$ 6.05  & 0.19 $\pm$ 18.21 \\
-\rowcolor{colorCorporativoSuave}OSGiLiath (without OSGi)&   613.36  $\pm$ 4.50 & 0.19 $\pm$ 22.74 \\
+\rowcolor{colorCorporativoMasSuave}OSGiLiath               &   612.36 $\pm$ 6.05  & 0.19 $\pm$ 0.018 \\
+\rowcolor{colorCorporativoSuave}OSGiLiath (without OSGi)&   613.36  $\pm$ 4.50 & 0.19 $\pm$ 0.022 \\
 
 \hline
 \end{tabular}
@@ -871,7 +871,7 @@ be transformed into a service to use inside OSGi. %For example, the
 
 To test the differences in the communication protocol two configurations are going to be used. The first one ({\em OSGi configuration}) expose a distributed OSGi service to be automatically bound by another node, being undistinguishable from a local one (based in the OSGi Remote Specification standard). The second one ({\em SOAP configuration}) automatically generates a WSDL interface without modification of the code and it is accessed from a different programming language (\definicion{PHP}{PHP Hypertext Pre-processor} 5). The service are the implementation {\em Binary Initializer}, which receives the number of individuals to generate with the size given in the {\em Parameters} service. The individual size is 10 genomes and each configuration and number of individuals requested has been executed 100 times. Two Ubuntu 11.10 Intel(R) Core(TM)2 Quad CPU Q6600 machines in the same network have been used.
 
-Results are shown in Table \ref{tab:resultswsdl} and plotted in Figure \ref{fig:osgiliath:boxplot}, which show the average time in seconds for each individual number and configuration. As expected (and explained in Section \ref{sec:osgiliath:technology}), the transmission time is higher in the SOAP configuration, because the extra markup added in the SOAP requests and responses for each individual transmitted. However, using the WSDL interface and SOAP transmission mechanism have advantages with respect to OSGi Remote Specification: language independence and public exposition of the interfaces for automatically create remote clients.
+Results are shown in Table \ref{tab:resultswsdl} and plotted in Figure \ref{fig:osgiliath:boxplot}, which show the average time in seconds for each individual number and configuration. As expected (and explained in Section \ref{sec:osgiliath:technology}), the transmission time is higher in the SOAP configuration, because the extra markup added in the SOAP requests and responses for each individual transmitted. However, using the W\-S\-D\-L interface and SOAP transmission mechanism have advantages with respect to OSGi Remote Specification: language independence and public exposition of the interfaces for automatically create remote clients.
 
 \begin{SCtable}[][t]
 \resizebox{9cm}{!}{
@@ -923,8 +923,8 @@ distribution mechanisms. The LoC have been calculated using {\em
 \hline
 \rowcolor{colorCorporativoSuave}Name    &  Average solution    & Average Time (s)  & LoC \\
 \hline\hline
-\rowcolor{colorCorporativoMasSuave}OSGiLiath               &   612.36 $\pm$ 6.05  & 0.19 $\pm$ 18.21 &  10\\
-\rowcolor{colorCorporativoSuave}OSGiLiath (without OSGi)&   613.36  $\pm$ 4.50 & 0.19 $\pm$ 22.74 &  103\\
+\rowcolor{colorCorporativoMasSuave}OSGiLiath               &   612.36 $\pm$ 6.05  & 0.19 $\pm$ 0.018 &  10\\
+\rowcolor{colorCorporativoSuave}OSGiLiath (without OSGi)&   613.36  $\pm$ 4.50 & 0.19 $\pm$ 0.022 &  103\\
 \rowcolor{colorCorporativoMasSuave}MALLBA                  &   578.76 $\pm$ 7.48  & 0.16 $\pm$ 0.0003 &  2073\\
 \rowcolor{colorCorporativoSuave}ECJ                     &   602.76 $\pm$ 6.08   & 1.40 $\pm$ 0.03 &  5\\
 \rowcolor{colorCorporativoMasSuave}Algorithm::Evolutionary &   617.60 $\pm$ 12.92  & 7.78 $\pm$ 0.29 &  41\\
@@ -997,12 +997,12 @@ is only an example of how to develop EAs under the SOA paradigm. % ¿Esta es la 
 % refleja el modelo y lo valida. ¿Es el modelo válido? ¿Cómo lo has
 % probado? ¿Es la implementación válida? ¿Cómo lo has probado? - JJ FERGU: Escritas las conclusiones, que antes no había
 
-In this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}) to fulfil the \textbf{Objective 3} of this thesis: \objectiveframework . A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
+\lettrine{I}{n} this chapter, SOA-EA methodology has been used to create a framework, called OSGiLiath, that accomplish with the restrictions and benefits of using SOA for EAs (explained in Chapter \ref{chap:soaea}) to fulfil the \textbf{Objective 3} of this thesis: \objectiveframework . A number of services have been found in the identification step and the inputs and outputs have been described in the specification phase. 
 
 Then, in the implementation step, a comparison of two SOA technologies based in standards have been performed: OSGi has been selected because a number of advantages over Web Services, such as transmission speed and ease of development. The abstract services of previous steps have been implemented to form a basic GA as an example. These services can be combined in several ways to obtain different algorithms (from a canonical GA, a NSGA-II has been created just adding new services). 
 
 This chapter also has presented experiments to show how services can be dynamically bound to change the needed EA aspects. The source code of the basic EA services have not been re-written or re-compiled to achieve this task. Also, no specific source code for a basic distribution have been added, neither the existing source code has been modified, allowing saving time in integration and development, with respect to other available EA frameworks. Two different transmission mechanisms have been tested (ECF Generic and SOAP) and two different standards for exposing services (WSDL and OSGi Remote Specification) have been used. Exposing services with public standards helps to Open Science, as explained in Section \ref{sec:soa:benefitsofsoa}. Therefore, all services developed have accomplished the requirements of Section \ref{sec:soaea:validationservices}.
 
-The source code of OSGiLiath is available in the web page \url{http://www.osgiliath.org} under a GNU/LGPL license. Appendix \ref{chap:appendixosgiliath} describes the current components available in this framework.
+The source code of OSGiLiath is available in the web page \url{http://www.osgiliath.org} under a GNU/LGPL license. A\-ppen\-dix \ref{chap:appendixosgiliath} describes the current components available in this framework.
 
 Next chapters SOA-EA and OSGiLiath will be used to solve several problems: parameter adaptation in heterogeneous clusters and genetic programming to generate agents in video-games.
