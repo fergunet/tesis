@@ -189,13 +189,13 @@ OSGi has been selected because it is faster than Web Services, because it was de
   the algorithms (for example, in a machine, in a local
   network, over the Internet, or even in more lightweight devices). 
 
-Unlike Web Services, OSGi includes a blackboard e\-vent-ma\-na\-ger,
-   that is, services can inform what they are doing without indicating 
+Unlike Web Services, OSGi includes a whiteboard pattern for e\-vent-ma\-na\-ger and service control.
+   The first means that services can inform what they are doing without indicating 
  any receiver. Other services can filter this information and actuate
  accordingly, so the synchronization is easier. For example, it is not
  mandatory to create a variable to count the number of times that the
  {\em Fitness Calculator} service is executed: an external service can
- track this number. 
+ track this number. The whiteboard pattern for service control imply that services are dynamically bound when they appear.
 
 Other reason to use OSGi is the separation between OSGi and the source code of the
    services, so the code of OSGi-based applications can be used in other
@@ -207,6 +207,30 @@ Finally, OSGi includes other features that, although they are not related to SOA
    components, that can be useful in the development of EAs 
    (as explained by \person{Wagner \etal} \cite{WagnerPlugins07}). These advantages can be used by the EA developers if
    they work in a team collaboration. % Pero ¿lo son? - JJ
+
+Table \ref{tab:osgivsws} summarizes the differences between the two SOA implementation technologies proposed.
+
+\begin{SCtable}[][t]
+\resizebox{10cm}{!}{
+\begin{tabular}{lll}
+\hline
+\rowcolor{colorCorporativoSuave}    &  OSGi   & Web Services \\
+\hline\hline
+\rowcolor{colorCorporativoMasSuave}Primary environment & Local & Web \\
+\rowcolor{colorCorporativoSuave}Communication protocol & Variable & SOAP \\
+\rowcolor{colorCorporativoMasSuave}Dynamism & White-Board & Explicit \\
+\rowcolor{colorCorporativoSuave}Client creation & Previously known & Automatic\\
+\rowcolor{colorCorporativoMasSuave}Language & Java (by default) & Any\\
+\rowcolor{colorCorporativoSuave}Interfaces & Java Interface & WSDL\\
+\rowcolor{colorCorporativoMasSuave}Extras & Plug-in based & WS-Extensions\\ 
+\hline
+\end{tabular}
+}
+\caption{Differences between OSGi and Web Services.}
+\label{tab:osgivsws}
+\end{SCtable}
+
+
 
 To distribute the OSGi services, the OSGi 4.2 Remote Services
 standard\footnote{\url{http://www.osgi.org/Release4/Download}} is proposed.  The
